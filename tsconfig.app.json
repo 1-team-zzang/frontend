@@ -25,7 +25,8 @@
 
     /* Types */
     "typeRoots": ["./types", "./node_modules/@types", "./node_modules"],
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "rootDirs": [".", "./.react-router/types"]
   },
-  "include": ["src"]
+  "include": ["src", ".react-router/types/**/*"]
 }
