@@ -11,17 +11,21 @@ comments:
 
 # 레이블
 labels:
-  🐛 hotfix:
-    - head-branch: ['^fix', 'fix']
-  ✅ test:
+  '🐛 hotfix':
+    include:
+      - '\bfix\b'
+  '✅ test':
     include:
       - '\btest\b'
-  ✨ feat:
-    - head-branch: ['^feat', 'feat']
-  📝 docs:
+  '✨ feat':
+    include:
+      - '\bfeature\b'
+  '📝 docs':
     include:
       - '\bdocs\b'
-  ♻️ refactor:
-    - head-branch: ['^refactor', 'refactor']
-  ⚙️ chore:
-    - head-branch: ['^chore', 'chore']
+  '♻️ refactor':
+    include:
+      - '\brefactor\b'
+  '⚙️ chore':
+    include:
+      - '\bchore\b'
