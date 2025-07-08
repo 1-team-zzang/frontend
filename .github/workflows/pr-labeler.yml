@@ -4,13 +4,14 @@ on: pull_request
 jobs:
   labeler:
     runs-on: ubuntu-latest
-    # 리파지토리에 대한 권한 설정
     permissions:
       contents: read
       pull-requests: write
     steps:
       - name: Check Labels
         id: labeler
-        uses: jimschubert/labeler-action@v1
+        uses: actions/labeler@v5
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          sync-labels: true # 규칙에 맞지 않는 라벨 제거
+
