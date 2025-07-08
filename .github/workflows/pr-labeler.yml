@@ -16,6 +16,6 @@ jobs:
         id: labeler
         uses: jimschubert/labeler-action@v2
         with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          repo-token: ${{secrets.GITHUB_TOKEN}}
           sync-labels: true # 규칙에 맞지 않는 라벨 제거
 
