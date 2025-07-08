@@ -1,3 +1,10 @@
+import QueryProvider from './provider/QueryProvider'
+import ReactRouterProvider from './provider/ReactRouterProvider'
+
 export default function App() {
-  return <div>App</div>
+  return (
+    <QueryProvider>
+      <ReactRouterProvider />
+    </QueryProvider>
+  )
 }
