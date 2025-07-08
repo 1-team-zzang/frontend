@@ -1,3 +1,10 @@
+import QueryProvider from './provider/QueryProvider'
+import ReactRouterProvider from './provider/ReactRouterProvider'
+
 export default function App() {
-  return <div className="text-3xl font-bold underline">App</div>
+  return (
+    <QueryProvider>
+      <ReactRouterProvider />
+    </QueryProvider>
+  )
 }
