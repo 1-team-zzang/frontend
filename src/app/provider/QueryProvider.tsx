@@ -21,6 +21,13 @@ const queryClient = new QueryClient({
   },
 })
 
+/**
+ * Provides a React Query context to its child components with a preconfigured query client and development tools.
+ *
+ * Wraps children with `QueryClientProvider` using a shared query client instance and includes `ReactQueryDevtools` for debugging.
+ *
+ * @param children - The React nodes to be rendered within the provider context
+ */
 export default function QueryProvider({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
