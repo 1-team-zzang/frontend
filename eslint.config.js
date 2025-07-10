@@ -145,6 +145,7 @@ export default tseslint.config([
           caughtErrorsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/array-type': 'error',
     },
     settings: {
       react: {
