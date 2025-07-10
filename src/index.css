@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: Pretendard;
+  font-weight: 300;
+  src: url('/fonts/pretendard/pretendard-light.woff2') format('woff2'),
+    url('/fonts/pretendard/pretendard-light.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Pretendard;
+  font-weight: 400;
+  src: url('/fonts/pretendard/pretendard-regular.woff2') format('woff2'),
+    url('/fonts/pretendard/pretendard-regular.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Pretendard;
+  font-weight: 500;
+  src: url('/fonts/pretendard/pretendard-medium.woff2') format('woff2'),
+    url('/fonts/pretendard/pretendard-medium.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Pretendard;
+  font-weight: 600;
+  src: url('/fonts/pretendard/pretendard-semibold.woff2') format('woff2'),
+    url('/fonts/pretendard/pretendard-semibold.woff') format('woff');
+}
+@font-face {
+  font-display: swap;
+  font-family: Pretendard;
+  font-weight: 700;
+  src: url('/fonts/pretendard/pretendard-bold.woff2') format('woff2'),
+    url('/fonts/pretendard/pretendard-bold.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Pretendard;
+  font-weight: 800;
+  src: url('/fonts/pretendard/pretendard-extrabold.woff2') format('woff2'),
+    url('/fonts/pretendard/pretendard-extrabold.woff') format('woff');
+}
+
+:root {
+  font-family: Pretendard;
+  -webkit-font-smoothing: antialiased;
+}
