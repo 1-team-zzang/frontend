@@ -7,11 +7,7 @@ import { Slottable } from './Slottable'
 
 import type { ButtonHTMLAttributes } from 'react'
 
-export default function Button({
-  asChild,
-  children,
-  ...restProps
-}: ButtonHTMLAttributes<HTMLButtonElement> & { asChild?: boolean }) {
+function Button({ asChild, children, ...restProps }: ButtonHTMLAttributes<HTMLButtonElement> & { asChild?: boolean }) {
   const Element = asChild ? Slot : 'button'
 
   return (
