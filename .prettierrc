@@ -5,5 +5,7 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "objectWrap": "preserve",
+  "bracketSameLine": false
 }
