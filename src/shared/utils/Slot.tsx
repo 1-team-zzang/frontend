@@ -6,7 +6,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
   children: ReactNode
 }
 
-export function Slot({ children, ...restProps }: Props) {
+export function Slot({ children, ...restProps }: Props): ReactElement | null {
   const childrenArray = Children.toArray(children)
   const slottable = childrenArray.find((child) => isValidElement(child) && child.type === Slottable) as ReactElement<{
     children: ReactNode
@@ -31,8 +31,22 @@ export function Slot({ children, ...restProps }: Props) {
       return child
     })
 
-    return isValidElement(newElement)
-      ? cloneElement(newElement, { ...restProps, ...(newElement.props as { children: ReactNode }) }, newChildren)
-      : null
+    if (!isValidElement(newElement)) {
+      return null
+    }
+
+    return cloneElement(
+      newElement as ReactElement<{ children: ReactNode }>,
+      { ...restProps, ...('props' in newElement ? (newElement.props as { children?: ReactNode }) : {}) },
+      newChildren,
+    )
   }
+
+  if (isValidElement(children)) {
+    return cloneElement(children, { ...restProps, ...(children.props as { children: ReactNode }) })
+  }
+
+  console.error('Slot 컴포넌트는 하나의 React 엘리먼트만 자식으로 받을 수 있어요.')
+
+  return null
 }
