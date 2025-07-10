@@ -14,6 +14,11 @@ export function Slot({ children, ...restProps }: Props): ReactElement | null {
 
   if (slottable) {
     const newElement = slottable.props.children
+
+    if (!isValidElement(newElement)) {
+      return null
+    }
+
     const newChildren = childrenArray.map((child) => {
       if (child === slottable) {
         if (Children.count(newElement) > 1) {
@@ -30,10 +35,6 @@ export function Slot({ children, ...restProps }: Props): ReactElement | null {
 
       return child
     })
-
-    if (!isValidElement(newElement)) {
-      return null
-    }
 
     return cloneElement(
       newElement as ReactElement<{ children: ReactNode }>,
