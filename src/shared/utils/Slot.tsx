@@ -1,8 +1,12 @@
-import { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react'
+import { Children, cloneElement, isValidElement, type HTMLAttributes, type ReactElement, type ReactNode } from 'react'
 
 import { Slottable } from './Slottable'
 
-export function Slot({ children, ...restProps }: { children: ReactNode }) {
+interface Props extends HTMLAttributes<HTMLElement> {
+  children: ReactNode
+}
+
+export function Slot({ children, ...restProps }: Props) {
   const childrenArray = Children.toArray(children)
   const slottable = childrenArray.find((child) => isValidElement(child) && child.type === Slottable) as ReactElement<{
     children: ReactNode
