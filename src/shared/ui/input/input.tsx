@@ -14,5 +14,5 @@ const InputVariant: Record<Variant, string> = {
 }
 
 export default function Input<T extends FieldValues>({ register, name, variant = 'default', ...props }: InputProps<T>) {
-  return <input className={cn(InputVariant[variant], props.className)} {...register(name)} {...props} />
+  return <input {...props} className={cn(InputVariant[variant], props.className)} {...register(name)} />
 }
