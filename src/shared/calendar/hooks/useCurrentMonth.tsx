@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 /** 월 상태 관리 및 핸들러함수 */
 
-export default function UseCurrentMonth() {
+export default function useCurrentMonth() {
   const [currentMonth, setCurrentMonth] = useState(new Date()) //초기값 현재
 
   const onNextMonth = () => {
