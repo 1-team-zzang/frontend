@@ -31,10 +31,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/app/*": ["./src/app/*"],
+      "@app/*": ["./src/app/*"],
       "@pages/*": ["./src/pages/*"],
-      "@/features/*": ["./src/features/*"],
-      "@/entities/*": ["./src/entities/*"],
+      "@features/*": ["./src/features/*"],
+      "@entities/*": ["./src/entities/*"],
       "@shared/*": ["./src/shared/*"]
     }
   },
