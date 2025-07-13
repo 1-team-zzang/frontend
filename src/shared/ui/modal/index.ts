@@ -1,0 +1,8 @@
+export { default as ModalRoot } from './modal-root'
+export { default as ModalTrigger } from './modal-trigger'
+export { default as ModalPortal } from './modal-portal'
+export { default as ModalOverlay } from './modal-overlay'
+export { default as ModalContent } from './modal-content'
+export { default as ModalTitle } from './modal-title'
+export { default as ModalDescription } from './modal-description'
+export { default as ModalCloseButton } from './modal-close-button'
