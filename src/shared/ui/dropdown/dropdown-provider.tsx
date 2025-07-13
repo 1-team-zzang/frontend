@@ -16,7 +16,7 @@ import DropDownMenuItem from './dropdown-menu-ltem'
  * @example
  *    <Dropdown>
  *        <Dropdown.Trigger>드롭다운 트리거 버튼</Dropdown.Trigger>
- *        <Dropdown.Menu width="48">
+ *        <Dropdown.Menu width="sm">
  *          <Dropdown.Item>목록1</Dropdown.Item>
  *          <Dropdown.Item>목록2</Dropdown.Item>
  *        </Dropdown.Menu>
