@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import createScopedContext from '../../utils/use-custom-context'
 import DropDownTrigger from './dropdown-trigger'
 import DropDownMenu from './dropdown-menu'
 import DropDownMenuItem from './dropdown-menu-ltem'
+import { DropdownProvider } from './hooks/useDropDownContext'
 /**
  * @description 드롭다운 UI 컴포넌트
- * Dropdown 하위 컴포넌트에서 isOpen, handleDropdown, closeDropdown을 사용할 수 있습니다
+ * DropdownProvider로 context를 하위 컴포넌트에 전달합니다
  *
- * @param isOpen 드롭다운이 열려 있는지 여부
- * @param handleDropdown 드롭다운 토글 함수
- * @param closeDropdown 드롭다운을 닫는 함수
- *
- * @returns [DropdownProvider, useDropdownContext]
+ * <하위컴포넌트>
+ * DropDown.Trigger - 드롭다운 트리거 버튼
+ * DropDown.Menu - 드롭다운 메뉴 상자
+ * Dropdown.Item - 드롭다운 메뉴 리스트
  *
  * @example
  *    <Dropdown>
@@ -23,16 +22,6 @@ import DropDownMenuItem from './dropdown-menu-ltem'
  *    </Dropdown>
  *
  */
-interface Props {
-  isOpen: boolean
-  handleDropdown: () => void
-  closeDropdown: () => void
-}
-
-const createDropdownContext = createScopedContext()
-const [DropdownProvider, useDropdownContext] = createDropdownContext<Props>()
-
-export { useDropdownContext }
 
 export default function Dropdown({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)

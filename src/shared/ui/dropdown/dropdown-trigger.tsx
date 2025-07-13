@@ -1,5 +1,3 @@
-import { useDropdownContext } from './dropdown-provider'
-
 /**
  * @description 드롭다운 트리거 버튼
  *
@@ -10,6 +8,8 @@ import { useDropdownContext } from './dropdown-provider'
  * @example
  *
  */
+
+import { useDropdownContext } from './hooks/useDropDownContext'
 
 export default function DropDownTrigger({ children }: { children: React.ReactNode }) {
   const { handleDropdown } = useDropdownContext()
