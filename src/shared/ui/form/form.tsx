@@ -34,7 +34,7 @@ export default function Form<T extends FieldValues>({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className={cn('fles flex-col', className)}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className={cn('flex flex-col', className)}>
         {children}
       </form>
     </FormProvider>
