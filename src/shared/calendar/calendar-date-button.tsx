@@ -6,9 +6,9 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<ty
   children: React.ReactNode
 }
 
-const ButtonVariants = cva('', {
+const ButtonVariants = cva('rounded-full hover:bg-primary-40', {
   variants: {
-    isSelectedDate: { true: 'bg-primary-01' },
+    isSelectedDate: { true: 'bg-primary-40' },
     isSunday: { true: 'text-primary-99' },
     isCurrentMonth: {
       true: 'text-gray-90',
@@ -17,14 +17,14 @@ const ButtonVariants = cva('', {
   },
   compoundVariants: [
     {
-      isCurrentMonth: false,
       isSunday: true,
+      isCurrentMonth: false,
       className: 'text-gray-50', // 이번 달이 아니면 일요일이라도 무조건 회색
     },
   ],
   defaultVariants: {
-    isSelectedDate: false,
     isSunday: false,
+    isSelectedDate: false,
     isCurrentMonth: true,
   },
 })

@@ -1,18 +1,11 @@
 import { format } from 'date-fns'
+import { useCalendarContext } from './calendar-provider'
 
-import Button from './calendar-date-button'
-interface Props {
-  currentMonth: Date
-  onNextMonth: () => void
-  onPrevMonth: () => void
-}
-
-export default function CalendarHeader({ currentMonth, onNextMonth, onPrevMonth }: Props) {
+export default function CalendarHeader() {
+  const { currentMonth } = useCalendarContext()
   return (
     <div className="flex gap-1">
-      <Button onClick={onPrevMonth}>{'〈'}</Button>
       <span>{format(currentMonth, 'yyyy.MM')}</span>
-      <Button onClick={onNextMonth}>{'〉'}</Button>
     </div>
   )
 }
