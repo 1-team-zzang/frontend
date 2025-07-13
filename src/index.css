@@ -52,4 +52,68 @@
 :root {
   font-family: Pretendard;
   -webkit-font-smoothing: antialiased;
+
+  /************/
+  /** colors **/
+  /************/
+
+  --white-color: '#ffffff';
+  --black-color: '#000000';
+
+  /* gray color */
+  --gray-color-0: #ffffff;
+  --gray-color-1: #f8f8fa;
+  --gray-color-5: #f0f1f4;
+  --gray-color-10: #e2e3e9;
+  --gray-color-20: #d2d3d9;
+  --gray-color-30: #c8c9cd;
+  --gray-color-40: #acb1b5;
+  --gray-color-50: #8b9197;
+  --gray-color-60: #777a80;
+  --gray-color-70: #515255;
+  --gray-color-80: #414246;
+  --gray-color-90: #2e2f34;
+  --gray-color-95: #202123;
+  --gray-color-100: #000000;
+
+  /* primary color (lime green) */
+  --primary-color-0: #f8fff9;
+  --primary-color-1: #ebffee;
+  --primary-color-5: #d6ffd1;
+  --primary-color-10: #b7ffaf;
+  --primary-color-20: #8cff80;
+  --primary-color-30: #68ff56;
+  --primary-color-40: #44fa2f;
+  --primary-color-50: #3eee2a;
+  --primary-color-60: #21dc0b;
+  --primary-color-70: #24c912;
+  --primary-color-80: #16ab05;
+  --primary-color-90: #0e851c;
+  --primary-color-95: #075d10;
+  --primary-color-99: #06460d;
+
+  /* calendar color */
+  --calendar-color-red: #ff5555;
+  --calendar-color-red-alt: #ffe3e3;
+
+  --calendar-color-yellow: #fff155;
+  --calendar-color-yellow-alt: #fffbe3;
+
+  --calendar-color-green: #37be4b;
+  --calendar-color-green-alt: #daf9dd;
+
+  --calendar-color-blue: #4678f4;
+  --calendar-color-blue-alt: #e3e8ff;
+
+  --calendar-color-purple: #af55ff;
+  --calendar-color-purple-alt: #f2e2fe;
+
+  /* system color */
+  --system-background: #ffffff;
+
+  --system-warning: #ff5555;
+  --system-warning-alt: #ffe3e3;
+
+  --system-safe: #31c288;
+  --system-safe-alt: #cff6e6;
 }
