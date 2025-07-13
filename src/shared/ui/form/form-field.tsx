@@ -34,7 +34,7 @@ export default function FormField({ name, label, children, className }: Props) {
     formState: { errors },
   } = useFormContext()
 
-  const errorMessage = errors[name]?.message
+  const errorMessage = errors[name]?.message ? String(errors[name].message) : undefined
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function FormField({ name, label, children, className }: Props) {
         <FormLabel name={name}>{label}</FormLabel>
         {children}
       </div>
-      {errorMessage && <FormErrorMessage message={errorMessage as string} />}
+      {errorMessage && <FormErrorMessage message={errorMessage} />}
     </>
   )
 }
