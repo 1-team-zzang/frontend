@@ -26,7 +26,17 @@
     /* Types */
     "typeRoots": ["./types", "./node_modules/@types", "./node_modules"],
     "types": ["vitest/globals", "@testing-library/jest-dom"],
-    "rootDirs": [".", "./.react-router/types"]
+    "rootDirs": [".", "./.react-router/types"],
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/app/*": ["./src/app/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/entities/*": ["./src/entities/*"],
+      "@shared/*": ["./src/shared/*"]
+    }
   },
   "include": ["src", ".react-router/types/**/*"]
 }
