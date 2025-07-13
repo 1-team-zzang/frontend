@@ -1,5 +1,10 @@
 import { format } from 'date-fns'
-import { useCalendarContext } from './calendar-provider'
+import { useCalendarContext } from './hooks/useCalendarContext'
+
+/**
+ * @description  YYYY.MM 표시 헤더
+ *
+ */
 
 export default function CalendarHeader() {
   const { currentMonth } = useCalendarContext()
