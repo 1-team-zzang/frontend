@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
-import Button from './button'
+
+import Button from './button.tsx'
 
 describe('Button 컴포넌트', () => {
   it('children 확인', () => {
@@ -9,7 +10,7 @@ describe('Button 컴포넌트', () => {
     expect(screen.getByText('children')).toBeInTheDocument()
   })
 
-  it('onClick 테스트', async () => {
+  it('onClick 테스트', async() => {
     const user = userEvent.setup()
     const handleClick = vi.fn()
 
@@ -25,11 +26,11 @@ describe('Button 컴포넌트', () => {
   })
 
   it('variant 스타일 확인', () => {
-  const { container } = render(<Button variant="primary">버튼</Button>)
-  const button = container.firstChild
+    const { container } = render(<Button intent='solid' active={true}>버튼</Button>)
+    const button = container.firstChild
 
-  expect(button).toHaveClass('bg-blue-500')
-  expect(button).toHaveClass('text-white')
-})
+    expect(button).toHaveClass('text-base')
+    expect(button).toHaveClass('bg-[#21DC0B]')
+  })
 
 })
