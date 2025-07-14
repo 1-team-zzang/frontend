@@ -9,7 +9,7 @@
  *
  */
 
-import { useDropdownContext } from './hooks/useDropDownContext'
+import { useDropdownContext } from './hooks/use-dropdown-context'
 
 export default function DropDownTrigger({ children }: { children: React.ReactNode }) {
   const { handleToggleDropdown } = useDropdownContext()

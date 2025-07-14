@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DropdownProvider } from './hooks/useDropDownContext'
+import { DropdownProvider } from './hooks/use-dropdown-context'
 /**
  * @description 드롭다운 UI 컴포넌트
  * DropdownProvider로 context를 하위 컴포넌트에 전달합니다

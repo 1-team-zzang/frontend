@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDropdownContext } from './hooks/useDropDownContext'
+import { useDropdownContext } from './hooks/use-dropdown-context'
 /**
  * @description 드롭다운 메뉴 리스트
  *
@@ -28,7 +28,7 @@ export default function DropDownMenuItem({ children, onClick }: Props) {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === '') {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
       handleClick()
     }
