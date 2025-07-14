@@ -8,5 +8,8 @@
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.format.enable": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "tailwindCSS.classFunctions": ["cva", "cx"]
+  "tailwindCSS.classFunctions": ["cva", "cx"],
+  "[markdown]": {
+    "editor.formatOnSave": false
+  }
 }
