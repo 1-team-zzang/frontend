@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
-import { useCalendarContext } from './hooks/useCalendarContext'
+
+import { useCalendarContext } from './hooks/use-calendar-context'
 
 /**
  * @description  YYYY.MM 표시 헤더

@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-import type { ButtonHTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 /**
  * @description 날짜 셀 컴포넌트에서 사용되는 버튼입니다.
@@ -12,11 +12,11 @@ import type { ButtonHTMLAttributes } from 'react'
  * - isCurrentMonth: 이번 달에 해당하는 날짜인지 여부
  */
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof ButtonVariants> {
-  children: React.ReactNode
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+  children: ReactNode
 }
 
-const ButtonVariants = cva('rounded-full hover:bg-primary-40', {
+const buttonVariants = cva('rounded-full hover:bg-primary-40', {
   variants: {
     isSelectedDate: { true: 'bg-primary-40' },
     isCurrentMonth: {
@@ -33,9 +33,9 @@ const ButtonVariants = cva('rounded-full hover:bg-primary-40', {
   },
 })
 
-export default function Button({ isCurrentMonth, isSelectedDate, isSunday, children, ...props }: Props) {
+export default function DateButton({ isCurrentMonth, isSelectedDate, isSunday, children, ...restProps }: Props) {
   return (
-    <button className={ButtonVariants({ isCurrentMonth, isSelectedDate, isSunday })} {...props}>
+    <button className={buttonVariants({ isCurrentMonth, isSelectedDate, isSunday })} {...restProps}>
       {children}
     </button>
   )

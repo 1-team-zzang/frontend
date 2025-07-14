@@ -1,11 +1,11 @@
-import createScopedContext from '../../utils/use-custom-context'
+import createScopedContext from '../../utils/create-context-scope'
 
 /**
  * @description 캘린더에서 사용되는 전역 상태, 함수를 위한 Context입니다.
  * CalendarProvider를 통해 하위 컴포넌트에 전달됩니다.
  */
 
-interface Props {
+interface CalendarContextValue {
   currentMonth: Date //현재 달의 기준(오늘 날짜)
   onNextMonth: () => void //다음 달로 이동 하는 함수
   onPrevMonth: () => void //이전 달로 이동 하는 함수
@@ -17,6 +17,6 @@ interface Props {
 }
 
 const CalendarContext = createScopedContext()
-const [CalendarProvider, useCalendarContext] = CalendarContext<Props>()
+const [CalendarProvider, useCalendarContext] = CalendarContext<CalendarContextValue>()
 
 export { CalendarProvider, useCalendarContext }

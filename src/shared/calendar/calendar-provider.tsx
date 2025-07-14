@@ -1,10 +1,10 @@
-import CalendarCells from './calendar-cells'
-import CalendarHeader from './calendar-header'
-import { CalendarProvider } from './hooks/useCalendarContext'
-import useCalendarDates from './hooks/useCalendarDate'
-import useCalendarNavigation from './hooks/useCalendarNavigation'
-import useSelectedDate from './hooks/useSelectedDate'
-import WeekdayHeader from './weekday-header'
+import { CalendarProvider } from './hooks/use-calendar-context'
+import useCalendarDates from './hooks/use-calendar-date'
+import useMonthControl from './hooks/use-month-control'
+import useYearControl from './hooks/use-year-control'
+import useSelectedDate from './util/use-selected-date'
+
+import type { ReactNode } from 'react'
 
 /**
  * @description 캘린더 UI 컴포넌트
@@ -18,15 +18,16 @@ import WeekdayHeader from './weekday-header'
  *
  * @example
  *    <Calendar>
- *     <Calendar.Header />
- *     <Calendar.Weekdays />
- *     <Calendar.Cells />
+ *     <CalendarHeader />
+ *     <CalendarWeekdays />
+ *     <CalendarCells />
  *   </Calendar>
  *
  */
 
-export default function Calendar({ children }: { children: React.ReactNode }) {
-  const { currentMonth, onNextMonth, onPrevMonth, onNextYear, onPrevYear } = useCalendarNavigation()
+export default function Calendar({ children }: { children: ReactNode }) {
+  const { currentMonth, onNextMonth, onPrevMonth } = useMonthControl()
+  const { onNextYear, onPrevYear } = useYearControl()
   const currentMonthAllDates = useCalendarDates(currentMonth)
   const { selectedDate, handleSelectedDate } = useSelectedDate()
 
@@ -46,7 +47,3 @@ export default function Calendar({ children }: { children: React.ReactNode }) {
     </CalendarProvider>
   )
 }
-
-Calendar.Header = CalendarHeader
-Calendar.Weekdays = WeekdayHeader
-Calendar.Cells = CalendarCells
