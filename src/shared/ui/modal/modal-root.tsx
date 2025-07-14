@@ -1,13 +1,13 @@
-import useControllableState from '@/shared/hooks/use-controllable-state'
+import { type ReactNode } from 'react'
+
+import { useEscapeKeydown, useControllableState } from '@/shared/hooks'
 
 import { ModalProvider } from './modal-context'
 
-import type { ReactNode } from 'react'
-
 interface Props {
-  defaultOpen: boolean
-  // eslint-disable-next-line no-unused-vars
-  onOpenChange: (open: boolean) => void
+  defaultOpen?: boolean
+
+  onOpenChange?: (open: boolean) => void
   children: ReactNode
 }
 
@@ -17,6 +17,8 @@ export default function ModalRoot({ children, defaultOpen, onOpenChange }: Props
     defaultProp: defaultOpen || false,
     onChange: onOpenChange,
   })
+
+  useEscapeKeydown({ onEscapeKeyDown: () => setOpen(false) })
 
   return <ModalProvider value={{ isOpen, onOpenChange: setOpen }}>{children}</ModalProvider>
 }
