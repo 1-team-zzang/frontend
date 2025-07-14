@@ -1,4 +1,4 @@
-import { createContextScope } from '@shared/utils'
+import { createContextScope } from '@/shared/utils'
 
 const createModalContext = createContextScope()
 
