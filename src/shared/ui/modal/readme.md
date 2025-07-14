@@ -19,7 +19,8 @@
 
 ```tsx
 import { ModalRoot } from '@/shared/ui/modal'
-;<ModalRoot defaultOpen={false} onOpenChange={(open) => console.log(open)}>
+
+<ModalRoot defaultOpen={false} onOpenChange={(open) => console.log(open)}>
   {/* 모달 컴포넌트들 */}
 </ModalRoot>
 ```
@@ -55,7 +56,8 @@ import { ModalTrigger } from '@/shared/ui/modal'
 
 ```tsx
 import { ModalPortal } from '@/shared/ui/modal'
-;<ModalPortal>
+
+<ModalPortal>
   <ModalOverlay />
   <ModalContent>{/* 모달 내용 */}</ModalContent>
 </ModalPortal>
@@ -72,7 +74,7 @@ import { ModalPortal } from '@/shared/ui/modal'
 
 ```tsx
 import { ModalOverlay } from '@/shared/ui/modal'
-;<ModalOverlay className="bg-black/50" />
+<ModalOverlay className="bg-black/50" />
 ```
 
 **Props:**
@@ -86,7 +88,7 @@ import { ModalOverlay } from '@/shared/ui/modal'
 
 ```tsx
 import { ModalContent } from '@/shared/ui/modal'
-;<ModalContent className="max-w-md">
+<ModalContent className="max-w-md">
   <ModalTitle>제목</ModalTitle>
   <ModalDescription>설명</ModalDescription>
 </ModalContent>
@@ -103,7 +105,7 @@ import { ModalContent } from '@/shared/ui/modal'
 
 ```tsx
 import { ModalTitle } from '@/shared/ui/modal'
-;<ModalTitle>모달 제목</ModalTitle>
+<ModalTitle>모달 제목</ModalTitle>
 ```
 
 **Props:**
@@ -117,7 +119,7 @@ import { ModalTitle } from '@/shared/ui/modal'
 
 ```tsx
 import { ModalDescription } from '@/shared/ui/modal'
-;<ModalDescription>모달에 대한 설명입니다.</ModalDescription>
+<ModalDescription>모달에 대한 설명입니다.</ModalDescription>
 ```
 
 **Props:**
@@ -131,7 +133,7 @@ import { ModalDescription } from '@/shared/ui/modal'
 
 ```tsx
 import { ModalCloseButton } from '@/shared/ui/modal'
-;<ModalCloseButton className="absolute top-4 right-4" />
+<ModalCloseButton className="absolute top-4 right-4" />
 ```
 
 **Props:**
