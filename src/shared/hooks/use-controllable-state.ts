@@ -13,7 +13,6 @@ import { isFunction } from '../utils/is-function'
 interface Params<T> {
   prop?: T
   defaultProp: T
-  // eslint-disable-next-line no-unused-vars
   onChange?: (value: T) => void
 }
 
