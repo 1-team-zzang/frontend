@@ -2,9 +2,10 @@ import { useFormContext } from 'react-hook-form'
 
 import { cn } from '../../utils/cn'
 
-interface Props {
+import type { InputHTMLAttributes } from 'react'
+
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string
-  className?: string
 }
 
 // NOTE: 기본 Input 컴포넌트는 useForm에 종속시키지 않기 위해 register를 prop으로 받는다하셔서
