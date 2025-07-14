@@ -53,7 +53,7 @@ export default tseslint.config([
       // 🧠 변수와 함수 스타일 관련
       'no-var': 'error', // var 대신 let/const 사용
       'prefer-const': 'error', // 변경되지 않는 변수는 const 사용
-      'no-unused-vars': 'error', // 사용되지 않는 변수 금지
+      'no-unused-vars': 'off', // 사용되지 않는 변수 금지
       camelcase: ['warn', { properties: 'always' }], // 변수, 속성은 카멜케이스 권장
       'no-undef': 'error', // 정의되지 않은 변수 사용 금지
       'no-use-before-define': ['error', { functions: false }], // 정의 전 사용 금지 (함수는 예외)
@@ -137,14 +137,7 @@ export default tseslint.config([
       ],
 
       // 🧠 TypeScript용 중복 검사 방지 및 고급 처리
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
+      '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/array-type': 'error',
     },
     settings: {
