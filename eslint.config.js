@@ -61,7 +61,14 @@ export default tseslint.config([
       // ➕ 공백과 연산자 관련
       'space-infix-ops': 'error', // 연산자 양쪽에 공백 필수 (ex. a + b)
       'keyword-spacing': ['error', { before: true, after: true }], // if, else, for 등 키워드 앞뒤 공백
-      'space-before-function-paren': ['error', 'never'], // 함수명과 괄호 사이 공백 금지 (function foo() ← ok)
+      'space-before-function-paren': [
+        'error',
+        {
+          asyncArrow: 'always', // async 화살표 함수에서 공백 허용
+          named: 'never', // 이름 있는 화살표 함수는 공백을 두지 않음
+          anonymous: 'never', // 익명 화살표 함수는 공백을 두지 않음
+        },
+      ], // 함수명과 괄호 사이 공백 금지 (function foo() ← ok)
       'func-call-spacing': ['error', 'never'], // 함수 호출 시 함수명과 괄호 사이 공백 금지 (foo() ← ok)
 
       // 🧱 표현식/문자열/객체 스타일
