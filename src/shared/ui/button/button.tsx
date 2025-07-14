@@ -1,21 +1,21 @@
-import { clsx } from 'clsx'
+import { cn } from '../../utils'
 
-import type { ButtonHTMLAttributes } from 'react'
+import { buttonVariants } from './button'
+
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary'
+  intent?: 'solid' | 'outlined'
+  active?: boolean
+  disabled?: boolean
+  children: ReactNode
 }
 
-export default function Button({ children, variant = 'primary', className, ...props
+export default function Button({ intent, active, disabled, children, className, ...restProps
 }: Props) {
-  const baseStyle = 'w-24 h-10'
-  const variantStyle = {
-    primary: 'bg-blue-500 text-white'
-  }
-
   return (
     <button className={
-      clsx(
-        baseStyle, variantStyle[variant], className)}{...props}>{children}</button>
+      cn(buttonVariants({ intent, active, disabled }), className,
+      )} disabled={disabled === true} {...restProps}>{children}</button>
   )
 }
