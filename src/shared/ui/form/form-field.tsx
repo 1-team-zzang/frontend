@@ -1,3 +1,4 @@
+import { ErrorMessage } from '@hookform/error-message'
 import { useFormContext } from 'react-hook-form'
 
 import { cn } from '../../utils'
@@ -5,13 +6,11 @@ import { cn } from '../../utils'
 import FormErrorMessage from './form-error-message'
 import FormLabel from './form-label'
 
-import type { ReactNode } from 'react'
+import type { HTMLAttributes } from 'react'
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   name: string
   label: string
-  children: ReactNode
-  className?: string
 }
 
 /**
@@ -34,15 +33,17 @@ export default function FormField({ name, label, children, className }: Props) {
     formState: { errors },
   } = useFormContext()
 
-  const errorMessage = errors[name]?.message ? String(errors[name].message) : undefined
-
   return (
-    <>
-      <div className={cn('flex flex-col gap-2', className)}>
+    <div className={cn('', className)}>
+      <div className="flex flex-col gap-2">
         <FormLabel name={name}>{label}</FormLabel>
         {children}
       </div>
-      {errorMessage && <FormErrorMessage message={errorMessage} />}
-    </>
+      <ErrorMessage
+        errors={errors}
+        name={name}
+        render={({ message }) => <FormErrorMessage>{message}</FormErrorMessage>}
+      />
+    </div>
   )
 }

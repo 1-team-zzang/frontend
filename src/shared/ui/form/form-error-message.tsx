@@ -1,10 +1,11 @@
 import { cn } from '../../utils'
 
-interface Props {
-  message: string
-  className?: string
-}
+import type { HTMLAttributes } from 'react'
 
-export default function FormErrorMessage({ message, className }: Props) {
-  return <p className={cn('', className)}>{message}</p>
+export default function FormErrorMessage({ children, className, ...restProps }: HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p className={cn('', className)} {...restProps}>
+      {children}
+    </p>
+  )
 }
