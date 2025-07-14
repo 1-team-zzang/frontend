@@ -117,3 +117,8 @@
   --system-safe: #31c288;
   --system-safe-alt: #cff6e6;
 }
+
+.tooltip:after {
+  border-width: 0 10px 13px;
+  border-color: var(--gray-color-95) transparent;
+}
