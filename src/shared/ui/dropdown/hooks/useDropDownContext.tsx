@@ -7,8 +7,8 @@ import createScopedContext from '../../../utils/use-custom-context'
 
 interface Props {
   isOpen: boolean
-  handleDropdown: () => void
-  closeDropdown: () => void
+  handleToggleDropdown: () => void
+  handleCloseDropdown: () => void
 }
 
 const createDropdownContext = createScopedContext()

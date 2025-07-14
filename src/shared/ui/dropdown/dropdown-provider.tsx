@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-import DropDownTrigger from './dropdown-trigger'
-import DropDownMenu from './dropdown-menu'
-import DropDownMenuItem from './dropdown-menu-ltem'
 import { DropdownProvider } from './hooks/useDropDownContext'
 /**
  * @description 드롭다운 UI 컴포넌트
@@ -14,24 +11,24 @@ import { DropdownProvider } from './hooks/useDropDownContext'
  *
  * @example
  *    <Dropdown>
- *        <Dropdown.Trigger>드롭다운 트리거 버튼</Dropdown.Trigger>
- *        <Dropdown.Menu width="sm">
- *          <Dropdown.Item>목록1</Dropdown.Item>
- *          <Dropdown.Item>목록2</Dropdown.Item>
- *        </Dropdown.Menu>
+ *        <DropdownTrigger>드롭다운 트리거 버튼</Dropdown.Trigger>
+ *        <DropdownMenu width="sm">
+ *          <DropdownItem>목록1</Dropdown.Item>
+ *          <DropdownItem>목록2</Dropdown.Item>
+ *        </DropdownMenu>
  *    </Dropdown>
  *
  */
 
 export default function Dropdown({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
-  const handleDropdown = () => setIsOpen((prev) => !prev)
-  const closeDropdown = () => setIsOpen(false)
+  const handleToggleDropdown = () => setIsOpen((prev) => !prev)
+  const handleCloseDropdown = () => setIsOpen(false)
 
   const providerValue = {
     isOpen,
-    handleDropdown,
-    closeDropdown,
+    handleToggleDropdown,
+    handleCloseDropdown,
   }
 
   return (
@@ -40,7 +37,3 @@ export default function Dropdown({ children }: { children: React.ReactNode }) {
     </DropdownProvider>
   )
 }
-
-Dropdown.Trigger = DropDownTrigger
-Dropdown.Menu = DropDownMenu
-Dropdown.Item = DropDownMenuItem

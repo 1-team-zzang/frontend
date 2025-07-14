@@ -23,33 +23,20 @@ interface Props extends VariantProps<typeof dropDownMenuVariants> {
   children: React.ReactNode
 }
 
-const dropDownMenuVariants = cva('flex flex-col absolute animate-dropdown border gap-2 p-4', {
+const dropDownMenuVariants = cva('flex flex-col absolute animate-dropdown gap-2 p-4', {
   variants: {
-    width: {
+    size: {
       sm: 'w-24',
-      auto: 'w-auto',
-      full: 'w-full',
-    },
-    rounded: {
-      sm: 'rounded-sm',
-    },
-    bg: {
-      white: 'bg-white',
-    },
-    border: {
-      black: 'border-black',
+      lg: 'w-auto',
     },
   },
   defaultVariants: {
-    width: 'sm',
-    bg: 'white',
-    rounded: 'sm',
-    border: 'black',
+    size: 'sm',
   },
 })
 
-export default function DropDownMenu({ children, width, bg, rounded, border }: Props) {
+export default function DropDownMenu({ children, size }: Props) {
   const { isOpen } = useDropdownContext()
   if (!isOpen) return null
-  return <ul className={dropDownMenuVariants({ width, bg, rounded, border })}>{children}</ul>
+  return <ul className={dropDownMenuVariants({ size })}>{children}</ul>
 }

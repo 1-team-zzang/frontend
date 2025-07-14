@@ -20,15 +20,22 @@ interface Props {
 }
 
 export default function DropDownMenuItem({ children, onClick }: Props) {
-  const { closeDropdown } = useDropdownContext()
+  const { handleCloseDropdown } = useDropdownContext()
 
   const handleClick = () => {
     if (onClick) onClick()
-    closeDropdown()
+    handleCloseDropdown()
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === '') {
+      e.preventDefault()
+      handleClick()
+    }
   }
 
   return (
-    <li onClick={handleClick} className="w-full cursor-pointer">
+    <li onClick={handleClick} onKeyDown={handleKeyDown} tabIndex={0} className="w-full cursor-pointer">
       {children}
     </li>
   )
