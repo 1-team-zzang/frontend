@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, expect, afterEach, beforeEach } from 'vitest'
-import z from 'zod'
+import * as z from 'zod'
 
 import Form from './form'
 import FormField from './form-field'
