@@ -24,18 +24,27 @@ const buttonVariants = cva('rounded-full hover:bg-primary-40', {
       false: 'text-gray-50',
     },
     isSunday: { true: 'text-primary-99' },
+    isToday: { true: 'border border-primary-50' },
   },
 
   defaultVariants: {
+    isToday: false,
     isSunday: false,
     isSelectedDate: false,
     isCurrentMonth: true,
   },
 })
 
-export default function DateButton({ isCurrentMonth, isSelectedDate, isSunday, children, ...restProps }: Props) {
+export default function DateButton({
+  isCurrentMonth,
+  isSelectedDate,
+  isToday,
+  isSunday,
+  children,
+  ...restProps
+}: Props) {
   return (
-    <button className={buttonVariants({ isCurrentMonth, isSelectedDate, isSunday })} {...restProps}>
+    <button className={buttonVariants({ isCurrentMonth, isSelectedDate, isToday, isSunday })} {...restProps}>
       {children}
     </button>
   )

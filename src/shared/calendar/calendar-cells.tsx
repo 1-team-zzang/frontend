@@ -1,4 +1,4 @@
-import { isSameDay, isSameMonth } from 'date-fns'
+import { isSameDay, isSameMonth, isToday } from 'date-fns'
 
 import DateButton from './calendar-date-button'
 import { useCalendarContext } from './hooks/use-calendar-context'
@@ -18,6 +18,7 @@ export default function CalendarCells() {
           key={date.getTime()}
           onClick={() => handleSelectedDate(date)}
           isSelectedDate={isSameDay(selectedDate, date)}
+          isToday={isToday(date)}
           isSunday={date.getDay() === 0 && isSameMonth(date, currentMonth)}
           isCurrentMonth={isSameMonth(date, currentMonth)}
         >
