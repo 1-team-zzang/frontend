@@ -56,6 +56,10 @@ export default function SegmentedControlItem({ children, className, value: propV
     <button
       className={cn(itemVariants({ variant: isActive }), className)}
       onClick={() => setSelectedValue(propValue)}
+      role="tab"
+      aria-selected={isActive}
+      aria-controls={`panel-${propValue}`}
+      id={`tab-${propValue}`}
       {...restProps}
     >
       {children}

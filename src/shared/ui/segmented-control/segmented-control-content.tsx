@@ -40,5 +40,9 @@ export default function SegmentedControlContent({ value, children, className }: 
     return null
   }
 
-  return <div className={cn('', className)}>{children}</div>
+  return (
+    <div className={cn('', className)} role="tabpanel">
+      {children}
+    </div>
+  )
 }
