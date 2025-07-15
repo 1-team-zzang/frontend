@@ -20,12 +20,14 @@ import { TooltipProvider } from './tooltip-context'
  *  <TooltipMessage>툴팁 메시지입니다</TooltipMessage>
  * </Tooltip>
  */
-export default function Tooltip({ children, className }: HTMLAttributes<HTMLDivElement>) {
+export default function Tooltip({ children, className, ...restProps }: HTMLAttributes<HTMLDivElement>) {
   const [isShow, setIsShow] = useState<boolean>(false)
 
   return (
     <TooltipProvider value={{ isShow, setIsShow }}>
-      <div className={cn('relative w-fit', className)}>{children}</div>
+      <div className={cn('relative w-fit', className)} {...restProps}>
+        {children}
+      </div>
     </TooltipProvider>
   )
 }
