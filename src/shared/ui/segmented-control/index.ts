@@ -1,4 +1,4 @@
-export { default as SegementedControlRoot } from './segmented-control-root'
-export { default as SegementedControlList } from './segmented-control-list'
-export { default as SegementedControlItem } from './segmented-control-item'
-export { default as SegementedControlContent } from './segmented-control-content'
+export { default as SegmentedControlRoot } from './segmented-control-root'
+export { default as SegmentedControlList } from './segmented-control-list'
+export { default as SegmentedControlItem } from './segmented-control-item'
+export { default as SegmentedControlContent } from './segmented-control-content'

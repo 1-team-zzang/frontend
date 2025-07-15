@@ -22,7 +22,7 @@ import type { HTMLAttributes } from 'react'
  * @param props.restProps - 기타 HTML div 속성들
  * @returns JSX.Element
  */
-export default function SegementedControlList({ children, className, ...restProps }: HTMLAttributes<HTMLDivElement>) {
+export default function SegmentedControlList({ children, className, ...restProps }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn('flex items-center bg-gray-5 rounded-2xl p-1 w-fit', className)} {...restProps}>
       {children}

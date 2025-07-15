@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import { useState, type ComponentType } from 'react'
 import { afterEach, describe, it, expect } from 'vitest'
 
-import { SegementedControlList, SegementedControlItem, SegementedControlRoot, SegementedControlContent } from '.'
+import { SegmentedControlList, SegmentedControlItem, SegmentedControlRoot, SegmentedControlContent } from '.'
 
 const OPTIONS = [
   {
@@ -24,18 +24,18 @@ const OPTIONS = [
 
 function UnControlledSegmentedUi() {
   return (
-    <SegementedControlRoot defaultValue={OPTIONS[0].value}>
-      <SegementedControlList>
+    <SegmentedControlRoot defaultValue={OPTIONS[0].value}>
+      <SegmentedControlList>
         {OPTIONS.map((option) => (
-          <SegementedControlItem key={option.value} value={option.value}>
+          <SegmentedControlItem key={option.value} value={option.value}>
             {option.label}
-          </SegementedControlItem>
+          </SegmentedControlItem>
         ))}
-      </SegementedControlList>
-      <SegementedControlContent value="First">First content</SegementedControlContent>
-      <SegementedControlContent value="Second">Second content</SegementedControlContent>
-      <SegementedControlContent value="Third">Third content</SegementedControlContent>
-    </SegementedControlRoot>
+      </SegmentedControlList>
+      <SegmentedControlContent value="First">First content</SegmentedControlContent>
+      <SegmentedControlContent value="Second">Second content</SegmentedControlContent>
+      <SegmentedControlContent value="Third">Third content</SegmentedControlContent>
+    </SegmentedControlRoot>
   )
 }
 
@@ -43,18 +43,18 @@ function ControlledSegmentedUi() {
   const [value, setValue] = useState(OPTIONS[0].value)
 
   return (
-    <SegementedControlRoot value={value} onValueChange={setValue} defaultValue={OPTIONS[0].value}>
-      <SegementedControlList>
+    <SegmentedControlRoot value={value} onValueChange={setValue} defaultValue={OPTIONS[0].value}>
+      <SegmentedControlList>
         {OPTIONS.map((option) => (
-          <SegementedControlItem key={option.value} value={option.value}>
+          <SegmentedControlItem key={option.value} value={option.value}>
             {option.label}
-          </SegementedControlItem>
+          </SegmentedControlItem>
         ))}
-      </SegementedControlList>
-      <SegementedControlContent value="First">First content</SegementedControlContent>
-      <SegementedControlContent value="Second">Second content</SegementedControlContent>
-      <SegementedControlContent value="Third">Third content</SegementedControlContent>
-    </SegementedControlRoot>
+      </SegmentedControlList>
+      <SegmentedControlContent value="First">First content</SegmentedControlContent>
+      <SegmentedControlContent value="Second">Second content</SegmentedControlContent>
+      <SegmentedControlContent value="Third">Third content</SegmentedControlContent>
+    </SegmentedControlRoot>
   )
 }
 
