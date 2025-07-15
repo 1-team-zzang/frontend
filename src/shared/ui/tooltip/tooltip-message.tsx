@@ -70,6 +70,8 @@ export default function TooltipMessage({
           arrowPositionVariants({ arrowPosition, arrowAlign }),
           className,
         )}
+        role="tooltip"
+        aria-live="polite"
       >
         <span className="text-gray-5 font-normal text-sm">{children}</span>
       </div>
