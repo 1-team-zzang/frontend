@@ -118,7 +118,12 @@
   --system-safe-alt: #cff6e6;
 }
 
-.tooltip:after {
+.tooltip-top:after {
   border-width: 0 10px 13px;
+  border-color: var(--gray-color-95) transparent;
+}
+
+.tooltip-bottom:after {
+  border-width: 13px 10px 0;
   border-color: var(--gray-color-95) transparent;
 }
