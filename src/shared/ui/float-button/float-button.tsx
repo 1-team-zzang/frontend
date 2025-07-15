@@ -23,8 +23,6 @@ const FloatButtonVariants = cva('', {
 })
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof FloatButtonVariants> {
-  size?: 'small' | 'medium' | 'large'
-  shape?: 'circle' | 'square'
   asChild?: boolean
 }
 
