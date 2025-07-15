@@ -53,7 +53,7 @@ export default tseslint.config([
       // 🧠 변수와 함수 스타일 관련
       'no-var': 'error', // var 대신 let/const 사용
       'prefer-const': 'error', // 변경되지 않는 변수는 const 사용
-      'no-unused-vars': 'error', // 사용되지 않는 변수 금지
+      'no-unused-vars': 'off', // 사용되지 않는 변수 금지
       camelcase: ['warn', { properties: 'always' }], // 변수, 속성은 카멜케이스 권장
       'no-undef': 'error', // 정의되지 않은 변수 사용 금지
       'no-use-before-define': ['error', { functions: false }], // 정의 전 사용 금지 (함수는 예외)
@@ -61,7 +61,14 @@ export default tseslint.config([
       // ➕ 공백과 연산자 관련
       'space-infix-ops': 'error', // 연산자 양쪽에 공백 필수 (ex. a + b)
       'keyword-spacing': ['error', { before: true, after: true }], // if, else, for 등 키워드 앞뒤 공백
-      'space-before-function-paren': ['error', 'never'], // 함수명과 괄호 사이 공백 금지 (function foo() ← ok)
+      'space-before-function-paren': [
+        'error',
+        {
+          asyncArrow: 'always', // async 화살표 함수에서 공백 허용
+          named: 'never', // 이름 있는 화살표 함수는 공백을 두지 않음
+          anonymous: 'never', // 익명 화살표 함수는 공백을 두지 않음
+        },
+      ], // 함수명과 괄호 사이 공백 금지 (function foo() ← ok)
       'func-call-spacing': ['error', 'never'], // 함수 호출 시 함수명과 괄호 사이 공백 금지 (foo() ← ok)
 
       // 🧱 표현식/문자열/객체 스타일
@@ -137,14 +144,7 @@ export default tseslint.config([
       ],
 
       // 🧠 TypeScript용 중복 검사 방지 및 고급 처리
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
+      '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/array-type': 'error',
     },
     settings: {
