@@ -1,2 +1,2 @@
-export { default as SwitchRoot } from './switch-root'
+export { default as Switch } from './switch'
 export { default as SwitchTrigger } from './switch-trigger'

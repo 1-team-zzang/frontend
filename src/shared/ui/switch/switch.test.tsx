@@ -4,23 +4,23 @@ import userEvent from '@testing-library/user-event'
 import { useState, type ComponentType } from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
 
-import { SwitchRoot, SwitchTrigger } from './index'
+import { Switch, SwitchTrigger } from './index'
 
 function ControlledSwitch() {
   const [isChecked, setIsChecked] = useState(false)
 
   return (
-    <SwitchRoot checked={isChecked} onCheckedChange={setIsChecked}>
+    <Switch checked={isChecked} onCheckedChange={setIsChecked}>
       <SwitchTrigger />
-    </SwitchRoot>
+    </Switch>
   )
 }
 
 function UncontrolledSwitch() {
   return (
-    <SwitchRoot>
+    <Switch>
       <SwitchTrigger />
-    </SwitchRoot>
+    </Switch>
   )
 }
 
