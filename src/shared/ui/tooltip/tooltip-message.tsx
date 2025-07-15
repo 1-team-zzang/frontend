@@ -12,11 +12,11 @@ export default function TooltipMessage({ children, className }: HTMLAttributes<H
   }
 
   return (
-    <div className="absolute -right-9 top-10">
+    <div className="absolute -right-5 top-10">
       <div
         className={cn(
           'relative bg-gray-95 rounded-lg p-2.5 w-fit tooltip whitespace-nowrap',
-          'after:block after:absolute  after:w-0 after:z-10  after:border-solid after:top-[-13px] after:left-[75%]',
+          'after:block after:absolute  after:w-0 after:z-10  after:border-solid after:top-[-13px] after:right-[15px]',
           className,
         )}
       >
