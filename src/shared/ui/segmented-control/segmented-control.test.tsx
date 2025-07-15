@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import { useState, type ComponentType } from 'react'
 import { afterEach, describe, it, expect } from 'vitest'
 
-import { SegmentedControlList, SegmentedControlItem, SegmentedControlRoot, SegmentedControlContent } from '.'
+import { SegmentedControl, SegmentedControlList, SegmentedControlItem, SegmentedControlContent } from '.'
 
 const OPTIONS = [
   {
@@ -24,7 +24,7 @@ const OPTIONS = [
 
 function UnControlledSegmentedUi() {
   return (
-    <SegmentedControlRoot defaultValue={OPTIONS[0].value}>
+    <SegmentedControl defaultValue={OPTIONS[0].value}>
       <SegmentedControlList>
         {OPTIONS.map((option) => (
           <SegmentedControlItem key={option.value} value={option.value}>
@@ -35,7 +35,7 @@ function UnControlledSegmentedUi() {
       <SegmentedControlContent value="First">First content</SegmentedControlContent>
       <SegmentedControlContent value="Second">Second content</SegmentedControlContent>
       <SegmentedControlContent value="Third">Third content</SegmentedControlContent>
-    </SegmentedControlRoot>
+    </SegmentedControl>
   )
 }
 
@@ -43,7 +43,7 @@ function ControlledSegmentedUi() {
   const [value, setValue] = useState(OPTIONS[0].value)
 
   return (
-    <SegmentedControlRoot value={value} onValueChange={setValue} defaultValue={OPTIONS[0].value}>
+    <SegmentedControl value={value} onValueChange={setValue} defaultValue={OPTIONS[0].value}>
       <SegmentedControlList>
         {OPTIONS.map((option) => (
           <SegmentedControlItem key={option.value} value={option.value}>
@@ -54,7 +54,7 @@ function ControlledSegmentedUi() {
       <SegmentedControlContent value="First">First content</SegmentedControlContent>
       <SegmentedControlContent value="Second">Second content</SegmentedControlContent>
       <SegmentedControlContent value="Third">Third content</SegmentedControlContent>
-    </SegmentedControlRoot>
+    </SegmentedControl>
   )
 }
 

@@ -20,7 +20,7 @@ interface Props {
  * @example
  * ```tsx
  * // Controlled mode
- * <SegmentedControlRoot value={selectedValue} onValueChange={setSelectedValue}>
+ * <SegmentedControl value={selectedValue} onValueChange={setSelectedValue}>
  *   <SegmentedControlList>
  *     <SegmentedControlItem value="tab1">탭 1</SegmentedControlItem>
  *     <SegmentedControlItem value="tab2">탭 2</SegmentedControlItem>
@@ -28,12 +28,12 @@ interface Props {
  * </SegmentedControlRoot>
  *
  * // Uncontrolled mode
- * <SegmentedControlRoot defaultValue="tab1">
+ * <SegmentedControl defaultValue="tab1">
  *   <SegmentedControlList>
  *     <SegmentedControlItem value="tab1">탭 1</SegmentedControlItem>
  *     <SegmentedControlItem value="tab2">탭 2</SegmentedControlItem>
  *   </SegmentedControlList>
- * </SegmentedControlRoot>
+ * </SegmentedControl>
  * ```
  */
 export default function SegmentedControlRoot({ children, value, defaultValue, onValueChange }: Props) {
