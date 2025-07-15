@@ -8,13 +8,13 @@ import type { InputHTMLAttributes } from 'react'
 
 const triggerVariants = cva('w-5 h-5 rounded-full bg-gray-0 block transition-transform duration-200', {
   variants: {
-    variant: {
+    isChecked: {
       true: 'translate-x-full',
       false: 'translate-x-0',
     },
   },
   defaultVariants: {
-    variant: false,
+    isChecked: false,
   },
 })
 
@@ -42,7 +42,7 @@ export default function SwitchTrigger({ id, switchBallClassName, labelClassName,
         checked={isChecked}
         {...restProps}
       />
-      <span className={cn(triggerVariants({ variant: isChecked }), switchBallClassName)} />
+      <span className={cn(triggerVariants({ isChecked }), switchBallClassName)} />
     </label>
   )
 }
