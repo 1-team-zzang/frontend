@@ -8,11 +8,11 @@ const textVariants = cva('', {
   variants: {
     textStyle: {
       'title-heading': 'font-bold text-[2rem] leading-[1.4] tracking-[-0.08rem]',
-      'title-normal': 'font-regular text-[2rem] leading-[1.4] tracking-[-0.08rem]',
+      'title-normal': 'font-normal text-[2rem] leading-[1.4] tracking-[-0.08rem]',
       'h1-heading': 'font-bold text-2xl leading-[1.4] tracking-[-0.06rem]',
-      'h1-normal': 'font-regular text-2xl leading-[1.4] tracking-[-0.06rem]',
+      'h1-normal': 'font-normal text-2xl leading-[1.4] tracking-[-0.06rem]',
       'h2-heading': 'font-semibold text-xl leading-[1.6] tracking-[-0.05rem]',
-      'h2-normal': 'font-regular text-xl leading-[1.6] tracking-[-0.05rem]',
+      'h2-normal': 'font-normal text-xl leading-[1.6] tracking-[-0.05rem]',
       'b1-heading': 'font-semibold text-lg leading-[1.6] tracking-[-0.045rem]',
       'b1-normal': 'font-normal text-lg leading-[1.6] tracking-[-0.045rem]',
       'b2-heading': 'font-bold text-base leading-[1.6] tracking-[-0.04rem]',
@@ -29,9 +29,9 @@ const textVariants = cva('', {
 
 interface Props extends HTMLAttributes<HTMLParagraphElement>, VariantProps<typeof textVariants> {}
 
-export default function Text({ textStyle, children, ...restProps }: Props) {
+export default function Text({ textStyle, children, className, ...restProps }: Props) {
   return (
-    <p className={cn(textVariants({ textStyle }))} {...restProps}>
+    <p className={cn(textVariants({ textStyle }), className)} {...restProps}>
       {children}
     </p>
   )
