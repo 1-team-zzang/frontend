@@ -2,7 +2,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/shared/utils'
 
-import type { HTMLAttributes } from 'react'
+import type { ElementType, ComponentPropsWithoutRef } from 'react'
 
 const textVariants = cva('', {
   variants: {
@@ -27,12 +27,23 @@ const textVariants = cva('', {
   },
 })
 
-interface Props extends HTMLAttributes<HTMLParagraphElement>, VariantProps<typeof textVariants> {}
+type Props<T extends ElementType = 'p'> = VariantProps<typeof textVariants> & {
+  as?: T
+  className?: string
+} & Omit<ComponentPropsWithoutRef<T>, 'className' | keyof VariantProps<typeof textVariants>>
 
-export default function Text({ textStyle, children, className, ...restProps }: Props) {
+export default function Text<T extends ElementType = 'p'>({
+  as,
+  textStyle,
+  children,
+  className,
+  ...restProps
+}: Props<T>) {
+  const Element = as || 'p'
+
   return (
-    <p className={cn(textVariants({ textStyle }), className)} {...restProps}>
+    <Element className={cn(textVariants({ textStyle }), className)} {...restProps}>
       {children}
-    </p>
+    </Element>
   )
 }
