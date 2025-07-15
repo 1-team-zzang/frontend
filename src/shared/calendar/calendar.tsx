@@ -2,9 +2,9 @@ import { CalendarProvider } from './hooks/use-calendar-context'
 import useCalendarDates from './hooks/use-calendar-date'
 import useMonthControl from './hooks/use-month-control'
 import useYearControl from './hooks/use-year-control'
-import useSelectedDate from './util/use-selected-date'
 
 import type { ReactNode } from 'react'
+import { useSelectedDate } from './util'
 
 /**
  * @description 캘린더 UI 컴포넌트
@@ -43,7 +43,7 @@ export default function Calendar({ children }: { children: ReactNode }) {
   }
   return (
     <CalendarProvider value={providerValue}>
-      <div>{children}</div>
+      <div className="flex flex-col">{children}</div>
     </CalendarProvider>
   )
 }

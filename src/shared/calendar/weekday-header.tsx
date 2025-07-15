@@ -9,7 +9,7 @@ import { cva } from 'class-variance-authority'
 
 const WEEK = ['일', '월', '화', '수', '목', '금', '토']
 
-const headerVariants = cva('', {
+const headerVariants = cva('text-sm text-center bg-gray-5 mb-1 py-1', {
   variants: {
     isSunday: { true: 'text-red' },
   },

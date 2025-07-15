@@ -1,7 +1,7 @@
 import { isSameDay, isSameMonth, isToday } from 'date-fns'
 
-import DateButton from './calendar-date-button'
 import { useCalendarContext } from './hooks/use-calendar-context'
+import CalendarDateCell from './calendar-date-cell'
 
 /**
  * @description 캘린더의 날짜 셀들을 렌더링하는 컴포넌트입니다.
@@ -14,16 +14,18 @@ export default function CalendarCells() {
   return (
     <div className="grid grid-cols-7">
       {currentMonthAllDates.map((date) => (
-        <DateButton
+        <CalendarDateCell
           key={date.getTime()}
-          onClick={() => handleSelectedDate(date)}
-          isSelectedDate={isSameDay(selectedDate, date)}
-          isToday={isToday(date)}
-          isSunday={date.getDay() === 0 && isSameMonth(date, currentMonth)}
-          isCurrentMonth={isSameMonth(date, currentMonth)}
-        >
-          {date.getDate()}
-        </DateButton>
+          date={date}
+          handleSelectedDate={handleSelectedDate}
+          variants={{
+            isSelectedDate: !!selectedDate && isSameDay(selectedDate, date),
+            isCurrentMonth: isSameMonth(date, currentMonth),
+            isSunday: date.getDay() === 0 && isSameMonth(date, currentMonth),
+            isSaturday: date.getDay() === 6 && isSameMonth(date, currentMonth),
+            isTodayDate: isToday(date),
+          }}
+        />
       ))}
     </div>
   )

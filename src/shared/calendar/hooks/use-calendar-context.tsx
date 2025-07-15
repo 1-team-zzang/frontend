@@ -11,7 +11,7 @@ interface CalendarContextValue {
   onPrevMonth: () => void //이전 달로 이동 하는 함수
   onNextYear: () => void //내년으로 이동하는 함수
   onPrevYear: () => void //작년으로 이동하는 함수
-  selectedDate: Date // 현재 선택된 날짜
+  selectedDate: Date | null // 현재 선택된 날짜
   handleSelectedDate: (date: Date) => void //날짜 셀 클릭시 호출되는 함수
   currentMonthAllDates: Date[] //이번 달의 모든 날짜 배열
 }

@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 /**
  * @description 날짜 셀 컴포넌트에서 사용되는 버튼입니다.
@@ -8,15 +8,17 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
  * @description 날짜 버튼의 상태별 클래스 변형을 정의합니다.
  * - isSelectedDate: 선택된 날짜인지 여부
+ * - isSaturday: 토요일인디
  * - isSunday: 일요일인지 여부
+ * - isTodayDate: 오늘인지
  * - isCurrentMonth: 이번 달에 해당하는 날짜인지 여부
  */
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+interface Props extends VariantProps<typeof contentVariants> {
   children: ReactNode
 }
 
-const buttonVariants = cva('rounded-full hover:bg-primary-40', {
+const contentVariants = cva('w-6 h-6 mt-1 rounded-full ', {
   variants: {
     isSelectedDate: { true: 'bg-primary-40' },
     isCurrentMonth: {
@@ -24,28 +26,29 @@ const buttonVariants = cva('rounded-full hover:bg-primary-40', {
       false: 'text-gray-50',
     },
     isSunday: { true: 'text-primary-99' },
-    isToday: { true: 'border border-primary-50' },
+    isSaturday: { true: 'text-blue' },
+    isTodayDate: { true: 'bg-primary-50' },
   },
 
   defaultVariants: {
-    isToday: false,
+    isTodayDate: false,
     isSunday: false,
     isSelectedDate: false,
     isCurrentMonth: true,
   },
 })
 
-export default function DateButton({
+export default function CalendarCellContent({
   isCurrentMonth,
   isSelectedDate,
-  isToday,
+  isSaturday,
   isSunday,
+  isTodayDate,
   children,
-  ...restProps
 }: Props) {
   return (
-    <button className={buttonVariants({ isCurrentMonth, isSelectedDate, isToday, isSunday })} {...restProps}>
+    <span className={contentVariants({ isCurrentMonth, isSelectedDate, isTodayDate, isSaturday, isSunday })}>
       {children}
-    </button>
+    </span>
   )
 }
