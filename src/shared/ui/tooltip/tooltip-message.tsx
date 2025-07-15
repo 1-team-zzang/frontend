@@ -2,6 +2,8 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/shared/utils/cn'
 
+import Text from '../text/text'
+
 import { useTooltipContext } from './tooltip-context'
 
 import type { HTMLAttributes } from 'react'
@@ -73,7 +75,9 @@ export default function TooltipMessage({
         role="tooltip"
         aria-live="polite"
       >
-        <span className="text-gray-5 font-normal text-sm">{children}</span>
+        <Text typography="label" className="text-gray-20">
+          {children}
+        </Text>
       </div>
     </div>
   )
