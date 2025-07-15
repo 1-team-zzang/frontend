@@ -4,7 +4,7 @@ import { cn, Slot } from '@/shared/utils'
 
 import type { ButtonHTMLAttributes } from 'react'
 
-const FloatButtonVariants = cva('', {
+const FloatButtonVariants = cva('bg-gray-20 flex items-center justify-center shadow-md fixed bottom-5 right-4', {
   variants: {
     shape: {
       circle: 'rounded-full',
@@ -51,15 +51,7 @@ export default function FloatButton({ shape, size, children, asChild, className,
   const Element = asChild ? Slot : 'button'
 
   return (
-    <Element
-      type="button"
-      className={cn(
-        'bg-gray-20 flex items-center justify-center shadow-md fixed bottom-5 right-4',
-        FloatButtonVariants({ shape, size }),
-        className,
-      )}
-      {...restProps}
-    >
+    <Element className={cn(FloatButtonVariants({ shape, size }), className)} {...restProps}>
       {children}
     </Element>
   )
