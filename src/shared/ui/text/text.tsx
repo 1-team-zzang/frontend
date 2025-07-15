@@ -6,7 +6,7 @@ import type { ElementType, ComponentPropsWithoutRef } from 'react'
 
 const textVariants = cva('', {
   variants: {
-    textStyle: {
+    typography: {
       'title-heading': 'font-bold text-[2rem] leading-[1.4] tracking-[-0.08rem]',
       'title-normal': 'font-normal text-[2rem] leading-[1.4] tracking-[-0.08rem]',
       'h1-heading': 'font-bold text-2xl leading-[1.4] tracking-[-0.06rem]',
@@ -21,9 +21,14 @@ const textVariants = cva('', {
       caption: 'font-normal text-xs leading-[1.3] tracking-[-0.015rem]',
       'caption-10': 'font-normal text-[0.625rem] leading-[1.3] tracking-[-0.015rem]',
     },
+    isSrOnly: {
+      true: 'sr-only',
+      false: '',
+    },
   },
   defaultVariants: {
-    textStyle: 'b1-normal',
+    typography: 'b1-normal',
+    isSrOnly: false,
   },
 })
 
@@ -34,15 +39,16 @@ type Props<T extends ElementType = 'p'> = VariantProps<typeof textVariants> & {
 
 export default function Text<T extends ElementType = 'p'>({
   as,
-  textStyle,
+  typography,
   children,
   className,
+  isSrOnly,
   ...restProps
 }: Props<T>) {
   const Element = as || 'p'
 
   return (
-    <Element className={cn(textVariants({ textStyle }), className)} {...restProps}>
+    <Element className={cn(textVariants({ typography, isSrOnly }), className)} {...restProps}>
       {children}
     </Element>
   )

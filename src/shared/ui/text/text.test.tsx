@@ -7,7 +7,7 @@ describe('Text 컴포넌트 테스트', () => {
   afterEach(cleanup)
 
   it('title에 text-[2rem] 속성이 있는지 테스트', async () => {
-    render(<Text textStyle="title-heading">title heading</Text>)
+    render(<Text typography="title-heading">title heading</Text>)
 
     const title = screen.getByText('title heading')
 
@@ -16,7 +16,7 @@ describe('Text 컴포넌트 테스트', () => {
   })
 
   it('Heading에 font-bold 속성이 있는지 테스트', async () => {
-    render(<Text textStyle="title-heading">title heading</Text>)
+    render(<Text typography="title-heading">title heading</Text>)
 
     const title = screen.getByText('title heading')
 
@@ -25,7 +25,7 @@ describe('Text 컴포넌트 테스트', () => {
   })
 
   it('as prop을 넘기지 않으면 p 태그인지 테스트', async () => {
-    render(<Text textStyle="title-heading">title heading</Text>)
+    render(<Text typography="title-heading">title heading</Text>)
 
     const title = screen.getByText('title heading')
 
@@ -34,7 +34,7 @@ describe('Text 컴포넌트 테스트', () => {
 
   it('as prop을 h2를 넘기면 h2 태그인지 테스트', async () => {
     render(
-      <Text textStyle="title-heading" as="h2">
+      <Text typography="title-heading" as="h2">
         title heading
       </Text>,
     )
