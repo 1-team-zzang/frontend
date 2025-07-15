@@ -5,11 +5,9 @@ SegmentedControl는 여러 옵션 중 하나를 선택할 수 있는 탭 형태�
 ## 특징
 
 - ✅ Controlled/Uncontrolled 모드 지원
-- ✅ TypeScript 완전 지원
 - ✅ 접근성 고려 (키보드 네비게이션, ARIA 속성)
 - ✅ 커스터마이징 가능한 스타일링
 - ✅ 반응형 디자인
-- ✅ 부드러운 전환 애니메이션
 
 ## 설치
 
@@ -151,29 +149,6 @@ interface SegmentedControlContentProps extends HTMLAttributes<HTMLDivElement> {
 </SegmentedControlList>
 ```
 
-## TypeScript 지원
-
-타입 안전성을 위해 제네릭을 사용할 수 있습니다:
-
-```tsx
-type TabType = 'tab1' | 'tab2' | 'tab3'
-
-const [selectedTab, setSelectedTab] = useState<TabType>('tab1')
-
-return (
-  <SegmentedControlRoot value={selectedTab} onValueChange={setSelectedTab}>
-    <SegmentedControlList>
-      <SegmentedControlItem value="tab1">탭 1</SegmentedControlItem>
-      <SegmentedControlItem value="tab2">탭 2</SegmentedControlItem>
-      <SegmentedControlItem value="tab3">탭 3</SegmentedControlItem>
-    </SegmentedControlList>
-    
-    <SegmentedControlContent value="tab1">콘텐츠 1</SegmentedControlContent>
-    <SegmentedControlContent value="tab2">콘텐츠 2</SegmentedControlContent>
-    <SegmentedControlContent value="tab3">콘텐츠 3</SegmentedControlContent>
-  </SegmentedControlRoot>
-)
-```
 
 ## 접근성
 
