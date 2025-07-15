@@ -1,6 +1,7 @@
 import { useRef, useState, type ReactNode } from 'react'
-import { CalendarProvider, useCalendarDates, useSelectedDate } from './hooks'
-import useAllMonthDates from './hooks/use-all-month-dates' // ✅ 이 훅 추가
+import { CalendarProvider, useCalendarDates } from './hooks'
+import useAllMonthDates from './hooks/use-all-month-dates'
+import useSelectedDate from './util/use-selected-date'
 
 export default function Calendar({ children }: { children: ReactNode }) {
   const monthRefs = useRef<(HTMLDivElement | null)[]>([])

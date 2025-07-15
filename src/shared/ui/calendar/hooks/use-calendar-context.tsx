@@ -13,15 +13,6 @@ interface CalendarContextValue {
   allDatesByMonth: Date[][] // 1월~12월의 모든 날짜
   currentMonthAllDates: Date[] //이번 달의 모든 날짜
   monthRefs: React.RefObject<(HTMLDivElement | null)[]> //스크롤감지ref
-
-  // 날짜 셀의 variant props 객체
-  variantProps: (date: Date) => {
-    isSelectedDate: boolean
-    isCurrentMonth: boolean
-    isSunday: boolean
-    isSaturday: boolean
-    isTodayDate: boolean
-  }
 }
 
 const CalendarContext = createScopedContext()

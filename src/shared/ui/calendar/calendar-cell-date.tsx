@@ -10,7 +10,7 @@ import { cn } from '../../utils'
 
  * @description 날짜 버튼의 상태별 클래스 변형을 정의합니다.
  * - isSelectedDate: 선택된 날짜인지 여부
- * - isSaturday: 토요일인디
+ * - isSaturday: 토요일인지
  * - isSunday: 일요일인지 여부
  * - isTodayDate: 오늘인지
  * - isCurrentMonth: 이번 달에 해당하는 날짜인지 여부

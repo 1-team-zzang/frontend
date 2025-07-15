@@ -4,7 +4,8 @@ import { useCalendarContext } from './hooks/use-calendar-context'
 
 /**
  * @description
- * 한 달 단위의 날짜 셀(그리드)을 렌더링하는 컴포넌트입니다.
+ * 한 달 단위의 날짜 CalendarCell 컴포넌트로 렌더링하는 컴포넌트입니다.
+ * CalendarCell에 variants(날짜상태)를 계산하여 ㅓㄴ달합니다
  * - 날짜 배열(dates[10])을 기준으로 해당 달을 대표하는 월을 판단합니다.
  * - 각 날짜 셀은 CalendarDateCell을 통해 렌더링되며,
  *   선택됨/오늘/토요일/일요일 등의 상태를 props로 전달받아 스타일링됩니다.
