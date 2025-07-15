@@ -20,7 +20,7 @@ interface Props extends VariantProps<typeof contentVariants> {
   children: ReactNode
 }
 
-const contentVariants = cva('w-6 h-6 mt-1 rounded-full', {
+const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify-center', {
   variants: {
     isSelectedDate: { true: 'bg-gray-30' },
     isCurrentMonth: {
@@ -40,7 +40,7 @@ const contentVariants = cva('w-6 h-6 mt-1 rounded-full', {
   },
 })
 
-export default function CalendarCellContent({
+export default function CalendarCellDate({
   isCurrentMonth,
   isSelectedDate,
   isSaturday,
@@ -53,10 +53,7 @@ export default function CalendarCellContent({
       <Text
         as="span"
         typography="caption-10"
-        className={cn(
-          'flex items-center justify-center',
-          contentVariants({ isCurrentMonth, isSelectedDate, isTodayDate, isSaturday, isSunday }),
-        )}
+        className={cn(contentVariants({ isCurrentMonth, isSelectedDate, isTodayDate, isSaturday, isSunday }))}
       >
         {children}
       </Text>

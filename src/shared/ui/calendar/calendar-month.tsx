@@ -1,4 +1,4 @@
-import CalendarDateCell from './calendar-date-cell'
+import CalendarCell from './calendar-cell'
 import { isSameDay, isSameMonth, isToday } from 'date-fns'
 import { useCalendarContext } from './hooks/use-calendar-context'
 
@@ -20,7 +20,7 @@ export default function CalendarMonth({ dates }: Props) {
   return (
     <div className="grid grid-cols-7">
       {dates.map((date) => (
-        <CalendarDateCell
+        <CalendarCell
           key={date.getTime()}
           date={date}
           handleSelectedDate={handleSelectedDate}
