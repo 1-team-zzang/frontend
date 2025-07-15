@@ -14,7 +14,7 @@ SegmentedControl는 여러 옵션 중 하나를 선택할 수 있는 탭 형태�
 ```bash
 # 이미 프로젝트에 포함되어 있음
 import {
-  SegmentedControlRoot,
+  SegmentedControl,
   SegmentedControlList,
   SegmentedControlItem,
   SegmentedControlContent,
@@ -28,7 +28,7 @@ import {
 ```tsx
 import { useState } from 'react'
 import {
-  SegmentedControlRoot,
+  SegmentedControl,
   SegmentedControlList,
   SegmentedControlItem,
   SegmentedControlContent,
@@ -38,7 +38,7 @@ export default function Example() {
   const [selectedTab, setSelectedTab] = useState('tab1')
 
   return (
-    <SegmentedControlRoot value={selectedTab} onValueChange={setSelectedTab}>
+    <SegmentedControl value={selectedTab} onValueChange={setSelectedTab}>
       <SegmentedControlList>
         <SegmentedControlItem value="tab1">첫 번째 탭</SegmentedControlItem>
         <SegmentedControlItem value="tab2">두 번째 탭</SegmentedControlItem>
@@ -54,7 +54,7 @@ export default function Example() {
       <SegmentedControlContent value="tab3">
         <div>세 번째 탭의 콘텐츠입니다.</div>
       </SegmentedControlContent>
-    </SegmentedControlRoot>
+    </SegmentedControl>
   )
 }
 ```
@@ -62,7 +62,7 @@ export default function Example() {
 ### Uncontrolled 모드
 
 ```tsx
-<SegmentedControlRoot defaultValue="tab1">
+<SegmentedControl defaultValue="tab1">
   <SegmentedControlList>
     <SegmentedControlItem value="tab1">첫 번째 탭</SegmentedControlItem>
     <SegmentedControlItem value="tab2">두 번째 탭</SegmentedControlItem>
@@ -74,17 +74,17 @@ export default function Example() {
   <SegmentedControlContent value="tab2">
     두 번째 탭의 콘텐츠
   </SegmentedControlContent>
-</SegmentedControlRoot>
+</SegmentedControl>
 ```
 
 ## 컴포넌트 API
 
-### SegmentedControlRoot
+### SegmentedControl
 
 SegmentedControl의 최상위 컨테이너입니다.
 
 ```tsx
-interface SegmentedControlRootProps {
+interface SegmentedControlProps {
   children: ReactNode
   value?: string                    // 현재 선택된 값 (controlled mode)
   defaultValue?: string             // 기본 선택값 (uncontrolled mode)
@@ -149,7 +149,6 @@ interface SegmentedControlContentProps extends HTMLAttributes<HTMLDivElement> {
 </SegmentedControlList>
 ```
 
-
 ## 접근성
 
 - 키보드 네비게이션 지원 (Tab, Arrow keys)
@@ -160,7 +159,7 @@ interface SegmentedControlContentProps extends HTMLAttributes<HTMLDivElement> {
 ## 제한사항
 
 - `value` prop은 문자열 타입이어야 합니다
-- `SegmentedControlContent`는 `SegmentedControlRoot` 내부에서만 사용할 수 있습니다
+- `SegmentedControlContent`는 `SegmentedControl` 내부에서만 사용할 수 있습니다
 - 모든 `SegmentedControlItem`의 `value`는 고유해야 합니다
 
 ## 예시
@@ -178,7 +177,7 @@ export default function DynamicTabs() {
   const [selectedTab, setSelectedTab] = useState(tabs[0].id)
 
   return (
-    <SegmentedControlRoot value={selectedTab} onValueChange={setSelectedTab}>
+    <SegmentedControl value={selectedTab} onValueChange={setSelectedTab}>
       <SegmentedControlList>
         {tabs.map(tab => (
           <SegmentedControlItem key={tab.id} value={tab.id}>
@@ -192,7 +191,7 @@ export default function DynamicTabs() {
           {tab.content}
         </SegmentedControlContent>
       ))}
-    </SegmentedControlRoot>
+    </SegmentedControl>
   )
 }
 ```
