@@ -8,6 +8,7 @@ import Form from './form'
 import FormField from './form-field'
 import FormInput from './form-input'
 import FormSubmit from './form-submit'
+import FormLabel from './form-label'
 
 const TestSchema = z.object({
   email: z.string().email({ message: '이메일 형식으로 입력해주세요' }),
@@ -19,11 +20,14 @@ const handleSubmitMock = vi.fn()
 function TestForm() {
   return (
     <Form resolver={zodResolver(TestSchema)} onSubmit={handleSubmitMock}>
-      <FormField name="email" label="이메일">
-        <FormInput name="email" />
+      <FormField name="email" >
+        <FormLabel>이메일</FormLabel>
+        
+        <FormInput  placeholder='이메일을 입력하세요'/>
       </FormField>
-      <FormField name="password" label="패스워드">
-        <FormInput name="password" />
+      <FormField name="password" >
+        <FormLabel>패스워드</FormLabel>
+        <FormInput  placeholder='비밀번호를 입력하세요'/>
       </FormField>
       <FormSubmit>제출</FormSubmit>
     </Form>
@@ -79,10 +83,12 @@ describe('폼 컴포넌트', () => {
 
     render(
       <Form resolver={zodResolver(TestSchema)} onSubmit={handleSubmitMock} defaultValues={initialValues}>
-        <FormField name="email" label="이메일">
+        <FormField name="email">
+          <FormLabel>이메일</FormLabel>
           <FormInput name="email" />
         </FormField>
-        <FormField name="password" label="패스워드">
+        <FormField name="password" >
+          <FormLabel>패스워드</FormLabel>
           <FormInput name="password" />
         </FormField>
         <FormSubmit>제출</FormSubmit>
