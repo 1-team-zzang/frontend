@@ -10,7 +10,18 @@
     "preview": "vite preview",
     "lint:fix": "standard --fix",
     "test": "vitest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "type-check": "tsc --noEmit",
+    "pre-commit": "npm run type-check && lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --cache --write"
+    ],
+    "*": [
+      "tsc --noEmit"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
