@@ -23,8 +23,16 @@ import { TooltipProvider } from './tooltip-context'
 export default function Tooltip({ children, className, ...restProps }: HTMLAttributes<HTMLDivElement>) {
   const [isShow, setIsShow] = useState<boolean>(false)
 
+  const handleVisible = () => {
+    setIsShow(true)
+  }
+
+  const handleInvisible = () => {
+    setIsShow(false)
+  }
+
   return (
-    <TooltipProvider value={{ isShow, setIsShow }}>
+    <TooltipProvider value={{ isVisible: isShow, setIsVisible: setIsShow, handleVisible, handleInvisible }}>
       <div className={cn('relative w-fit', className)} {...restProps}>
         {children}
       </div>

@@ -26,23 +26,26 @@ const positionVariants = cva('', {
   },
 })
 
-const arrowPositionVariants = cva('', {
-  variants: {
-    arrowPosition: {
-      top: 'after:top-[-13px] tooltip-top',
-      bottom: 'after:bottom-[-13px] tooltip-bottom',
+const arrowPositionVariants = cva(
+  'relative bg-gray-95 rounded-lg p-2.5 w-fit whitespace-nowrap after:block after:absolute after:w-0 after:z-10 after:border-solid',
+  {
+    variants: {
+      arrowPosition: {
+        top: 'after:top-[-13px] tooltip-top',
+        bottom: 'after:bottom-[-13px] tooltip-bottom',
+      },
+      arrowAlign: {
+        left: 'after:left-[15px]',
+        center: 'after:left-1/2 after:-translate-x-1/2',
+        right: 'after:right-[15px]',
+      },
     },
-    arrowAlign: {
-      left: 'after:left-[15px]',
-      center: 'after:left-1/2 after:-translate-x-1/2',
-      right: 'after:right-[15px]',
+    defaultVariants: {
+      arrowPosition: 'top',
+      arrowAlign: 'right',
     },
   },
-  defaultVariants: {
-    arrowPosition: 'top',
-    arrowAlign: 'right',
-  },
-})
+)
 
 interface Props
   extends HTMLAttributes<HTMLDivElement>,
@@ -57,7 +60,7 @@ export default function TooltipMessage({
   arrowAlign,
   ...restProps
 }: Props) {
-  const { isShow } = useTooltipContext()
+  const { isVisible: isShow } = useTooltipContext()
 
   if (!isShow) {
     return null
@@ -66,12 +69,7 @@ export default function TooltipMessage({
   return (
     <div className={cn('absolute', positionVariants({ position, arrowAlign }))} {...restProps}>
       <div
-        className={cn(
-          'relative bg-gray-95 rounded-lg p-2.5 w-fit whitespace-nowrap',
-          'after:block after:absolute after:w-0 after:z-10 after:border-solid',
-          arrowPositionVariants({ arrowPosition, arrowAlign }),
-          className,
-        )}
+        className={cn(arrowPositionVariants({ arrowPosition, arrowAlign }), className)}
         role="tooltip"
         aria-live="polite"
       >

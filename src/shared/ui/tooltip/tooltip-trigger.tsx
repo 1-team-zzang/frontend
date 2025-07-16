@@ -2,23 +2,19 @@ import { useTooltipContext } from './tooltip-context'
 
 import type { ButtonHTMLAttributes } from 'react'
 
-export default function TooltipTrigger({ children }: ButtonHTMLAttributes<HTMLButtonElement>) {
-  const { setIsShow } = useTooltipContext()
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-  const handleTooltipOpen = () => {
-    setIsShow(true)
-  }
-
-  const handleTooltipClose = () => {
-    setIsShow(false)
-  }
+export default function TooltipTrigger({ children, ...restProps }: Props) {
+  const { handleInvisible, handleVisible } = useTooltipContext()
 
   return (
     <button
       type="button"
-      onClick={handleTooltipOpen}
-      onMouseEnter={handleTooltipOpen}
-      onMouseLeave={handleTooltipClose}
+      onClick={handleVisible}
+      onMouseEnter={handleVisible}
+      onMouseLeave={handleInvisible}
+      {...restProps}
     >
       {children}
     </button>
