@@ -28,6 +28,8 @@ export default function WeekdayHeader() {
             typography="caption-10"
             className={headerVariants({ isSunday: day === '일', isSaturday: day === '토' })}
             key={day}
+            role="columnheader"
+            aria-label={`${day}요일`}
           >
             {day}
           </Text>

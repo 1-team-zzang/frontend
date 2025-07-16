@@ -1,4 +1,4 @@
-import { isSameDay, isSameMonth, isToday } from 'date-fns'
+import { isSameMonth } from 'date-fns'
 
 import CalendarCell from './calendar-cell'
 import { useCalendarContext } from './hooks/use-calendar-context'
@@ -16,8 +16,8 @@ interface Props {
 }
 
 export default function CalendarMonth({ dates }: Props) {
-  const { selectedDate, handleSelectedDate } = useCalendarContext()
-  const month = dates[10]
+  const { handleSelectedDate } = useCalendarContext()
+  const month = dates[Math.floor(dates.length / 2)] || dates[0]
 
   return (
     <div className="grid grid-cols-7">
@@ -26,13 +26,7 @@ export default function CalendarMonth({ dates }: Props) {
           key={date.getTime()}
           date={date}
           handleSelectedDate={handleSelectedDate}
-          variants={{
-            isSelectedDate: !!selectedDate && isSameDay(selectedDate, date),
-            isCurrentMonth: isSameMonth(date, month),
-            isSunday: date.getDay() === 0 && isSameMonth(date, month),
-            isSaturday: date.getDay() === 6 && isSameMonth(date, month),
-            isTodayDate: isToday(date),
-          }}
+          isThisMonthDate={isSameMonth(date, month)}
         />
       ))}
     </div>

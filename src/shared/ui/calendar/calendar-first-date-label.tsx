@@ -2,11 +2,11 @@ import Text from '../text/text'
 
 interface Props {
   date: Date
-  isCurrentMonth: boolean
+  isThisMonthDate: boolean
 }
 
-export default function CalendarFirstDateLabel({ date, isCurrentMonth }: Props) {
-  if (date.getDate() !== 1 || !isCurrentMonth) {
+export default function CalendarFirstDateLabel({ date, isThisMonthDate }: Props) {
+  if (date.getDate() !== 1 || !isThisMonthDate) {
     return null
   }
 

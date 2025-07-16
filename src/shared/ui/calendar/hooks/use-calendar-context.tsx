@@ -1,4 +1,4 @@
-import createScopedContext from '../../../utils/create-context-scope'
+import { createContextScope } from '@/shared/utils'
 
 /**
  * @description 캘린더에서 사용되는 전역 상태, 함수를 위한 Context입니다.
@@ -13,9 +13,16 @@ interface CalendarContextValue {
   allDatesByMonth: Date[][] // 1월~12월의 모든 날짜
   currentMonthAllDates: Date[] //이번 달의 모든 날짜
   monthRefs: React.RefObject<(HTMLDivElement | null)[]> //스크롤감지ref
+  getDateVariantStates: (date: Date) => {
+    isSelectedDate: boolean
+    isThisMonthDate: boolean
+    isSunday: boolean
+    isSaturday: boolean
+    isTodayDate: boolean
+  }
 }
 
-const CalendarContext = createScopedContext()
+const CalendarContext = createContextScope()
 const [CalendarProvider, useCalendarContext] = CalendarContext<CalendarContextValue>()
 
 export { CalendarProvider, useCalendarContext }

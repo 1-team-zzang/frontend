@@ -8,7 +8,7 @@ import { useState } from 'react'
  * @returns 사용자가 선택한 날짜 상태와 이를 설정하는 함수
  */
 
-export default function getSelectedDate() {
+export default function useSelectedDate() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const handleSelectedDate = (date: Date) => {
     setSelectedDate(date)

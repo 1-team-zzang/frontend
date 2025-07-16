@@ -1,5 +1,5 @@
 import CalendarCellDate from './calendar-cell-date'
-import CalendarFirstDateLabel from './calendar-fitst-date-label'
+import CalendarFirstDateLabel from './calendar-first-date-label'
 
 /**
  * @description
@@ -13,24 +13,20 @@ import CalendarFirstDateLabel from './calendar-fitst-date-label'
  */
 interface Props {
   date: Date
-  variants: {
-    isSelectedDate: boolean
-    isCurrentMonth: boolean
-    isSunday: boolean
-    isSaturday: boolean
-    isTodayDate: boolean
-  }
+  isThisMonthDate: boolean
   handleSelectedDate: (date: Date) => void
 }
 
-export default function CalendarCell({ date, variants, handleSelectedDate }: Props) {
+export default function CalendarCell({ date, isThisMonthDate, handleSelectedDate }: Props) {
   return (
     <button
       onClick={() => handleSelectedDate(date)}
       className="h-[5rem] flex flex-col items-center border-t border-t-gray-10 gap-1 relative "
     >
-      <CalendarCellDate {...variants}>{date.getDate()}</CalendarCellDate>
-      <CalendarFirstDateLabel date={date} isCurrentMonth={variants.isCurrentMonth} />
+      <CalendarCellDate isThisMonthDate={isThisMonthDate} date={date}>
+        {date.getDate()}
+      </CalendarCellDate>
+      <CalendarFirstDateLabel date={date} isThisMonthDate={isThisMonthDate} />
     </button>
   )
 }
