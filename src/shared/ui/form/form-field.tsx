@@ -4,13 +4,12 @@ import { useFormContext } from 'react-hook-form'
 import { cn } from '../../utils'
 
 import FormErrorMessage from './form-error-message'
-import FormLabel from './form-label'
+import { FormFieldProvider } from './form-field-context'
 
 import type { HTMLAttributes } from 'react'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   name: string
-  label: string
 }
 
 /**
@@ -28,22 +27,21 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
  *
  * @returns {JSX.Element}
  */
-export default function FormField({ name, label, children, className }: Props) {
+export default function FormField({ name, children, className, ...restProps }: Props) {
   const {
     formState: { errors },
   } = useFormContext()
 
   return (
-    <div className={cn('', className)}>
-      <div className="flex flex-col gap-2">
-        <FormLabel name={name}>{label}</FormLabel>
-        {children}
+    <FormFieldProvider value={{ name }}>
+      <div className={cn('', className)} {...restProps}>
+        <div className="flex flex-col gap-2">{children}</div>
+        <ErrorMessage
+          errors={errors}
+          name={name}
+          render={({ message }) => <FormErrorMessage>{message}</FormErrorMessage>}
+        />
       </div>
-      <ErrorMessage
-        errors={errors}
-        name={name}
-        render={({ message }) => <FormErrorMessage>{message}</FormErrorMessage>}
-      />
-    </div>
+    </FormFieldProvider>
   )
 }
