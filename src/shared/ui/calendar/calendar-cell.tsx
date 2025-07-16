@@ -1,6 +1,5 @@
 import CalendarCellDate from './calendar-cell-date'
 import CalendarFirstDateLabel from './calendar-first-date-label'
-import { useCalendarContext } from './hooks/use-calendar-context'
 
 /**
  * @description
@@ -17,14 +16,8 @@ interface Props {
 }
 
 export default function CalendarCell({ date, isThisMonthDate }: Props) {
-  const { setSelectedDate } = useCalendarContext()
-
-  const onClick = () => {
-    setSelectedDate(date)
-  }
-
   return (
-    <button onClick={onClick} className="h-[5rem] flex flex-col items-center border-t border-t-gray-10 gap-1 relative">
+    <button className="h-[5rem] flex flex-col items-center border-t border-t-gray-10 gap-1 relative">
       <CalendarCellDate isThisMonthDate={isThisMonthDate} date={date}>
         {date.getDate()}
       </CalendarCellDate>

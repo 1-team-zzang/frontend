@@ -14,7 +14,7 @@ interface Props {
   dates: Date[]
 }
 
-export default function CalendarMonth({ dates }: Props) {
+export default function CalendarMonthView({ dates }: Props) {
   const month = dates[Math.floor(dates.length / 2)] || dates[0]
 
   return (

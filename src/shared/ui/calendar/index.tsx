@@ -1,7 +1,7 @@
 export { default as Calendar } from './calendar'
 export { default as CalendarHeader } from './calendar-header'
 export { default as WeekdaysHeader } from './weekday-header'
-export { default as CalendarMonth } from './calendar-month'
+export { default as CalendarMonthView } from './calendar-month-view'
 export { default as CalendarDateCell } from './calendar-cell'
 export { default as CalendarCellDate } from './calendar-cell-date'
 export { default as CalendarFirstDateLabel } from './calendar-first-date-label'
