@@ -15,14 +15,18 @@ interface Props {
 
 export default function useMonthObserver({ refs, containerRef, onVisibleMonthChange }: Props) {
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!containerRef.current) {
+      return
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.find((entry) => entry.isIntersecting) //현재 화면에 보이는 월
         if (visible) {
           const idx = refs.findIndex((ref) => ref === visible.target) //화면에 보이는 idx 저장
-          if (idx !== -1) onVisibleMonthChange(idx) //부모한테 화면에 보이는 idx 전달
+          if (idx !== -1) {
+            onVisibleMonthChange(idx)
+          } //부모한테 화면에 보이는 idx 전달
         }
       },
       {
@@ -32,7 +36,9 @@ export default function useMonthObserver({ refs, containerRef, onVisibleMonthCha
     )
 
     refs.forEach((ref) => {
-      if (ref) observer.observe(ref)
+      if (ref) {
+        observer.observe(ref)
+      }
     })
 
     return () => observer.disconnect()

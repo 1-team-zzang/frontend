@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
+
 import { useCalendarContext } from './hooks/use-calendar-context'
-import { CalendarMonth } from '.'
 import useMonthObserver from './hooks/use-month-observer'
+
+import { CalendarMonth } from '.'
 
 /**
  * @description

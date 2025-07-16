@@ -1,12 +1,14 @@
 import { useRef, useState, type ReactNode } from 'react'
-import { CalendarProvider, useCalendarDates } from './hooks'
+
+import { CalendarProvider } from './hooks'
 import useAllMonthDates from './hooks/use-all-month-dates'
-import useSelectedDate from './util/use-selected-date'
+import getCalendarDates from './util/get-calendar-date'
+import useSelectedDate from './util/get-selected-date'
 
 export default function Calendar({ children }: { children: ReactNode }) {
   const monthRefs = useRef<(HTMLDivElement | null)[]>([])
   const [currentMonth, setCurrentMonth] = useState(new Date())
-  const currentMonthAllDates = useCalendarDates(currentMonth)
+  const currentMonthAllDates = getCalendarDates(currentMonth)
   const { selectedDate, handleSelectedDate } = useSelectedDate()
 
   const allDatesByMonth = useAllMonthDates()

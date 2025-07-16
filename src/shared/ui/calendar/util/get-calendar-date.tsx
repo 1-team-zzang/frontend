@@ -15,7 +15,7 @@ import { eachDayOfInterval, endOfMonth, endOfWeek, startOfMonth, startOfWeek } f
  * const dates = useCalendarDates(new Date(2025, 7, 1))
  * // => 6.29 ~ 8.2
  */
-export default function useCalendarDates(currentDate: Date) {
+export default function getCalendarDates(currentDate: Date) {
   const monthStart = startOfWeek(startOfMonth(currentDate))
   const monthEnd = endOfWeek(endOfMonth(currentDate))
 
