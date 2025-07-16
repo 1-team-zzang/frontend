@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import Text from '../text/text'
+import type { ReactNode } from 'react'
 
 /**
  * @description
@@ -12,7 +13,7 @@ import Text from '../text/text'
  */
 
 interface Props extends VariantProps<typeof badgeVariants> {
-  label: string
+  children: ReactNode
 }
 
 const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-50', {
@@ -27,12 +28,12 @@ const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-50', {
   },
 })
 
-export default function ScheduleBadgeMarker({ label, color }: Props) {
+export default function ScheduleBadgeMarker({ children, color }: Props) {
   return (
     <div className="flex items-center gap-1 w-full">
       <div className={badgeVariants({ color })} />
       <Text as="span" typography="caption-10">
-        {label}
+        {children}
       </Text>
     </div>
   )

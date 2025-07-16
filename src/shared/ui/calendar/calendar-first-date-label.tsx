@@ -1,5 +1,8 @@
 import Text from '../text/text'
 
+/**
+ * 각 월마다의 1일에 해당월을 표시해주는 컴포넌트
+ */
 interface Props {
   date: Date
   isThisMonthDate: boolean

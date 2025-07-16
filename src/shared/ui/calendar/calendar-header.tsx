@@ -7,6 +7,10 @@ import { useCalendarContext } from './hooks/use-calendar-context'
 /**
  * @description  YYYY.MM 표시 헤더
  *
+ *
+ * - 오늘, 공유 부분은 UI만 그려넣었으며 기능구현이 안되어있는 상태입니다.
+ * - ex) 공유 버튼 누르면 공유 url이 생성
+ *
  */
 
 export default function CalendarHeader() {

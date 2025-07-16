@@ -30,7 +30,8 @@ export default function CalendarScrollWrapper() {
     refs: monthRefs.current,
     containerRef,
     onVisibleMonthChange: (monthIndex) => {
-      setCurrentMonth(new Date(2025, monthIndex, 1))
+      const currentYear = new Date().getFullYear()
+      setCurrentMonth(new Date(currentYear, monthIndex, 1))
     },
   })
 

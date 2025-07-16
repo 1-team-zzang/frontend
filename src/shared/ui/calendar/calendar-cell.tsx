@@ -1,5 +1,6 @@
 import CalendarCellDate from './calendar-cell-date'
 import CalendarFirstDateLabel from './calendar-first-date-label'
+import { useCalendarContext } from './hooks/use-calendar-context'
 
 /**
  * @description
@@ -9,20 +10,21 @@ import CalendarFirstDateLabel from './calendar-first-date-label'
  *
  * @param date 렌더링할 날짜 객체 (Date)
  * @param variants 날짜의 스타일 상태를 나타내는 플래그들 (선택됨, 오늘, 주말 등)
- * @param handleSelectedDate 사용자가 날짜를 클릭했을 때 실행할 콜백 함수
  */
 interface Props {
   date: Date
   isThisMonthDate: boolean
-  handleSelectedDate: (date: Date) => void
 }
 
-export default function CalendarCell({ date, isThisMonthDate, handleSelectedDate }: Props) {
+export default function CalendarCell({ date, isThisMonthDate }: Props) {
+  const { setSelectedDate } = useCalendarContext()
+
+  const onClick = () => {
+    setSelectedDate(date)
+  }
+
   return (
-    <button
-      onClick={() => handleSelectedDate(date)}
-      className="h-[5rem] flex flex-col items-center border-t border-t-gray-10 gap-1 relative "
-    >
+    <button onClick={onClick} className="h-[5rem] flex flex-col items-center border-t border-t-gray-10 gap-1 relative">
       <CalendarCellDate isThisMonthDate={isThisMonthDate} date={date}>
         {date.getDate()}
       </CalendarCellDate>

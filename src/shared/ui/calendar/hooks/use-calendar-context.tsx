@@ -8,13 +8,12 @@ import { createContextScope } from '@/shared/utils'
 interface CalendarContextValue {
   currentMonth: Date //현재달의 기준
   setCurrentMonth: React.Dispatch<React.SetStateAction<Date>> //현재달 변경함수
-  selectedDate: Date | null //현재 클릭된 날짜
-  handleSelectedDate: (date: Date) => void //날짜 셀 클릭시 호출되는 함수
+  selectedDate: Date | null //외부에서 클릭된 날짜
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>
   allDatesByMonth: Date[][] // 1월~12월의 모든 날짜
   currentMonthAllDates: Date[] //이번 달의 모든 날짜
   monthRefs: React.RefObject<(HTMLDivElement | null)[]> //스크롤감지ref
   getDateVariantStates: (date: Date) => {
-    isSelectedDate: boolean
     isThisMonthDate: boolean
     isSunday: boolean
     isSaturday: boolean

@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import Text from '../text/text'
+import type { ReactNode } from 'react'
 
 /**
  * @description
@@ -10,7 +11,7 @@ import Text from '../text/text'
  * @param color 뱃지의 배경색 (예: 'red', 'blue', 'green', 'yellow', 'purple')
  */
 interface Props extends VariantProps<typeof badgeVariants> {
-  label: string
+  children: ReactNode
 }
 
 const badgeVariants = cva('h-3 w-full text-white rounded-sm z-50', {
@@ -25,10 +26,10 @@ const badgeVariants = cva('h-3 w-full text-white rounded-sm z-50', {
   },
 })
 
-export default function ScheduleBadgeFill({ label, color }: Props) {
+export default function ScheduleBadgeFill({ children, color }: Props) {
   return (
     <Text as="span" typography="caption-10" className={badgeVariants({ color })}>
-      {label}
+      {children}
     </Text>
   )
 }
