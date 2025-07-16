@@ -1,4 +1,6 @@
+import Text from '../text/text'
 import CalendarCellDate from './calendar-cell-date'
+import ScheduleBadgeFill from './schedule-badge-fill'
 
 /**
  * @description
@@ -26,9 +28,14 @@ export default function CalendarCell({ date, variants, handleSelectedDate }: Pro
   return (
     <button
       onClick={() => handleSelectedDate(date)}
-      className="h-[5rem] flex flex-col items-center border-t border-t-gray-10 gap-1"
+      className="h-[5rem] flex flex-col items-center border-t border-t-gray-10 gap-1 relative "
     >
       <CalendarCellDate {...variants}>{date.getDate()}</CalendarCellDate>
+      {date.getDate() === 1 && variants.isCurrentMonth && (
+        <Text as="span" typography={'title-heading'} className="text-primary-10 absolute top-4 z-40">
+          {String(date.getMonth() + 1).padStart(2, '0')}
+        </Text>
+      )}
     </button>
   )
 }

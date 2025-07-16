@@ -49,14 +49,12 @@ export default function CalendarCellDate({
   children,
 }: Props) {
   return (
-    <div className="flex flex-col">
-      <Text
-        as="span"
-        typography="caption-10"
-        className={cn(contentVariants({ isCurrentMonth, isSelectedDate, isTodayDate, isSaturday, isSunday }))}
-      >
-        {children}
-      </Text>
-    </div>
+    <Text
+      as="span"
+      typography="caption-10"
+      className={cn(contentVariants({ isCurrentMonth, isSelectedDate, isTodayDate, isSaturday, isSunday }))}
+    >
+      {children}
+    </Text>
   )
 }

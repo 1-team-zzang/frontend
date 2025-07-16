@@ -14,7 +14,7 @@ interface Props extends VariantProps<typeof badgeVariants> {
   label: string
 }
 
-const badgeVariants = cva('w-1 h-3 text-black  rounded-sm ', {
+const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-50', {
   variants: {
     color: {
       redAlt: 'bg-calendar-red-alt',
