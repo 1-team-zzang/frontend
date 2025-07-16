@@ -1,14 +1,20 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 interface Params {
   onEscapeKeyDown: (event: KeyboardEvent) => void
 }
 
 export default function useEscapeKeydown({ onEscapeKeyDown }: Params) {
+  const onEscapeKeyDownRef = useRef(onEscapeKeyDown)
+
+  useEffect(() => {
+    onEscapeKeyDownRef.current = onEscapeKeyDown
+  }, [onEscapeKeyDown])
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onEscapeKeyDown(event)
+        onEscapeKeyDownRef.current(event)
       }
     }
 
@@ -17,5 +23,5 @@ export default function useEscapeKeydown({ onEscapeKeyDown }: Params) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [onEscapeKeyDown])
+  }, [])
 }
