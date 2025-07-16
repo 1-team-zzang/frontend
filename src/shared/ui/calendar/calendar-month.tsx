@@ -28,8 +28,8 @@ export default function CalendarMonth({ dates }: Props) {
           variants={{
             isSelectedDate: !!selectedDate && isSameDay(selectedDate, date),
             isCurrentMonth: isSameMonth(date, month),
-            isSunday: date.getDay() === 0,
-            isSaturday: date.getDay() === 6,
+            isSunday: date.getDay() === 0 && isSameMonth(date, month),
+            isSaturday: date.getDay() === 6 && isSameMonth(date, month),
             isTodayDate: isToday(date),
           }}
         />
