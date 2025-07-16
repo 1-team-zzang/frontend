@@ -1,11 +1,3 @@
-/**
- * 외부에서 제어가 되고있는지 아닌지 파악 여부.
- * 외부 상태 주입과 내부 상태의 동기화
- * 외부 상태(prop)을 받아 내부 상태 관리
- * 외부 상태(onChange)을 받아 내부 상태 업데이트
- *
- */
-
 import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react'
 
 import { isFunction } from '../utils/is-function'
