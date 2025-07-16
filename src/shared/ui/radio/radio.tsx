@@ -1,12 +1,11 @@
 import { cva } from 'class-variance-authority'
+import { useEffect, type InputHTMLAttributes } from 'react'
 
 import { cn } from '@/shared/utils'
 
 import Text from '../text/text'
 
 import { useRadioContext } from './radio-context'
-
-import type { InputHTMLAttributes } from 'react'
 
 const radioVariants = cva('size-6 rounded-full border border-gray-400 flex items-center justify-center', {
   variants: {
@@ -34,8 +33,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   value: string
 }
 
-export default function Radio({ value, children, disabled, ...restProps }: Props) {
+export default function Radio({ value, children, disabled, defaultChecked, ...restProps }: Props) {
   const { name, selectedValue, setSelectedValue } = useRadioContext()
+
+  useEffect(() => {
+    if (defaultChecked) {
+      setSelectedValue(value)
+    }
+  }, [])
 
   const checked = value === selectedValue
 
