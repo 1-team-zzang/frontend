@@ -10,10 +10,6 @@ export const buttonVariants = cva(['flex w-[120px] h-[44px] items-center justify
     size: {
       small: [''],
     },
-    active: {
-      true: '',
-      false: '',
-    },
     disabled: {
       true: '',
       false: '',
@@ -22,23 +18,24 @@ export const buttonVariants = cva(['flex w-[120px] h-[44px] items-center justify
   compoundVariants: [
     {
       intent: 'solid',
-      active: true,
-      class: 'bg-primary-60',
-    },
-    {
-      intent: 'solid',
       disabled: true,
       class: 'bg-gray-20 text-gray-50',
     },
     {
-      intent: 'outlined',
-      active: true,
-      class: 'bg-primary-1 text-primary-90 border-primary-90',
+      intent: 'solid',
+      disabled: undefined,
+      class: 'hover:bg-primary-60 active:bg-primary-60',
     },
     {
       intent: 'outlined',
       disabled: true,
       class: 'text-gray-40 border-gray-40',
+    },
+    {
+      intent: 'outlined',
+      disabled: undefined,
+      class:
+        'hover:bg-primary-1 hover:text-primary-90 hover:border-primary-90 active:bg-primary-1 active:text-primary-90 active:border-primary-90',
     },
   ],
   defaultVariants: {

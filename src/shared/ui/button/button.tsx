@@ -11,10 +11,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
 }
 
-export default function Button({ intent, active, disabled, children, className, ...restProps
+export default function Button({ intent, disabled, children, className, ...restProps
 }: Props) {
   return (
-    <button className={cn(buttonVariants({ intent, active, disabled }), className,
+    <button className={cn(buttonVariants({ intent, disabled }), className,
     )} disabled={disabled === true} {...restProps}>{children}</button>
   )
 }
