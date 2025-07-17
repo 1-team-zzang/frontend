@@ -21,16 +21,19 @@ describe('Button 컴포넌트', () => {
   })
 
   it('className 테스트', () => {
-    const { container } = render(<Button className='w-full'>버튼</Button>)
+    const { container } = render(<Button className="w-full">버튼</Button>)
     expect(container.firstChild).toHaveClass('w-full')
   })
 
   it('variant 스타일 확인', () => {
-    const { container } = render(<Button intent='solid' disabled={true}>버튼</Button>)
+    const { container } = render(
+      <Button intent="solid" disabled={true}>
+        버튼
+      </Button>,
+    )
     const button = container.firstChild
 
     expect(button).toHaveClass('text-base')
     expect(button).toHaveClass('bg-gray-20')
   })
-
 })
