@@ -7,8 +7,8 @@ import * as z from 'zod'
 import Form from './form'
 import FormField from './form-field'
 import FormInput from './form-input'
-import FormSubmit from './form-submit'
 import FormLabel from './form-label'
+import FormSubmit from './form-submit'
 
 const TestSchema = z.object({
   email: z.string().email({ message: '이메일 형식으로 입력해주세요' }),
@@ -20,14 +20,13 @@ const handleSubmitMock = vi.fn()
 function TestForm() {
   return (
     <Form resolver={zodResolver(TestSchema)} onSubmit={handleSubmitMock}>
-      <FormField name="email" >
+      <FormField name="email">
         <FormLabel>이메일</FormLabel>
-        
-        <FormInput  placeholder='이메일을 입력하세요'/>
+        <FormInput placeholder="이메일을 입력하세요" />
       </FormField>
-      <FormField name="password" >
+      <FormField name="password">
         <FormLabel>패스워드</FormLabel>
-        <FormInput  placeholder='비밀번호를 입력하세요'/>
+        <FormInput placeholder="비밀번호를 입력하세요" />
       </FormField>
       <FormSubmit>제출</FormSubmit>
     </Form>
@@ -42,7 +41,6 @@ describe('폼 컴포넌트', () => {
     handleSubmitMock.mockClear()
   })
 
-  // eslint-disable-next-line space-before-function-paren
   it('submit 이벤트로 올바른 값이 전달 되는지 테스트', async () => {
     const email = 'test@naver.com'
     const password = '12341234'
@@ -61,7 +59,6 @@ describe('폼 컴포넌트', () => {
     expect(handleSubmitMock).toHaveBeenCalledWith(expect.objectContaining({ email, password }), expect.anything())
   })
 
-  // eslint-disable-next-line space-before-function-paren
   it('input을 입력하지않았을때 올바르게 유효성 검사가 되는지 테스트', async () => {
     render(<TestForm />)
 
@@ -87,7 +84,7 @@ describe('폼 컴포넌트', () => {
           <FormLabel>이메일</FormLabel>
           <FormInput name="email" />
         </FormField>
-        <FormField name="password" >
+        <FormField name="password">
           <FormLabel>패스워드</FormLabel>
           <FormInput name="password" />
         </FormField>
