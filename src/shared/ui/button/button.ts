@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 export type ButtonVariantProps = VariantProps<typeof buttonVariants>
-export const buttonVariants = cva(['flex w-[7.5rem] h-[2.75rem] items-center justify-center rounded'], {
+export const buttonVariants = cva(['flex w-[7.5rem] min-h-[2.75rem] py-[0.625rem] items-center justify-center rounded'], {
   variants: {
     intent: {
       solid: ['font-normal text-base leading-[1.6rem] bg-primary-50'],
@@ -41,5 +41,6 @@ export const buttonVariants = cva(['flex w-[7.5rem] h-[2.75rem] items-center jus
   defaultVariants: {
     intent: 'solid',
     size: 'small',
+    disabled: false,
   },
 })
