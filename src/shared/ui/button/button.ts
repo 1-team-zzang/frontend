@@ -11,7 +11,7 @@ export const buttonVariants = cva(['flex w-[120px] h-[44px] items-center justify
       small: [''],
     },
     disabled: {
-      true: '',
+      true: 'pointer-events-none cursor-not-allowed',
       false: '',
     },
   },
@@ -23,7 +23,7 @@ export const buttonVariants = cva(['flex w-[120px] h-[44px] items-center justify
     },
     {
       intent: 'solid',
-      disabled: undefined,
+      disabled: false,
       class: 'hover:bg-primary-60 active:bg-primary-60',
     },
     {
@@ -33,7 +33,7 @@ export const buttonVariants = cva(['flex w-[120px] h-[44px] items-center justify
     },
     {
       intent: 'outlined',
-      disabled: undefined,
+      disabled: false,
       class:
         'hover:bg-primary-1 hover:text-primary-90 hover:border-primary-90 active:bg-primary-1 active:text-primary-90 active:border-primary-90',
     },

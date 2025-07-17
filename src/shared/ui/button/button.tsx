@@ -1,20 +1,17 @@
-import { cn } from '../../utils'
+import { cn } from '../../utils/cn.ts'
 
-import { buttonVariants } from './button'
+import { buttonVariants, type ButtonVariantProps } from './button.ts'
 
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  intent?: 'solid' | 'outlined'
-  active?: boolean
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, ButtonVariantProps {
   disabled?: boolean
-  children: ReactNode
 }
 
-export default function Button({ intent, disabled, children, className, ...restProps
+export default function Button({ intent, disabled = false, children, className, ...restProps
 }: Props) {
   return (
     <button className={cn(buttonVariants({ intent, disabled }), className,
-    )} disabled={disabled === true} {...restProps}>{children}</button>
+    )} disabled={disabled} {...restProps}>{children}</button>
   )
 }
