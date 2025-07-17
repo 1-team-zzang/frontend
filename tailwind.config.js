@@ -50,7 +50,20 @@ export default {
         safe: { DEFAULT: 'var(--system-safe)', alt: 'var(--system-safe-alt)' },
       },
     },
-    extend: {},
+    extend: {
+      zIndex: {
+        base: 0,
+        dropdown: 1000,
+        sticky: 1020,
+        fixed: 1030,
+        modal: {
+          DEFAULT: 1050,
+          overlay: 1040,
+        },
+        toast: 1060,
+        tooltip: 1070,
+      },
+    },
   },
   plugins: [],
 }
