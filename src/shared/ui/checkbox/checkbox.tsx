@@ -17,7 +17,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement>, VariantProps<type
   checkboxId?: string
 }
 
-const checkboxVariants = cva('cursor-pointer', {
+const checkboxVariants = cva('w-5 h-5 rounded border border-black cursor-pointer', {
   variants: {},
 })
 
