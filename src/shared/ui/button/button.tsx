@@ -1,12 +1,10 @@
-import { cn } from '../../utils/cn.ts'
+import { cn } from '@/shared/utils/cn'
 
 import { buttonVariants, type ButtonVariantProps } from './button.ts'
 
 import type { ButtonHTMLAttributes } from 'react'
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, ButtonVariantProps {
-  disabled?: boolean
-}
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, Omit<ButtonVariantProps, 'disabled'> {}
 
 export default function Button({ intent, disabled = false, children, className, ...restProps
 }: Props) {
