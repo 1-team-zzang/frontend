@@ -1,5 +1,10 @@
-import LogoIcon from '@/assets/icons/logo.svg?react'
+import { IconLogo } from '@/shared/assets/icons'
+import { Link } from 'react-router'
 
 export default function Logo() {
-  return <LogoIcon className="w-16" />
+  return (
+    <Link to={'/'}>
+      <IconLogo className="w-16" />
+    </Link>
+  )
 }

@@ -1,4 +1,4 @@
-import HamburgerIcon from '@/assets/icons/hamburger.svg?react'
+import { IconHamburger } from '@/shared/assets/icons'
 
 type Props = {
   onClick: () => void
@@ -7,7 +7,7 @@ type Props = {
 export default function Hamburger({ onClick }: Props) {
   return (
     <button aria-label="메뉴 열기/닫기" onClick={onClick} className="w-10">
-      <HamburgerIcon />
+      <IconHamburger />
     </button>
   )
 }

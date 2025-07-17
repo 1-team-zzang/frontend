@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 
 /**
  * @description 글로벌네비게이션바 입니다
@@ -28,5 +28,5 @@ interface Prop {
 }
 
 export default function GNB({ children }: Prop) {
-  return <header className="flex bg-white p-4 w-full items-center justify-between">{children}</header>
+  return <header className="fixed top-0 z-50 flex bg-white p-4 w-full items-center justify-between">{children}</header>
 }
