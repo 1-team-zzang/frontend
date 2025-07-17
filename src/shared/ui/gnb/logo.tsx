@@ -1,10 +1,13 @@
 import { IconLogo } from '@/shared/assets/icons'
-import { Link } from 'react-router'
+/**
+ * 라우터 설정 후 a -> Link로 변경
+ * @returns
+ */
 
 export default function Logo() {
   return (
-    <Link to={'/'}>
+    <a href={'/'}>
       <IconLogo className="w-16" />
-    </Link>
+    </a>
   )
 }
