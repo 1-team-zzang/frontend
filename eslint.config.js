@@ -39,7 +39,7 @@ export default tseslint.config([
 
       // 🔧 코드 구조 및 들여쓰기 관련
       indent: ['error', 2], // 들여쓰기 2칸
-      'linebreak-style': ['error', 'unix'], // 줄바꿈은 LF 사용
+      'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'], // 줄바꿈은 플렛폼에 맞게
       'no-trailing-spaces': 'error', // 줄 끝의 공백 금지
       'no-multiple-empty-lines': ['error', { max: 1 }], // 빈 줄 최대 1줄 허용
       'eol-last': ['error', 'always'], // 파일 마지막 줄 줄바꿈 필수
