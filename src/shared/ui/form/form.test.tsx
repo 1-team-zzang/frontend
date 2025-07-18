@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { useForm } from 'react-hook-form'
 import { describe, it, vi, expect, afterEach, beforeEach } from 'vitest'
 import * as z from 'zod'
 
@@ -15,11 +16,18 @@ const TestSchema = z.object({
   password: z.string().min(8, { message: '비밀번호는 8자 이상 입력해주세요' }),
 })
 
+type TestType = z.infer<typeof TestSchema>
+
 const handleSubmitMock = vi.fn()
 
 function TestForm() {
+  const methods = useForm<TestType>({
+    resolver: zodResolver(TestSchema),
+    mode: 'onChange',
+  })
+
   return (
-    <Form resolver={zodResolver(TestSchema)} onSubmit={handleSubmitMock}>
+    <Form methods={methods} onSubmit={handleSubmitMock}>
       <FormField name="email">
         <FormLabel>이메일</FormLabel>
         <FormInput placeholder="이메일을 입력하세요" />
@@ -27,6 +35,34 @@ function TestForm() {
       <FormField name="password">
         <FormLabel>패스워드</FormLabel>
         <FormInput placeholder="비밀번호를 입력하세요" />
+      </FormField>
+      <FormSubmit>제출</FormSubmit>
+    </Form>
+  )
+}
+
+// eslint-disable-next-line react/no-multi-comp
+function TestDefaultForm() {
+  const initialValues = {
+    email: 'init@example.com',
+    password: 'initpass123',
+  }
+
+  const methods = useForm<TestType>({
+    resolver: zodResolver(TestSchema),
+    mode: 'onChange',
+    defaultValues: initialValues,
+  })
+
+  return (
+    <Form methods={methods} onSubmit={handleSubmitMock}>
+      <FormField name="email">
+        <FormLabel>이메일</FormLabel>
+        <FormInput name="email" />
+      </FormField>
+      <FormField name="password">
+        <FormLabel>패스워드</FormLabel>
+        <FormInput name="password" />
       </FormField>
       <FormSubmit>제출</FormSubmit>
     </Form>
@@ -78,19 +114,7 @@ describe('폼 컴포넌트', () => {
       password: 'initpass123',
     }
 
-    render(
-      <Form resolver={zodResolver(TestSchema)} onSubmit={handleSubmitMock} defaultValues={initialValues}>
-        <FormField name="email">
-          <FormLabel>이메일</FormLabel>
-          <FormInput name="email" />
-        </FormField>
-        <FormField name="password">
-          <FormLabel>패스워드</FormLabel>
-          <FormInput name="password" />
-        </FormField>
-        <FormSubmit>제출</FormSubmit>
-      </Form>,
-    )
+    render(<TestDefaultForm />)
 
     expect(screen.getByLabelText(/이메일/)).toHaveValue(initialValues.email)
     expect(screen.getByLabelText(/패스워드/)).toHaveValue(initialValues.password)
