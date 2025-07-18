@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { useForm } from 'react-hook-form'
 import { describe, it, expect, afterEach, beforeEach, vi } from 'vitest'
 import z from 'zod'
 
@@ -17,8 +18,15 @@ function TestInput() {
 
   const handleSubmit = vi.fn()
 
+  type TestType = z.infer<typeof TestSchema>
+
+  const methods = useForm<TestType>({
+    resolver: zodResolver(TestSchema),
+    mode: 'onChange',
+  })
+
   return (
-    <Form resolver={zodResolver(TestSchema)} onSubmit={handleSubmit}>
+    <Form methods={methods} onSubmit={handleSubmit}>
       <Input name="email" placeholder="이메일을 입력해주세요" />
       <PasswordInput name="password" />
     </Form>
