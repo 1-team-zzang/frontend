@@ -117,6 +117,15 @@
   --system-safe: #31c288;
   --system-safe-alt: #cff6e6;
 }
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
 
 .tooltip-top:after {
   border-width: 0 10px 13px;
