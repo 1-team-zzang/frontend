@@ -1,4 +1,4 @@
-import Text from '../../../shared/ui/text/text'
+import Text from '../../text/text'
 
 /**
  * 각 월마다의 1일에 해당월을 표시해주는 컴포넌트

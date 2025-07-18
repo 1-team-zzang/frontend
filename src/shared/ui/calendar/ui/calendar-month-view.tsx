@@ -1,6 +1,6 @@
 import { isSameMonth } from 'date-fns'
 
-import { CalendarCell } from '@/features/calendar-interacrtion'
+import CalendarCell from './calendar-cell'
 
 /**
  * @description

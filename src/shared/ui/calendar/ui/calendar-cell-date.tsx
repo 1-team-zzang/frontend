@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 import Text from '@/shared/ui/text/text'
 import { cn } from '@/shared/utils'
 
-import { useCalendarContext } from '../../../app/provider/use-calendar-provider'
+import { useCalendarContext } from '../hooks'
 
 import type { ReactNode } from 'react'
 
