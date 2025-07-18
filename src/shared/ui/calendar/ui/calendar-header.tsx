@@ -1,8 +1,8 @@
 import { format } from 'date-fns'
 
-import { useCalendarContext } from '@/app/provider/use-calendar-provider'
-import Text from '@/shared/ui/text/text'
+import { useCalendarContext } from '@/shared/ui/calendar/hooks/use-calendar-provider'
 
+import Text from '../../text/text'
 import goToCurrentMonth from '../lib/go-to-current-month'
 
 /**

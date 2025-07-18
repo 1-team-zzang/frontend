@@ -1,5 +1,3 @@
-// 📁 src/shared/utils/calendar-utils.ts
-
 import type { MutableRefObject } from 'react'
 
 /**

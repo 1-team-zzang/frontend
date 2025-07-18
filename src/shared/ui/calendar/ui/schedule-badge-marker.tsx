@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-import Text from '@/shared/ui/text/text'
+import Text from '../../text/text'
 
 import type { ReactNode } from 'react'
 

@@ -1,9 +1,11 @@
 import { useRef, useState, type ReactNode } from 'react'
 
-import { CalendarProvider } from '@/app/provider/use-calendar-provider'
-import { getAllMonthDates, getCurrentMonthDates } from '@/entities/date'
-import { getDateVariantStates } from '@/features/calendar-interacrtion'
 import { useControllableState } from '@/shared/hooks'
+
+import { CalendarProvider } from '../hooks/use-calendar-provider'
+import getAllMonthDates from '../lib/get-all-month-dates'
+import getCurrentMonthDates from '../lib/get-current-month-dates'
+import getDateVariantStates from '../lib/get-date-variant-states'
 
 /**
  * @description
