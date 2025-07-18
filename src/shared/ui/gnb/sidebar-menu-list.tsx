@@ -18,6 +18,7 @@ export default function SideBarMenuList({ text, children }: Prop) {
   return (
     <li className="flex items-center h-[3.625rem] p-5 rounded-lg gap-2 cursor-pointer hover:bg-primary-30">
       {children}
+
       <a href="/">
         <Text as="span" typography={'b2-heading'}>
           {text}
