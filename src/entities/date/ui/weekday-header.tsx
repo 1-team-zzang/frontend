@@ -1,5 +1,6 @@
-import Text from '@/shared/ui/text/text'
 import { cva } from 'class-variance-authority'
+
+import Text from '@/shared/ui/text/text'
 
 /**
  * @description  일~토 요일 표시 헤더,

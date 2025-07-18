@@ -21,7 +21,7 @@ export default function createScopedContext() {
   function createCustomContext<ContextValueType extends object | null>(defaultContext?: ContextValueType) {
     const BaseContext = createContext<ContextValueType | undefined>(defaultContext)
 
-    const Provider = ({ children, value }: { children: ReactNode; value: ContextValueType }) => {
+    function Provider({ children, value }: { children: ReactNode; value: ContextValueType }) {
       return <BaseContext.Provider value={value}>{children}</BaseContext.Provider>
     }
 

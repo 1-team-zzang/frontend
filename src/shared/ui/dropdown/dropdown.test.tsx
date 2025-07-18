@@ -1,6 +1,7 @@
 import { cleanup, render, screen } from '@testing-library/react'
-import { describe, it, expect, afterEach } from 'vitest'
 import userEvent from '@testing-library/user-event'
+import { describe, it, expect, afterEach } from 'vitest'
+
 import Dropdown from './dropdown-provider'
 
 describe('드롭다운', () => {
