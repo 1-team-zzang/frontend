@@ -1,46 +1,97 @@
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
+import { type InputHTMLAttributes } from 'react'
 
 import { IconCheck } from '@/shared/assets/icons'
+import { useControllableState } from '@/shared/hooks'
+import { cn } from '@/shared/utils'
 
 import Text from '../text/text'
 
-import type { ChangeEvent, InputHTMLAttributes } from 'react'
-
-interface Props extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof checkboxVariants> {
-  onCheckedChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  textLabel?: string
-  checkboxId: string
-}
-
-const checkboxVariants = cva(
-  'size-5 flex items-center justify-center rounded border border-black transition-colors duration-150',
-  {
-    variants: {
-      checked: {
-        true: 'bg-gray-200  cursor-not-allowed',
-        false: ' bg-white peer-checked:bg-primary-50 ',
-      },
+const CheckboxVariants = cva('size-5 border rounded flex items-center justify-center', {
+  variants: {
+    checked: {
+      true: '',
+      false: '',
     },
-    defaultVariants: {
-      checked: false,
+
+    disabled: {
+      true: '',
+      false: '',
     },
   },
-)
 
-export default function Checkbox({ onCheckedChange, textLabel, checkboxId, checked, ...restprops }: Props) {
+  defaultVariants: {
+    checked: false,
+    disabled: true,
+  },
+
+  compoundVariants: [
+    {
+      checked: false,
+      disabled: false,
+      class: 'border-black bg-white',
+    },
+    {
+      checked: true,
+      disabled: false,
+      class: 'border-black bg-primary-50',
+    },
+    {
+      checked: false,
+      disabled: true,
+      class: 'border-gray-30 bg-gray-10 text-gray-60 cursor-not-allowed',
+    },
+    {
+      checked: true,
+      disabled: true,
+      class: 'border-gray-40 bg-gray-30 text-gray-60 cursor-not-allowed',
+    },
+  ],
+})
+
+interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'checked' | 'defaultChecked' | 'onChange'> {
+  textLabel?: string //체크박스 옆에 텍스트
+  checked?: boolean //외부상태 체크여부
+  defaultChecked?: boolean //체크박스 초기값
+  onCheckedChange?: (checked: boolean) => void //체크박스 체크여부 변경되었을때 실행
+}
+
+export default function Checkbox({
+  disabled,
+  checked,
+  defaultChecked = false,
+  onCheckedChange,
+  textLabel = '',
+  ...restProps
+}: Props) {
+  const [isChecked, setIsChecked] = useControllableState<boolean>({
+    prop: checked,
+    defaultProp: defaultChecked,
+    onChange: onCheckedChange,
+  })
+
+  const toggleCheck = () => {
+    setIsChecked((prev) => !prev)
+  }
+
   return (
-    <div className="flex items-center gap-2">
+    <label className="flex items-center gap-2 cursor-pointer">
       <input
-        id={checkboxId}
         type="checkbox"
-        className="sr-only peer"
-        onChange={(e) => onCheckedChange?.(e)}
-        {...restprops}
+        checked={isChecked}
+        onChange={toggleCheck}
+        disabled={disabled}
+        className="sr-only"
+        {...restProps}
       />
-      <label htmlFor={checkboxId} className={checkboxVariants({ checked })}>
-        <IconCheck className="w-[0.625rem] h-[0.375rem] opacity-0 peer-checked:opacity-100 transition-opacity" />
-      </label>
-      {textLabel && <Text as="span">{textLabel}</Text>}
-    </div>
+
+      <span className={cn(CheckboxVariants({ checked: isChecked, disabled }))}>
+        {isChecked && <IconCheck className={cn({ 'text-gray-40': disabled })} />}
+      </span>
+
+      <Text as="span" typography="b2-normal" className={cn(disabled ? 'text-gray-60' : 'text-black')}>
+        {textLabel}
+      </Text>
+    </label>
   )
 }
