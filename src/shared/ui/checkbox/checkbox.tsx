@@ -86,7 +86,7 @@ export default function Checkbox({
       />
 
       <span className={cn(CheckboxVariants({ checked: isChecked, disabled }))}>
-        {isChecked && <IconCheck className={cn({ 'text-gray-40': disabled })} />}
+        {isChecked && <IconCheck className={cn({ disabled: 'text-gray-40' })} />}
       </span>
 
       <Text as="span" typography="b2-normal" className={cn(disabled ? 'text-gray-60' : 'text-black')}>
