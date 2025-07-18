@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { DropdownProvider } from './hooks/use-dropdown-context'
+import { useState, type ReactNode } from 'react'
+
+import { DropdownProvider } from './use-dropdown-context'
+
 /**
  * @description 드롭다운 UI 컴포넌트
  * DropdownProvider로 context를 하위 컴포넌트에 전달합니다
@@ -20,7 +22,7 @@ import { DropdownProvider } from './hooks/use-dropdown-context'
  *
  */
 
-export default function Dropdown({ children }: { children: React.ReactNode }) {
+export default function Dropdown({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
   const handleToggleDropdown = () => setIsOpen((prev) => !prev)
   const handleCloseDropdown = () => setIsOpen(false)

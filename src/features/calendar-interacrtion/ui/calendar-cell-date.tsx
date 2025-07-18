@@ -1,9 +1,11 @@
 import { cva } from 'class-variance-authority'
 
-import type { ReactNode } from 'react'
-import { useCalendarContext } from '../../../app/provider/use-calendar-provider'
 import Text from '@/shared/ui/text/text'
 import { cn } from '@/shared/utils'
+
+import { useCalendarContext } from '../../../app/provider/use-calendar-provider'
+
+import type { ReactNode } from 'react'
 
 /**
  * @description 날짜 셀 컴포넌트에서 사용되는 버튼입니다.
@@ -13,7 +15,7 @@ import { cn } from '@/shared/utils'
  * - isSaturday: 토요일인지
  * - isSunday: 일요일인지 여부
  * - isTodayDate: 오늘인지
- * - isThisMonthDate : 이번달에 속해 있는 날짜인지 
+ * - isThisMonthDate : 이번달에 속해 있는 날짜인지
  *  */
 
 interface Props {

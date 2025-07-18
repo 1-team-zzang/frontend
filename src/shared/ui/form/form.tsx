@@ -7,7 +7,7 @@ import type { ReactNode } from 'react'
 interface Props<T extends FieldValues> extends UseFormProps<T> {
   resolver: Resolver<T>
   children: ReactNode
-  // eslint-disable-next-line no-unused-vars
+
   onSubmit: (_data: T) => void
   className?: string
 }
