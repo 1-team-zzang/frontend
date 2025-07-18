@@ -56,6 +56,7 @@ export default {
         dropdown: 1000,
         sticky: 1020,
         fixed: 1030,
+        'side-bar': 1035,
         'modal-overlay': 1040,
         modal: 1050,
         toast: 1060,
