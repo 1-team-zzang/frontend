@@ -19,7 +19,7 @@ export default function AppointmentCard({ name, submitDate, title, startDate, en
         </div>
       </div>
       <div className="flex flex-col bg-white border border-gray-20 rounded-[0.625rem]">
-        <div className="flex flex-col mx-auto py-[1.75rem]">
+        <div className="flex flex-col mx-auto items-center py-[1.75rem]">
           <div className="font-semibold text-base">{title}</div>
           <div className="flex gap-[0.3125rem] justify-center">
             <div className="font-semibold text-base">시작</div>
