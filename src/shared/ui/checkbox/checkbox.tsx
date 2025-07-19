@@ -22,7 +22,7 @@ const CheckboxVariants = cva('size-5 border rounded flex items-center justify-ce
 
   defaultVariants: {
     checked: false,
-    disabled: true,
+    disabled: false,
   },
 
   compoundVariants: [
