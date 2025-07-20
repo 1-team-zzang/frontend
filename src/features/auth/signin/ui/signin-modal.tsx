@@ -2,7 +2,7 @@ import { type Dispatch, type ReactNode, type SetStateAction } from 'react'
 
 import { ModalContent, ModalOverlay, ModalPortal, ModalRoot, ModalTitle, ModalTrigger } from '@/shared/ui/modal'
 
-import SigninForm from './siginin-form'
+import SigninForm from './signin-form'
 
 interface Props {
   isOpen: boolean
