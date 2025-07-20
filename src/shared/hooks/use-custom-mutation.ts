@@ -1,7 +1,7 @@
 // hooks/useCustomMutation.ts
 import { useMutation } from '@tanstack/react-query'
 
-import { devLog } from './dev-log'
+import { devLog } from '@/shared/utils/dev-log'
 
 import type { UseMutationOptions, UseMutationResult } from '@tanstack/react-query'
 
