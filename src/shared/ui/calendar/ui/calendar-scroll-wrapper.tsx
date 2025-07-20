@@ -1,8 +1,11 @@
-import { useMonthObserver } from '@/features/calendar-interacrtion'
 import { useEffect, useRef } from 'react'
-import CalendarMonthView from './calendar-month-view'
-import { useCalendarContext } from '@/app/provider/use-calendar-provider'
+
+import { useCalendarContext } from '@/shared/ui/calendar/hooks/use-calendar-provider'
+
+import useMonthObserver from '../hooks/use-month-observer'
 import goToCurrentMonth from '../lib/go-to-current-month'
+
+import CalendarMonthView from './calendar-month-view'
 
 /**
  * @description
@@ -17,7 +20,6 @@ import goToCurrentMonth from '../lib/go-to-current-month'
 export default function CalendarScrollWrapper() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const { allDatesByMonth, setCurrentMonth, monthRefs } = useCalendarContext()
-
   //마운트 시 현재달로 이동하는 함수
   useEffect(() => {
     goToCurrentMonth({ setCurrentMonth, monthRefs })
@@ -36,7 +38,7 @@ export default function CalendarScrollWrapper() {
   return (
     <div ref={containerRef} className="overflow-y-scroll h-[26rem] flex flex-col scrollbar-hide">
       {allDatesByMonth.map((dates, i) => (
-        <div key={i} ref={(el) => void (monthRefs.current[i] = el)}>
+        <div key={dates[0].toISOString()} ref={(el) => void (monthRefs.current[i] = el)}>
           <CalendarMonthView dates={dates} />
         </div>
       ))}

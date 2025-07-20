@@ -1,4 +1,4 @@
-// 📁 src/shared/utils/calendar-utils.ts
+import type { MutableRefObject } from 'react'
 
 /**
  * 현재 월로 스크롤 이동
@@ -10,7 +10,7 @@ export default function goToCurrentMonth({
   monthRefs,
 }: {
   setCurrentMonth: (date: Date) => void
-  monthRefs: React.MutableRefObject<(HTMLDivElement | null)[]>
+  monthRefs: MutableRefObject<(HTMLDivElement | null)[]>
 }) {
   const today = new Date()
   const thisMonthIndex = today.getMonth()
