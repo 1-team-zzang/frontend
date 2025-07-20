@@ -1,6 +1,6 @@
 import { FormProvider, type UseFormProps, type FieldValues, type UseFormReturn } from 'react-hook-form'
 
-import { cn } from '../../utils'
+import { cn } from '@/shared/utils'
 
 import type { ReactNode } from 'react'
 
@@ -28,7 +28,7 @@ export default function Form<T extends FieldValues>({
 }: Props<T>) {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className={cn('flex flex-col', className)} {...restProps}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className={cn('flex flex-col mt-5', className)} {...restProps}>
         {children}
       </form>
     </FormProvider>
