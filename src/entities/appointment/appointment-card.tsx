@@ -1,3 +1,5 @@
+import Text from '@/shared/ui/text/text.tsx'
+
 interface Props {
   name: string
   title: string
@@ -11,23 +13,23 @@ export default function AppointmentCard({ name, createdAt, title, startAt, endAt
     <div className="flex flex-col m-5 bg-gray-1 border rounded-[0.625rem] border-gray-20">
       <div className="flex px-[1.5625rem] py-[0.875rem] justify-between items-center">
         <div className="flex gap-[0.3125rem]">
-          <div className="font-semibold text-base">From</div>
-          <div className="font-base text-base">{name}</div>
+          <Text typography={'b2-heading'}>From</Text>
+          <Text typography={'b2-normal'}>{name}</Text>
         </div>
         <div>
-          <div className="font-base text-base">{createdAt.toLocaleString()}</div>
+          <Text typography={'b2-normal'}>{createdAt.toLocaleString()}</Text>
         </div>
       </div>
       <div className="flex flex-col bg-white border border-gray-20 rounded-[0.625rem]">
         <div className="flex flex-col mx-auto items-center py-[1.75rem]">
-          <div className="font-semibold text-base">{title}</div>
+          <Text typography={'b2-heading'}>{title}</Text>
           <div className="flex gap-[0.3125rem] justify-center">
-            <div className="font-semibold text-base">시작</div>
-            <div className="font-base text-base">{startAt.toLocaleString()}</div>
+            <Text typography={'b2-heading'}>시작</Text>
+            <Text typography={'b2-normal'}>{startAt.toLocaleString()}</Text>
           </div>
           <div className="flex gap-[0.3125rem] justify-center">
-            <div className="font-semibold text-base">종료</div>
-            <div className="font-base text-base">{endAt.toLocaleString()}</div>
+            <Text typography={'b2-heading'}>종료</Text>
+            <Text typography={'b2-normal'}>{endAt.toLocaleString()}</Text>
           </div>
         </div>
       </div>
