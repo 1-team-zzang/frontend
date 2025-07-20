@@ -3,7 +3,7 @@
  *
  */
 
-import createScopedContext from '@/shared/utils/use-custom-context'
+import { createContextScope } from '@/shared/utils/'
 
 interface Props {
   isOpen: boolean
@@ -11,7 +11,7 @@ interface Props {
   handleCloseDropdown: () => void
 }
 
-const createDropdownContext = createScopedContext()
+const createDropdownContext = createContextScope()
 const [DropdownProvider, useDropdownContext] = createDropdownContext<Props>()
 
 export { DropdownProvider, useDropdownContext }
