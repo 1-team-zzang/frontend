@@ -1,8 +1,8 @@
-import { type Dispatch, type ReactNode, type SetStateAction } from 'react'
-
 import { ModalContent, ModalOverlay, ModalPortal, ModalRoot, ModalTitle, ModalTrigger } from '@/shared/ui/modal'
 
 import SigninForm from './signin-form'
+
+import type { Dispatch, ReactNode, SetStateAction } from 'react'
 
 interface Props {
   isOpen: boolean
@@ -10,7 +10,7 @@ interface Props {
   trigger: ReactNode
 }
 
-export default function SigninModal({ isOpen, setIsOpen, trigger }: Props) {
+export default function EmailSigninModal({ isOpen, setIsOpen, trigger }: Props) {
   return (
     <ModalRoot defaultOpen={isOpen} onOpenChange={setIsOpen}>
       <ModalTrigger>{trigger}</ModalTrigger>
