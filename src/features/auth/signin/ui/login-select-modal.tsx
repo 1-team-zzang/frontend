@@ -1,7 +1,7 @@
 import { useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
 
 import { IconKakaoLogo } from '@/shared/assets/icons'
-import { ModalContent, ModalOverlay, ModalPortal, ModalRoot, ModalTitle, ModalTrigger } from '@/shared/ui/modal'
+import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle, ModalTrigger } from '@/shared/ui/modal'
 import Text from '@/shared/ui/text/text'
 
 import EmailSigninModal from './email-signin-modal'
@@ -17,7 +17,7 @@ export default function LoginSelectModal({ isOpen, setIsOpen, trigger }: Props) 
   // NOTE 임시 상태이긴한데 현재 이 모달을 닫고 email 모달을 열려면 이렇게 상태관리를 하는게 맞을까요 ??
 
   return (
-    <ModalRoot defaultOpen={isOpen} onOpenChange={setIsOpen}>
+    <Modal defaultOpen={isOpen} onOpenChange={setIsOpen}>
       <ModalTrigger>{trigger}</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
@@ -60,6 +60,6 @@ export default function LoginSelectModal({ isOpen, setIsOpen, trigger }: Props) 
           </Text>
         </ModalContent>
       </ModalPortal>
-    </ModalRoot>
+    </Modal>
   )
 }
