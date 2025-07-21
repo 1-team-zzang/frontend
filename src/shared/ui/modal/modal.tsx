@@ -5,6 +5,8 @@ import { useEscapeKeydown, useControllableState } from '@/shared/hooks'
 import { ModalProvider } from './modal-context'
 
 interface Props {
+  /** 모달의 열림 상태 (외부 상태 주입) */
+  open?: boolean
   /** 모달의 초기 열림 상태 */
   defaultOpen?: boolean
   /** 모달 상태 변경 시 호출되는 콜백 함수 */
@@ -21,7 +23,7 @@ interface Props {
  *
  * @example
  * ```tsx
- * <ModalRoot defaultOpen={false} onOpenChange={setIsOpen}>
+ * <Modal open={isOpen} defaultOpen={false} onOpenChange={setIsOpen}>
  *   <ModalTrigger>Open Modal</ModalTrigger>
  *   <ModalPortal>
  *     <ModalOverlay />
@@ -31,19 +33,20 @@ interface Props {
  *       <ModalCloseButton />
  *     </ModalContent>
  *   </ModalPortal>
- * </ModalRoot>
+ * </Modal>
  * ```
  *
  * @param props - ModalRoot 컴포넌트의 props
+ * @param props.open - 모달의 열림 상태
  * @param props.defaultOpen - 모달의 초기 열림 상태 (기본값: false)
  * @param props.onOpenChange - 모달 상태 변경 시 호출되는 콜백 함수
  * @param props.children - 모달 내부에 렌더링될 자식 컴포넌트들
  *
  * @returns 모달 컨텍스트를 제공하는 Provider 컴포넌트
  */
-export default function ModalRoot({ children, defaultOpen, onOpenChange }: Props) {
+export default function Modal({ children, open, defaultOpen, onOpenChange }: Props) {
   const [isOpen, setOpen] = useControllableState({
-    prop: defaultOpen,
+    prop: open,
     defaultProp: defaultOpen || false,
     onChange: onOpenChange,
   })

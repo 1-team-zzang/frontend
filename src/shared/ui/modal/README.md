@@ -13,20 +13,21 @@
 
 ## Components
 
-### ModalRoot
+### Modal
 
 모달의 루트 컴포넌트로, 상태 관리와 컨텍스트를 제공합니다.
 
 ```tsx
-import { ModalRoot } from '@/shared/ui/modal'
+import { Modal } from '@/shared/ui/modal'
 
-<ModalRoot defaultOpen={false} onOpenChange={(open) => console.log(open)}>
+<Modal defaultOpen={false} onOpenChange={(open) => console.log(open)}>
   {/* 모달 컴포넌트들 */}
-</ModalRoot>
+</Modal>
 ```
 
 **Props:**
 
+- `open?: boolean` - 모달의 열림 상태 (외부 상태 주입)
 - `defaultOpen?: boolean` - 초기 열림 상태
 - `onOpenChange?: (open: boolean) => void` - 상태 변경 콜백
 - `children: ReactNode` - 모달 컴포넌트들
@@ -147,7 +148,7 @@ import { ModalCloseButton } from '@/shared/ui/modal'
 
 ```tsx
 import {
-  ModalRoot,
+  Modal,
   ModalTrigger,
   ModalPortal,
   ModalOverlay,
@@ -159,7 +160,7 @@ import {
 
 function BasicModal() {
   return (
-    <ModalRoot>
+    <Modal>
       <ModalTrigger>Open Modal</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
@@ -169,7 +170,7 @@ function BasicModal() {
           <ModalCloseButton />
         </ModalContent>
       </ModalPortal>
-    </ModalRoot>
+    </Modal>
   )
 }
 ```
@@ -183,7 +184,7 @@ function ControlledModal() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <ModalRoot defaultOpen={isOpen} onOpenChange={setIsOpen}>
+    <Modal defaultOpen={isOpen} onOpenChange={setIsOpen}>
       <ModalTrigger>Open Modal</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
@@ -193,7 +194,7 @@ function ControlledModal() {
           <ModalCloseButton />
         </ModalContent>
       </ModalPortal>
-    </ModalRoot>
+    </Modal>
   )
 }
 ```
@@ -203,7 +204,7 @@ function ControlledModal() {
 ```tsx
 function CustomTriggerModal() {
   return (
-    <ModalRoot>
+    <Modal>
       <ModalTrigger asChild>
         <button className="px-4 py-2 bg-blue-500 text-white rounded">커스텀 버튼</button>
       </ModalTrigger>
@@ -215,7 +216,7 @@ function CustomTriggerModal() {
           <ModalCloseButton />
         </ModalContent>
       </ModalPortal>
-    </ModalRoot>
+    </Modal>
   )
 }
 ```
