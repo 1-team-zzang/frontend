@@ -1,8 +1,7 @@
-/* eslint-disable */
-
+/* eslint-disable unused-imports/no-unused-vars */
 import { http, HttpResponse } from 'msw'
 
-export const handlers = [
+export const friendsHandlers = [
   // 친구 요청 보내기 (POST)
   http.post('/api/friends/requests', ({ request }) => {
     const friendId = request.body
