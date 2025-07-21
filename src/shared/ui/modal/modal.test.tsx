@@ -4,7 +4,7 @@ import { useState, type ComponentType } from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
 
 import {
-  ModalRoot,
+  Modal,
   ModalTrigger,
   ModalPortal,
   ModalOverlay,
@@ -14,9 +14,9 @@ import {
   ModalCloseButton,
 } from './index'
 
-function Modal(isOpen?: boolean, onOpenChange?: (open: boolean) => void) {
+function ModalComponent(isOpen?: boolean, onOpenChange?: (open: boolean) => void) {
   return (
-    <ModalRoot defaultOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal open={isOpen} onOpenChange={onOpenChange}>
       <ModalTrigger>Open Modal</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
@@ -26,7 +26,7 @@ function Modal(isOpen?: boolean, onOpenChange?: (open: boolean) => void) {
           <ModalCloseButton />
         </ModalContent>
       </ModalPortal>
-    </ModalRoot>
+    </Modal>
   )
 }
 
@@ -52,12 +52,12 @@ async function testModalOpenAndClose(ModalComponent: ComponentType) {
 }
 
 function DefaultModal({ isOpen, onOpenChange }: { isOpen?: boolean; onOpenChange?: (open: boolean) => void }) {
-  return Modal(isOpen, onOpenChange)
+  return ModalComponent(isOpen, onOpenChange)
 }
 
 function ExternalStateModal() {
   const [isOpen, setIsOpen] = useState(false)
-  return Modal(isOpen, setIsOpen)
+  return ModalComponent(isOpen, setIsOpen)
 }
 
 describe('ModalRoot', () => {
