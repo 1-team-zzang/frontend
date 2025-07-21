@@ -7,16 +7,16 @@ import SignupForm from './signup-form'
 
 interface Props {
   isSignupOpen: boolean
-  setIsSignupOepn: Dispatch<SetStateAction<boolean>>
+  setIsSignupOpen: Dispatch<SetStateAction<boolean>>
   trigger: ReactNode
 }
 
-export default function SignupModal({ isSignupOpen, setIsSignupOepn, trigger }: Props) {
+export default function SignupModal({ isSignupOpen, setIsSignupOpen, trigger }: Props) {
   // eslint-disable-next-line unused-imports/no-unused-vars
-  const [isSigninOpen, setIsSigninOepn] = useState<boolean>(false)
+  const [isSigninOpen, setIsSigninOpen] = useState<boolean>(false)
 
   return (
-    <Modal open={isSignupOpen} onOpenChange={setIsSignupOepn}>
+    <Modal open={isSignupOpen} onOpenChange={setIsSignupOpen}>
       <ModalTrigger>{trigger}</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
