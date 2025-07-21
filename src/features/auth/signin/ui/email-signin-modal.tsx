@@ -13,7 +13,7 @@ interface Props {
 
 export default function EmailSigninModal({ isOpen, setIsOpen, trigger }: Props) {
   return (
-    <Modal defaultOpen={isOpen} onOpenChange={setIsOpen}>
+    <Modal open={isOpen} onOpenChange={setIsOpen}>
       <ModalTrigger>{trigger}</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />

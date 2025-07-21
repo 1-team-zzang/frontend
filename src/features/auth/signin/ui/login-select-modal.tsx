@@ -17,7 +17,7 @@ export default function LoginSelectModal({ isOpen, setIsOpen, trigger }: Props) 
   // NOTE 임시 상태이긴한데 현재 이 모달을 닫고 email 모달을 열려면 이렇게 상태관리를 하는게 맞을까요 ??
 
   return (
-    <Modal defaultOpen={isOpen} onOpenChange={setIsOpen}>
+    <Modal open={isOpen} onOpenChange={setIsOpen}>
       <ModalTrigger>{trigger}</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
