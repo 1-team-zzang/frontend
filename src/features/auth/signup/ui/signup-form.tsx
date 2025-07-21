@@ -26,9 +26,8 @@ export default function SignupForm() {
   } = methods
 
   const handleSubmit = (data: SignupFormDataType) => {
-    // eslint-disable-next-line unused-imports/no-unused-vars
-    const { passwordConfirm, ...restData } = data // 회원가입 API 요청 데이터에는 비밀번호 확인 없음
-    signupMutation.mutate(restData)
+    const { email, name, password } = data // 회원가입 API 요청 데이터에는 비밀번호 확인 없음
+    signupMutation.mutateAsync({ email, name, password })
   }
 
   return (
