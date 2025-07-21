@@ -14,9 +14,9 @@ import {
   ModalCloseButton,
 } from './index'
 
-function ModalComponent(isOpen?: boolean, onOpenChange?: (open: boolean) => void) {
+function ModalTest(open?: boolean, onOpenChange?: (open: boolean) => void) {
   return (
-    <Modal open={isOpen} onOpenChange={onOpenChange}>
+    <Modal open={open} onOpenChange={onOpenChange}>
       <ModalTrigger>Open Modal</ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
@@ -51,13 +51,13 @@ async function testModalOpenAndClose(ModalComponent: ComponentType) {
   expect(screen.queryByText('Description')).not.toBeInTheDocument()
 }
 
-function DefaultModal({ isOpen, onOpenChange }: { isOpen?: boolean; onOpenChange?: (open: boolean) => void }) {
-  return ModalComponent(isOpen, onOpenChange)
+function DefaultModal({ open, onOpenChange }: { open?: boolean; onOpenChange?: (open: boolean) => void }) {
+  return ModalTest(open, onOpenChange)
 }
 
 function ExternalStateModal() {
   const [isOpen, setIsOpen] = useState(false)
-  return ModalComponent(isOpen, setIsOpen)
+  return ModalTest(isOpen, setIsOpen)
 }
 
 describe('ModalRoot', () => {
