@@ -21,10 +21,6 @@ export default function SignupForm() {
     mode: 'onChange', // NOTE onChange로 할지 onSubmit으로 할지
   })
 
-  const {
-    formState: { isSubmitting, isValid },
-  } = methods
-
   const handleSubmit = (data: SignupFormDataType) => {
     const { email, name, password } = data // 회원가입 API 요청 데이터에는 비밀번호 확인 없음
     signupMutation.mutateAsync({ email, name, password })
@@ -50,7 +46,7 @@ export default function SignupForm() {
           <PasswordInput mode="confirm" />
         </FormField>
       </FormFieldWrapper>
-      <Button type="submit" intent="solid" disabled={!isValid || isSubmitting} className="w-full">
+      <Button type="submit" intent="solid" disabled={!methods.formState.isValid} className="w-full">
         회원가입
       </Button>
       <Text typography="b2-normal" className="text-gray-80 flex gap-1 items-center justify-center mt-6">
