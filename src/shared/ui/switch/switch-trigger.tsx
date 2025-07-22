@@ -6,15 +6,24 @@ import { useSwitchContext } from './switch-context'
 
 import type { InputHTMLAttributes } from 'react'
 
-const triggerVariants = cva('w-5 h-5 rounded-full bg-gray-0 block transition-transform duration-200', {
+const triggerVariants = cva('w-7 h-7 rounded-full bg-gray-0 block transition-transform duration-200', {
   variants: {
     isChecked: {
-      true: 'translate-x-full',
+      true: 'translate-x-8',
       false: 'translate-x-0',
     },
   },
   defaultVariants: {
     isChecked: false,
+  },
+})
+
+const labelVariants = cva('rounded-full p-0.5 w-16 h-8 flex items-center cursor-pointer', {
+  variants: {
+    isChecked: {
+      true: 'bg-primary-50',
+      false: 'bg-gray-10',
+    },
   },
 })
 
@@ -27,10 +36,7 @@ export default function SwitchTrigger({ id, switchBallClassName, labelClassName,
   const { isChecked, setIsChecked } = useSwitchContext()
 
   return (
-    <label
-      className={cn('rounded-full bg-gray-100 p-1 w-12 h-8 flex items-center cursor-pointer', labelClassName)}
-      htmlFor={id}
-    >
+    <label className={cn(labelVariants({ isChecked }), labelClassName)} htmlFor={id}>
       <input
         type="checkbox"
         className="sr-only"
