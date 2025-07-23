@@ -11,7 +11,8 @@ const REQUIRED_FIELDS = [
   'requesterName',
   'requesterEmail',
   'isAllDay',
-  'receiverId',
+  'color',
+  'content',
 ] as const
 
 export const requestAppointmentHandler = http.post('/api/appointments/requests', async ({ request }) => {
