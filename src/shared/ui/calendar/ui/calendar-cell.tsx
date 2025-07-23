@@ -6,11 +6,16 @@ import Text from '../../text/text'
 import { useCalendarContext } from '../hooks/calendar-context'
 import { getDayInfo } from '../util/get-day-info'
 
+/**
+ * 캘린더에서 하나의 날짜 셀을 렌더링하는 컴포넌트
+ * 요일색상, 오늘 날짜, 일정뱃지 표시 담당
+ */
+
 interface Props {
-  year: number
-  month: number
-  date: number
-  showMonthLabel?: boolean
+  year: number //셀에 해당하는 년도
+  month: number //셀에 해당하는 월(0 = 1월)
+  date: number // 셀에 해당하는 일
+  showMonthLabel?: boolean //월 1일마다 표시하는 라벨
 }
 
 const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify-center', {
@@ -25,6 +30,8 @@ export default function CalendarCell({ year, month, date, showMonthLabel }: Prop
   const { isSunday, isSaturday, isToday } = getDayInfo(year, month, date)
 
   const fullDate = new Date(year, month, date)
+  const monthLabel = String(month + 1).padStart(2, '0')
+
   return (
     <button className=" h-20 flex flex-col border-t border-gray-10">
       <div className="relative flex justify-center mb-1">
@@ -37,7 +44,7 @@ export default function CalendarCell({ year, month, date, showMonthLabel }: Prop
         </Text>
         {showMonthLabel && (
           <Text as="span" typography="title-heading" className="absolute top-6 text-primary-1 z-base">
-            0{month + 1}
+            {monthLabel}
           </Text>
         )}
       </div>

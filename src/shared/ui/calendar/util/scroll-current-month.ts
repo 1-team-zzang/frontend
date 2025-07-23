@@ -15,7 +15,7 @@ export function scrollToCurrentMonth(
 
     container.scrollTo({
       top: offset,
-      behavior: 'auto', // or 'smooth'
+      behavior: 'auto', //  'smooth' -> 애니메이션
     })
   }
 }
