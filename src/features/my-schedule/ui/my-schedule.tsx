@@ -15,7 +15,7 @@ import ScheduleBadgeFill from './schedule-badge-fill'
 
 export default function MySchedule() {
   const { data: schedules = [] } = useQuery({
-    queryKey: ['schdule'],
+    queryKey: ['schedule'],
     queryFn: getMySchedule,
   })
   const repeat = repeatedSchedules(schedules)
@@ -48,7 +48,7 @@ export default function MySchedule() {
       onDateClick={(date) => {
         const dateStr = format(date, 'yyyy-MM-dd')
         alert(`${dateStr} 클릭`)
-      }} //셀 클릭시 실행될 함수, 일정보기 구현 후 수정
+      }} //셀 클릭시 실행될 함수, 세부일정보기 구현 후 수정
     >
       <CalendarHeaderContent />
       <CalendarDayName />

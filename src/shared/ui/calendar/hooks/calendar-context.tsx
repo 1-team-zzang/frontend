@@ -7,6 +7,7 @@ interface CalendarContextValue {
   visibleMonth: number | null
   monthRefs: MutableRefObject<(HTMLDivElement | null)[]>
   renderDateCellContent?: (date: Date) => ReactNode
+  onDateClick?: (date: Date) => void
 }
 
 const createCalendarContext = createContextScope()
