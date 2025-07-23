@@ -26,14 +26,14 @@ const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify
   },
 })
 export default function CalendarCell({ year, month, date, showMonthLabel }: Props) {
-  const { renderDateCellContent } = useCalendarContext()
+  const { renderDateCellContent, onDateClick } = useCalendarContext()
   const { isSunday, isSaturday, isToday } = getDayInfo(year, month, date)
 
   const fullDate = new Date(year, month, date)
   const monthLabel = String(month + 1).padStart(2, '0')
 
   return (
-    <button className=" h-20 flex flex-col border-t border-gray-10">
+    <button onClick={() => onDateClick?.(fullDate)} className=" h-20 flex flex-col border-t border-gray-10">
       <div className="relative flex justify-center mb-1">
         <Text
           as="span"

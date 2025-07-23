@@ -17,7 +17,7 @@ interface Props extends VariantProps<typeof badgeVariants> {
   children: ReactNode
 }
 
-const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-fixed', {
+const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-fixed truncate overflow-hidden whitespace-nowrap', {
   variants: {
     color: {
       redAlt: 'bg-calendar-red-alt',
