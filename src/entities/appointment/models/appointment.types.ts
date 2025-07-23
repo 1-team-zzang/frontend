@@ -1,6 +1,8 @@
+import type { Schedule } from '@/entities/schedule'
+
 export type AppointmentStatus = 'REQUESTED' | 'ACCEPTED' | 'REJECTED'
 
-export interface Appointment {
+export interface Appointment extends Pick<Schedule, 'color'> {
   appointmentId: number
   title: string
   content: string
