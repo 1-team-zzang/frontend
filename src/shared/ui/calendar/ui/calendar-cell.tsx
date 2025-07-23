@@ -20,8 +20,8 @@ interface Props {
 
 const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify-center', {
   variants: {
-    isSunday: { true: 'text-red' },
-    isSaturday: { true: 'text-blue' },
+    isSunday: { true: 'text-calendar-red' },
+    isSaturday: { true: 'text-calendar-blue' },
     isTodayDate: { true: 'bg-primary-30' },
   },
 })
