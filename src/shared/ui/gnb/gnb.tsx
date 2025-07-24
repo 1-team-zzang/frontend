@@ -44,7 +44,7 @@ export default function GNB({ rightSlot, sidebar }: Props) {
 
   return (
     <GNBProvider value={providerValue}>
-      <header className="z-fixed flex min-h-14 bg-white py-2 px-4 w-full items-center justify-between">
+      <header className="z-fixed flex min-h-14 bg-white py-2 border-b-gray-5 border-b px-4 w-full items-center justify-between">
         <Logo />
         {rightSlot}
       </header>
