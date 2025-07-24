@@ -1,8 +1,8 @@
+import { useUserStore } from '@/entities/user/models/use-user-store'
 import { IconClose } from '@/shared/assets/icons'
 
-import Text from '../text/text'
-
-import { useGNBContext } from './gnb-conext'
+import { useGNBContext } from '../gnb/gnb-conext'
+import { Profile, ProfileImage, ProfileName } from '../profile'
 
 /**
 
@@ -12,21 +12,23 @@ import { useGNBContext } from './gnb-conext'
 
  */
 
-interface Prop {
-  username: string
-}
-
-export default function SideBarMenuHeader({ username }: Prop) {
+export default function SidebarMenuHeader() {
+  const { user } = useUserStore()
   const { handleCloseSidebar } = useGNBContext()
+
+  if (!user) {
+    return null
+  }
+
+  const { name, profileUrl } = user
 
   return (
     <div className="w-full h-14 px-4 flex items-center justify-between border-b border-gray-5">
       <div className="flex items-center justify-center gap-3">
-        <div className="size-10 rounded-full bg-gray-5" />
-
-        <Text as="span" typography={'b2-heading'}>
-          {username}
-        </Text>
+        <Profile name={name} src={profileUrl}>
+          <ProfileImage />
+          <ProfileName />
+        </Profile>
       </div>
 
       <button onClick={handleCloseSidebar}>
