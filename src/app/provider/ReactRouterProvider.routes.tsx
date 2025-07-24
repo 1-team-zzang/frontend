@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 
+import Appointment from '@/pages/appointment/appointment'
 import Authlayout from '@/pages/auth/auth-layout'
 import SigninPage from '@/pages/auth/signin/signin-page'
 import SignupPage from '@/pages/auth/signup/signup-page'
@@ -22,5 +23,9 @@ export const router = createBrowserRouter([
         Component: SignupPage,
       },
     ],
+  },
+  {
+    path: '/appointment',
+    Component: Appointment,
   },
 ])
