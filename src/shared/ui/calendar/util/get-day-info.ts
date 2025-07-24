@@ -19,7 +19,7 @@
  * }}
  */
 
-import isPastDate from './isPastDate'
+import isPastDate from './is-past-date'
 
 export function getDayInfo(year: number, month: number, date: number) {
   const target = new Date(year, month, date)

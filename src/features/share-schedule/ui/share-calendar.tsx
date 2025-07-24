@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 
+import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { ScheduleBadgeFill } from '@/shared/ui/calendar'
 import CalendarContainer from '@/shared/ui/calendar/ui/calendar-container'
@@ -9,9 +10,8 @@ import CalendarHeaderContent from '@/shared/ui/calendar/ui/calendar-header-conte
 import YearlyCalendar from '@/shared/ui/calendar/ui/yearly-calendar'
 import Text from '@/shared/ui/text/text'
 
-import { groupByDate } from '../../../entities/schedule/models/get-group-by-date'
 import AddScheduleButton from '../../../shared/ui/calendar/ui/add-schedule-button'
-import isPastDate from '../../../shared/ui/calendar/util/isPastDate'
+import isPastDate from '../../../shared/ui/calendar/util/is-past-date'
 import { getShearSchedule } from '../api/share-schedule.API'
 
 import PrivateSchedule from './private-schedule'
