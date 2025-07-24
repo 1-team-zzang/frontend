@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { useIntersect } from '@/shared/hooks'
 import {
   SegmentedControl,
   SegmentedControlContent,
@@ -8,7 +9,7 @@ import {
 } from '@/shared/ui/segmented-control'
 import Text from '@/shared/ui/text/text'
 
-// import { useMyAppointmentsByStatus } from '../models'
+import { useMyAppointmentsByStatus } from '../models'
 
 import MyAppointmentCard from './my-appointment-card'
 
@@ -22,24 +23,32 @@ const statusMap: Record<string, MyAppointmentStatus> = {
 
 export default function MyAppointment() {
   const [status, setStatus] = useState<MyAppointmentStatus>('REQUESTED')
-  // const { data, isLoading, isPending, error } = useMyAppointmentsByStatus({ page: 1, size: 10, status })
+  const { data, isLoading, isPending, error, fetchNextPage, hasNextPage } = useMyAppointmentsByStatus({
+    size: 10,
+    status,
+  })
 
-  // if (isLoading || isPending) {
-  //   return <div>Loading...</div>
-  // }
+  const ref = useIntersect<HTMLDivElement>({
+    onIntersect: (entry, _observer) => {
+      if (entry.isIntersecting) {
+        if (hasNextPage) {
+          fetchNextPage()
+        }
+      }
+    },
+  })
 
-  // if (error) {
-  //   return <div>Error</div>
-  // }
+  if (isLoading || isPending) {
+    return <div>Loading...</div>
+  }
 
-  // console.log(data)
+  if (error) {
+    return <div>Error</div>
+  }
 
   const handleStatusChange = (value: string) => {
     setStatus(statusMap[value])
   }
-
-  // eslint-disable-next-line no-console
-  console.log(status)
 
   return (
     <main>
@@ -60,9 +69,11 @@ export default function MyAppointment() {
             </SegmentedControlItem>
           </SegmentedControlList>
           <SegmentedControlContent value="pending" className="w-full flex flex-col gap-5">
-            <MyAppointmentCard />
-            <MyAppointmentCard />
-            <MyAppointmentCard />
+            {data.appointments.map((appointment) => (
+              <MyAppointmentCard key={appointment.id} />
+            ))}
+            {isPending && <div>Loading...</div>}
+            <div ref={ref} className="h-[1px]" />
           </SegmentedControlContent>
           <SegmentedControlContent value="responded" className="w-full">
             <div>응답한 약속</div>
