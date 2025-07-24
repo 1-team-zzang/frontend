@@ -14,7 +14,7 @@ import Text from '@/shared/ui/text/text'
 
 import { getMySchedule } from '../api/my-schedule.API'
 
-export default function MySchedule() {
+export default function MyCalendar() {
   const { data: schedules = [] } = useQuery({
     queryKey: ['schedule'],
     queryFn: getMySchedule,

@@ -1,18 +1,15 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router'
-
-import { useUserStore } from '@/entities/user/models/use-user-store'
-import MySchedule from '@/features/my-schedule/ui/my-schedule'
+import MyCalendar from '@/features/my-schedule/ui/my-calendar'
 
 export default function Home() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const user = useUserStore((state) => state.user)
+  // const user = useUserStore((state) => state.user)
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/auth/signin')
-    }
-  }, [user, navigate])
-  return <MySchedule />
+  // useEffect(() => {
+  //   if (!user) {
+  //     alert('로그인이 필요합니다')
+  //     navigate('/auth/signin')
+  //   }
+  // }, [user, navigate])
+  return <MyCalendar />
 }
