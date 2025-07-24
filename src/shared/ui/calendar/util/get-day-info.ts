@@ -6,6 +6,7 @@
  * - `isSunday`: 일요일 여부
  * - `isSaturday`: 토요일 여부
  * - `isToday`: 오늘 날짜와 같은지 여부
+ * - `isPast`: 과거 날짜인지 여부
  *
  * @param {number} year - 연도 (예: 2025)
  * @param {number} month - 월 (0 = 1월)
@@ -16,6 +17,7 @@
  *   isSunday: boolean,
  *   isSaturday: boolean,
  *   isToday: boolean
+ *   isPast:boolean
  * }}
  */
 
