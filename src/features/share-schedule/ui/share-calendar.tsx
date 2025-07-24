@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
+import { IconInvite } from '@/shared/assets/icons'
 import { ScheduleBadgeFill } from '@/shared/ui/calendar'
 import CalendarContainer from '@/shared/ui/calendar/ui/calendar-container'
 import CalendarDayName from '@/shared/ui/calendar/ui/calendar-day-name'
@@ -12,14 +13,14 @@ import Text from '@/shared/ui/text/text'
 
 import AddScheduleButton from '../../../shared/ui/calendar/ui/add-schedule-button'
 import isPastDate from '../../../shared/ui/calendar/util/is-past-date'
-import { getShearSchedule } from '../api/share-schedule.API'
+import { getShareSchedule } from '../api/share-schedule.API'
 
 import PrivateSchedule from './private-schedule'
 
 export default function ShareSchedule() {
   const { data: schedules = [] } = useQuery({
     queryKey: ['share-schedule'],
-    queryFn: getShearSchedule,
+    queryFn: getShareSchedule,
   })
   const repeat = repeatedSchedules(schedules)
 
@@ -64,7 +65,9 @@ export default function ShareSchedule() {
         alert(`${dateStr} 클릭`)
       }}
     >
-      <AddScheduleButton />
+      <AddScheduleButton>
+        <IconInvite />
+      </AddScheduleButton>
       <CalendarHeaderContent />
       <CalendarDayName />
       <YearlyCalendar />
