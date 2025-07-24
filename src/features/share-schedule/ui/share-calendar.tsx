@@ -17,7 +17,7 @@ import { getShareSchedule } from '../api/share-schedule.API'
 
 import PrivateSchedule from './private-schedule'
 
-export default function ShareSchedule() {
+export default function ShareCalendar() {
   const { data: schedules = [] } = useQuery({
     queryKey: ['share-schedule'],
     queryFn: getShareSchedule,
@@ -28,6 +28,7 @@ export default function ShareSchedule() {
 
   return (
     <CalendarContainer
+      disablePastDateStyling={false}
       renderDateCellContent={(date) => {
         const key = format(date, 'yyyy-MM-dd')
         const items = scheduleMap[key] || []

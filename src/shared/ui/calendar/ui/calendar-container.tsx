@@ -6,6 +6,7 @@ interface Props {
   children: ReactNode
   renderDateCellContent?: (date: Date) => ReactNode
   onDateClick?: (date: Date) => void
+  disablePastDateStyling?: boolean
 }
 
 export default function CalendarContainer({ children, renderDateCellContent, onDateClick }: Props) {
@@ -13,7 +14,16 @@ export default function CalendarContainer({ children, renderDateCellContent, onD
   const { visibleMonth, monthRefs } = useVisibleMonth(containerRef)
 
   return (
-    <CalendarProvider value={{ containerRef, monthRefs, visibleMonth, renderDateCellContent, onDateClick }}>
+    <CalendarProvider
+      value={{
+        containerRef,
+        monthRefs,
+        visibleMonth,
+        renderDateCellContent,
+        onDateClick,
+        disablePastDateStyling: true,
+      }}
+    >
       {children}
     </CalendarProvider>
   )
