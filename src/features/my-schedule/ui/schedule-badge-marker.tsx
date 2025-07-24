@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-import Text from '../../text/text'
+import Text from '../../../shared/ui/text/text'
 
 import type { ReactNode } from 'react'
 
@@ -17,7 +17,7 @@ interface Props extends VariantProps<typeof badgeVariants> {
   children: ReactNode
 }
 
-const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-50', {
+const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-fixed truncate overflow-hidden whitespace-nowrap', {
   variants: {
     color: {
       redAlt: 'bg-calendar-red-alt',
