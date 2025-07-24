@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
+import { useUserStore } from '@/entities/user/models/use-user-store'
 import MySchedule from '@/features/my-schedule/ui/my-schedule'
 
 export default function Home() {
   const navigate = useNavigate()
 
+  const user = useUserStore((state) => state.user)
+
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!token) {
+    if (!user) {
       navigate('/auth/signin')
     }
-  }, [navigate])
+  }, [user, navigate])
   return <MySchedule />
 }
