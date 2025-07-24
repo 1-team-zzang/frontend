@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
+import { IconCalendarAdd } from '@/shared/assets/icons'
 import { ScheduleBadgeFill } from '@/shared/ui/calendar'
 import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
 import CalendarContainer from '@/shared/ui/calendar/ui/calendar-container'
@@ -53,7 +54,9 @@ export default function MySchedule() {
       <CalendarHeaderContent />
       <CalendarDayName />
       <YearlyCalendar />
-      <AddScheduleButton />
+      <AddScheduleButton>
+        <IconCalendarAdd />
+      </AddScheduleButton>
     </CalendarContainer>
   )
 }
