@@ -1,5 +1,5 @@
 // UI
-export { default as Calendar } from './ui/calendar-container'
+export { default as CalendarContainer } from './ui/calendar-container'
 export { default as CalendarDayName } from './ui/calendar-day-name'
 export { default as CalendarHeader } from './ui/calendar-header-container'
 export { default as CalendarHeaderButton } from './ui/calendar-header-button'
@@ -8,6 +8,8 @@ export { default as CalendarHeaderMonthLabel } from './ui/calendar-header-month-
 export { default as CalendarMonthView } from './ui/monthly-calendar'
 export { default as CalendarYearView } from './ui/yearly-calendar'
 export { default as CalendarCell } from './ui/calendar-cell'
+export { default as ScheduleBadgeFill } from './ui/schedule-badge-fill'
+export { default as ScheduleBadgeMarker } from './ui/schedule-badge-marker'
 
 // hooks
 export { default as useVisibleMonth } from './hooks/use-visible-month'

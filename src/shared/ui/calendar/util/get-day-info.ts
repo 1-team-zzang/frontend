@@ -19,6 +19,8 @@
  * }}
  */
 
+import isPastDate from './isPastDate'
+
 export function getDayInfo(year: number, month: number, date: number) {
   const target = new Date(year, month, date)
 
@@ -32,10 +34,13 @@ export function getDayInfo(year: number, month: number, date: number) {
     today.getMonth() === target.getMonth() &&
     today.getDate() === target.getDate()
 
+  const isPast = isPastDate(target)
+
   return {
     day,
     isSunday,
     isSaturday,
     isToday,
+    isPast,
   }
 }
