@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { addDays, addWeeks, addMonths, addYears } from 'date-fns'
 
 import type { Schedule } from './schedule.types'
