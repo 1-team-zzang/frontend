@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
+import { useParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
@@ -16,21 +17,18 @@ import { PrivateSchedule } from '../../share-schedule'
 import { getFriendSchedule } from '../api/friend-schedule.API'
 
 export default function FriendCalendar() {
+  const { friendID } = useParams()
+
   const { data: schedules = [] } = useQuery({
-    queryKey: ['friend-schedule'],
-    queryFn: getFriendSchedule,
+    queryKey: ['friend-schedule', friendID],
+    queryFn: () => {
+      if (!friendID) {
+        throw new Error('No friend ID')
+      }
+      return getFriendSchedule(friendID)
+    },
+    enabled: !!friendID,
   })
-
-  // const { friendID } = useParams()
-
-  // const { data } = useQuery({
-  //   queryKey: ['friend-schedule', friendID],
-  //   queryFn: () => {
-  //     if (!friendID) throw new Error('No friend ID')
-  //     return getFriendSchedule(friendID)
-  //   },
-  //   enabled: !!friendID,
-  // })
 
   const repeat = repeatedSchedules(schedules)
 
