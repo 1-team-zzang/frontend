@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
+import { ScheduleBadgeFill } from '@/shared/ui/calendar'
+import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
 import CalendarContainer from '@/shared/ui/calendar/ui/calendar-container'
 import CalendarDayName from '@/shared/ui/calendar/ui/calendar-day-name'
 import CalendarHeaderContent from '@/shared/ui/calendar/ui/calendar-header-content'
@@ -10,8 +12,6 @@ import Text from '@/shared/ui/text/text'
 
 import { groupByDate } from '../../../entities/schedule/models/get-group-by-date'
 import { getMySchedule } from '../api/my-schedule.API'
-
-import ScheduleBadgeFill from './schedule-badge-fill'
 
 export default function MySchedule() {
   const { data: schedules = [] } = useQuery({
@@ -53,6 +53,7 @@ export default function MySchedule() {
       <CalendarHeaderContent />
       <CalendarDayName />
       <YearlyCalendar />
+      <AddScheduleButton />
     </CalendarContainer>
   )
 }

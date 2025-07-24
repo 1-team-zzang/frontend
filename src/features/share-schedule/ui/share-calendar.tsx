@@ -10,9 +10,10 @@ import YearlyCalendar from '@/shared/ui/calendar/ui/yearly-calendar'
 import Text from '@/shared/ui/text/text'
 
 import { groupByDate } from '../../../entities/schedule/models/get-group-by-date'
+import AddScheduleButton from '../../../shared/ui/calendar/ui/add-schedule-button'
+import isPastDate from '../../../shared/ui/calendar/util/isPastDate'
 import { getShearSchedule } from '../api/share-schedule.API'
 
-import AppointMentButton from './appointment-button'
 import PrivateSchedule from './private-schedule'
 
 export default function ShareSchedule() {
@@ -31,19 +32,21 @@ export default function ShareSchedule() {
         const items = scheduleMap[key] || []
         const visible = items.slice(0, 1)
         const hiddenCount = items.length - visible.length
+        const isPast = isPastDate(date)
 
         return (
-          <div className="flex flex-col gap-1 w-full px-1">
-            {visible.map((item) =>
-              item.isVisible ? (
-                <ScheduleBadgeFill key={item.title} color={item.color}>
-                  {item.title}
-                </ScheduleBadgeFill>
-              ) : (
-                <PrivateSchedule key={item.title} />
-              ),
-            )}
-            {hiddenCount > 0 && (
+          <div className={'flex flex-col gap-1 w-full px-1'}>
+            {!isPast &&
+              visible.map((item) =>
+                item.isVisible ? (
+                  <ScheduleBadgeFill key={item.title} color={item.color}>
+                    {item.title}
+                  </ScheduleBadgeFill>
+                ) : (
+                  <PrivateSchedule key={item.title} />
+                ),
+              )}
+            {!isPast && hiddenCount > 0 && (
               <Text as="span" typography="caption-10" className="w-full text-left text-gray-80">
                 +{hiddenCount}
               </Text>
@@ -52,11 +55,16 @@ export default function ShareSchedule() {
         )
       }}
       onDateClick={(date) => {
+        if (isPastDate(date)) {
+          alert('오늘 이전 날짜는 선택할 수 없습니다')
+          return
+        }
+
         const dateStr = format(date, 'yyyy-MM-dd')
         alert(`${dateStr} 클릭`)
-      }} //셀 클릭시 실행될 함수, 세부일정보기 구현 후 수정
+      }}
     >
-      <AppointMentButton />
+      <AddScheduleButton />
       <CalendarHeaderContent />
       <CalendarDayName />
       <YearlyCalendar />

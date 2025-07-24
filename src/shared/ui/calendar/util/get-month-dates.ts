@@ -1,6 +1,6 @@
 /**
  *
- * @param targetDate : 해당 달의 1일~31일
+ * @param targetDate : 해당 달
  * @returns
  */
 
