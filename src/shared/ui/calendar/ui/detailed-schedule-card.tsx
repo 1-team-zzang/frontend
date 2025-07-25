@@ -10,7 +10,7 @@ interface Props {
   title: string
   startDate: string
   endDate: string
-  repeat: string
+  repeat: string | null
 }
 
 export default function DetailedScheduleCard({ badgeColor, title, startDate, endDate, repeat }: Props) {
@@ -30,7 +30,7 @@ export default function DetailedScheduleCard({ badgeColor, title, startDate, end
       </div>
       <div className="flex flex-col gap-4">
         {details.map(({ label, value }) => (
-          <DetailedScheduleCardContent key={label} label={label} value={value} />
+          <DetailedScheduleCardContent key={label} label={label} value={value ?? ''} />
         ))}
       </div>
     </div>

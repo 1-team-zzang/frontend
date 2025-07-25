@@ -19,7 +19,7 @@ export default function MyCalendar() {
       renderDateCellContent={(date) => renderMyScheduleCellContent({ scheduleMap, date })}
       onDateClick={(date) => {
         const dateStr = format(date, 'yyyy-MM-dd')
-        navigate(`/my-calendar/${dateStr}`)
+        navigate(`/my-calendar/date/${dateStr}`)
       }}
     >
       <AddScheduleButton>

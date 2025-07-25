@@ -5,15 +5,15 @@ import type { ColorType } from '@/entities/schedule'
 const variants = cva('size-4 rounded-full', {
   variants: {
     badgeColor: {
-      red: 'bg-calendar-red',
-      yellow: 'bg-calendar-yellow',
-      green: 'bg-calendar-green',
-      blue: 'bg-calendar-blue',
-      purple: 'bg-calendar-purple',
+      RED: 'bg-calendar-red',
+      YELLOW: 'bg-calendar-yellow',
+      GREEN: 'bg-calendar-green',
+      BLUE: 'bg-calendar-blue',
+      PURPLE: 'bg-calendar-purple',
     },
   },
   defaultVariants: {
-    badgeColor: 'red',
+    badgeColor: 'RED',
   },
 })
 export default function DetailedScheduleColorBadge({ badgeColor }: { badgeColor: ColorType }) {

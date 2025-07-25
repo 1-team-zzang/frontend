@@ -10,6 +10,10 @@ export { default as CalendarYearView } from './ui/yearly-calendar'
 export { default as CalendarCell } from './ui/calendar-cell'
 export { default as ScheduleBadgeFill } from './ui/schedule-badge-fill'
 export { default as ScheduleBadgeMarker } from './ui/schedule-badge-marker'
+export { default as DetailedScheduleListCard } from './ui/detailed-schedule-list-card'
+export { default as DetailedScheduleHeader } from './ui/detailed-schedule-header'
+export { default as DetailedScheduleColorBadge } from './ui/detailed-schedule-color-badge'
+export { default as DetailedScheduleCardContent } from './ui/detailed-schedule-card-content'
 
 // hooks
 export { default as useVisibleMonth } from './hooks/use-visible-month'

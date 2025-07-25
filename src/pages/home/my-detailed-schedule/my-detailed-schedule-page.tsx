@@ -1,3 +1,5 @@
+import { MyDetailedSchedule } from '@/features/my-schedule/detailed-schedule'
+
 export default function MyDetailedSchedulePage() {
-  return <> 세부일정 </>
+  return <MyDetailedSchedule />
 }

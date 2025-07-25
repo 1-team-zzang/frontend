@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { getMySchedule } from '@/features/my-schedule'
+import { devLog } from '@/shared/utils/dev-log'
 
 export function useDateSchedules() {
   const {
@@ -13,6 +14,8 @@ export function useDateSchedules() {
     queryKey: ['schedule'],
     queryFn: getMySchedule,
   })
+
+  devLog('log', 'my캘린더', schedules)
 
   const repeated = repeatedSchedules(schedules)
   const scheduleMap = groupByDate(repeated)

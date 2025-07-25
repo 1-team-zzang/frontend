@@ -1,21 +1,26 @@
 import { format } from 'date-fns'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { IconCalendarAdd } from '@/shared/assets/icons'
 import { DetailedScheduleHeader, DetailedScheduleListCard } from '@/shared/ui/calendar'
-import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
+import { devLog } from '@/shared/utils/dev-log'
 
 import { useDateSchedules } from '../../hooks/use-date-schedules'
 
 export default function MyDetailedScheduleList() {
+  const navigate = useNavigate()
   const { date } = useParams() // ex: '2025-08-01'
 
   const { scheduleMap } = useDateSchedules()
 
   const list = date ? (scheduleMap[date] ?? []) : []
+  devLog('log', 'date-list', list)
 
   const formattedDate = date ? format(new Date(date), 'M월 d일') : ''
+
+  const onClick = (scheduleId: number) => {
+    navigate(`/my-calendar/schedule/${scheduleId}`)
+  }
 
   return (
     <div className="h-screen">
@@ -28,6 +33,7 @@ export default function MyDetailedScheduleList() {
             {list.map((card) => {
               return (
                 <DetailedScheduleListCard
+                  onCardClick={() => onClick(card.scheduleId)}
                   key={card.title}
                   title={card.title}
                   time={formatScheduleTime(card)}
@@ -37,9 +43,6 @@ export default function MyDetailedScheduleList() {
             })}
           </div>
         )}
-        <AddScheduleButton>
-          <IconCalendarAdd />
-        </AddScheduleButton>
       </div>
     </div>
   )
