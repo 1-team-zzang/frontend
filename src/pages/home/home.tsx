@@ -6,11 +6,13 @@ import SignupModal from '@/features/auth/signup/ui/signup-modal'
 import MySchedule from '@/features/my-schedule/ui/my-schedule'
 import CalendarUI from '@/widget/ui/calendar-ui'
 
+import type { AuthModalType } from '@/features/auth/signin/model/auth-modal.type'
+
 export default function Home() {
   const user = useUserStore((state) => state.user)
 
   const [isOpen, setIsOpen] = useState(!user) // 로그인 안 되어 있으면 기본값 true
-  const [switchModal, setSwitchModal] = useState<'EmailLogin' | 'Signup'>('EmailLogin')
+  const [switchModal, setSwitchModal] = useState<AuthModalType>('EmailLogin')
   const handleDateClick = () => {
     if (!user) {
       setSwitchModal('EmailLogin')
