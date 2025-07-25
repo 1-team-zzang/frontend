@@ -7,11 +7,8 @@ import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { IconCalendarAdd } from '@/shared/assets/icons'
 import { ScheduleBadgeFill } from '@/shared/ui/calendar'
 import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
-import CalendarContainer from '@/shared/ui/calendar/ui/calendar-container'
-import CalendarDayName from '@/shared/ui/calendar/ui/calendar-day-name'
-import CalendarHeaderContent from '@/shared/ui/calendar/ui/calendar-header-content'
-import YearlyCalendar from '@/shared/ui/calendar/ui/yearly-calendar'
 import Text from '@/shared/ui/text/text'
+import CalendarUI from '@/widget/ui/calendar-ui'
 
 import { PrivateSchedule } from '../../share-schedule'
 import { getFriendSchedule } from '../api/friend-schedule.API'
@@ -35,7 +32,8 @@ export default function FriendCalendar() {
   const scheduleMap = groupByDate(repeat)
 
   return (
-    <CalendarContainer
+    <CalendarUI
+      disablePastDateStyling={true}
       renderDateCellContent={(date) => {
         const key = format(date, 'yyyy-MM-dd')
         const items = scheduleMap[key] || []
@@ -64,14 +62,11 @@ export default function FriendCalendar() {
       onDateClick={(date) => {
         const dateStr = format(date, 'yyyy-MM-dd')
         alert(`${dateStr} 클릭`)
-      }} //셀 클릭시 실행될 함수, 세부일정보기 구현 후 수정
+      }}
     >
-      <CalendarHeaderContent />
-      <CalendarDayName />
-      <YearlyCalendar />
       <AddScheduleButton>
         <IconCalendarAdd />
       </AddScheduleButton>
-    </CalendarContainer>
+    </CalendarUI>
   )
 }
