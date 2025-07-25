@@ -1,5 +1,11 @@
-import type { ReactNode } from 'react'
+import { cn } from '@/shared/utils/cn'
 
-export default function AppointmentCard({ children }: { children: ReactNode }) {
-  return <div className="w-full rounded-[0.625rem] border border-gray-20 overflow-hidden">{children}</div>
+import type { HTMLAttributes } from 'react'
+
+export default function AppointmentCard({ children, className }: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div className={cn('w-full rounded-[0.625rem] border border-gray-20 overflow-hidden p-6 relative', className)}>
+      {children}
+    </div>
+  )
 }
