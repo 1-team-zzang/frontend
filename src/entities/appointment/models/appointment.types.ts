@@ -23,7 +23,7 @@ export interface AppointmentRequest {
   requesterName: string
   startAt: string
   endAt: string
-  invitedAt?: string
+  inviteAt: string
 }
 
 export interface AppointmentResponse {
