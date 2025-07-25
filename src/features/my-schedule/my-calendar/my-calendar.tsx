@@ -8,7 +8,7 @@ import CalendarUI from '@/widget/ui/calendar-ui'
 
 import { useDateSchedules } from '../hooks/use-date-schedules'
 
-export default function MySchedule() {
+export default function MyCalendar() {
   const navigate = useNavigate()
 
   const { scheduleMap } = useDateSchedules()
