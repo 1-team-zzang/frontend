@@ -1,18 +1,55 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import { useState } from 'react'
 
 import { useUserStore } from '@/entities/user/models/use-user-store'
+import EmailSigninModal from '@/features/auth/signin/ui/email-signin-modal'
+import SignupModal from '@/features/auth/signup/ui/signup-modal'
 import MySchedule from '@/features/my-schedule/ui/my-schedule'
+import CalendarUI from '@/widget/ui/calendar-ui'
 
 export default function Home() {
-  const navigate = useNavigate()
-
   const user = useUserStore((state) => state.user)
 
-  useEffect(() => {
+  const [isOpen, setIsOpen] = useState(!user) // 로그인 안 되어 있으면 기본값 true
+  const [switchModal, setSwitchModal] = useState<'EmailLogin' | 'Signup'>('EmailLogin')
+  const handleDateClick = () => {
     if (!user) {
-      navigate('/auth/signin')
+      setSwitchModal('EmailLogin')
+      setIsOpen(true)
+      return
     }
-  }, [user, navigate])
-  return <MySchedule />
+  }
+  return (
+    <>
+      {''}
+      {!user ? (
+        <CalendarUI onDateClick={handleDateClick}>
+          {switchModal === 'EmailLogin' ? (
+            <EmailSigninModal
+              isOpen={isOpen}
+              setClose={setIsOpen}
+              setSwitchModal={(mode) => {
+                setSwitchModal(mode)
+                if (mode === 'Signup') {
+                  setIsOpen(true)
+                }
+              }}
+            />
+          ) : (
+            <SignupModal
+              isSignupOpen={isOpen}
+              setClose={setIsOpen}
+              setSwitchModal={(mode) => {
+                setSwitchModal(mode)
+                if (mode === 'EmailLogin') {
+                  setIsOpen(true)
+                }
+              }}
+            />
+          )}
+        </CalendarUI>
+      ) : (
+        <MySchedule />
+      )}
+    </>
+  )
 }

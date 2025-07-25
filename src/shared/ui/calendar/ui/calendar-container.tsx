@@ -9,7 +9,12 @@ interface Props {
   disablePastDateStyling?: boolean
 }
 
-export default function CalendarContainer({ children, renderDateCellContent, onDateClick }: Props) {
+export default function CalendarContainer({
+  children,
+  renderDateCellContent,
+  onDateClick,
+  disablePastDateStyling = false,
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { visibleMonth, monthRefs } = useVisibleMonth(containerRef)
 
@@ -21,7 +26,7 @@ export default function CalendarContainer({ children, renderDateCellContent, onD
         visibleMonth,
         renderDateCellContent,
         onDateClick,
-        disablePastDateStyling: true,
+        disablePastDateStyling,
       }}
     >
       {children}

@@ -5,11 +5,8 @@ import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { IconInvite } from '@/shared/assets/icons'
 import { ScheduleBadgeFill } from '@/shared/ui/calendar'
-import CalendarContainer from '@/shared/ui/calendar/ui/calendar-container'
-import CalendarDayName from '@/shared/ui/calendar/ui/calendar-day-name'
-import CalendarHeaderContent from '@/shared/ui/calendar/ui/calendar-header-content'
-import YearlyCalendar from '@/shared/ui/calendar/ui/yearly-calendar'
 import Text from '@/shared/ui/text/text'
+import CalendarUI from '@/widget/ui/calendar-ui'
 
 import AddScheduleButton from '../../../shared/ui/calendar/ui/add-schedule-button'
 import isPastDate from '../../../shared/ui/calendar/util/is-past-date'
@@ -27,7 +24,7 @@ export default function ShareCalendar() {
   const scheduleMap = groupByDate(repeat)
 
   return (
-    <CalendarContainer
+    <CalendarUI
       disablePastDateStyling={false}
       renderDateCellContent={(date) => {
         const key = format(date, 'yyyy-MM-dd')
@@ -37,7 +34,7 @@ export default function ShareCalendar() {
         const isPast = isPastDate(date)
 
         return (
-          <div className={'flex flex-col gap-1 w-full px-1'}>
+          <div className="flex flex-col gap-1 w-full px-1">
             {!isPast &&
               visible.map((item) =>
                 item.isVisible ? (
@@ -69,9 +66,6 @@ export default function ShareCalendar() {
       <AddScheduleButton>
         <IconInvite />
       </AddScheduleButton>
-      <CalendarHeaderContent />
-      <CalendarDayName />
-      <YearlyCalendar />
-    </CalendarContainer>
+    </CalendarUI>
   )
 }
