@@ -28,7 +28,7 @@ const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify
   },
 })
 export default function CalendarCell({ year, month, date, showMonthLabel }: Props) {
-  const { renderDateCellContent, onDateClick } = useCalendarContext()
+  const { renderDateCellContent, onDateClick, disablePastDateStyling } = useCalendarContext()
   const { isSunday, isSaturday, isToday, isPast } = getDayInfo(year, month, date)
 
   const fullDate = new Date(year, month, date)
@@ -40,7 +40,9 @@ export default function CalendarCell({ year, month, date, showMonthLabel }: Prop
         <Text
           as="span"
           typography="caption"
-          className={cn(contentVariants({ isSunday, isSaturday, isTodayDate: isToday, isPast }))}
+          className={cn(
+            contentVariants({ isSunday, isSaturday, isTodayDate: isToday, isPast: !disablePastDateStyling && isPast }),
+          )}
         >
           {date}
         </Text>
