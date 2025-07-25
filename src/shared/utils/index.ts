@@ -6,3 +6,4 @@ export * from './Slottable'
 // Date
 export * from './isUndefined'
 export * from './formatDateToYMD'
+export * from './format-date-time-with-day'
