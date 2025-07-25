@@ -21,7 +21,7 @@ export default function DetailedScheduleCard({ badgeColor, title, startDate, end
   ]
 
   return (
-    <div className="w-full bg-white p-6 rounded-[0.625em] flex flex-col gap-4">
+    <div className="w-full bg-white p-6 rounded-[0.625em] flex flex-col gap-4 mb-4">
       <div className="flex gap-4 items-center">
         <DetailedScheduleColorBadge badgeColor={badgeColor} />
         <Text as="span" typography="h2-heading">
