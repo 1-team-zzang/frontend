@@ -19,6 +19,7 @@ export interface Schedule {
   color: ColorType
   userId: number
   appointmentId: number | null
+  isAllDay: boolean
 }
 
 export interface ScheduleListResponse {
