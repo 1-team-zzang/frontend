@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
+import { useSearchParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
@@ -15,9 +16,17 @@ import { getShareSchedule } from '../api/share-schedule.API'
 import PrivateSchedule from './private-schedule'
 
 export default function ShareCalendar() {
+  const [params] = useSearchParams()
+  const userId = params.get('userId')
   const { data: schedules = [] } = useQuery({
-    queryKey: ['share-schedule'],
-    queryFn: getShareSchedule,
+    queryKey: ['share-schedule', userId],
+    queryFn: () => {
+      if (!userId) {
+        throw new Error('userId 없음!')
+      }
+      return getShareSchedule(userId)
+    },
+    enabled: !!userId,
   })
   const repeat = repeatedSchedules(schedules)
 
