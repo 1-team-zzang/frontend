@@ -26,6 +26,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/appointment',
-    Component: Appointment,
+    children: [
+      {
+        index: true,
+        Component: Appointment,
+      },
+    ],
   },
 ])
