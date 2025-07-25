@@ -18,9 +18,7 @@ export default function FriendCalendar() {
 
   const { data: schedules = [] } = useQuery({
     queryKey: ['friend-schedule', friendID],
-    queryFn: () => {
-      getFriendSchedule(friendID!)
-    },
+    queryFn: () => getFriendSchedule(friendID!),
     enabled: !!friendID,
   })
 
