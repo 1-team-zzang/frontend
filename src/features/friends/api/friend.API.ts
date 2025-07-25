@@ -7,3 +7,7 @@ export async function getFriends(): Promise<FriendListResponse> {
 
   return res.data
 }
+
+export async function deleteFriend(friendRequestId: number): Promise<void> {
+  await axiosInstance.delete(`/friends/${friendRequestId}`)
+}
