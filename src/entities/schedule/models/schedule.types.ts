@@ -1,5 +1,5 @@
 export type RepeatRule = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
-export type RepeatType = 'COUNT' | 'UNTIL'
+export type RepeatType = 'COUNT' | 'DATE'
 export type ColorType = 'red' | 'yellow' | 'green' | 'blue' | 'purple'
 
 export interface Schedule {

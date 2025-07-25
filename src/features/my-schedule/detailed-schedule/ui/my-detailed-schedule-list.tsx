@@ -27,7 +27,7 @@ export default function MyDetailedScheduleList() {
             return (
               <DetailedScheduleListCard
                 onCardClick={() => onClick(card.scheduleId)}
-                key={card.title}
+                key={card.scheduleId}
                 title={card.title}
                 time={formatScheduleTime(card)}
                 badgeColor={card.color}
