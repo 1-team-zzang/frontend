@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
+import { useNavigate } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
@@ -12,6 +13,8 @@ import CalendarUI from '@/widget/ui/calendar-ui'
 import { getMySchedule } from '../api/my-schedule.API'
 
 export default function MySchedule() {
+  const navigate = useNavigate()
+
   const { data: schedules = [] } = useQuery({
     queryKey: ['schedule'],
     queryFn: getMySchedule,
@@ -46,7 +49,7 @@ export default function MySchedule() {
       }}
       onDateClick={(date) => {
         const dateStr = format(date, 'yyyy-MM-dd')
-        alert(`${dateStr} 클릭`)
+        navigate(`/my-calendar/${dateStr}`)
       }}
     >
       <AddScheduleButton>
