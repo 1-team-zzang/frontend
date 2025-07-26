@@ -10,7 +10,7 @@ import useSigninMutation from '../model/use-signin-mutation'
 
 import type { SigninFormDataType } from '../model/signin.type'
 
-export default function SigninForm() {
+export default function SigninForm({ onSigninSuccess }: { onSigninSuccess?: () => void }) {
   const methods = useForm<SigninFormDataType>({
     resolver: zodResolver(SigninSchema),
     mode: 'onChange', // NOTE: 'onChange' 과 'onSubmit'중에 어떤게 나을지
@@ -24,6 +24,9 @@ export default function SigninForm() {
 
   const handleSubmit = (data: SigninFormDataType) => {
     signinMutation.mutate(data)
+    if (onSigninSuccess) {
+      onSigninSuccess()
+    }
   }
 
   return (
