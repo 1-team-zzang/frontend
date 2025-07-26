@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import z from 'zod'
 
-import { IconArrowLeft } from '@/shared/assets/icons'
+import { IconArrowLeft, IconQuestion, IconTemp } from '@/shared/assets/icons'
 import {
   BottomSheet,
   BottomSheetContainer,
@@ -21,10 +21,17 @@ import { Input } from '@/shared/ui/input'
 import { Radio, RadioGroup } from '@/shared/ui/radio'
 import { Switch, SwitchTrigger } from '@/shared/ui/switch'
 import Text from '@/shared/ui/text/text'
+import { devLog } from '@/shared/utils/dev-log'
+
+import SelectColorModal from './select-color-modal'
 
 // form 설정
 const ScheduleSchema = z.object({
   title: z.string().min(1, '일정 제목을 적어주세요'),
+  color: z.string(),
+  repeat: z.string(),
+  visible: z.string(),
+  contents: z.string().min(1, '일정 내용을 적어주세요'),
 })
 
 type ScheduleFormType = z.infer<typeof ScheduleSchema>
@@ -35,11 +42,16 @@ export default function ScheduleRegister() {
     mode: 'onChange',
     defaultValues: {
       title: '',
+      color: 'red',
       repeat: 'none',
+      visible: 'visible',
+      contents: '',
     },
   })
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  const onSubmit = (value: ScheduleFormType) => {}
+
+  const onSubmit = (value: ScheduleFormType) => {
+    devLog('log', value)
+  }
 
   const navigate = useNavigate()
 
@@ -47,6 +59,24 @@ export default function ScheduleRegister() {
     navigate(-1)
   }
   //이전 페이지로 갈 수 없을 경우도 만들어야함
+
+  //색 설정
+  const [isColorOpen, setIsColorOpen] = useState(false)
+  const [selectedColor, setSelectedColor] = useState<Color>('red')
+
+  type Color = 'red' | 'yellow' | 'green' | 'blue' | 'purple'
+
+  const colorMap: Record<Color, string> = {
+    red: 'bg-calendar-red',
+    yellow: 'bg-calendar-yellow',
+    green: 'bg-calendar-green',
+    blue: 'bg-calendar-blue',
+    purple: 'bg-calendar-purple',
+  }
+
+  const setColor = (color: Color) => {
+    methods.setValue('color', color)
+  }
 
   //시간 설정
   const now = new Date()
@@ -59,27 +89,38 @@ export default function ScheduleRegister() {
 
   //반복 바텀 시트
   const [isRepeatOpen, setIsRepeatOpen] = useState(false)
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  const [selectedRepeat, setSelectedRepeat] = useState('none')
-
-  //공개 바텀 시트
   const [isVisibleOpen, setIsVisibleOpen] = useState(false)
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  const [selectedVisible, setSelectedVisible] = useState('visible')
+  const [question, setQuestion] = useState(false)
 
-  //바텀 시트 눌렀을 때 다른 바텀 시트는 사라지는 기능 추가하기
+  type Repeat = 'none' | 'day' | 'week' | 'month' | 'year'
+  type Visible = 'visible' | 'invisible'
 
-  //   const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-50', {
-  //     variants: {
-  //       color: {
-  //         redAlt: 'bg-calendar-red-alt',
-  //         yellowAlt: 'bg-calendar-yellow-alt',
-  //         greenAlt: 'bg-calendar-green-alt',
-  //         blueAlt: 'bg-calendar-blue-alt',
-  //         purpleAlt: 'bg-calendar-purple-alt',
-  //       },
-  //     },
-  //   })
+  const repeat = methods.watch('repeat') as Repeat
+  const repeatLabelMap: Record<Repeat, string> = {
+    none: '반복 안함',
+    day: '일 단위 반복',
+    week: '주 단위 반복',
+    month: '월 단위 반복',
+    year: '연 단위 반복',
+  }
+
+  const visible = methods.watch('visible') as Visible
+  const visibleLabelMap: Record<Visible, string> = {
+    visible: '전체 공개',
+    invisible: '나만 보기',
+  }
+
+  const openRepeatBottomSheet = () => {
+    setIsRepeatOpen(true)
+    setIsVisibleOpen(false)
+  }
+
+  const openVisibleBottomSheet = () => {
+    setIsRepeatOpen(false)
+    setIsVisibleOpen(true)
+  }
+
+  //완료 버튼을 누르지 않았을 때는 선택한 값이 반영되지 않아야 할 것 같음...
 
   return (
     <div>
@@ -97,10 +138,25 @@ export default function ScheduleRegister() {
             <Text typography={'b2-heading'}>일정 제목</Text>
             <Input placeholder="일정 제목을 적어주세요" />
           </FormField>
-          <div className="flex py-4 justify-between items-center border-b border-gray-10">
-            <Text typography={'b2-heading'}>색 설정</Text>
-            <div className="rounded-full w-[1.75rem] h-[1.75rem] bg-primary-50" />
-          </div>
+          <FormField name="color">
+            <div className="flex py-4 justify-between items-center border-b border-gray-10">
+              <Text typography={'b2-heading'}>색 설정</Text>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsColorOpen(true)
+                }}
+                className={`rounded-full w-[1.75rem] h-[1.75rem] ${colorMap[selectedColor]}`}
+              />
+            </div>
+          </FormField>
+          <SelectColorModal
+            isColorOpen={isColorOpen}
+            setIsColorOpen={setIsColorOpen}
+            selectedColor={selectedColor}
+            setSelectedColor={setSelectedColor}
+            setColor={setColor}
+          />
           <div className="flex flex-col py-4 gap-4 border-b border-gray-10 font-normal text-base leading-[1.6] tracking-[-0.04rem]">
             <div className="flex justify-between items-center">
               <Text typography={'b2-heading'}>시작</Text>
@@ -123,53 +179,81 @@ export default function ScheduleRegister() {
               <SwitchTrigger />
             </Switch>
           </div>
-          <div className="flex py-4 justify-between items-center border-b border-gray-10">
-            <Text typography={'b2-heading'}>반복</Text>
-            <Text as="button" onClick={() => setIsRepeatOpen(true)} typography={'b2-normal'}>
-              {selectedRepeat}
-            </Text>
-            <BottomSheet defaultOpen={false} open={isRepeatOpen} onOpenChange={setIsRepeatOpen}>
-              <BottomSheetContainer>
-                <BottomSheetHeader>
-                  <BottomSheetHeaderTitle>일정 등록</BottomSheetHeaderTitle>
-                  <BottomSheetHeaderButton onClick={() => setIsRepeatOpen(false)}>완료</BottomSheetHeaderButton>
-                </BottomSheetHeader>
-                <BottomSheetContent>
-                  <RadioGroup className="flex flex-col gap-6" name="repeat" defaultValue={selectedRepeat}>
-                    <Radio value="none">반복 안함</Radio>
-                    <Radio value="day">일 단위 반복</Radio>
-                    <Radio value="week">주 단위 반복</Radio>
-                    <Radio value="month">월 단위 반복</Radio>
-                    <Radio value="year">연 단위 반복</Radio>
-                  </RadioGroup>
-                </BottomSheetContent>
-              </BottomSheetContainer>
-            </BottomSheet>
-          </div>
-          <div className="flex py-4 justify-between items-center border-b border-gray-10">
-            <Text typography={'b2-heading'}>공개</Text>
-            <Text as="button" onClick={() => setIsVisibleOpen(true)} typography={'b2-normal'}>
-              나만 보기
-            </Text>
-            <BottomSheet defaultOpen={false} open={isVisibleOpen} onOpenChange={setIsVisibleOpen}>
-              <BottomSheetContainer>
-                <BottomSheetHeader>
-                  <BottomSheetHeaderTitle>일정 등록</BottomSheetHeaderTitle>
-                  <BottomSheetHeaderButton onClick={() => setIsVisibleOpen(false)}>완료</BottomSheetHeaderButton>
-                </BottomSheetHeader>
-                <BottomSheetContent>
-                  <RadioGroup className="flex flex-col gap-6" name="visible" defaultValue={selectedVisible}>
-                    <Radio value="visible">전체 공개</Radio>
-                    <Radio value="invisible">나만 보기</Radio>
-                  </RadioGroup>
-                </BottomSheetContent>
-              </BottomSheetContainer>
-            </BottomSheet>
-          </div>
-          <div className="flex flex-col py-4 gap-2 border-b border-gray-10">
-            <Text typography={'b2-heading'}>일정 내용</Text>
-            <input placeholder="내용을 적어주세요." />
-          </div>
+          <FormField name="repeat">
+            <div className="flex py-4 justify-between items-center border-b border-gray-10">
+              <Text typography={'b2-heading'}>반복</Text>
+              <Text as="button" type="button" onClick={openRepeatBottomSheet} typography={'b2-normal'}>
+                {repeatLabelMap[repeat]}
+              </Text>
+              {isRepeatOpen && (
+                <div
+                  className="fixed inset-0 backdrop-blur-[0.1rem] z-1"
+                  onClick={() => setIsRepeatOpen(false)}
+                  aria-hidden
+                />
+              )}
+              <BottomSheet defaultOpen={false} open={isRepeatOpen} onOpenChange={setIsRepeatOpen}>
+                <BottomSheetContainer>
+                  <BottomSheetHeader>
+                    <BottomSheetHeaderTitle>일정 등록</BottomSheetHeaderTitle>
+                    <BottomSheetHeaderButton type="button" onClick={() => setIsRepeatOpen(false)}>
+                      완료
+                    </BottomSheetHeaderButton>
+                  </BottomSheetHeader>
+                  <BottomSheetContent>
+                    <RadioGroup className="flex flex-col gap-6" name="repeat">
+                      <Radio value="none">반복 안함</Radio>
+                      <Radio value="day">일 단위 반복</Radio>
+                      <Radio value="week">주 단위 반복</Radio>
+                      <Radio value="month">월 단위 반복</Radio>
+                      <Radio value="year">연 단위 반복</Radio>
+                    </RadioGroup>
+                  </BottomSheetContent>
+                </BottomSheetContainer>
+              </BottomSheet>
+            </div>
+          </FormField>
+          <FormField name="visible">
+            <div className="flex py-4 justify-between items-center border-b border-gray-10">
+              <Text typography={'b2-heading'}>공개</Text>
+              <Text as="button" type="button" onClick={openVisibleBottomSheet} typography={'b2-normal'}>
+                {visibleLabelMap[visible]}
+              </Text>
+              {isVisibleOpen && (
+                <div
+                  className="fixed inset-0 backdrop-blur-[0.1rem] z-1"
+                  onClick={() => setIsVisibleOpen(false)}
+                  aria-hidden
+                />
+              )}
+              <BottomSheet defaultOpen={false} open={isVisibleOpen} onOpenChange={setIsVisibleOpen}>
+                <BottomSheetContainer>
+                  <BottomSheetHeader>
+                    <BottomSheetHeaderTitle>공개 설정</BottomSheetHeaderTitle>
+                    <BottomSheetHeaderButton type="button" onClick={() => setIsVisibleOpen(false)}>
+                      완료
+                    </BottomSheetHeaderButton>
+                  </BottomSheetHeader>
+                  <BottomSheetContent>
+                    <RadioGroup className="flex flex-col gap-6" name="visible">
+                      <Radio value="visible">전체 공개</Radio>
+                      <div className="flex justify-between">
+                        <Radio value="invisible">나만 보기</Radio>
+                        <IconQuestion type="button" onClick={() => setQuestion(!question)} />
+                      </div>
+                      {question && <IconTemp className="flex self-end" />}
+                    </RadioGroup>
+                  </BottomSheetContent>
+                </BottomSheetContainer>
+              </BottomSheet>
+            </div>
+          </FormField>
+          <FormField name="contents">
+            <div className="flex flex-col py-4 gap-2 border-b border-gray-10">
+              <Text typography={'b2-heading'}>일정 내용</Text>
+              <Input placeholder="내용을 적어주세요." />
+            </div>
+          </FormField>
         </div>
       </Form>
     </div>
