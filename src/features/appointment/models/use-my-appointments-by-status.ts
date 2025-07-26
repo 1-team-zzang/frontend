@@ -11,16 +11,16 @@ export function useMyAppointmentsByStatus({ size, status }: MyAppointmentsByStat
     queryKey: appointmentsQuery.myAppointmentsByStatus({ size, status }),
     queryFn: ({ pageParam }) => fetchMyAppointmentsByStatus({ page: pageParam, size, status }),
     getNextPageParam: (lastPage) => {
-      const currentPage = lastPage.data.data.page
-      const totalPages = lastPage.data.data.totalPages
+      const currentPage = lastPage.data.page
+      const totalPages = lastPage.data.totalPages
       return currentPage < totalPages ? currentPage + 1 : undefined
     },
     select: (data) => {
-      const appointments = data.pages.flatMap((page) => page.data.data.appointmentRequests)
+      const appointments = data.pages.flatMap((page) => page.data.appointmentRequests)
       return {
         appointments,
-        page: data.pages[data.pages.length - 1]?.data.data.page,
-        totalPages: data.pages[data.pages.length - 1]?.data.data.totalPages,
+        page: data.pages[data.pages.length - 1]?.data.page,
+        totalPages: data.pages[data.pages.length - 1]?.data.totalPages,
       }
     },
     initialPageParam: 1,
