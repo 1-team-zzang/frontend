@@ -23,6 +23,7 @@ import { Switch, SwitchTrigger } from '@/shared/ui/switch'
 import Text from '@/shared/ui/text/text'
 import { devLog } from '@/shared/utils/dev-log'
 
+import DayPickerModal from './day-picker-modal'
 import SelectColorModal from './select-color-modal'
 
 // form 설정
@@ -83,6 +84,9 @@ export default function ScheduleRegister() {
   const startTime = setMilliseconds(setSeconds(setMinutes(addHours(now, 1), 0), 0), 0)
 
   const endTime = addHours(startTime, 1)
+
+  //날짜 시간 선택
+  const [isDayOpen, setIsDayOpen] = useState(false)
 
   //하루 종일 스위치
   const [isChecked, setIsChecked] = useState(false)
@@ -161,7 +165,9 @@ export default function ScheduleRegister() {
             <div className="flex justify-between items-center">
               <Text typography={'b2-heading'}>시작</Text>
               <div className="flex gap-2">
-                <div>{format(startTime, 'yyyy.MM.dd (eee)', { locale: ko })}</div>
+                <Text typography="b2-normal" as="button" type="button" onClick={() => setIsDayOpen(true)}>
+                  {format(startTime, 'yyyy.MM.dd (eee)', { locale: ko })}
+                </Text>
                 {!isChecked && <div>{format(startTime, 'a h:mm', { locale: ko })}</div>}
               </div>
             </div>
@@ -173,6 +179,7 @@ export default function ScheduleRegister() {
               </div>
             </div>
           </div>
+          <DayPickerModal isDayOpen={isDayOpen} setIsDayOpen={setIsDayOpen} />
           <div className="flex py-4 justify-between items-center border-b border-gray-10">
             <Text typography={'b2-heading'}>하루 종일</Text>
             <Switch checked={isChecked} onCheckedChange={setIsChecked}>
