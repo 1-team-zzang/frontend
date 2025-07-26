@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 
 import Appointment from '@/pages/appointment/appointment'
+import AppointmentDetailPage from '@/pages/appointment/appointment-detail-page'
 import Authlayout from '@/pages/auth/auth-layout'
 import SigninPage from '@/pages/auth/signin/signin-page'
 import SignupPage from '@/pages/auth/signup/signup-page'
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Appointment,
+      },
+      {
+        path: 'requests/:id',
+        Component: AppointmentDetailPage,
       },
     ],
   },
