@@ -9,7 +9,7 @@ import FriendRequestListBottomSheet from './friend-request-list-bottom-sheet'
 export default function FriendRequestListButton() {
   // eslint-disable-next-line unused-imports/no-unused-vars
   const [page, setPage] = useState<number>(1) // 나중에 무한스크롤이나 페이지네이션
-  const [isShow, setIsShow] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const size = 10
   const { friendRequestList, friendRequestCount } = useFriendRequestList(page, size)
@@ -20,12 +20,12 @@ export default function FriendRequestListButton() {
         intent="outlined"
         className="w-full"
         disabled={friendRequestCount === 0}
-        onClick={() => setIsShow((prev) => !prev)}
+        onClick={() => setIsOpen((prev) => !prev)}
       >
         {friendRequestCount > 0 ? `대기 중 초대 ${friendRequestCount}` : '친구 요청 없음'}
       </Button>
-      {isShow && (
-        <FriendRequestListBottomSheet friendRequestList={friendRequestList} isOpen={isShow} setOpen={setIsShow} />
+      {isOpen && (
+        <FriendRequestListBottomSheet friendRequestList={friendRequestList} isOpen={isOpen} setOpen={setIsOpen} />
       )}
     </>
   )
