@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 
@@ -13,7 +13,6 @@ import {
 } from '@/shared/ui/bottom-sheet'
 import { Form, FormField } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
-import { devLog } from '@/shared/utils/dev-log'
 
 import Button from '../../../shared/ui/button/button.tsx'
 
@@ -24,7 +23,12 @@ const FriendRequestSchema = z.object({
 })
 type FriendRequestType = z.infer<typeof FriendRequestSchema>
 
-export default function AddFriendBottomSheet() {
+interface Props {
+  isOpen: boolean
+  setIsOpen: (open: boolean) => void
+}
+
+export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   const methods = useForm<FriendRequestType>({
@@ -36,20 +40,31 @@ export default function AddFriendBottomSheet() {
     setSearchQuery(data.friend)
   }
 
+  useEffect(() => {
+    if (!isOpen) {
+      methods.reset()
+      setSearchQuery('')
+    }
+  }, [isOpen, methods])
+
   return (
-    <BottomSheet>
+    <BottomSheet open={isOpen} onOpenChange={setIsOpen}>
       <BottomSheetContainer className="h-1/2">
         <BottomSheetHeader>
           <BottomSheetHeaderTitle>친구 추가</BottomSheetHeaderTitle>
-          <BottomSheetHeaderButton onClick={() => devLog('log', '커스텀 버튼 클릭')}>닫기</BottomSheetHeaderButton>
+          <BottomSheetHeaderButton>닫기</BottomSheetHeaderButton>
         </BottomSheetHeader>
         <BottomSheetContent>
           <Form methods={methods} onSubmit={handleSubmit} className="m-0">
             <FormField name="friend">
               <div className="relative">
                 <Input placeholder="이메일 검색" className="h-16" />
-                <Button intent="outlined" className="absolute right-4 top-1/2 -translate-y-1/2 w-fit px-6">
-                  초대
+                <Button
+                  intent="outlined"
+                  type="submit"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-fit px-6 bg-white"
+                >
+                  검색
                 </Button>
               </div>
             </FormField>
