@@ -6,7 +6,7 @@ import Header from '@/shared/ui/header/header'
 export default function FriendsPage() {
   return (
     <>
-      <Header leftButton={<div />} rightButton={<AddFriendButton />}>
+      <Header onNavigate={<div />} onClick={<AddFriendButton />}>
         캘메이트
       </Header>
       <div className="px-5 py-3">

@@ -3,20 +3,20 @@ import Text from '../text/text'
 import type { ReactNode } from 'react'
 
 interface Props {
-  leftButton?: ReactNode
+  onNavigate?: ReactNode
   children: ReactNode
-  rightButton?: ReactNode
+  onClick?: ReactNode
 }
 
-export default function Header({ leftButton, children, rightButton }: Props) {
+export default function Header({ onNavigate, children, onClick }: Props) {
   return (
     <nav className="px-2.5 h-[3.25rem] border-b border-b-gray-10">
       <div className="flex items-center justify-between h-full">
-        {leftButton}
+        {onNavigate}
         <Text typography="h2-heading" as="span">
           {children}
         </Text>
-        {rightButton}
+        {onClick}
       </div>
     </nav>
   )
