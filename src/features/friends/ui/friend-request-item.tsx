@@ -1,7 +1,7 @@
 import { IconCheck, IconClose } from '@/shared/assets/icons'
 import Text from '@/shared/ui/text/text'
 
-import useUpdateFriendRequestByStatusMutation from '../model/use-update-friend-request-by-status-mutation'
+import { useUpdateFriendRequestByStatusMutation } from '../model'
 
 import type { FriendRequest } from '@/entities/friends/models/friend.types'
 

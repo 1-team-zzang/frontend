@@ -4,7 +4,7 @@ import { devLog } from '@/shared/utils/dev-log'
 
 import { putFriendRequest } from '../api/friend.API'
 
-import { friendQueryKeys } from './friend.query'
+import { friendQueryKeys } from './index'
 
 function useUpdateFriendRequestByStatusMutation(friendRequestId: number) {
   const queryClient = useQueryClient()

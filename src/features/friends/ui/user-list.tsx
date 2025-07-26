@@ -2,9 +2,9 @@ import { useUserStore } from '@/entities/user/models/use-user-store'
 import { Profile, ProfileImage, ProfileName } from '@/shared/ui/profile'
 import Text from '@/shared/ui/text/text'
 
-import useFriendsUsers from '../model/use-friends-users'
+import { useFriendsUsers } from '../model'
 
-import FriendRequestButton from './friend-request-button'
+import { FriendRequestButton } from './index'
 
 interface Props {
   searchQuery: string

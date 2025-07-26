@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { Profile, ProfileImage, ProfileName } from '@/shared/ui/profile'
 import Text from '@/shared/ui/text/text'
 
-import useFriendDeleteMutation from '../model/use-friend-delete-mutation'
+import { useFriendDeleteMutation } from '../model'
 
 import type { Friend } from '@/entities/friends/models/friend.types'
 

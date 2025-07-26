@@ -2,9 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getFriendsUsers } from '../api/friend.API'
 
-import { friendQueryKeys } from './friend.query'
-
-import type { FriendSearchType } from './friend-list.types'
+import { friendQueryKeys, type FriendSearchType } from './index'
 
 function useFriendsUsers(searchType: FriendSearchType, query: string, page: number) {
   const { data, isLoading, error, refetch } = useQuery({

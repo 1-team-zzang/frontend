@@ -2,9 +2,9 @@ import { useState } from 'react'
 
 import Button from '@/shared/ui/button/button.tsx'
 
-import useFriendRequestList from '../model/use-friend-requst-list'
+import { useFriendRequestList } from '../model'
 
-import FriendRequestListBottomSheet from './friend-request-list-bottom-sheet'
+import { FriendRequestListBottomSheet } from './index'
 
 export default function FriendRequestListButton() {
   // eslint-disable-next-line unused-imports/no-unused-vars

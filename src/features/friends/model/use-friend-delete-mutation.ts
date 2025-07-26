@@ -4,7 +4,7 @@ import { devLog } from '@/shared/utils/dev-log'
 
 import { deleteFriend } from '../api/friend.API'
 
-import { friendQueryKeys } from './friend.query'
+import { friendQueryKeys } from './index'
 
 function useFriendDeleteMutation() {
   const queryClient = useQueryClient()

@@ -1,4 +1,4 @@
-import type { FriendSearchType } from './friend-list.types'
+import type { FriendSearchType } from './index'
 
 export const friendQueryKeys = {
   all: ['friends'] as const,

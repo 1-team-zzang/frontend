@@ -1,6 +1,6 @@
 import Button from '@/shared/ui/button/button.tsx'
 
-import useFriendRequestMutation from '../model/use-friend-request-mutation'
+import { useFriendRequestMutation } from '../model'
 
 export default function FriendRequestButton({ friendId }: { friendId: number }) {
   const friendRequestMutation = useFriendRequestMutation()

@@ -11,12 +11,11 @@ import {
   BottomSheetHeaderButton,
   BottomSheetHeaderTitle,
 } from '@/shared/ui/bottom-sheet'
+import Button from '@/shared/ui/button/button.tsx'
 import { Form, FormField } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 
-import Button from '../../../shared/ui/button/button.tsx'
-
-import UserList from './user-list.tsx'
+import { UserList } from './index'
 
 const FriendRequestSchema = z.object({
   friend: z.string().min(2, '2글자 이상 입력해주세요'),

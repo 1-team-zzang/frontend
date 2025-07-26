@@ -7,7 +7,7 @@ import {
   BottomSheetHeaderTitle,
 } from '@/shared/ui/bottom-sheet'
 
-import FriendRequestItem from './friend-request-item'
+import { FriendRequestItem } from './index'
 
 import type { FriendRequest } from '@/entities/friends/models/friend.types'
 import type { Dispatch, SetStateAction } from 'react'
