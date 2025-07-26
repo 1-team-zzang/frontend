@@ -8,7 +8,7 @@ import { ErrorFallback } from '@/shared/ui/error-fallback'
 
 import AppointmentListSkeleton from './appointment-list-skeleton'
 
-export default function Appointment() {
+export default function AppointmentListPage() {
   const navigate = useNavigate()
   const { reset } = useQueryErrorResetBoundary()
 

@@ -14,7 +14,7 @@ export default function ErrorFallback({ error, resetErrorBoundary, navigate }: P
 
   return (
     <div className="mx-auto flex flex-col items-center gap-y-5 px-5 py-7">
-      <Text typography="h2-heading">잠시 후 다시 시도해주세요.</Text>
+      <Text typography="b1-heading">에러가 발생했어요</Text>
       <Text typography="b2-normal" className="text-gray-60 text-center">
         {error.message || '현재 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주시기 바랍니다.'}
       </Text>
