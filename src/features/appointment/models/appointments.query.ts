@@ -8,4 +8,5 @@ export const appointmentsQuery = {
     size,
     status,
   ],
+  detail: (id: string) => [...appointmentsQuery.all, 'detail', id],
 }
