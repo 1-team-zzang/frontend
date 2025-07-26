@@ -1,12 +1,12 @@
 import { IconHamburger } from '@/shared/assets/icons'
 
-type Props = {
-  onClick: () => void
-}
+import { useGNBContext } from './gnb-conext'
 
-export default function Hamburger({ onClick }: Props) {
+export default function Hamburger() {
+  const { handleOpenSidebar } = useGNBContext()
+
   return (
-    <button aria-label="메뉴 열기/닫기" onClick={onClick} className="w-10">
+    <button aria-label="메뉴 열기/닫기" onClick={handleOpenSidebar} className="w-10">
       <IconHamburger />
     </button>
   )
