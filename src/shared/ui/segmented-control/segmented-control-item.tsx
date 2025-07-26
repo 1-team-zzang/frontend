@@ -7,16 +7,16 @@ import { useSegmentedControlContext } from './segmented-control-context'
 import type { ButtonHTMLAttributes } from 'react'
 
 const itemVariants = cva(
-  'flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-sm cursor-pointer transition-colors',
+  'flex items-center justify-center rounded-full px-3 py-[0.125rem] font-semibold text-sm cursor-pointer transition-colors',
   {
     variants: {
-      variant: {
-        true: 'bg-gray-0',
-        false: 'bg-gray-5',
+      isSelected: {
+        true: 'bg-primary-30 text-gray-95',
+        false: 'bg-gray-5 text-gray-60',
       },
     },
     defaultVariants: {
-      variant: false,
+      isSelected: false,
     },
   },
 )
@@ -50,14 +50,14 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<ty
  */
 export default function SegmentedControlItem({ children, className, value: propValue, ...restProps }: Props) {
   const { selectedValue, setSelectedValue } = useSegmentedControlContext()
-  const isActive = selectedValue === propValue
+  const isSelected = selectedValue === propValue
 
   return (
     <button
-      className={cn(itemVariants({ variant: isActive }), className)}
+      className={cn(itemVariants({ isSelected }), className)}
       onClick={() => setSelectedValue(propValue)}
       role="tab"
-      aria-selected={isActive}
+      aria-selected={isSelected}
       aria-controls={`panel-${propValue}`}
       id={`tab-${propValue}`}
       {...restProps}
