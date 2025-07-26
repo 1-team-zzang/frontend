@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
+import { useRef, type ReactNode } from 'react'
+
+import useClickOutside from '@/shared/hooks/use-click-outside'
 
 import { useGNBContext } from '../gnb/gnb-conext'
-
-import type { ReactNode } from 'react'
 
 /**
  * @description 햄버거 버튼 클릭시 나타나는 사이드바 입니다
@@ -18,10 +19,15 @@ interface Props {
 }
 
 export default function SideBar({ children }: Props) {
-  const { isOpen } = useGNBContext()
+  const { isOpen, handleCloseSidebar } = useGNBContext()
+
+  const sidebarRef = useRef<HTMLElement>(null)
+
+  useClickOutside(sidebarRef, handleCloseSidebar)
 
   return (
     <motion.nav
+      ref={sidebarRef}
       initial="closed"
       animate={isOpen ? 'open' : 'closed'}
       exit="closed"
