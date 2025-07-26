@@ -51,3 +51,11 @@ export async function getFriendRequests(page = 1, size = 10): Promise<FriendRequ
 export async function postFriendRequest(friendId: number): Promise<void> {
   await axiosInstance.post('/friends/requests', { friendId })
 }
+
+// PUT 친구 요청 수락/거절
+export async function putFriendRequest(status: 'ACCEPT' | 'REJECT', friendRequestId: number): Promise<void> {
+  await axiosInstance.put('/friends/requests', {
+    status,
+    friendRequestId,
+  })
+}
