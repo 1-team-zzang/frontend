@@ -21,7 +21,7 @@ export default function UserList({ searchQuery }: Props) {
         .filter((user) => loginUser?.userId !== user.id)
         .map((user) => {
           return (
-            <div key={user.id} className="flex justify-between items-center">
+            <div key={user.id} className="flex justify-between items-center p-2">
               <div className="flex gap-3 items-center">
                 <Profile name={user.name} src={user.profileUrl}>
                   <ProfileImage />
