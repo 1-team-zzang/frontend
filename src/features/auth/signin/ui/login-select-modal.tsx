@@ -1,24 +1,18 @@
-import { useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
-
 import { IconKakaoLogo } from '@/shared/assets/icons'
-import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle, ModalTrigger } from '@/shared/ui/modal'
+import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle } from '@/shared/ui/modal'
 import Text from '@/shared/ui/text/text'
 
-import EmailSigninModal from './email-signin-modal'
+import type { AuthModalType } from '../model/auth-modal.type'
 
 interface Props {
   isOpen: boolean
-  setIsOpen: Dispatch<SetStateAction<boolean>>
-  trigger: ReactNode
+  setSwitchModal: (open: AuthModalType) => void
+  setClose: (open: boolean) => void
 }
 
-export default function LoginSelectModal({ isOpen, setIsOpen, trigger }: Props) {
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState<boolean>(false)
-  // NOTE 임시 상태이긴한데 현재 이 모달을 닫고 email 모달을 열려면 이렇게 상태관리를 하는게 맞을까요 ??
-
+export default function LoginSelectModal({ isOpen, setSwitchModal, setClose }: Props) {
   return (
-    <Modal open={isOpen} onOpenChange={setIsOpen}>
-      <ModalTrigger>{trigger}</ModalTrigger>
+    <Modal open={isOpen} onOpenChange={setClose}>
       <ModalPortal>
         <ModalOverlay />
         <ModalContent>
@@ -33,26 +27,23 @@ export default function LoginSelectModal({ isOpen, setIsOpen, trigger }: Props) 
               <IconKakaoLogo />
               카카오로그인
             </Text>
-            <EmailSigninModal
-              isOpen={isEmailModalOpen}
-              setIsOpen={setIsEmailModalOpen}
-              trigger={
-                <Text
-                  as="button"
-                  typography="label"
-                  className="bg-primary-5 font-semibold flex gap-2 items-center justify-center w-full rounded-[0.25rem] py-2.5"
-                >
-                  이메일 로그인
-                </Text>
-              }
-            />
+            <Text
+              as="button"
+              typography="label"
+              onClick={() => setSwitchModal('EmailLogin')}
+              className="bg-primary-5 font-semibold flex gap-2 items-center justify-center w-full rounded-[0.25rem] py-2.5"
+            >
+              이메일 로그인
+            </Text>
           </div>
           {/* TODO 컴포넌트화
                 NOTE 모달 어떻게 열지 */}
           <Text typography="b2-normal" className="text-gray-80 flex gap-1 items-center justify-center mt-6">
             <span>캘픽이 처음이신가요?</span>
             <Text
+              as="button"
               typography="b2-heading"
+              onClick={() => setSwitchModal('Signup')}
               className="text-primary-80 underline decoration-solid decoration-2 decoration-skip-ink underline-offset-4"
             >
               회원가입

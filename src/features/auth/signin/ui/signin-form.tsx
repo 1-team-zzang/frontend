@@ -1,13 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { useCustomMutation } from '@/shared/hooks/use-custom-mutation'
 import Button from '@/shared/ui/button/button.tsx'
 import { Form, FormField, FormFieldWrapper, FormLabel } from '@/shared/ui/form'
 import { Input, PasswordInput } from '@/shared/ui/input'
 
-import { postSignin } from '../api/signin.API'
 import { SigninSchema } from '../model/signin.schema'
+import useSigninMutation from '../model/use-signin-mutation'
 
 import type { SigninFormDataType } from '../model/signin.type'
 
@@ -21,7 +20,7 @@ export default function SigninForm() {
     formState: { isValid, isSubmitting },
   } = methods
 
-  const signinMutation = useCustomMutation((data: SigninFormDataType) => postSignin(data))
+  const signinMutation = useSigninMutation()
 
   const handleSubmit = (data: SigninFormDataType) => {
     signinMutation.mutate(data)

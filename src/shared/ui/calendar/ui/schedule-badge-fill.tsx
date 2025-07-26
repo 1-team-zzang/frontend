@@ -15,17 +15,20 @@ interface Props extends VariantProps<typeof badgeVariants> {
   children: ReactNode
 }
 
-const badgeVariants = cva('h-3 w-full text-white rounded-sm z-50', {
-  variants: {
-    color: {
-      red: 'bg-calendar-red',
-      yellow: 'bg-calendar-yellow',
-      green: 'bg-calendar-green',
-      blue: 'bg-calendar-blue',
-      purple: 'bg-calendar-purple',
+const badgeVariants = cva(
+  'h-3 px-0.5 w-full text-white rounded-sm z-fixed truncate overflow-hidden whitespace-nowrap',
+  {
+    variants: {
+      color: {
+        RED: 'bg-calendar-red',
+        YELLOW: 'bg-calendar-yellow',
+        GREEN: 'bg-calendar-green',
+        BLUE: 'bg-calendar-blue',
+        PURPLE: 'bg-calendar-purple',
+      },
     },
   },
-})
+)
 
 export default function ScheduleBadgeFill({ children, color }: Props) {
   return (

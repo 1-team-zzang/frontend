@@ -1,9 +1,17 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<<<<<<< HEAD
 <g clip-path="url(#clip0_652_3508)">
 <path d="M10.728 14.728L4.22803 8.22803L10.728 1.72803" stroke="#1A1A1A"/>
 </g>
 <defs>
 <clipPath id="clip0_652_3508">
+=======
+<g clip-path="url(#clip0_630_3365)">
+<path d="M10.728 14.728L4.22803 8.22803L10.728 1.72803" stroke="#1A1A1A"/>
+</g>
+<defs>
+<clipPath id="clip0_630_3365">
+>>>>>>> develop
 <rect width="16" height="16" fill="white" transform="matrix(-1 0 0 -1 16 16)"/>
 </clipPath>
 </defs>
