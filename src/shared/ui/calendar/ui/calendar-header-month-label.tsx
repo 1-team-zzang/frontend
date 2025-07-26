@@ -16,8 +16,8 @@ export default function CalendarHeaderMonthLabel() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <Text as="span" typography="h1-normal">
-      {visibleMonth !== null ? `${currentYear}.${visibleMonth + 1}` : ''}
+    <Text as="span" typography="h2-heading">
+      {visibleMonth !== null ? `${currentYear}.${(visibleMonth + 1).toString().padStart(2, '0')}` : ''}
     </Text>
   )
 }

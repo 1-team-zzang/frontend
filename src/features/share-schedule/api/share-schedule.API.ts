@@ -3,9 +3,15 @@ import { devLog } from '@/shared/utils/dev-log'
 
 import type { Schedule } from '@/entities/schedule'
 
-export async function getMySchedule(): Promise<Schedule[]> {
+// const shareToken = async () => {
+//   const res = await axiosInstance.get('/schedules/share')
+//   devLog('log', 'token', res.data.data)
+//   return res.data.data
+// }
+
+export async function getShareSchedule(userId: string): Promise<Schedule[]> {
   try {
-    const res = await axiosInstance.get('/schedules', {
+    const res = await axiosInstance.get(`/schedules/user/${userId}`, {
       params: {
         start: '2025-05-01',
         end: '2025-12-31',

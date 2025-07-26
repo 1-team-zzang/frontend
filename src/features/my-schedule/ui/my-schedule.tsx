@@ -1,17 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 
+import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
-import CalendarContainer from '@/shared/ui/calendar/ui/calendar-container'
-import CalendarDayName from '@/shared/ui/calendar/ui/calendar-day-name'
-import CalendarHeaderContent from '@/shared/ui/calendar/ui/calendar-header-content'
-import YearlyCalendar from '@/shared/ui/calendar/ui/yearly-calendar'
+import { IconCalendarAdd } from '@/shared/assets/icons'
+import { ScheduleBadgeFill } from '@/shared/ui/calendar'
+import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
 import Text from '@/shared/ui/text/text'
+import CalendarUI from '@/widget/ui/calendar-ui'
 
-import { groupByDate } from '../../../entities/schedule/models/get-group-by-date'
 import { getMySchedule } from '../api/my-schedule.API'
-
-import ScheduleBadgeFill from './schedule-badge-fill'
 
 export default function MySchedule() {
   const { data: schedules = [] } = useQuery({
@@ -23,7 +21,8 @@ export default function MySchedule() {
   const scheduleMap = groupByDate(repeat)
 
   return (
-    <CalendarContainer
+    <CalendarUI
+      disablePastDateStyling={true}
       renderDateCellContent={(date) => {
         const key = format(date, 'yyyy-MM-dd')
         const items = scheduleMap[key] || []
@@ -48,11 +47,11 @@ export default function MySchedule() {
       onDateClick={(date) => {
         const dateStr = format(date, 'yyyy-MM-dd')
         alert(`${dateStr} 클릭`)
-      }} //셀 클릭시 실행될 함수, 세부일정보기 구현 후 수정
+      }}
     >
-      <CalendarHeaderContent />
-      <CalendarDayName />
-      <YearlyCalendar />
-    </CalendarContainer>
+      <AddScheduleButton>
+        <IconCalendarAdd />
+      </AddScheduleButton>
+    </CalendarUI>
   )
 }

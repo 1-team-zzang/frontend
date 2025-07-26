@@ -16,6 +16,7 @@ interface Props {
   month: number //셀에 해당하는 월(0 = 1월)
   date: number // 셀에 해당하는 일
   showMonthLabel?: boolean //월 1일마다 표시하는 라벨
+  isPast?: boolean //오늘 이전의 날짜인지
 }
 
 const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify-center', {
@@ -23,11 +24,12 @@ const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify
     isSunday: { true: 'text-calendar-red' },
     isSaturday: { true: 'text-calendar-blue' },
     isTodayDate: { true: 'bg-primary-30' },
+    isPast: { true: 'opacity-40' },
   },
 })
 export default function CalendarCell({ year, month, date, showMonthLabel }: Props) {
-  const { renderDateCellContent, onDateClick } = useCalendarContext()
-  const { isSunday, isSaturday, isToday } = getDayInfo(year, month, date)
+  const { renderDateCellContent, onDateClick, disablePastDateStyling } = useCalendarContext()
+  const { isSunday, isSaturday, isToday, isPast } = getDayInfo(year, month, date)
 
   const fullDate = new Date(year, month, date)
   const monthLabel = String(month + 1).padStart(2, '0')
@@ -38,7 +40,9 @@ export default function CalendarCell({ year, month, date, showMonthLabel }: Prop
         <Text
           as="span"
           typography="caption"
-          className={cn(contentVariants({ isSunday, isSaturday, isTodayDate: isToday }))}
+          className={cn(
+            contentVariants({ isSunday, isSaturday, isTodayDate: isToday, isPast: !disablePastDateStyling && isPast }),
+          )}
         >
           {date}
         </Text>

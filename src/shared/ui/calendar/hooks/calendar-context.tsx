@@ -8,6 +8,7 @@ interface CalendarContextValue {
   monthRefs: MutableRefObject<(HTMLDivElement | null)[]>
   renderDateCellContent?: (date: Date) => ReactNode
   onDateClick?: (date: Date) => void
+  disablePastDateStyling?: boolean
 }
 
 const createCalendarContext = createContextScope()

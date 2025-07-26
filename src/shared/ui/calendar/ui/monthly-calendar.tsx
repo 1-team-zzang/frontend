@@ -25,16 +25,19 @@ interface Prop {
 
 export default function MonthlyCalendar({ year, month }: Prop) {
   const date = new Date(year, month, 1)
-  const { firstDayOfMonth, daysInMonth } = getMonthDates(date)
+  const { firstDayOfMonth, LastDayOfMonth, remainingDaysInWeek } = getMonthDates(date)
 
   return (
     <div className="grid grid-cols-7">
       {range(firstDayOfMonth).map((day) => (
-        <div className="h-20" key={`empty-${day}`} />
+        <div className="h-20 border-t border-gray-10" key={`empty-${day}`} />
       ))}
 
-      {range(daysInMonth).map((day) => (
+      {range(LastDayOfMonth).map((day) => (
         <CalendarCell key={day} year={year} month={month} date={day} showMonthLabel={day === 1} />
+      ))}
+      {range(remainingDaysInWeek).map((day) => (
+        <div className="h-20 border-t border-gray-10" key={`empty-${day}`} />
       ))}
     </div>
   )

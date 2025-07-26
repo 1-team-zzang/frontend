@@ -20,3 +20,8 @@ export interface Schedule {
   userId: number
   appointmentId: number | null
 }
+
+export interface ScheduleListResponse {
+  owner: boolean
+  scheduleResponseList: Schedule[]
+}
