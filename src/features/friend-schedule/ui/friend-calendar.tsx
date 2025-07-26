@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
+import { useParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
@@ -9,13 +10,18 @@ import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
 import Text from '@/shared/ui/text/text'
 import CalendarUI from '@/widget/ui/calendar-ui'
 
-import { getMySchedule } from '../api/my-schedule.API'
+import { PrivateSchedule } from '../../share-schedule'
+import { getFriendSchedule } from '../api/friend-schedule.API'
 
-export default function MySchedule() {
+export default function FriendCalendar() {
+  const { friendID } = useParams()
+
   const { data: schedules = [] } = useQuery({
-    queryKey: ['schedule'],
-    queryFn: getMySchedule,
+    queryKey: ['friend-schedule', friendID],
+    queryFn: () => getFriendSchedule(friendID!),
+    enabled: !!friendID,
   })
+
   const repeat = repeatedSchedules(schedules)
 
   const scheduleMap = groupByDate(repeat)
@@ -31,11 +37,15 @@ export default function MySchedule() {
 
         return (
           <div className="flex flex-col gap-1 w-full px-1">
-            {visible.map((item) => (
-              <ScheduleBadgeFill key={item.title} color={item.color}>
-                {item.title}
-              </ScheduleBadgeFill>
-            ))}
+            {visible.map((item) =>
+              item.isVisible ? (
+                <ScheduleBadgeFill key={item.title} color={item.color}>
+                  {item.title}
+                </ScheduleBadgeFill>
+              ) : (
+                <PrivateSchedule key={item.title} />
+              ),
+            )}
             {hiddenCount > 0 && (
               <Text as="span" typography="caption-10" className="w-full text-left text-gray-80">
                 +{hiddenCount}
