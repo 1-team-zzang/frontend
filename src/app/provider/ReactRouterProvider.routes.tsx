@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 
-import Appointment from '@/pages/appointment/appointment'
+import AppointmentListPage from '@/pages/appointment/appointment-list-page'
 import Authlayout from '@/pages/auth/auth-layout'
 import SigninPage from '@/pages/auth/signin/signin-page'
 import SignupPage from '@/pages/auth/signup/signup-page'
@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Appointment,
+        Component: AppointmentListPage,
       },
     ],
   },
