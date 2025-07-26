@@ -1,11 +1,17 @@
+import Text from '../text/text'
+
 import { useProfileContext } from './profile-context'
 
 interface Props {
-    className?: string
+  className?: string
 }
 
-export default function Profilename({ className } : Props) {
+export default function Profilename({ className }: Props) {
   const { name } = useProfileContext()
 
-  return <span className={className}>{name}</span>
+  return (
+    <Text as="span" typography="b2-heading" className={className}>
+      {name}
+    </Text>
+  )
 }

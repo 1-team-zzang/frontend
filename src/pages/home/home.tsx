@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useUserStore } from '@/entities/user/models/use-user-store'
 import EmailSigninModal from '@/features/auth/signin/ui/email-signin-modal'
 import SignupModal from '@/features/auth/signup/ui/signup-modal'
-import MyCalendar from '@/features/my-schedule/my-calendar/my-calendar'
+import { MyCalendar } from '@/features/my-schedule'
 import CalendarUI from '@/widget/ui/calendar-ui'
 
 import type { AuthModalType } from '@/features/auth/signin/model/auth-modal.type'

@@ -1,23 +1,22 @@
 import { createBrowserRouter } from 'react-router'
 
+import AppointmentDetailPage from '@/pages/appointment/appointment-detail-page'
+import AppointmentListPage from '@/pages/appointment/appointment-list-page'
 import Authlayout from '@/pages/auth/auth-layout'
 import SigninPage from '@/pages/auth/signin/signin-page'
 import SignupPage from '@/pages/auth/signup/signup-page'
-import DetailedScheduleLayout from '@/pages/home/my-detailed-schedule/my-detailed-schedule-layout'
-import MyDetailedScheduleListPage from '@/pages/home/my-detailed-schedule/my-detailed-schedule-list-page'
-import MyDetailedSchedulePage from '@/pages/home/my-detailed-schedule/my-detailed-schedule-page'
+import MainLayout from '@/pages/main-layout'
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    Component: () => <div>Hello world</div>,
-  },
-  {
-    path: '/my-calendar',
-    Component: DetailedScheduleLayout,
+    Component: MainLayout,
     children: [
-      { path: 'date/:date', Component: MyDetailedScheduleListPage },
-      { path: 'date/:date/schedule/:scheduleId', Component: MyDetailedSchedulePage },
+      {
+        index: true,
+        // TODO 메인 페이지 컴포넌트로 변경하기
+        Component: () => <div>main</div>,
+      },
     ],
   },
   {
@@ -31,6 +30,19 @@ export const router = createBrowserRouter([
       {
         path: 'signup',
         Component: SignupPage,
+      },
+    ],
+  },
+  {
+    path: '/appointment',
+    children: [
+      {
+        index: true,
+        Component: AppointmentListPage,
+      },
+      {
+        path: 'requests/:id',
+        Component: AppointmentDetailPage,
       },
     ],
   },
