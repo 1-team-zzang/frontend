@@ -24,7 +24,7 @@ import type { HTMLAttributes } from 'react'
  */
 export default function SegmentedControlList({ children, className, ...restProps }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('flex items-center bg-gray-5 rounded-2xl p-1 w-fit', className)} {...restProps}>
+    <div className={cn('flex items-center bg-gray-5 rounded-full p-2 w-fit', className)} {...restProps}>
       {children}
     </div>
   )

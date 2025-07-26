@@ -1,8 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 
-import groupByDate from '@/entities/schedule/models/get-group-by-date'
-import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { IconInvite } from '@/shared/assets/icons'
 import { ScheduleBadgeFill } from '@/shared/ui/calendar'
 import Text from '@/shared/ui/text/text'
@@ -10,18 +7,12 @@ import CalendarUI from '@/widget/ui/calendar-ui'
 
 import AddScheduleButton from '../../../shared/ui/calendar/ui/add-schedule-button'
 import isPastDate from '../../../shared/ui/calendar/util/is-past-date'
-import { getShareSchedule } from '../api/share-schedule.API'
+import { useShareSchedule } from '../hooks/use-share-schedule'
 
 import PrivateSchedule from './private-schedule'
 
 export default function ShareCalendar() {
-  const { data: schedules = [] } = useQuery({
-    queryKey: ['share-schedule'],
-    queryFn: getShareSchedule,
-  })
-  const repeat = repeatedSchedules(schedules)
-
-  const scheduleMap = groupByDate(repeat)
+  const { scheduleMap } = useShareSchedule()
 
   return (
     <CalendarUI

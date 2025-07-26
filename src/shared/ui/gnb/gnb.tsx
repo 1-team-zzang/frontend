@@ -1,10 +1,8 @@
 import { AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 
 import { GNBProvider } from './gnb-conext'
-import Hamburger from './hamburger'
 import Logo from './logo'
-import SideBar from './sidebar'
 
 /**
  * @description 글로벌네비게이션바 입니다
@@ -28,7 +26,12 @@ import SideBar from './sidebar'
 //     onChange: onLoggedChange,
 //   }) //추후에 로그인 기능 완성되면 외부 context에서 받아와서 처리
 
-export default function GNB() {
+interface Props {
+  rightSlot: ReactNode
+  sidebar: ReactNode
+}
+
+export default function GNB({ rightSlot, sidebar }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const handleOpenSidebar = () => setIsOpen(true)
   const handleCloseSidebar = () => setIsOpen(false)
@@ -41,12 +44,12 @@ export default function GNB() {
 
   return (
     <GNBProvider value={providerValue}>
-      <header className="z-fixed flex bg-white p-4 w-full items-center justify-between">
+      <header className="z-fixed flex min-h-14 bg-white py-2 border-b-gray-5 border-b px-4 w-full items-center justify-between">
         <Logo />
-        <Hamburger onClick={handleOpenSidebar} />
+        {rightSlot}
       </header>
 
-      <AnimatePresence>{isOpen && <SideBar />}</AnimatePresence>
+      <AnimatePresence>{sidebar}</AnimatePresence>
     </GNBProvider>
   )
 }
