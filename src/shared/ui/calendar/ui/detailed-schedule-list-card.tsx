@@ -4,12 +4,13 @@ import Text from '@/shared/ui/text/text'
 import DetailedScheduleColorBadge from './detailed-schedule-color-badge'
 
 import type { ColorType } from '@/entities/schedule'
+import type { ReactNode } from 'react'
 
 interface Props {
   title: string
   time: string
   badgeColor: ColorType
-  onCardClick: () => void
+  onCardClick: () => void | ReactNode
 }
 
 export default function DetailedScheduleListCard({ title, time, badgeColor, onCardClick }: Props) {
