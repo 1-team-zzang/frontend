@@ -18,7 +18,7 @@ export default function UserList({ searchQuery }: Props) {
   return (
     <div className="p-2 overflow-y-auto h-64 mt-2 flex flex-col gap-3">
       {friendsUsers
-        .filter((user) => loginUser?.userId !== user.id)
+        .filter((user) => loginUser?.userId !== user.id || !user.isFriend)
         .map((user) => {
           return (
             <div key={user.id} className="flex justify-between items-center p-2">
@@ -38,7 +38,7 @@ export default function UserList({ searchQuery }: Props) {
                   친구
                 </Text>
               ) : (
-                <FriendRequestButton friendId={user.id} />
+                <FriendRequestButton friendId={user.id} disabled={user.isRequested} />
               )}
             </div>
           )
