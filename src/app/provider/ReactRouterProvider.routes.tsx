@@ -8,6 +8,7 @@ import Authlayout from '@/pages/auth/auth-layout'
 import SigninPage from '@/pages/auth/signin/signin-page'
 import SignupPage from '@/pages/auth/signup/signup-page'
 import DetailedScheduleLayout from '@/pages/detailed-schedule/detailed-schedule-layout'
+import FriendsPage from '@/pages/friends/friends-page'
 import Home from '@/pages/home/home'
 import MainLayout from '@/pages/main-layout'
 import ShareCalendarPage from '@/pages/share-calendar/share-calendar-page'
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
             Component: ShareDetailedSchedule,
           },
         ],
+      },
+      {
+        path: 'friends',
+        Component: FriendsPage,
       },
     ],
   },

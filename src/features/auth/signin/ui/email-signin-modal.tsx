@@ -18,7 +18,7 @@ export default function EmailSigninModal({ isOpen, setSwitchModal, setClose }: P
         <ModalOverlay />
         <ModalContent>
           <ModalTitle className="text-center">로그인</ModalTitle>
-          <SigninForm />
+          <SigninForm onSigninSuccess={() => setSwitchModal(null)} />
           {/* TODO 컴포넌트화
             NOTE 모달 어떻게 열지 */}
           <Text typography="b2-normal" className="text-gray-80 flex gap-1 items-center justify-center mt-6">

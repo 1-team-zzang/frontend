@@ -1,4 +1,3 @@
-import { IconKakaoLogo } from '@/shared/assets/icons'
 import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle } from '@/shared/ui/modal'
 import Text from '@/shared/ui/text/text'
 
@@ -19,14 +18,14 @@ export default function LoginSelectModal({ isOpen, setSwitchModal, setClose }: P
           <ModalTitle className="text-center">캘픽 로그인</ModalTitle>
           <div className="flex flex-col gap-3 mt-8 mb-6">
             {/* TODO 카카오 로그인 onClick 추가 */}
-            <Text
+            {/* <Text
               as="button"
               typography="label"
               className="bg-[#FEE500] font-semibold flex gap-2 items-center justify-center w-full rounded-[0.25rem] py-2.5"
             >
               <IconKakaoLogo />
               카카오로그인
-            </Text>
+            </Text> */}
             <Text
               as="button"
               typography="label"
