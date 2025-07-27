@@ -26,7 +26,7 @@ export default function AppointmentDetailAcceptButton({ onAccept }: Props) {
       </ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
-        <ModalContent className="text-center px-6 pb-12 w-[calc(100%-66px)]">
+        <ModalContent className="overflow-hidden text-center px-6 pb-12 w-[calc(100%-66px)]">
           <ModalCloseButton />
           <form onSubmit={handleSubmit}>
             <Text typography="h2-normal" className="pb-4">
