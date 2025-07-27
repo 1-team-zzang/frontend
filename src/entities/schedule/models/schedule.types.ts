@@ -1,5 +1,5 @@
 export type RepeatRule = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
-export type RepeatType = 'COUNT' | 'UNTIL'
+export type RepeatType = 'COUNT' | 'DATE'
 export type ColorType = 'red' | 'yellow' | 'green' | 'blue' | 'purple'
 
 export interface Schedule {
@@ -19,4 +19,10 @@ export interface Schedule {
   color: ColorType
   userId: number
   appointmentId: number | null
+  isAllDay: boolean
+}
+
+export interface ScheduleListResponse {
+  owner: boolean
+  scheduleResponseList: Schedule[]
 }

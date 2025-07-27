@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { addDays, addWeeks, addMonths, addYears } from 'date-fns'
 
 import type { Schedule } from './schedule.types'
@@ -15,20 +14,17 @@ export default function repeatedSchedules(schedules: Schedule[]): Schedule[] {
     const start = new Date(schedule.startAt)
 
     for (let i = 0; i < schedule.repeatCount; i++) {
-      const nextDate = (() => {
-        switch (schedule.repeatRule) {
-          case 'DAILY':
-            return addDays(start, i)
-          case 'WEEKLY':
-            return addWeeks(start, i)
-          case 'MONTHLY':
-            return addMonths(start, i)
-          case 'YEARLY':
-            return addYears(start, i)
-          default:
-            return start
-        }
-      })()
+      let nextDate = start
+
+      if (schedule.repeatRule === 'DAILY') {
+        nextDate = addDays(start, i)
+      } else if (schedule.repeatRule === 'WEEKLY') {
+        nextDate = addWeeks(start, i)
+      } else if (schedule.repeatRule === 'MONTHLY') {
+        nextDate = addMonths(start, i)
+      } else if (schedule.repeatRule === 'YEARLY') {
+        nextDate = addYears(start, i)
+      }
 
       result.push({
         ...schedule,

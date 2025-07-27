@@ -1,6 +1,6 @@
 /**
  *
- * @param targetDate : 해당 달의 1일~31일
+ * @param targetDate : 해당 달
  * @returns
  */
 
@@ -16,7 +16,11 @@ export default function getMonthDates(targetDate: Date) {
 
   const firstDayOfMonth = getStartOfCurrentMonth().getDay() //시작요일 구하는 함수 월요일이면 1
 
-  const daysInMonth = getLastDateOfCurrentMonth()
+  const LastDayOfMonth = getLastDateOfCurrentMonth()
 
-  return { firstDayOfMonth, daysInMonth }
+  const lastDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), LastDayOfMonth)
+  const lastDayOfWeek = lastDate.getDay() // 마지막 날짜의 요일
+  const remainingDaysInWeek = 6 - lastDayOfWeek
+
+  return { firstDayOfMonth, LastDayOfMonth, remainingDaysInWeek }
 }

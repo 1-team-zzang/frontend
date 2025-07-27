@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-import Text from '../../../shared/ui/text/text'
+import Text from '../../text/text'
 
 import type { ReactNode } from 'react'
 
@@ -20,11 +20,11 @@ const badgeVariants = cva(
   {
     variants: {
       color: {
-        red: 'bg-calendar-red',
-        yellow: 'bg-calendar-yellow',
-        green: 'bg-calendar-green',
-        blue: 'bg-calendar-blue',
-        purple: 'bg-calendar-purple',
+        RED: 'bg-calendar-red',
+        YELLOW: 'bg-calendar-yellow',
+        GREEN: 'bg-calendar-green',
+        BLUE: 'bg-calendar-blue',
+        PURPLE: 'bg-calendar-purple',
       },
     },
   },

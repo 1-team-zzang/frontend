@@ -1,10 +1,11 @@
 // API
 export * from './api/my-schedule.API'
-
-// 타입
-export * from './models/my-calendar.types'
+export * from './detailed-schedule/api/detailed-schedule.API'
 
 // UI
-export { default as MySchedule } from './ui/my-schedule'
-export { default as ScheduleBadgeFill } from './ui/schedule-badge-fill'
-export { default as ScheduleBadgeMarker } from './ui/schedule-badge-marker'
+export { default as MyCalendar } from './my-calendar/my-calendar'
+export { default as MyDetailedScheduleList } from './detailed-schedule/ui/my-detailed-schedule-list'
+export { default as MyDetailedSchedule } from './detailed-schedule/ui/my-detailed-schedule'
+
+//hook
+export * from './hooks/use-date-schedules'

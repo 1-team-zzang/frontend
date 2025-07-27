@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { useFriends } from '../model'
 
-import { FriendItem } from './index'
+import FriendItem from './friend-item'
 
 import type { Friend } from '@/entities/friends/models/friend.types'
 
