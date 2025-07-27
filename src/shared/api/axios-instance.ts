@@ -50,17 +50,13 @@ axiosInstance.interceptors.response.use(
       // 토큰 만료 및 미인증
       localStorage.removeItem('token')
       devLog('error', '권한이 없습니다')
-    }
-
-    if (status === 403) {
+    } else if (status === 403) {
       // 로그인됐으나 권한 x
       devLog('error', '접근 권한이 없습니다', error)
-    }
-    if (status === 404) {
-      // 존재하지 않는 API
+    } else if (status === 404) {
+      // 존재하지 않는 API // 존재하지 않는 자원을 요청했을때
       devLog('error', `404 Not found: ${config.url}`, error)
-    }
-    if (status >= 500) {
+    } else if (status >= 500) {
       // 백엔드 내부 오류
       devLog('error', '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.')
     }
