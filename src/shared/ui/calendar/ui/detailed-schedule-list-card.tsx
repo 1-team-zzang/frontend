@@ -23,7 +23,7 @@ export default function DetailedScheduleListCard({ title, time, badgeColor, onCa
             <Text as="span" typography="h2-heading" className="text-start">
               {title}
             </Text>
-            <Text as="span" typography="b2-normal" className="text-gray-60">
+            <Text as="span" typography="b2-normal" className="text-gray-60 text-start">
               {time}
             </Text>
           </div>

@@ -2,8 +2,7 @@
 
 import { format } from 'date-fns'
 
-import { PrivateSchedule } from '@/features/share-schedule'
-import { ScheduleBadgeFill } from '@/shared/ui/calendar'
+import { PrivateSchedule, ScheduleBadgeFill } from '@/shared/ui/calendar'
 import Text from '@/shared/ui/text/text'
 
 import type { Schedule } from '@/entities/schedule'
@@ -12,9 +11,10 @@ interface Props {
   scheduleMap: Record<string, Schedule[]> // 날짜별 스케줄 목록
   date: Date // 현재 날짜
   isPast?: boolean // 과거 날짜 여부
+  isMine?: boolean // 내 일정 여부
 }
 
-export default function DateCellContent({ scheduleMap, date, isPast = false }: Props) {
+export default function DateCellContent({ scheduleMap, date, isPast = false, isMine = false }: Props) {
   const key = format(date, 'yyyy-MM-dd') //2025-01-01
   const items = scheduleMap[key] || [] // 해당 날짜에 대한 스케줄 목록
   const visible = items.slice(0, 1) // 최대 1개만 표시 2개 이상이면 +n 표시
@@ -24,7 +24,7 @@ export default function DateCellContent({ scheduleMap, date, isPast = false }: P
     <div className="flex flex-col gap-1 w-full px-1">
       {!isPast &&
         visible.map((item) =>
-          item.isVisible ? (
+          isMine || item.isVisible ? (
             <ScheduleBadgeFill key={item.title} color={item.color}>
               {item.title}
             </ScheduleBadgeFill>
