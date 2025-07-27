@@ -12,7 +12,7 @@ import { SignupSchema } from '../model/signup.schema'
 
 import type { SignupFormDataType, SignupInputData } from '../model/signup.type'
 
-export default function SignupForm() {
+export default function SignupForm({ onSignupSuccess }: { onSignupSuccess?: () => void }) {
   const signupMutation = useCustomMutation((data: SignupInputData) => postSignup(data))
 
   const methods = useForm<SignupFormDataType>({
@@ -22,7 +22,16 @@ export default function SignupForm() {
 
   const handleSubmit = (data: SignupFormDataType) => {
     const { email, name, password } = data // 회원가입 API 요청 데이터에는 비밀번호 확인 없음
-    signupMutation.mutateAsync({ email, name, password })
+    signupMutation.mutateAsync(
+      { email, name, password },
+      {
+        onSuccess: () => {
+          if (onSignupSuccess) {
+            onSignupSuccess()
+          }
+        },
+      },
+    )
   }
 
   return (
