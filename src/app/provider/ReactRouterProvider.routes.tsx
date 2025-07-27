@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 
 import { MyDetailedSchedule, MyDetailedScheduleList } from '@/features/my-schedule'
-import { ShareDetailedSchedule, ShareDetailedScheduleList } from '@/features/share-schedule'
 import AppointmentDetailPage from '@/pages/appointment/appointment-detail-page'
 import AppointmentListPage from '@/pages/appointment/appointment-list-page'
 import Authlayout from '@/pages/auth/auth-layout'
@@ -10,6 +9,8 @@ import SignupPage from '@/pages/auth/signup/signup-page'
 import DetailedScheduleLayout from '@/pages/detailed-schedule/detailed-schedule-layout'
 import FriendDetailedSchedulePage from '@/pages/detailed-schedule/friend-detailed-schedule/friend-detailed-schedule'
 import FriendDetailedScheduleListPage from '@/pages/detailed-schedule/friend-detailed-schedule/friend-detailed-schedule-list-page'
+import ShareDetailedScheduleListPage from '@/pages/detailed-schedule/share-detailed-schedule/share-detailed-schedule-list-page'
+import ShareDetailedSchedulePage from '@/pages/detailed-schedule/share-detailed-schedule/share-detailed-schedule-page'
 import FriendCalendarPage from '@/pages/friend-calendar/friend-calendar-page'
 import FriendsPage from '@/pages/friends/friends-page'
 import Home from '@/pages/home/home'
@@ -71,11 +72,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'date/:date',
-            Component: ShareDetailedScheduleList,
+            Component: ShareDetailedScheduleListPage,
           },
           {
             path: 'date/:date/schedule/:scheduleId',
-            Component: ShareDetailedSchedule,
+            Component: ShareDetailedSchedulePage,
           },
         ],
       },

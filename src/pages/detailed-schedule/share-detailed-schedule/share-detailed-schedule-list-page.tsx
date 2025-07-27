@@ -1,5 +1,5 @@
-import { DetailedSharedScheduleList } from '@/features/share-schedule'
+import { ShareDetailedScheduleList } from '@/features/share-schedule'
 
-export default function DetailedSharedScheduleListPage() {
-  return <DetailedSharedScheduleList />
+export default function ShareDetailedScheduleListPage() {
+  return <ShareDetailedScheduleList />
 }
