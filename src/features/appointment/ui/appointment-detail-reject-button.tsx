@@ -47,26 +47,18 @@ export default function AppointmentDetailRejectButton({ onReject }: Props) {
       </ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
-        <ModalContent className="overflow-hidden text-center px-6 pb-12 w-[calc(100%-66px)]">
+        <ModalContent className="overflow-hidden text-center px-6 pb-16 w-[calc(100%-66px)]">
           <ModalCloseButton />
           <Form methods={methods} onSubmit={handleSubmit}>
             <Text typography="h2-normal" className="pb-4">
               이 약속을 거절할까요?
             </Text>
 
-            <div className="pb-6">
-              {!isChecked && (
-                <div className="flex justify-center items-center gap-2">
-                  <Checkbox
-                    textLabel="거절 메세지 작성하기"
-                    onCheckedChange={handleCheckedChange}
-                    checked={isChecked}
-                  />
-                </div>
-              )}
-
-              {isChecked && <Textarea placeholder="거절 메세지를 입력해주세요." name="content" />}
+            <div className="flex justify-center items-center gap-2">
+              <Checkbox textLabel="거절 메세지 작성하기" onCheckedChange={handleCheckedChange} checked={isChecked} />
             </div>
+
+            {isChecked && <Textarea placeholder="거절 메세지를 입력해주세요." name="content" className="mt-4 h-40" />}
 
             <Button intent="solid" className="w-full absolute left-0 bottom-0 rounded-t-none" type="submit">
               확인
