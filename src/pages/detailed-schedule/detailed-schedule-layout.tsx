@@ -12,7 +12,7 @@ export default function DetailedScheduleLayout() {
   return (
     <main className="bg-[#f8f8f8] h-screen">
       <DetailedScheduleHeader date={formattedDate} />
-      <div className="p-4">
+      <div className="p-4 ">
         <Outlet />
         <AddScheduleButton>
           <IconCalendarAdd />

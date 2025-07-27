@@ -2,6 +2,6 @@
 export * from './api/share-schedule.API'
 
 // UI
-export { default as ShareSchedule } from './ui/share-calendar'
-export { default as DetailedSharedSchedule } from './detailed-share-schedule/ui/detailed-shared-schedule'
-export { default as DetailedSharedScheduleList } from './detailed-share-schedule/ui/detailed-shared-schedule-list'
+export { default as ShareSchedule } from './share-calendar/share-calendar'
+export { default as ShareDetailedSchedule } from './detailed-share-schedule/ui/share-detailed-schedule'
+export { default as ShareDetailedScheduleList } from './detailed-share-schedule/ui/share-detailed-schedule-list'

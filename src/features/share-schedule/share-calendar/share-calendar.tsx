@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 
 import { IconInvite } from '@/shared/assets/icons'
 import { DateCellContent } from '@/shared/ui/calendar'
@@ -12,6 +12,7 @@ import { useShareSchedule } from '../hooks/use-share-schedule'
 export default function ShareCalendar() {
   const { scheduleMap } = useShareSchedule()
   const navigate = useNavigate()
+  const { userId } = useParams<{ userId: string }>()
 
   const handleDateClick = (date: Date, navigate: ReturnType<typeof useNavigate>) => {
     if (isPastDate(date)) {
@@ -19,7 +20,7 @@ export default function ShareCalendar() {
       return
     }
     const dateStr = format(date, 'yyyy-MM-dd')
-    navigate(`/sheard-calendar/date/${dateStr}`)
+    navigate(`/share/${userId}/detailed-schedule/date/${dateStr}`)
   }
 
   return (
