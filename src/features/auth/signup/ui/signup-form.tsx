@@ -22,10 +22,16 @@ export default function SignupForm({ onSignupSuccess }: { onSignupSuccess?: () =
 
   const handleSubmit = (data: SignupFormDataType) => {
     const { email, name, password } = data // 회원가입 API 요청 데이터에는 비밀번호 확인 없음
-    signupMutation.mutateAsync({ email, name, password })
-    if (onSignupSuccess) {
-      onSignupSuccess()
-    }
+    signupMutation.mutateAsync(
+      { email, name, password },
+      {
+        onSuccess: () => {
+          if (onSignupSuccess) {
+            onSignupSuccess()
+          }
+        },
+      },
+    )
   }
 
   return (

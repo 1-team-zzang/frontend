@@ -23,10 +23,13 @@ export default function SigninForm({ onSigninSuccess }: { onSigninSuccess?: () =
   const signinMutation = useSigninMutation()
 
   const handleSubmit = (data: SigninFormDataType) => {
-    signinMutation.mutate(data)
-    if (onSigninSuccess) {
-      onSigninSuccess()
-    }
+    signinMutation.mutate(data, {
+      onSuccess: () => {
+        if (onSigninSuccess) {
+          onSigninSuccess()
+        }
+      },
+    })
   }
 
   return (
