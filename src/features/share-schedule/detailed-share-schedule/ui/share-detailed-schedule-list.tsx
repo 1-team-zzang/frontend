@@ -6,7 +6,7 @@ import { DetailedScheduleListCard, PrivateScheduleModal } from '@/shared/ui/cale
 
 import { useShareSchedule } from '../../hooks/use-share-schedule'
 
-export default function ShareDetailedcheduleList() {
+export default function ShareDetailedScheduleList() {
   const navigate = useNavigate()
   const { date, userId } = useParams() // ex: '2025-08-01'
   const { scheduleMap } = useShareSchedule()

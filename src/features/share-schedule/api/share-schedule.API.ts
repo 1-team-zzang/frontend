@@ -11,7 +11,6 @@ export async function getShareSchedule(userId: string): Promise<Schedule[]> {
         end: '2025-12-31',
       },
     })
-    devLog('log', 'data', res.data.data)
 
     return res.data?.data?.scheduleResponseList ?? []
   } catch (error) {

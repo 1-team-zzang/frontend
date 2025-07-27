@@ -22,7 +22,7 @@ export default function DateCellContent({ scheduleMap, date, isPast = false, isM
 
   return (
     <div className="flex flex-col gap-1 w-full px-1">
-      {!isPast &&
+      {!isPast && // 과거 날짜가 아닐 때만 표시
         visible.map((item) =>
           isMine || item.isVisible ? (
             <ScheduleBadgeFill key={item.title} color={item.color}>

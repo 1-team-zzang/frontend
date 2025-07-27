@@ -13,7 +13,7 @@ export function useShareSchedule() {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['share-schedule'],
+    queryKey: ['share-schedule', userId],
     queryFn: () => getShareSchedule(userId!),
     enabled: !!userId,
   })
