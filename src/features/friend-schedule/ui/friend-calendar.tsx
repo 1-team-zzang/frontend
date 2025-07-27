@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
-import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { IconCalendarAdd } from '@/shared/assets/icons'
 import { DateCellContent } from '@/shared/ui/calendar'
 import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
@@ -12,23 +11,27 @@ import CalendarUI from '@/widget/ui/calendar-ui'
 import { getFriendSchedule } from '../api/friend-schedule.API'
 
 export default function FriendCalendar() {
-  const { friendID } = useParams()
+  const { friendId } = useParams()
+  const navigate = useNavigate()
 
   const { data: schedules = [] } = useQuery({
-    queryKey: ['friend-schedule', friendID],
-    queryFn: () => getFriendSchedule(friendID!),
-    enabled: !!friendID,
+    queryKey: ['friend-schedule', friendId],
+    queryFn: () => getFriendSchedule(friendId!),
+    enabled: !!friendId,
   })
 
-  const repeat = repeatedSchedules(schedules)
+  const scheduleMap = groupByDate(schedules)
 
-  const scheduleMap = groupByDate(repeat)
+  const handleDateClick = (date: Date) => {
+    const dateStr = format(date, 'yyyy-MM-dd')
+    navigate(`/friends/${friendId}/calendar/detailed-schedule/date/${dateStr}`)
+  }
 
   return (
     <CalendarUI
       disablePastDateStyling
-      renderDateCellContent={(date) => DateCellContent({ scheduleMap, date })}
-      onDateClick={(date) => alert(`Selected date: ${format(date, 'yyyy-MM-dd')}`)}
+      renderDateCellContent={(date) => <DateCellContent scheduleMap={scheduleMap} date={date} />}
+      onDateClick={handleDateClick}
     >
       <AddScheduleButton>
         <IconCalendarAdd />
