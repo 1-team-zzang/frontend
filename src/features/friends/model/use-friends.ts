@@ -11,7 +11,7 @@ function useFriends(page: number) {
   })
 
   const friends = data?.friends ?? []
-  const totalPages = data?.totalPages
+  const totalPages = data?.totalPages === 0 ? 1 : data?.totalPages
 
   return { friends, page, totalPages, isLoading, error, refetch }
 }
