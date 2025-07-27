@@ -1,12 +1,17 @@
 import { createBrowserRouter } from 'react-router'
 
+import { MyDetailedSchedule, MyDetailedScheduleList } from '@/features/my-schedule'
+import { ShareDetailedSchedule, ShareDetailedScheduleList } from '@/features/share-schedule'
 import AppointmentDetailPage from '@/pages/appointment/appointment-detail-page'
 import AppointmentListPage from '@/pages/appointment/appointment-list-page'
 import Authlayout from '@/pages/auth/auth-layout'
 import SigninPage from '@/pages/auth/signin/signin-page'
 import SignupPage from '@/pages/auth/signup/signup-page'
+import DetailedScheduleLayout from '@/pages/detailed-schedule/detailed-schedule-layout'
 import FriendsPage from '@/pages/friends/friends-page'
+import Home from '@/pages/home/home'
 import MainLayout from '@/pages/main-layout'
+import ShareCalendarPage from '@/pages/share-calendar/share-calendar-page'
 
 export const router = createBrowserRouter([
   {
@@ -15,8 +20,47 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        // TODO 메인 페이지 컴포넌트로 변경하기
-        Component: () => <div>main</div>,
+        Component: () => <div>메인 페이지</div>,
+      },
+      {
+        path: 'my',
+        Component: Home,
+        children: [
+          {
+            path: 'detailed-schedule',
+            Component: DetailedScheduleLayout,
+            children: [
+              {
+                path: 'date/:date',
+                Component: MyDetailedScheduleList,
+              },
+              {
+                path: 'date/:date/schedule/:scheduleId',
+                Component: MyDetailedSchedule,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: '/share/:userId',
+    Component: ShareCalendarPage,
+    children: [
+      {
+        path: 'detailed-schedule',
+        Component: DetailedScheduleLayout,
+        children: [
+          {
+            path: 'date/:date',
+            Component: ShareDetailedScheduleList,
+          },
+          {
+            path: 'date/:date/schedule/:scheduleId',
+            Component: ShareDetailedSchedule,
+          },
+        ],
       },
       {
         path: 'friends',

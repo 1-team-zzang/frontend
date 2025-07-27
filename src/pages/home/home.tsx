@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Outlet } from 'react-router'
 
 import { useUserStore } from '@/entities/user/models/use-user-store'
 import EmailSigninModal from '@/features/auth/signin/ui/email-signin-modal'
@@ -22,7 +23,7 @@ export default function Home() {
   }
   return (
     <>
-      {''}
+      <Outlet />
       {!user ? (
         <CalendarUI onDateClick={handleDateClick}>
           {switchModal === 'EmailLogin' ? (

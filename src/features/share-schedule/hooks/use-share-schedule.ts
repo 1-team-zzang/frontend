@@ -8,7 +8,6 @@ import { getShareSchedule } from '../api/share-schedule.API'
 
 export function useShareSchedule() {
   const { userId } = useParams<{ userId: string }>()
-
   const {
     data: schedules = [],
     isLoading,
