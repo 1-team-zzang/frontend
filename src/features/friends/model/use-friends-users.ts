@@ -4,9 +4,9 @@ import { getFriendsUsers } from '../api/friend.API'
 
 import { friendQueryKeys, type FriendSearchType } from './index'
 
-function useFriendsUsers(searchType: FriendSearchType, query: string, page: number, size: number) {
+function useFriendsUsers(searchType: FriendSearchType, query: string, size: number) {
   return useInfiniteQuery({
-    queryKey: friendQueryKeys.search(searchType, query, page),
+    queryKey: friendQueryKeys.search(searchType, query, size),
     queryFn: ({ pageParam }) => getFriendsUsers(searchType, query, pageParam, size),
     getNextPageParam: (lastPage) => {
       const currentPage = lastPage.page

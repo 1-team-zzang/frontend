@@ -13,7 +13,8 @@ interface Props {
 
 export default function UserList({ searchQuery }: Props) {
   // TODO 이메일 검색, 이름 검색이 가능하다면 선택할 수 있는 버튼이 있어야할 것 같다 ~~
-  const { data, hasNextPage, fetchNextPage } = useFriendsUsers('EMAIL', searchQuery, 1, 10)
+  const size = 10
+  const { data, hasNextPage, fetchNextPage } = useFriendsUsers('EMAIL', searchQuery, size)
   const { user: loginUser } = useUserStore()
 
   const ref = useIntersect<HTMLDivElement>({
