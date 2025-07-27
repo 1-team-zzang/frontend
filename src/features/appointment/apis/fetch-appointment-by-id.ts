@@ -11,7 +11,7 @@ export default async function fetchAppointmentById(id: string) {
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.status === 401) {
-        throw new Error('로그인 시간이 만료되어 약속 목록을 불러올 수 없어요. 다시 로그인해 주세요.')
+        throw new Error('로그인 시간이 만료되어 약속 상세를 불러올 수 없어요. 다시 로그인해 주세요.')
       }
 
       if (error.response?.status === 403) {
