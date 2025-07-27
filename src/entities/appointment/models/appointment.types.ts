@@ -17,6 +17,7 @@ export interface Appointment {
   inviteAt: string
 }
 
+export type AppointmentRequestStatus = 'REQUESTED' | 'REJECTED' | 'ACCEPTED'
 export interface AppointmentRequest {
   id: number
   title: string
@@ -24,6 +25,8 @@ export interface AppointmentRequest {
   startAt: string
   endAt: string
   inviteAt: string
+  receiverName: string
+  status: AppointmentRequestStatus
 }
 
 export interface AppointmentResponse {
