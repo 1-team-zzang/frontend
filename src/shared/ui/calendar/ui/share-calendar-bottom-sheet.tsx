@@ -1,8 +1,11 @@
+import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 
+import axiosInstance from '@/shared/api/axios-instance'
 import { IconClose } from '@/shared/assets/icons'
 import { BottomSheet, BottomSheetContainer, BottomSheetContent } from '@/shared/ui/bottom-sheet'
 import Text from '@/shared/ui/text/text'
+import { devLog } from '@/shared/utils/dev-log'
 
 import { Modal, ModalCloseButton, ModalContent, ModalDescription, ModalOverlay, ModalTitle } from '../../modal'
 
@@ -13,7 +16,15 @@ interface Props {
 
 export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
   const [copied, setCopied] = useState(false)
-  const link = 'https://www.calendarshare.com/share/34'
+  const { data: userId } = useQuery({
+    queryKey: ['userId'],
+    queryFn: async () => {
+      const res = await axiosInstance.get('/schedules/share')
+      devLog('log', 'userId', res)
+      return res.data.data.userId
+    },
+  })
+  const link = `/share/${userId}`
 
   const handleCopy = async () => {
     try {
@@ -39,8 +50,8 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
             <Text as="span" typography="b2-normal" className="mt-4">
               캘린더 링크가 생성되었습니다. 과거 일정은 나만보기로 자동 전환되어 공개되지 않습니다.
             </Text>
-            <div className="w-full flex justify-center items-center h-16 bg-gray-1 ">
-              <Text as="span" typography="b2-normal" className="text-gray-60 px-4 truncate">
+            <div className="w-full flex justify-between items-center h-16 bg-gray-1 px-4">
+              <Text as="span" typography="b2-normal" className="text-gray-60 truncate">
                 {link}
               </Text>
               <button className="w-20 h-11 bg-primary-60 rounded" onClick={handleCopy}>

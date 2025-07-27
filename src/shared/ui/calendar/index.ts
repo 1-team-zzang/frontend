@@ -18,7 +18,7 @@ export { default as DetailedScheduleListCard } from './ui/detailed-schedule-list
 export { default as DetailedScheduleHeader } from './ui/detailed-schedule-header'
 export { default as DetailedScheduleColorBadge } from './ui/detailed-schedule-color-badge'
 export { default as DetailedScheduleCardContent } from './ui/detailed-schedule-card-content'
-
+export { default as ShareCalendarBottomSheet } from './ui/share-calendar-bottom-sheet'
 // hooks
 export { default as useVisibleMonth } from './hooks/use-visible-month'
 export { CalendarProvider, useCalendarContext } from './hooks/calendar-context'
