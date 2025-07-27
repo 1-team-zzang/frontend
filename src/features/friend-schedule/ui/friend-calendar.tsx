@@ -5,12 +5,10 @@ import { useParams } from 'react-router'
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { IconCalendarAdd } from '@/shared/assets/icons'
-import { ScheduleBadgeFill } from '@/shared/ui/calendar'
+import { DateCellContent } from '@/shared/ui/calendar'
 import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
-import Text from '@/shared/ui/text/text'
 import CalendarUI from '@/widget/ui/calendar-ui'
 
-import { PrivateSchedule } from '../../share-schedule'
 import { getFriendSchedule } from '../api/friend-schedule.API'
 
 export default function FriendCalendar() {
@@ -28,36 +26,9 @@ export default function FriendCalendar() {
 
   return (
     <CalendarUI
-      disablePastDateStyling={true}
-      renderDateCellContent={(date) => {
-        const key = format(date, 'yyyy-MM-dd')
-        const items = scheduleMap[key] || []
-        const visible = items.slice(0, 1)
-        const hiddenCount = items.length - visible.length
-
-        return (
-          <div className="flex flex-col gap-1 w-full px-1">
-            {visible.map((item) =>
-              item.isVisible ? (
-                <ScheduleBadgeFill key={item.title} color={item.color}>
-                  {item.title}
-                </ScheduleBadgeFill>
-              ) : (
-                <PrivateSchedule key={item.title} />
-              ),
-            )}
-            {hiddenCount > 0 && (
-              <Text as="span" typography="caption-10" className="w-full text-left text-gray-80">
-                +{hiddenCount}
-              </Text>
-            )}
-          </div>
-        )
-      }}
-      onDateClick={(date) => {
-        const dateStr = format(date, 'yyyy-MM-dd')
-        alert(`${dateStr} 클릭`)
-      }}
+      disablePastDateStyling
+      renderDateCellContent={(date) => DateCellContent({ scheduleMap, date })}
+      onDateClick={(date) => alert(`Selected date: ${format(date, 'yyyy-MM-dd')}`)}
     >
       <AddScheduleButton>
         <IconCalendarAdd />
