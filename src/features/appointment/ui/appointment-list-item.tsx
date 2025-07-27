@@ -17,7 +17,7 @@ export default function AppointmentListItem({
   id,
 }: Pick<Appointment, 'title' | 'requesterName' | 'startAt' | 'endAt' | 'inviteAt' | 'id'>) {
   return (
-    <Link to={`/appointment/requests/${id}`}>
+    <Link to={`/appointments/requests/${id}`}>
       <AppointmentCard className="p-0">
         <AppointmentSender inviteAt={inviteAt} requesterName={requesterName} className="py-4 px-6 bg-gray-1" />
         <div className="flex flex-col items-center gap-[0.188rem] py-6">
