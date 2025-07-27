@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/appointment',
+    path: '/appointments',
     children: [
       {
         index: true,
