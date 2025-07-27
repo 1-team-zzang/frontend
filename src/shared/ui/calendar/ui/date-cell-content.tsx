@@ -2,30 +2,37 @@
 
 import { format } from 'date-fns'
 
+import { PrivateSchedule } from '@/features/share-schedule'
 import { ScheduleBadgeFill } from '@/shared/ui/calendar'
 import Text from '@/shared/ui/text/text'
 
 import type { Schedule } from '@/entities/schedule'
 
 interface Props {
-  scheduleMap: Record<string, Schedule[]>
-  date: Date
+  scheduleMap: Record<string, Schedule[]> // 날짜별 스케줄 목록
+  date: Date // 현재 날짜
+  isPast?: boolean // 과거 날짜 여부
 }
 
-export function renderMyScheduleCellContent({ scheduleMap, date }: Props) {
-  const key = format(date, 'yyyy-MM-dd')
-  const items = scheduleMap[key] || []
-  const visible = items.slice(0, 1)
-  const hiddenCount = items.length - visible.length
+export default function DateCellContent({ scheduleMap, date, isPast = false }: Props) {
+  const key = format(date, 'yyyy-MM-dd') //2025-01-01
+  const items = scheduleMap[key] || [] // 해당 날짜에 대한 스케줄 목록
+  const visible = items.slice(0, 1) // 최대 1개만 표시 2개 이상이면 +n 표시
+  const hiddenCount = items.length - visible.length // 숨겨진 스케줄 개수
 
   return (
     <div className="flex flex-col gap-1 w-full px-1">
-      {visible.map((item) => (
-        <ScheduleBadgeFill key={item.title} color={item.color}>
-          {item.title}
-        </ScheduleBadgeFill>
-      ))}
-      {hiddenCount > 0 && (
+      {!isPast &&
+        visible.map((item) =>
+          item.isVisible ? (
+            <ScheduleBadgeFill key={item.title} color={item.color}>
+              {item.title}
+            </ScheduleBadgeFill>
+          ) : (
+            <PrivateSchedule key={item.title} />
+          ),
+        )}
+      {!isPast && hiddenCount > 0 && (
         <Text as="span" typography="caption-10" className="w-full text-left text-gray-80">
           +{hiddenCount}
         </Text>
