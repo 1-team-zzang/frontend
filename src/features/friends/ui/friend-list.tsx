@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import useFriends from '../model/use-friends'
+import { useFriends } from '../model'
 
 import FriendItem from './friend-item'
 
