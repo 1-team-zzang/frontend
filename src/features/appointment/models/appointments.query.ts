@@ -1,7 +1,7 @@
 import type { MyAppointmentsByStatusParams } from './appointment.types'
 
 export const appointmentsQuery = {
-  all: ['my-appointments'],
+  all: ['appointments'],
   myAppointmentsByStatus: ({ size, status }: MyAppointmentsByStatusParams) => [
     ...appointmentsQuery.all,
     'by-status',
@@ -9,4 +9,5 @@ export const appointmentsQuery = {
     status,
   ],
   detail: (id: string) => [...appointmentsQuery.all, 'detail', id],
+  respondToMyAppointmentRequest: (id: string) => [...appointmentsQuery.all, 'respond', id],
 }
