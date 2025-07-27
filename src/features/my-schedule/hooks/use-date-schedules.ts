@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
-import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 import { getMySchedule } from '@/features/my-schedule'
 
 export function useDateSchedules() {
@@ -14,8 +13,7 @@ export function useDateSchedules() {
     queryFn: getMySchedule,
   })
 
-  const repeated = repeatedSchedules(schedules)
-  const scheduleMap = groupByDate(repeated)
+  const scheduleMap = groupByDate(schedules)
 
   return {
     scheduleMap,

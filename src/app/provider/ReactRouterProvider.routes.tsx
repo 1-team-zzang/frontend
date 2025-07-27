@@ -8,6 +8,9 @@ import Authlayout from '@/pages/auth/auth-layout'
 import SigninPage from '@/pages/auth/signin/signin-page'
 import SignupPage from '@/pages/auth/signup/signup-page'
 import DetailedScheduleLayout from '@/pages/detailed-schedule/detailed-schedule-layout'
+import FriendDetailedSchedulePage from '@/pages/detailed-schedule/friend-detailed-schedule/friend-detailed-schedule'
+import FriendDetailedScheduleListPage from '@/pages/detailed-schedule/friend-detailed-schedule/friend-detailed-schedule-list-page'
+import FriendCalendarPage from '@/pages/friend-calendar/friend-calendar-page'
 import FriendsPage from '@/pages/friends/friends-page'
 import Home from '@/pages/home/home'
 import MainLayout from '@/pages/main-layout'
@@ -45,6 +48,20 @@ export const router = createBrowserRouter([
     ],
   },
   {
+    path: 'friends/:friendId/calendar',
+    Component: FriendCalendarPage,
+    children: [
+      {
+        path: 'detailed-schedule',
+        Component: DetailedScheduleLayout,
+        children: [
+          { path: 'date/:date', Component: FriendDetailedScheduleListPage },
+          { path: 'date/:date/schedule/:scheduleId', Component: FriendDetailedSchedulePage },
+        ],
+      },
+    ],
+  },
+  {
     path: '/share/:userId',
     Component: ShareCalendarPage,
     children: [
@@ -62,11 +79,11 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: 'friends',
-        Component: FriendsPage,
-      },
     ],
+  },
+  {
+    path: 'friends',
+    Component: FriendsPage,
   },
   {
     path: '/auth',
@@ -82,6 +99,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: '/appointment',
     children: [

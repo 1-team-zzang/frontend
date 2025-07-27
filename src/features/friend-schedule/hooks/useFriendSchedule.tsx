@@ -3,18 +3,18 @@ import { useParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 
-import { getShareSchedule } from '../api/share-schedule.API'
+import { getFriendSchedule } from '../api/friend-schedule.API'
 
-export function useShareSchedule() {
-  const { userId } = useParams<{ userId: string }>()
+export function useFriendSchedule() {
+  const { friendId } = useParams<{ friendId: string }>()
   const {
     data: schedules = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['share-schedule', userId],
-    queryFn: () => getShareSchedule(userId!),
-    enabled: !!userId,
+    queryKey: ['friend-schedule', friendId],
+    queryFn: () => getFriendSchedule(friendId!),
+    enabled: !!friendId,
   })
 
   const scheduleMap = groupByDate(schedules)
