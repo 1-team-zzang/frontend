@@ -2,10 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { addHours, format, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import z from 'zod'
 
+import { createSchedule, type CreateScheduleRequest } from '@/features/schedule-register/api/schedule-register.API'
 import { IconAppointmentArrowLeft, IconQuestion, IconTemp } from '@/shared/assets/icons'
 import {
   BottomSheet,
@@ -32,19 +33,34 @@ const InitialStart = setMilliseconds(setSeconds(setMinutes(addHours(today, 1), 0
 const InitialEnd = addHours(InitialStart, 1)
 
 //form 설정
-const ScheduleSchema = z.object({
-  title: z.string().min(1, '일정 제목을 적어주세요'),
-  color: z.string(),
-  start: z.date(),
-  end: z.date(),
-  repeat: z.string(),
-  visible: z.string(),
-  contents: z.string().min(1, '일정 내용을 적어주세요'),
-})
+const ScheduleSchema = z
+  .object({
+    title: z.string().min(1, '일정 제목을 적어주세요'),
+    color: z.string(),
+    start: z.date(),
+    end: z.date(),
+    repeatUnit: z.enum(['none', 'day', 'week', 'month', 'year']),
+    interval: z.number().min(1),
+    repeatMode: z.enum(['count', 'date']).optional(),
+    repeatCount: z.number().min(1),
+    repeatEndAt: z.date().nullable().optional(),
+    visible: z.string(),
+    contents: z.string().min(1, '일정 내용을 적어주세요'),
+  })
+  .refine(
+    (data) =>
+      (data.repeatMode === 'count' && typeof data.repeatCount === 'number' && data.repeatCount > 0) ||
+      (data.repeatMode === 'date' && data.repeatEndAt instanceof Date),
+    {
+      message: '반복 조건이 올바르지 않습니다.',
+      path: ['repeatMode'],
+    },
+  )
 
 type ScheduleFormType = z.infer<typeof ScheduleSchema>
 
 export default function ScheduleRegister() {
+  const navigate = useNavigate()
   const methods = useForm<ScheduleFormType>({
     resolver: zodResolver(ScheduleSchema),
     mode: 'onChange',
@@ -53,17 +69,48 @@ export default function ScheduleRegister() {
       color: 'red',
       start: InitialStart,
       end: InitialEnd,
-      repeat: 'none',
+      repeatUnit: 'none',
+      interval: 1,
+      repeatMode: 'count',
+      repeatCount: 1,
+      repeatEndAt: null,
       visible: 'visible',
       contents: '',
     },
+    shouldUnregister: false,
   })
 
-  const onSubmit = (value: ScheduleFormType) => {
-    devLog('log', value)
-  }
+  const onSubmit = async (data: ScheduleFormType) => {
+    const payload: CreateScheduleRequest = {
+      title: data.title,
+      start: data.start.toISOString(),
+      end: data.end.toISOString(),
+      isRepeated: data.repeatUnit !== 'none',
+      repeatRule:
+        data.repeatUnit === 'day'
+          ? 'DAILY'
+          : data.repeatUnit === 'week'
+            ? 'WEEKLY'
+            : data.repeatUnit === 'month'
+              ? 'MONTHLY'
+              : data.repeatUnit === 'year'
+                ? 'YEARLY'
+                : undefined,
+      interval: data.interval,
+      repeatType: data.repeatMode === 'count' ? 'COUNT' : 'UNTIL_DATE',
+      repeatCount: data.repeatMode === 'count' ? data.repeatCount : undefined,
+      repeatEndAt: data.repeatMode === 'date' && data.repeatEndAt ? data.repeatEndAt.toISOString() : undefined,
+    }
 
-  const navigate = useNavigate()
+    try {
+      const result = await createSchedule(payload)
+      devLog('log', result)
+      navigate(-1)
+    } catch (error) {
+      devLog('error', error)
+      alert('일정 등록 중 오류가 발생했습니다.')
+    }
+  }
 
   const onClickButton = () => {
     navigate(-1)
@@ -113,18 +160,121 @@ export default function ScheduleRegister() {
   const [isRepeatOpen, setIsRepeatOpen] = useState(false)
   const [isVisibleOpen, setIsVisibleOpen] = useState(false)
   const [question, setQuestion] = useState(false)
+  const [isRepeatEndOpen, setIsRepeatEndOpen] = useState(false)
+  const [repeatEndDate, setRepeatEndDate] = useState<Date>(today)
 
-  type Repeat = 'none' | 'day' | 'week' | 'month' | 'year'
+  type RepeatUnit = 'none' | 'day' | 'week' | 'month' | 'year'
   type Visible = 'visible' | 'invisible'
 
-  const repeat = methods.watch('repeat') as Repeat
-  const repeatLabelMap: Record<Repeat, string> = {
+  const repeat =
+    useWatch({
+      control: methods.control,
+      name: 'repeatUnit',
+    }) ?? 'none'
+
+  // Track current repeat mode
+  const repeatMode =
+    useWatch({
+      control: methods.control,
+      name: 'repeatMode',
+    }) ?? 'count'
+
+  // Reset repeat settings when the repeat unit changes
+  useEffect(() => {
+    methods.setValue('repeatMode', 'count')
+    methods.setValue('repeatCount', 1)
+    methods.setValue('repeatEndAt', null)
+  }, [repeat, methods])
+
+  // When switching between count and date modes, clear the unused field
+  useEffect(() => {
+    if (repeatMode === 'count') {
+      methods.setValue('repeatEndAt', null)
+    } else {
+      methods.setValue('repeatCount', 1)
+      methods.setValue('repeatEndAt', repeatEndDate)
+    }
+  }, [repeatMode, repeatEndDate, methods])
+  const repeatLabelMap: Record<RepeatUnit, string> = {
     none: '반복 안함',
     day: '일 단위 반복',
     week: '주 단위 반복',
     month: '월 단위 반복',
     year: '연 단위 반복',
   }
+
+  const renderRepeatDetailOptions = () => (
+    <div>
+      <div className="flex gap-3">
+        <div className="flex justify-center items-center gap-1.5">
+          <Text
+            as="button"
+            type="button"
+            typography="b2-normal"
+            className={`h-[2.125rem] px-3 py-1 rounded-full ${
+              methods.watch('repeatMode') === 'count' ? 'bg-primary-30' : 'bg-gray-5'
+            }`}
+            onClick={() => methods.setValue('repeatMode', 'count')}
+          >
+            횟수
+          </Text>
+          <Text
+            as="button"
+            type="button"
+            typography="b2-normal"
+            className={`h-[2.125rem] px-3 py-1 rounded-full ${
+              methods.watch('repeatMode') === 'date' ? 'bg-primary-30' : 'bg-gray-5'
+            }`}
+            onClick={() => methods.setValue('repeatMode', 'date')}
+          >
+            종료일
+          </Text>
+        </div>
+        {repeatMode === 'count' && (
+          <div className="flex items-center gap-2.5">
+            <Controller
+              control={methods.control}
+              name="repeatCount"
+              defaultValue={1}
+              render={({ field }) => (
+                <Input
+                  className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
+                  {...field}
+                  onChange={(e) => field.onChange(Number(e.target.value))}
+                />
+              )}
+            />
+            <Text typography="b2-normal">회 반복</Text>
+          </div>
+        )}
+        {methods.watch('repeatMode') === 'date' && (
+          <div className="flex items-center gap-2">
+            <Text
+              as="button"
+              type="button"
+              typography="b2-normal"
+              className="bg-gray-5 px-4 py-2.5 rounded-[0.25rem]"
+              onClick={() => setIsRepeatEndOpen(true)}
+            >
+              {format(repeatEndDate, 'yyyy.MM.dd', { locale: ko })}
+            </Text>
+            <span>까지</span>
+
+            <ScheduleDatePicker
+              open={isRepeatEndOpen}
+              onOpenChange={setIsRepeatEndOpen}
+              initialDate={repeatEndDate}
+              onConfirm={(date) => {
+                setRepeatEndDate(date)
+                methods.setValue('repeatEndAt', date)
+              }}
+              today={today}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  )
 
   const visible = methods.watch('visible') as Visible
   const visibleLabelMap: Record<Visible, string> = {
@@ -274,21 +424,14 @@ export default function ScheduleRegister() {
               <SwitchTrigger />
             </Switch>
           </div>
-          <FormField name="repeat">
+          <FormField name="repeatUnit">
             <div className="flex py-4 justify-between items-center border-b border-gray-10">
               <Text typography={'b2-heading'}>반복</Text>
               <Text as="button" type="button" onClick={openRepeatBottomSheet} typography={'b2-normal'}>
                 {repeatLabelMap[repeat]}
               </Text>
-              {isRepeatOpen && (
-                <div
-                  className="fixed inset-0 backdrop-blur-[0.1rem] z-1"
-                  onClick={() => setIsRepeatOpen(false)}
-                  aria-hidden
-                />
-              )}
-              <BottomSheet defaultOpen={false} open={isRepeatOpen} onOpenChange={setIsRepeatOpen}>
-                <BottomSheetContainer>
+              <BottomSheet open={isRepeatOpen} onOpenChange={setIsRepeatOpen}>
+                <BottomSheetContainer className="h-[475px]">
                   <BottomSheetHeader>
                     <BottomSheetHeaderTitle>일정 등록</BottomSheetHeaderTitle>
                     <BottomSheetHeaderButton type="button" onClick={() => setIsRepeatOpen(false)}>
@@ -296,13 +439,115 @@ export default function ScheduleRegister() {
                     </BottomSheetHeaderButton>
                   </BottomSheetHeader>
                   <BottomSheetContent>
-                    <RadioGroup className="flex flex-col gap-6" name="repeat">
-                      <Radio value="none">반복 안함</Radio>
-                      <Radio value="day">일 단위 반복</Radio>
-                      <Radio value="week">주 단위 반복</Radio>
-                      <Radio value="month">월 단위 반복</Radio>
-                      <Radio value="year">연 단위 반복</Radio>
-                    </RadioGroup>
+                    <Controller
+                      control={methods.control}
+                      name="repeatUnit"
+                      defaultValue="none"
+                      render={({ field }) => (
+                        <RadioGroup
+                          className="flex flex-col gap-6"
+                          name="repeatUnit"
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
+                          <div>
+                            <Radio value="none">반복 안함</Radio>
+                          </div>
+                          <div>
+                            <Radio value="day">일 단위 반복</Radio>
+                            {field.value === 'day' && (
+                              <div key="repeat-day" className="mt-2 flex flex-col gap-4 pl-6">
+                                <div className="flex items-center gap-2">
+                                  <Controller
+                                    control={methods.control}
+                                    name="interval"
+                                    defaultValue={1}
+                                    render={({ field }) => (
+                                      <Input
+                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
+                                        {...field}
+                                        onChange={(e) => field.onChange(Number(e.target.value))}
+                                      />
+                                    )}
+                                  />
+                                  <span>일 마다</span>
+                                </div>
+                                {renderRepeatDetailOptions()}
+                              </div>
+                            )}
+                          </div>
+                          <div>
+                            <Radio value="week">주 단위 반복</Radio>
+                            {field.value === 'week' && (
+                              <div key="repeat-week" className="mt-2 flex flex-col gap-4 pl-6">
+                                <div className="flex items-center gap-2">
+                                  <Controller
+                                    control={methods.control}
+                                    name="interval"
+                                    defaultValue={1}
+                                    render={({ field }) => (
+                                      <Input
+                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
+                                        {...field}
+                                        onChange={(e) => field.onChange(Number(e.target.value))}
+                                      />
+                                    )}
+                                  />
+                                  <span>주 마다</span>
+                                </div>
+                                {renderRepeatDetailOptions()}
+                              </div>
+                            )}
+                          </div>
+                          <div>
+                            <Radio value="month">월 단위 반복</Radio>
+                            {field.value === 'month' && (
+                              <div key="repeat-month" className="mt-2 flex flex-col gap-4 pl-6">
+                                <div className="flex items-center gap-2">
+                                  <Controller
+                                    control={methods.control}
+                                    name="interval"
+                                    defaultValue={1}
+                                    render={({ field }) => (
+                                      <Input
+                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
+                                        {...field}
+                                        onChange={(e) => field.onChange(Number(e.target.value))}
+                                      />
+                                    )}
+                                  />
+                                  <span>월 마다</span>
+                                </div>
+                                {renderRepeatDetailOptions()}
+                              </div>
+                            )}
+                          </div>
+                          <div>
+                            <Radio value="year">연 단위 반복</Radio>
+                            {field.value === 'year' && (
+                              <div key="repeat-year" className="mt-2 flex flex-col gap-4 pl-6">
+                                <div className="flex items-center gap-2">
+                                  <Controller
+                                    control={methods.control}
+                                    name="interval"
+                                    defaultValue={1}
+                                    render={({ field }) => (
+                                      <Input
+                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
+                                        {...field}
+                                        onChange={(e) => field.onChange(Number(e.target.value))}
+                                      />
+                                    )}
+                                  />
+                                  <span>년 마다</span>
+                                </div>
+                                {renderRepeatDetailOptions()}
+                              </div>
+                            )}
+                          </div>
+                        </RadioGroup>
+                      )}
+                    />
                   </BottomSheetContent>
                 </BottomSheetContainer>
               </BottomSheet>
@@ -314,14 +559,7 @@ export default function ScheduleRegister() {
               <Text as="button" type="button" onClick={openVisibleBottomSheet} typography={'b2-normal'}>
                 {visibleLabelMap[visible]}
               </Text>
-              {isVisibleOpen && (
-                <div
-                  className="fixed inset-0 backdrop-blur-[0.1rem] z-1"
-                  onClick={() => setIsVisibleOpen(false)}
-                  aria-hidden
-                />
-              )}
-              <BottomSheet defaultOpen={false} open={isVisibleOpen} onOpenChange={setIsVisibleOpen}>
+              <BottomSheet open={isVisibleOpen} onOpenChange={setIsVisibleOpen}>
                 <BottomSheetContainer>
                   <BottomSheetHeader>
                     <BottomSheetHeaderTitle>공개 설정</BottomSheetHeaderTitle>
@@ -344,7 +582,7 @@ export default function ScheduleRegister() {
             </div>
           </FormField>
           <FormField name="contents">
-            <div className="flex flex-col py-4 gap-2 border-b border-gray-10">
+            <div className="flex flex-col py-4 gap-2">
               <Text typography={'b2-heading'}>일정 내용</Text>
               <Textarea className="h-[7.5rem] px-4 py-2.5" placeholder="내용을 적어주세요." />
             </div>
