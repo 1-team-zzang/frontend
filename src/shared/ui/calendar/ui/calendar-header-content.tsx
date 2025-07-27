@@ -1,9 +1,12 @@
+import { useState } from 'react'
+
 import { useCalendarContext } from '../hooks/calendar-context'
 import { scrollToCurrentMonth } from '../util/scroll-current-month'
 
 import CalendarHeaderButton from './calendar-header-button'
 import CalendarHeader from './calendar-header-container'
 import CalendarHeaderMonthLabel from './calendar-header-month-label'
+import ShareCalendarBottomSheet from './share-calendar-bottom-sheet'
 
 /**
  *
@@ -18,12 +21,16 @@ import CalendarHeaderMonthLabel from './calendar-header-month-label'
 
 export default function CalendarHeaderContent() {
   const { containerRef, monthRefs } = useCalendarContext()
-
+  const [isOpen, setIsOpen] = useState(false)
   return (
-    <CalendarHeader>
-      <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>오늘</CalendarHeaderButton>
-      <CalendarHeaderMonthLabel />
-      <CalendarHeaderButton onClick={() => alert('공유하기')}>공유</CalendarHeaderButton>
-    </CalendarHeader>
+    <>
+      <CalendarHeader>
+        <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>오늘</CalendarHeaderButton>
+        <CalendarHeaderMonthLabel />
+        <CalendarHeaderButton onClick={() => setIsOpen(true)}>공유</CalendarHeaderButton>
+      </CalendarHeader>
+
+      {isOpen && <ShareCalendarBottomSheet isOpen={isOpen} setIsOpen={setIsOpen} />}
+    </>
   )
 }
