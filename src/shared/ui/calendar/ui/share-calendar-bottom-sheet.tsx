@@ -34,7 +34,7 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
               <Text as="span" typography="h2-heading">
                 캘린더 공유
               </Text>
-              <IconClose className="size-6" />
+              <IconClose className="size-6 cursor-pointer" onClick={() => setIsOpen(false)} />
             </div>
             <Text as="span" typography="b2-normal" className="mt-4">
               캘린더 링크가 생성되었습니다. 과거 일정은 나만보기로 자동 전환되어 공개되지 않습니다.
