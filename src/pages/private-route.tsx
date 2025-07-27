@@ -1,7 +1,9 @@
 import { Navigate, Outlet } from 'react-router'
 
-import useAuthenticate from '@/shared/hooks/use-authenticate'
+import { useUserStore } from '@/entities/user/models/use-user-store'
 
 export default function PrivateRoute() {
-  return useAuthenticate() ? <Outlet /> : <Navigate to="/" />
+  const user = useUserStore((state) => !!state.user)
+
+  return user ? <Outlet /> : <Navigate to="/" />
 }
