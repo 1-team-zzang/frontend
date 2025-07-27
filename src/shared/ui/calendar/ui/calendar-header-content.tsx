@@ -18,8 +18,10 @@ import ShareCalendarBottomSheet from './share-calendar-bottom-sheet'
  * 내부적으로 `CalendarContext`에서 `containerRef`와 `monthRefs`를 받아와,
  * 버튼 클릭 시 현재 달로 스크롤하는 동작을 수행합니다.]
  */
-
-export default function CalendarHeaderContent() {
+interface Props {
+  showShareButton?: boolean
+}
+export default function CalendarHeaderContent({ showShareButton = false }: Props) {
   const { containerRef, monthRefs } = useCalendarContext()
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -27,7 +29,11 @@ export default function CalendarHeaderContent() {
       <CalendarHeader>
         <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>오늘</CalendarHeaderButton>
         <CalendarHeaderMonthLabel />
-        <CalendarHeaderButton onClick={() => setIsOpen(true)}>공유</CalendarHeaderButton>
+        {showShareButton ? (
+          <CalendarHeaderButton onClick={() => setIsOpen(true)}>공유</CalendarHeaderButton>
+        ) : (
+          <div className="w-[1.625rem]" />
+        )}
       </CalendarHeader>
 
       {isOpen && <ShareCalendarBottomSheet isOpen={isOpen} setIsOpen={setIsOpen} />}

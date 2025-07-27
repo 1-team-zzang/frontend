@@ -64,12 +64,13 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
       {/* 임시 디자인 */}
       {copied && (
         <Modal open={copied} defaultOpen={false} onOpenChange={setCopied}>
-          <ModalOverlay />
-          <ModalContent className="flex flex-col items-center justify-center gap-4">
-            <ModalTitle>링크 복사 완료</ModalTitle>
-            <ModalDescription>링크가 복사되었습니다</ModalDescription>
-            <ModalCloseButton />
-          </ModalContent>
+          <ModalOverlay>
+            <ModalContent className="flex flex-col items-center justify-center gap-4">
+              <ModalTitle>링크 복사 완료</ModalTitle>
+              <ModalDescription>링크가 복사되었습니다</ModalDescription>
+              <ModalCloseButton />
+            </ModalContent>
+          </ModalOverlay>
         </Modal>
       )}
     </>
