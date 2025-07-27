@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
-import repeatedSchedules from '@/entities/schedule/models/repeat-schedules'
 
 import { getFriendSchedule } from '../api/friend-schedule.API'
 
@@ -18,8 +17,7 @@ export function useFriendSchedule() {
     enabled: !!friendId,
   })
 
-  const repeated = repeatedSchedules(schedules)
-  const scheduleMap = groupByDate(repeated)
+  const scheduleMap = groupByDate(schedules)
 
   return { scheduleMap, isLoading, isError }
 }
