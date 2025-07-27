@@ -17,6 +17,7 @@ interface Props {
   date: number // 셀에 해당하는 일
   showMonthLabel?: boolean //월 1일마다 표시하는 라벨
   isPast?: boolean //오늘 이전의 날짜인지
+  isSelected?: boolean //선택된 날짜
 }
 
 const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify-center', {
@@ -25,6 +26,7 @@ const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify
     isSaturday: { true: 'text-calendar-blue' },
     isTodayDate: { true: 'bg-primary-30' },
     isPast: { true: 'opacity-40' },
+    isSelected: { true: 'rounded-lg bg-primary-70 p-2.5' },
   },
 })
 export default function CalendarCell({ year, month, date, showMonthLabel }: Props) {
