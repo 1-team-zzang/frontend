@@ -27,7 +27,7 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
     queryKey: ['userId'],
     queryFn: getUserId,
   })
-  const link = `/share/${userId}`
+  const link = `http://localhost:5173/share/${userId}`
 
   const handleCopy = handleShareLinkCopy(link, setCopied)
   return (
@@ -58,7 +58,7 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
       </BottomSheet>
       {/* 임시 디자인 */}
       {copied && (
-        <Modal open={copied} defaultOpen={false} onOpenChange={setCopied}>
+        <Modal open={copied} onOpenChange={setCopied}>
           <ModalOverlay>
             <ModalContent className="flex flex-col items-center justify-center gap-4">
               <ModalTitle>링크 복사 완료</ModalTitle>
