@@ -294,7 +294,6 @@ export default function ScheduleRegister() {
       interval: data.interval,
       repeatType: data.repeatMode === 'count' ? 'COUNT' : 'DATE',
       repeatCount: data.repeatMode === 'count' ? data.repeatCount : undefined,
-      // 2:00 시작
       repeatEndAt: data.repeatMode === 'date' && data.repeatEndAt ? data.repeatEndAt : undefined,
       color: data.color.toUpperCase(),
     }
@@ -302,7 +301,7 @@ export default function ScheduleRegister() {
     try {
       const result = await createSchedule(payload)
       devLog('log', 'result', result)
-      // navigate(-1)
+      navigate('/')
     } catch (error) {
       devLog('error', 'error', error)
       alert('일정 등록 중 오류가 발생했습니다.')
@@ -311,7 +310,7 @@ export default function ScheduleRegister() {
 
   return (
     <div>
-      <Form methods={methods} onSubmit={onSubmit}>
+      <Form methods={methods} onSubmit={onSubmit} className="m-0">
         <div className="flex justify-between items-center px-[1.25rem] py-[0.625rem]">
           <IconAppointmentArrowLeft onClick={onClickButton} className=" cursor-pointer" />
           <Text typography={'h2-heading'}>일정 등록</Text>
