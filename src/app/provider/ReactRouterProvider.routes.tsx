@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router'
 
-import ScheduleRegister from '@/features/schedule-register/ui/schedule-register'
 import {
   AppointmentDetailPage,
   AppointmentListPage,
@@ -39,10 +38,6 @@ export const router = createBrowserRouter([
             path: 'my',
             children: [
               {
-                path: 'schedule/create',
-                Component: ScheduleRegister,
-              },
-              {
                 path: 'detailed-schedule',
                 Component: DetailedScheduleLayout,
                 children: [
@@ -72,15 +67,13 @@ export const router = createBrowserRouter([
               {
                 path: ':friendId/calendar',
                 Component: FriendCalendarPage,
+              },
+              {
+                path: ':friendId/calendar/detailed-schedule',
+                Component: DetailedScheduleLayout,
                 children: [
-                  {
-                    path: 'detailed-schedule',
-                    Component: DetailedScheduleLayout,
-                    children: [
-                      { path: 'date/:date', Component: FriendDetailedScheduleListPage },
-                      { path: 'date/:date/schedules/:scheduleId', Component: FriendDetailedSchedulePage },
-                    ],
-                  },
+                  { path: 'date/:date', Component: FriendDetailedScheduleListPage },
+                  { path: 'date/:date/schedules/:scheduleId', Component: FriendDetailedSchedulePage },
                 ],
               },
             ],
@@ -104,20 +97,18 @@ export const router = createBrowserRouter([
       {
         path: 'share/:userId',
         Component: ShareCalendarPage,
+      },
+      {
+        path: 'share/:userId/detailed-schedule',
+        Component: DetailedScheduleLayout,
         children: [
           {
-            path: 'detailed-schedule',
-            Component: DetailedScheduleLayout,
-            children: [
-              {
-                path: 'date/:date',
-                Component: ShareDetailedScheduleListPage,
-              },
-              {
-                path: 'date/:date/schedules/:scheduleId',
-                Component: ShareDetailedSchedulePage,
-              },
-            ],
+            path: 'date/:date',
+            Component: ShareDetailedScheduleListPage,
+          },
+          {
+            path: 'date/:date/schedules/:scheduleId',
+            Component: ShareDetailedSchedulePage,
           },
         ],
       },
