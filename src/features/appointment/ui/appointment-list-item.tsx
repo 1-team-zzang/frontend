@@ -21,7 +21,7 @@ export default function AppointmentListItem({
 }) {
   const isResponded = status === 'RESPONDED'
   return (
-    <Link to={`/appointment/requests/${id}`} className={isResponded ? 'pointer-events-none' : ''}>
+    <Link to={`/appointments/requests/${id}`} className={isResponded ? 'pointer-events-none' : ''}>
       <AppointmentCard className="p-0" disabled={isResponded}>
         <AppointmentSender inviteAt={inviteAt} requesterName={requesterName} className="py-4 px-6 bg-gray-1" />
         <div className="flex flex-col items-center gap-[0.188rem] py-6">

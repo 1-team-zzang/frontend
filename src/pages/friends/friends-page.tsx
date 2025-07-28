@@ -26,10 +26,12 @@ export default function FriendsPage() {
         )}
       >
         <Suspense fallback={<FriendsPageSkeleton />}>
-          <div className="px-5 py-3">
-            <FriendRequestListButton />
+          <div className="h-[calc(100vh-109px)]">
+            <div className="px-5 py-3">
+              <FriendRequestListButton />
+            </div>
+            <FriendList />
           </div>
-          <FriendList />
         </Suspense>
       </ErrorBoundary>
     </>
