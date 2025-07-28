@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 
+import ScheduleRegister from '@/features/schedule-register/ui/schedule-register'
 import {
   AppointmentDetailPage,
   AppointmentListPage,
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
           {
             path: 'my',
             children: [
+              {
+                path: 'schedule/create',
+                Component: ScheduleRegister,
+              },
               {
                 path: 'detailed-schedule',
                 Component: DetailedScheduleLayout,

@@ -12,16 +12,24 @@ export default function AuthSidebar() {
         <SidebarMenuHeader />
         <SidebarMenu>
           {/* TODO 나머지들 페이지 prop 추가 */}
-          <SidebarMenuList icon={<IconCalendarDay />}>내 캘린더</SidebarMenuList>
-          <SidebarMenuList icon={<IconCalendarCheck />}>내 약속</SidebarMenuList>
-          <SidebarMenuList icon={<IconKakaoLogo />}>캘메이트</SidebarMenuList>
+          <SidebarMenuList icon={<IconCalendarDay />} href="/">
+            내 캘린더
+          </SidebarMenuList>
+          <SidebarMenuList icon={<IconCalendarCheck />} href="/appointments">
+            내 약속
+          </SidebarMenuList>
+          <SidebarMenuList icon={<IconKakaoLogo />} href="/friends">
+            캘메이트
+          </SidebarMenuList>
         </SidebarMenu>
       </div>
       <SidebarMenuFooter>
         <SidebarMenuList icon={<IconLogout />} onClick={() => logoutMutation.mutate()}>
           로그아웃
         </SidebarMenuList>
-        <SidebarMenuList icon={<IconSetting />}>설정</SidebarMenuList>
+        <SidebarMenuList icon={<IconSetting />} href="/my/settings">
+          설정
+        </SidebarMenuList>
       </SidebarMenuFooter>
     </Sidebar>
   )
