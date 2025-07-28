@@ -292,10 +292,10 @@ export default function ScheduleRegister() {
 
     try {
       const result = await createSchedule(payload)
-      devLog('log', result)
+      devLog('log', 'result', result)
       navigate(-1)
     } catch (error) {
-      devLog('error', error)
+      devLog('error', 'error', error)
       alert('일정 등록 중 오류가 발생했습니다.')
     }
   }
