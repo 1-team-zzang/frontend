@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router'
 
 import { useIntersect, useQueryParamValue } from '@/shared/hooks'
+import Button from '@/shared/ui/button/button.tsx'
 import {
   SegmentedControl,
   SegmentedControlContent,
@@ -9,6 +10,7 @@ import {
 } from '@/shared/ui/segmented-control'
 import Text from '@/shared/ui/text/text'
 
+import { appointmentListEmptyMessage } from '../consts/appointment-list-empty-message'
 import { useMyAppointmentsByStatus } from '../models'
 
 import AppointmentListItem from './appointment-list-item'
@@ -36,12 +38,12 @@ export default function AppointmentList() {
   const navigate = useNavigate()
 
   const handleStatusChange = (value: string) => {
-    navigate(`/appointment?status=${value}`)
+    navigate(`/appointments?status=${value}`)
   }
 
   return (
-    <div className="flex flex-col items-center py-6 gap-6 px-4">
-      <SegmentedControl defaultValue={status} onValueChange={handleStatusChange}>
+    <div className="flex flex-col items-center py-6 gap-6 px-4 h-[calc(100vh-111px)]">
+      <SegmentedControl value={status} onValueChange={handleStatusChange}>
         <SegmentedControlList>
           <SegmentedControlItem value="PENDING">
             <Text typography="b2-normal">대기중 약속</Text>
@@ -53,10 +55,20 @@ export default function AppointmentList() {
             <Text typography="b2-normal">보낸 약속</Text>
           </SegmentedControlItem>
         </SegmentedControlList>
-        <SegmentedControlContent value={status} className="w-full flex flex-col gap-5">
-          {data.appointments.map((appointment) => (
-            <AppointmentListItem key={appointment.id} {...appointment} />
-          ))}
+        <SegmentedControlContent value={status} className="w-full flex flex-col gap-5 overflow-y-auto scrollbar-hide">
+          {data.appointments.length === 0 ? (
+            <div className="flex flex-col items-center py-6 gap-6 px-4 text-center">
+              <Text typography="b2-normal">{appointmentListEmptyMessage[status]}</Text>
+              <Button intent="solid" onClick={() => navigate('/appointment/create')} className="w-full bg-primary-50">
+                약속 만들기
+              </Button>
+            </div>
+          ) : (
+            data.appointments.map((appointment) => (
+              <AppointmentListItem key={appointment.id} {...appointment} status={status} />
+            ))
+          )}
+
           <div ref={ref} className="h-[1px]" />
         </SegmentedControlContent>
       </SegmentedControl>

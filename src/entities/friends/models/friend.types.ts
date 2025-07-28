@@ -14,6 +14,7 @@ export type Friends = Friend[]
 export interface FriendUser extends FriendBase {
   id: number
   isFriend: boolean
+  isRequested: boolean
 }
 
 export interface FriendRequest extends FriendBase {

@@ -4,7 +4,7 @@ export default function useQueryParamValue<T>(name: string, defaultValue: string
   const [searchParams] = useSearchParams(name)
   const value = searchParams.get(name) || defaultValue
 
-  if (value === null || value === undefined) {
+  if (!value) {
     console.error(`${name} 값이 존재하지 않습니다.`)
     return defaultValue as T
   }

@@ -20,3 +20,9 @@ export interface AppointmentDetailResponse {
   message: string
   data: AppointmentDetail
 }
+
+export interface RespondToMyAppointmentRequestParams {
+  appointmentId: string
+  status: 'ACCEPT' | 'REJECT'
+  content: string
+}

@@ -6,7 +6,7 @@ import { formatDateTimeWithDay } from '@/shared/utils'
 import AppointmentCard from './appointment-card'
 import AppointmentSender from './appointment-sender'
 
-import type { Appointment } from '@/entities/appointment/models'
+import type { AppointmentRequest, AppointmentStatus } from '@/entities/appointment/models'
 
 export default function AppointmentListItem({
   title,
@@ -15,10 +15,14 @@ export default function AppointmentListItem({
   endAt,
   inviteAt,
   id,
-}: Pick<Appointment, 'title' | 'requesterName' | 'startAt' | 'endAt' | 'inviteAt' | 'id'>) {
+  status,
+}: Pick<AppointmentRequest, 'title' | 'requesterName' | 'startAt' | 'endAt' | 'inviteAt' | 'id'> & {
+  status: AppointmentStatus
+}) {
+  const isResponded = status === 'RESPONDED'
   return (
-    <Link to={`/appointment/requests/${id}`}>
-      <AppointmentCard className="p-0">
+    <Link to={`/appointments/requests/${id}`} className={isResponded ? 'pointer-events-none' : ''}>
+      <AppointmentCard className="p-0" disabled={isResponded}>
         <AppointmentSender inviteAt={inviteAt} requesterName={requesterName} className="py-4 px-6 bg-gray-1" />
         <div className="flex flex-col items-center gap-[0.188rem] py-6">
           <Text typography="b2-heading">{title}</Text>
