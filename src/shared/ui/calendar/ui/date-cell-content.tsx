@@ -33,7 +33,7 @@ export default function DateCellContent({ scheduleMap, date, isPast = false, isM
           ),
         )}
       {!isPast && hiddenCount > 0 && (
-        <Text as="span" typography="caption-10" className="w-full text-left text-gray-80">
+        <Text as="span" typography="caption-10" className="w-full text-left text-gray-80 z-base">
           +{hiddenCount}
         </Text>
       )}

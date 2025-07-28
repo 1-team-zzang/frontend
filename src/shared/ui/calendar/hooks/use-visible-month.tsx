@@ -38,7 +38,7 @@ export default function useVisibleMonth(containerRef: RefObject<HTMLDivElement |
       },
       {
         root: containerRef.current,
-        threshold: 0.5,
+        threshold: 0.8,
       },
     )
 

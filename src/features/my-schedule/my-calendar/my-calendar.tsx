@@ -21,6 +21,7 @@ export default function MyCalendar() {
         const dateStr = format(date, 'yyyy-MM-dd')
         navigate(`/my/detailed-schedule/date/${dateStr}`)
       }}
+      showShareButton={true}
     >
       <AddScheduleButton>
         <IconCalendarAdd />

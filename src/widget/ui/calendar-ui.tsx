@@ -8,12 +8,14 @@ interface Props {
   renderDateCellContent?: (date: Date) => ReactNode
   onDateClick?: (date: Date) => void
   children?: ReactNode
+  showShareButton?: boolean
 }
 
 export default function CalendarUI({
   disablePastDateStyling = true,
   renderDateCellContent,
   onDateClick,
+  showShareButton = false,
   children,
 }: Props) {
   return (
@@ -22,7 +24,7 @@ export default function CalendarUI({
       renderDateCellContent={renderDateCellContent}
       onDateClick={onDateClick}
     >
-      <CalendarHeaderContent />
+      <CalendarHeaderContent showShareButton={showShareButton} />
       <CalendarDayName />
       <YearlyCalendar />
       {children}
