@@ -1,8 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
+import { useQueryErrorResetBoundary } from '@tanstack/react-query'
+import { Suspense, useEffect, useState } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 
+import { IconCheck } from '@/shared/assets/icons'
 import {
   BottomSheet,
   BottomSheetContainer,
@@ -14,6 +17,9 @@ import {
 import Button from '@/shared/ui/button/button.tsx'
 import { Form, FormField } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
+import Text from '@/shared/ui/text/text'
+
+import UserListSkeleton from './user-list-skeleton'
 
 import { UserList } from './index'
 
@@ -29,6 +35,8 @@ interface Props {
 
 export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
   const [searchQuery, setSearchQuery] = useState<string>('')
+
+  const { reset } = useQueryErrorResetBoundary()
 
   const methods = useForm<FriendRequestType>({
     resolver: zodResolver(FriendRequestSchema),
@@ -68,8 +76,26 @@ export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
               </div>
             </FormField>
           </Form>
-
-          <UserList searchQuery={searchQuery} />
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={({ resetErrorBoundary }) => (
+              <div className="p-2 h-64 mt-2 flex items-center justify-center">
+                <div>
+                  <Text as="span" typography="label">
+                    다시시도{' '}
+                  </Text>
+                  {/* TODO 빙글 도는 아이콘으로 추가하면 좋을듯 */}
+                  <button onClick={resetErrorBoundary} className="rounded-full border border-gray-20 p-2">
+                    <IconCheck />
+                  </button>
+                </div>
+              </div>
+            )}
+          >
+            <Suspense fallback={<UserListSkeleton />}>
+              <UserList searchQuery={searchQuery} />
+            </Suspense>
+          </ErrorBoundary>
         </BottomSheetContent>
       </BottomSheetContainer>
     </BottomSheet>
