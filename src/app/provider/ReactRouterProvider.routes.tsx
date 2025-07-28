@@ -16,11 +16,11 @@ import {
   MySettingsPage,
   PrivateRoute,
   ShareCalendarPage,
+  ShareDetailedScheduleListPage,
   ShareDetailedSchedulePage,
   SigninPage,
   SignupPage,
 } from '@/pages'
-import ShareDetailedScheduleListPage from '@/pages/detailed-schedule/share-detailed-schedule/share-detailed-schedule-page'
 
 export const router = createBrowserRouter([
   {
