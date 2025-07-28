@@ -14,7 +14,7 @@ export default function ShareDetailedScheduleList() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const onClick = (scheduleId: number) => {
-    navigate(`/share/${userId}/detailed-schedule/date/${date}/schedule/${scheduleId}`)
+    navigate(`/share/${userId}/detailed-schedule/date/${date}/schedules/${scheduleId}`)
   }
 
   return (
