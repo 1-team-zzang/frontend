@@ -64,9 +64,6 @@ export default function ScheduleTimePicker({ open, onOpenChange, initialDate, on
       <ModalPortal>
         <ModalOverlay />
         <ModalContent className="flex w-[17.5rem] flex-col rounded-2xl py-6 px-3 gap-4">
-          {/* 헤더 */}
-
-          {/* Picker Columns */}
           <div className="flex justify-between">
             <TimeSelector
               className="flex-1 border-r border-gray-20 pr-5"

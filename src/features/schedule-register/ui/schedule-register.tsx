@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { addHours, format, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
+import { format, addHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
 import { useForm, useWatch, Controller } from 'react-hook-form'
@@ -44,14 +44,14 @@ const ScheduleSchema = z
     interval: z.number().min(1),
     repeatMode: z.enum(['count', 'date']).optional(),
     repeatCount: z.number().min(1),
-    repeatEndAt: z.date().nullable().optional(),
+    repeatEndAt: z.string().nullable().optional(),
     visible: z.string(),
     content: z.string().min(1, '일정 내용을 적어주세요'),
   })
   .refine(
     (data) =>
       (data.repeatMode === 'count' && typeof data.repeatCount === 'number' && data.repeatCount > 0) ||
-      (data.repeatMode === 'date' && data.repeatEndAt instanceof Date),
+      (data.repeatMode === 'date' && data.repeatEndAt),
     {
       message: '반복 조건이 올바르지 않습니다.',
       path: ['repeatMode'],
@@ -130,7 +130,7 @@ export default function ScheduleRegister() {
   const [isVisibleOpen, setIsVisibleOpen] = useState(false)
   const [question, setQuestion] = useState(false)
   const [isRepeatEndOpen, setIsRepeatEndOpen] = useState(false)
-  const [repeatEndDate, setRepeatEndDate] = useState<Date>(today)
+  const [repeatEndDate, setRepeatEndDate] = useState(format(today, 'yyyy-MM-dd HH:mm'))
 
   type RepeatUnit = 'none' | 'day' | 'week' | 'month' | 'year'
   type Visible = 'visible' | 'invisible'
@@ -141,21 +141,18 @@ export default function ScheduleRegister() {
       name: 'repeatUnit',
     }) ?? 'none'
 
-  // Track current repeat mode
   const repeatMode =
     useWatch({
       control: methods.control,
       name: 'repeatMode',
     }) ?? 'count'
 
-  // Reset repeat settings when the repeat unit changes
   useEffect(() => {
     methods.setValue('repeatMode', 'count')
     methods.setValue('repeatCount', 1)
     methods.setValue('repeatEndAt', null)
   }, [repeat, methods])
 
-  // When switching between count and date modes, clear the unused field
   useEffect(() => {
     if (repeatMode === 'count') {
       methods.setValue('repeatEndAt', null)
@@ -232,10 +229,10 @@ export default function ScheduleRegister() {
             <ScheduleDatePicker
               open={isRepeatEndOpen}
               onOpenChange={setIsRepeatEndOpen}
-              initialDate={repeatEndDate}
               onConfirm={(date) => {
-                setRepeatEndDate(date)
-                methods.setValue('repeatEndAt', date)
+                const parsedDate = format(date, 'yyyy-MM-dd HH:mm')
+                setRepeatEndDate(parsedDate)
+                methods.setValue('repeatEndAt', parsedDate)
               }}
               today={today}
             />
@@ -263,13 +260,24 @@ export default function ScheduleRegister() {
 
   //완료 버튼을 누르지 않았을 때는 선택한 값이 반영되지 않아야 할 것 같음...
 
+  //시간 string 형식으로 변환
+  function dateToString(date: Date) {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0') // 0~11 이므로 +1
+    const day = String(date.getDate()).padStart(2, '0')
+    const hour = String(date.getHours()).padStart(2, '0')
+    const minute = String(date.getMinutes()).padStart(2, '0')
+
+    return `${year}-${month}-${day} ${hour}:${minute}`
+  }
+
   //API
   const onSubmit = async (data: ScheduleFormType) => {
     const payload: CreateScheduleRequest = {
       title: data.title,
       content: data.content,
-      startAt: data.start.toISOString(),
-      endAt: data.end.toISOString(),
+      startAt: dateToString(data.start),
+      endAt: dateToString(data.end),
       isVisible: data.visible === 'visible',
       isAllDay: isChecked,
       isRepeated: data.repeatUnit !== 'none',
@@ -286,14 +294,15 @@ export default function ScheduleRegister() {
       interval: data.interval,
       repeatType: data.repeatMode === 'count' ? 'COUNT' : 'DATE',
       repeatCount: data.repeatMode === 'count' ? data.repeatCount : undefined,
-      repeatEndAt: data.repeatMode === 'date' && data.repeatEndAt ? data.repeatEndAt.toISOString() : undefined,
+      // 2:00 시작
+      repeatEndAt: data.repeatMode === 'date' && data.repeatEndAt ? data.repeatEndAt : undefined,
       color: data.color.toUpperCase(),
     }
 
     try {
       const result = await createSchedule(payload)
       devLog('log', 'result', result)
-      navigate(-1)
+      // navigate(-1)
     } catch (error) {
       devLog('error', 'error', error)
       alert('일정 등록 중 오류가 발생했습니다.')

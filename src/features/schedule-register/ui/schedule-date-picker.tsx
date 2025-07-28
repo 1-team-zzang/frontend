@@ -30,7 +30,7 @@ export default function ScheduleDatePicker({
   const [currentMonth, setCurrentMonth] = useState(now.getMonth())
 
   // 선택된 날짜 상태
-  const [selectedDate, setSelectedDate] = useState<Date>(now)
+  const [selectedDate, setSelectedDate] = useState(now)
 
   // 모달이 열릴 때마다 선택된 날짜를 초기화
   useEffect(() => {
