@@ -5,7 +5,7 @@ import { getRepeatText } from '@/entities/utils/format-repeat-text'
 import getDetailedSchedule from '@/features/my-schedule/detailed-schedule/api/detailed-schedule.API'
 import DetailedScheduleCard from '@/shared/ui/calendar/ui/detailed-schedule-card'
 
-export default function FirendDetailedSchedule() {
+export default function FriendDetailedSchedule() {
   const { scheduleId } = useParams()
   const { data } = useQuery({
     queryKey: ['detailed-friend-schedule', scheduleId],
