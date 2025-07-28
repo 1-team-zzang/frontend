@@ -6,7 +6,6 @@ import { useForm, useWatch, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import z from 'zod'
 
-import { createSchedule, type CreateScheduleRequest } from '@/features/schedule-register/api/schedule-register.API'
 import { IconAppointmentArrowLeft, IconQuestion, IconTemp } from '@/shared/assets/icons'
 import {
   BottomSheet,
@@ -23,9 +22,11 @@ import { Switch, SwitchTrigger } from '@/shared/ui/switch'
 import Text from '@/shared/ui/text/text'
 import { devLog } from '@/shared/utils/dev-log'
 
-import ScheduleDatePicker from './ui/schedule-date-picker'
-import ScheduleTimePicker from './ui/schedule-time-picker'
-import SelectColorModal from './ui/select-color-modal'
+import { createSchedule, type CreateScheduleRequest } from '../api/schedule-register.API'
+
+import ScheduleDatePicker from './schedule-date-picker'
+import ScheduleTimePicker from './schedule-time-picker'
+import SelectColorModal from './select-color-modal'
 
 //기본 날짜 설정
 const today = new Date()
@@ -45,7 +46,7 @@ const ScheduleSchema = z
     repeatCount: z.number().min(1),
     repeatEndAt: z.date().nullable().optional(),
     visible: z.string(),
-    contents: z.string().min(1, '일정 내용을 적어주세요'),
+    content: z.string().min(1, '일정 내용을 적어주세요'),
   })
   .refine(
     (data) =>
@@ -75,42 +76,10 @@ export default function ScheduleRegister() {
       repeatCount: 1,
       repeatEndAt: null,
       visible: 'visible',
-      contents: '',
+      content: '',
     },
     shouldUnregister: false,
   })
-
-  const onSubmit = async (data: ScheduleFormType) => {
-    const payload: CreateScheduleRequest = {
-      title: data.title,
-      start: data.start.toISOString(),
-      end: data.end.toISOString(),
-      isRepeated: data.repeatUnit !== 'none',
-      repeatRule:
-        data.repeatUnit === 'day'
-          ? 'DAILY'
-          : data.repeatUnit === 'week'
-            ? 'WEEKLY'
-            : data.repeatUnit === 'month'
-              ? 'MONTHLY'
-              : data.repeatUnit === 'year'
-                ? 'YEARLY'
-                : undefined,
-      interval: data.interval,
-      repeatType: data.repeatMode === 'count' ? 'COUNT' : 'UNTIL_DATE',
-      repeatCount: data.repeatMode === 'count' ? data.repeatCount : undefined,
-      repeatEndAt: data.repeatMode === 'date' && data.repeatEndAt ? data.repeatEndAt.toISOString() : undefined,
-    }
-
-    try {
-      const result = await createSchedule(payload)
-      devLog('log', result)
-      navigate(-1)
-    } catch (error) {
-      devLog('error', error)
-      alert('일정 등록 중 오류가 발생했습니다.')
-    }
-  }
 
   const onClickButton = () => {
     navigate(-1)
@@ -294,6 +263,43 @@ export default function ScheduleRegister() {
 
   //완료 버튼을 누르지 않았을 때는 선택한 값이 반영되지 않아야 할 것 같음...
 
+  //API
+  const onSubmit = async (data: ScheduleFormType) => {
+    const payload: CreateScheduleRequest = {
+      title: data.title,
+      content: data.content,
+      startAt: data.start.toISOString(),
+      endAt: data.end.toISOString(),
+      isVisible: data.visible === 'visible',
+      isAllDay: isChecked,
+      isRepeated: data.repeatUnit !== 'none',
+      repeatRule:
+        data.repeatUnit === 'day'
+          ? 'DAILY'
+          : data.repeatUnit === 'week'
+            ? 'WEEKLY'
+            : data.repeatUnit === 'month'
+              ? 'MONTHLY'
+              : data.repeatUnit === 'year'
+                ? 'YEARLY'
+                : undefined,
+      interval: data.interval,
+      repeatType: data.repeatMode === 'count' ? 'COUNT' : 'DATE',
+      repeatCount: data.repeatMode === 'count' ? data.repeatCount : undefined,
+      repeatEndAt: data.repeatMode === 'date' && data.repeatEndAt ? data.repeatEndAt.toISOString() : undefined,
+      color: data.color.toUpperCase(),
+    }
+
+    try {
+      const result = await createSchedule(payload)
+      devLog('log', result)
+      navigate(-1)
+    } catch (error) {
+      devLog('error', error)
+      alert('일정 등록 중 오류가 발생했습니다.')
+    }
+  }
+
   return (
     <div>
       <Form methods={methods} onSubmit={onSubmit}>
@@ -444,12 +450,7 @@ export default function ScheduleRegister() {
                       name="repeatUnit"
                       defaultValue="none"
                       render={({ field }) => (
-                        <RadioGroup
-                          className="flex flex-col gap-6"
-                          name="repeatUnit"
-                          value={field.value}
-                          onValueChange={field.onChange}
-                        >
+                        <RadioGroup className="flex flex-col gap-6" name="repeatUnit">
                           <div>
                             <Radio value="none">반복 안함</Radio>
                           </div>
@@ -581,7 +582,7 @@ export default function ScheduleRegister() {
               </BottomSheet>
             </div>
           </FormField>
-          <FormField name="contents">
+          <FormField name="content">
             <div className="flex flex-col py-4 gap-2">
               <Text typography={'b2-heading'}>일정 내용</Text>
               <Textarea className="h-[7.5rem] px-4 py-2.5" placeholder="내용을 적어주세요." />

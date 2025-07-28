@@ -2,22 +2,26 @@ import axiosInstance from '@/shared/api/axios-instance'
 
 export interface CreateScheduleRequest {
   title: string
-  start: string
-  end: string
+  content: string
+  startAt: string
+  endAt: string
+  isVisible: boolean
+  isAllDay: boolean
   isRepeated: boolean
   repeatRule?: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
   interval?: number
-  repeatType?: 'COUNT' | 'UNTIL_DATE'
+  repeatType?: 'COUNT' | 'DATE'
   repeatCount?: number
   repeatEndAt?: string | null
+  color: string
 }
 
 export interface CreateScheduleResponse {
   scheduleId: number
   title: string
   isRepeated: boolean
-  repeatRule?: 'DAILY' | 'WEEKLY' | 'YEARLY'
-  repeatType?: 'COUNT' | 'UNTIL_DATE'
+  repeatRule?: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
+  repeatType?: 'COUNT' | 'DATE'
   repeatCount?: number
 }
 
