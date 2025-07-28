@@ -8,22 +8,25 @@ import Text from '../text/text'
 
 import { useRadioContext } from './radio-context'
 
-const radioVariants = cva('size-6 rounded-full border border-gray-400 flex items-center justify-center', {
-  variants: {
-    checked: {
-      true: 'border-primary-600 bg-primary-600',
-      false: 'bg-white',
+const radioVariants = cva(
+  'size-6 rounded-full border border-gray-400 flex items-center justify-center cursor-pointer',
+  {
+    variants: {
+      checked: {
+        true: 'border-primary-600 bg-primary-600',
+        false: 'bg-white',
+      },
+      disabled: {
+        true: 'border-gray-60 bg-gray-10 cursor-not-allowed',
+        false: '',
+      },
     },
-    disabled: {
-      true: 'border-gray-60 bg-gray-10 cursor-not-allowed',
-      false: '',
+    defaultVariants: {
+      checked: false,
+      disabled: false,
     },
   },
-  defaultVariants: {
-    checked: false,
-    disabled: false,
-  },
-})
+)
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   value: string
@@ -36,7 +39,7 @@ export default function Radio({ value, children, disabled, ...restProps }: Props
   const checked = value === selectedValue
 
   return (
-    <Text as="label" typography="b2-normal" className="flex gap-3 items-center">
+    <Text as="label" typography="b2-normal" className="flex gap-3 items-center cursor-pointer">
       <input
         type="radio"
         value={value}
