@@ -30,7 +30,7 @@ export default function UserList({ searchQuery }: Props) {
   const friendsUsers = data?.friendsUsers ?? []
 
   return (
-    <div className="p-2 overflow-y-auto h-64 mt-2 flex flex-col gap-3">
+    <div className="p-2 overflow-y-auto h-64 mt-2 flex flex-col gap-3 scrollbar-hide">
       {friendsUsers
         .filter((user) => loginUser?.userId !== user.id || !user.isFriend)
         .map((user) => {

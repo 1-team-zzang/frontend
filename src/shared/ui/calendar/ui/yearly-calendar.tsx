@@ -23,7 +23,7 @@ export default function YearlyCalendar() {
   useEffect(() => scrollToCurrentMonth(containerRef, monthRefs), [])
 
   return (
-    <div ref={containerRef} className="overflow-y-scroll h-screen scrollbar-hide">
+    <div ref={containerRef} className="overflow-y-scroll  h-[calc(100vh-127px)] scrollbar-hide">
       {rangeMonth(12).map((month) => (
         <div
           key={month}

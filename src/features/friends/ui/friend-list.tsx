@@ -14,9 +14,11 @@ export default function FriendList() {
 
   return (
     <div>
-      {friends.map((friend: Friend) => {
-        return <FriendItem friend={friend} key={friend.friendRequestId} />
-      })}
+      <div className="overflow-y-auto scrollbar-hide">
+        {friends.map((friend: Friend) => {
+          return <FriendItem friend={friend} key={friend.friendRequestId} />
+        })}
+      </div>
       <div className="flex justify-center">
         <div className="text-primary-80 flex gap-3 items-center justify-center mt-4 rounded border border-primary-80 w-fit py-2 px-4">
           <Text

@@ -42,7 +42,7 @@ export default function AppointmentList() {
   }
 
   return (
-    <div className="flex flex-col items-center py-6 gap-6 px-4">
+    <div className="flex flex-col items-center py-6 gap-6 px-4 h-[calc(100vh-111px)]">
       <SegmentedControl value={status} onValueChange={handleStatusChange}>
         <SegmentedControlList>
           <SegmentedControlItem value="PENDING">
@@ -55,7 +55,7 @@ export default function AppointmentList() {
             <Text typography="b2-normal">보낸 약속</Text>
           </SegmentedControlItem>
         </SegmentedControlList>
-        <SegmentedControlContent value={status} className="w-full flex flex-col gap-5">
+        <SegmentedControlContent value={status} className="w-full flex flex-col gap-5 overflow-y-auto scrollbar-hide">
           {data.appointments.length === 0 ? (
             <div className="flex flex-col items-center py-6 gap-6 px-4 text-center">
               <Text typography="b2-normal">{appointmentListEmptyMessage[status]}</Text>
