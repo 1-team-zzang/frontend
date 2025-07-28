@@ -1,19 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { useCustomMutation } from '@/shared/hooks/use-custom-mutation'
 import Button from '@/shared/ui/button/button.tsx'
 import { Form, FormField, FormLabel } from '@/shared/ui/form'
 import FormFieldWrapper from '@/shared/ui/form/form-field-wrapper'
 import { Input, PasswordInput } from '@/shared/ui/input'
 
-import { postSignup } from '../api/signup.API'
 import { SignupSchema } from '../model/signup.schema'
+import useSignupMutation from '../model/use-signup-mutation'
 
-import type { SignupFormDataType, SignupInputData } from '../model/signup.type'
+import type { SignupFormDataType } from '../model/signup.type'
 
 export default function SignupForm({ onSignupSuccess }: { onSignupSuccess?: () => void }) {
-  const signupMutation = useCustomMutation((data: SignupInputData) => postSignup(data))
+  const signupMutation = useSignupMutation()
 
   const methods = useForm<SignupFormDataType>({
     resolver: zodResolver(SignupSchema),
