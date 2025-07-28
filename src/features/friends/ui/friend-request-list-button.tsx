@@ -7,8 +7,7 @@ import { useFriendRequestList } from '../model'
 import { FriendRequestListBottomSheet } from './index'
 
 export default function FriendRequestListButton() {
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  const [page, setPage] = useState<number>(1) // 나중에 무한스크롤이나 페이지네이션
+  const page = 1
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const size = 10
