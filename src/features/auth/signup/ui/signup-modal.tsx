@@ -1,10 +1,5 @@
-import { ErrorBoundary } from 'react-error-boundary'
-
 import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle } from '@/shared/ui/modal'
 import Text from '@/shared/ui/text/text'
-import { devLog } from '@/shared/utils/dev-log'
-
-import { getAuthErrorMessage } from '../../model/get-auth-error-message'
 
 import SignupForm from './signup-form'
 
@@ -18,38 +13,29 @@ interface Props {
 
 export default function SignupModal({ isSignupOpen, setSwitchModal, setClose }: Props) {
   return (
-    <ErrorBoundary
-      fallbackRender={({ error }) => {
-        // TODO 에러 문구를 토스트로
-        devLog('log', 'error', getAuthErrorMessage(error.response.data.errorCode))
+    <Modal open={isSignupOpen} onOpenChange={setClose}>
+      <ModalPortal>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalTitle className="text-center">회원가입</ModalTitle>
+          <SignupForm onSignupSuccess={() => setSwitchModal('EmailLogin')} />
 
-        return null
-      }}
-    >
-      <Modal open={isSignupOpen} onOpenChange={setClose}>
-        <ModalPortal>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalTitle className="text-center">회원가입</ModalTitle>
-            <SignupForm onSignupSuccess={() => setSwitchModal('EmailLogin')} />
+          <Text typography="b2-normal" className="text-gray-80 flex gap-1 items-center justify-center mt-6">
+            <span>이미 회원이신가요?</span>
 
-            <Text typography="b2-normal" className="text-gray-80 flex gap-1 items-center justify-center mt-6">
-              <span>이미 회원이신가요?</span>
-
-              {/* TODO 컴포넌트화
+            {/* TODO 컴포넌트화
           NOTE 모달 어떻게 열지 */}
-              <Text
-                as="button"
-                typography="b2-heading"
-                onClick={() => setSwitchModal('EmailLogin')}
-                className="text-primary-80 underline decoration-solid decoration-2 decoration-skip-ink underline-offset-4"
-              >
-                로그인
-              </Text>
+            <Text
+              as="button"
+              typography="b2-heading"
+              onClick={() => setSwitchModal('EmailLogin')}
+              className="text-primary-80 underline decoration-solid decoration-2 decoration-skip-ink underline-offset-4"
+            >
+              로그인
             </Text>
-          </ModalContent>
-        </ModalPortal>
-      </Modal>
-    </ErrorBoundary>
+          </Text>
+        </ModalContent>
+      </ModalPortal>
+    </Modal>
   )
 }
