@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
+import ShareCalendarBottomSheet from '../../../../features/my-schedule/my-calendar/share-calendar-bottom-sheet'
 import { useCalendarContext } from '../hooks/calendar-context'
 import { scrollToCurrentMonth } from '../util/scroll-current-month'
 
 import CalendarHeaderButton from './calendar-header-button'
 import CalendarHeader from './calendar-header-container'
 import CalendarHeaderMonthLabel from './calendar-header-month-label'
-import ShareCalendarBottomSheet from './share-calendar-bottom-sheet'
 
 /**
  *

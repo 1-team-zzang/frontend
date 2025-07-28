@@ -1,13 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 
-import axiosInstance from '@/shared/api/axios-instance'
 import { IconClose } from '@/shared/assets/icons'
 import { BottomSheet, BottomSheetContainer, BottomSheetContent } from '@/shared/ui/bottom-sheet'
 import Text from '@/shared/ui/text/text'
-import { devLog } from '@/shared/utils/dev-log'
 
-import { Modal, ModalCloseButton, ModalContent, ModalDescription, ModalOverlay, ModalTitle } from '../../modal'
+import handleShareLinkCopy from '../../../shared/ui/calendar/util/handle-share-link-copy'
+import {
+  Modal,
+  ModalCloseButton,
+  ModalContent,
+  ModalDescription,
+  ModalOverlay,
+  ModalTitle,
+} from '../../../shared/ui/modal'
+import getUserId from '../api/get-userId.API'
 
 interface Props {
   isOpen: boolean
@@ -18,23 +25,11 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
   const [copied, setCopied] = useState(false)
   const { data: userId } = useQuery({
     queryKey: ['userId'],
-    queryFn: async () => {
-      const res = await axiosInstance.get('/schedules/share')
-      devLog('log', 'userId', res)
-      return res.data.data.userId
-    },
+    queryFn: getUserId,
   })
   const link = `/share/${userId}`
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(link)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('복사 실패:', err)
-    }
-  }
+  const handleCopy = handleShareLinkCopy(link, setCopied)
   return (
     <>
       <BottomSheet open={isOpen} onOpenChange={setIsOpen}>
