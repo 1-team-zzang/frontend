@@ -38,12 +38,12 @@ export default function AppointmentList() {
   const navigate = useNavigate()
 
   const handleStatusChange = (value: string) => {
-    navigate(`/appointment?status=${value}`)
+    navigate(`/appointments?status=${value}`)
   }
 
   return (
     <div className="flex flex-col items-center py-6 gap-6 px-4">
-      <SegmentedControl defaultValue={status} onValueChange={handleStatusChange}>
+      <SegmentedControl value={status} onValueChange={handleStatusChange}>
         <SegmentedControlList>
           <SegmentedControlItem value="PENDING">
             <Text typography="b2-normal">대기중 약속</Text>
