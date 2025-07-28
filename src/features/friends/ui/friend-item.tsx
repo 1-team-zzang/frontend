@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-import { IconArrowLeft } from '@/shared/assets/icons'
+import { IconAppointmentArrowLeft } from '@/shared/assets/icons'
 import { Profile, ProfileImage, ProfileName } from '@/shared/ui/profile'
 
 import DeleteFriendModal from './delete-friend-modal'
@@ -22,7 +22,7 @@ export default function FriendItem({ friend }: { friend: Friend }) {
       <div className="flex gap-3 items-center">
         <DeleteFriendModal name={name} friendRequestId={friendRequestId} />
         <Link to={`/friends/${friend.userId}/calendar`}>
-          <IconArrowLeft className="rotate-180" />
+          <IconAppointmentArrowLeft className="rotate-180" />
         </Link>
       </div>
     </div>
