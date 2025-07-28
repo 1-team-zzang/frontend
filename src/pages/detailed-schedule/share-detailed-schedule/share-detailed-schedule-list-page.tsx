@@ -1,5 +1,5 @@
 import { ShareDetailedScheduleList } from '@/features/share-schedule'
 
-export default function DetailedSharedScheduleListPage() {
+export default function ShareDetailedScheduleListPage() {
   return <ShareDetailedScheduleList />
 }

@@ -14,7 +14,7 @@ export default function MyDetailedScheduleList() {
   const list = date ? (scheduleMap[date] ?? []) : []
 
   const onClick = (scheduleId: number) => {
-    navigate(`/my/detailed-schedule/date/${date}/schedule/${scheduleId}`)
+    navigate(`/my/detailed-schedule/date/${date}/schedules/${scheduleId}`)
   }
 
   return (

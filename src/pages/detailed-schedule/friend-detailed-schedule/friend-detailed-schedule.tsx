@@ -1,3 +1,5 @@
+import FriendDetailedScheduleList from '@/features/friend-schedule/detailed-schedule/friend-detailed-schedule-list'
+
 export default function FriendDetailedSchedulePage() {
-  return <>친구 세부일정</>
+  return <FriendDetailedScheduleList />
 }
