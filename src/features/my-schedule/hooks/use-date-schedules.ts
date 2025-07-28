@@ -14,6 +14,7 @@ export function useDateSchedules() {
   } = useQuery({
     queryKey: scheduleQueryKeys.userSchedules(userId!),
     queryFn: getMySchedule,
+    enabled: !!userId,
   })
 
   const scheduleMap = groupByDate(schedules)
