@@ -23,13 +23,17 @@ export default function ShareCalendar() {
     navigate(`/share/${userId}/detailed-schedule/date/${dateStr}`)
   }
 
+  const goToCreateAppointment = () => {
+    alert('약속 생성 기능은 아직 구현되지 않았습니다.')
+  }
+
   return (
     <CalendarUI
       disablePastDateStyling={false}
       renderDateCellContent={(date) => DateCellContent({ scheduleMap, date, isPast: isPastDate(date) })}
       onDateClick={(date) => handleDateClick(date, navigate)}
     >
-      <AddScheduleButton>
+      <AddScheduleButton onClick={goToCreateAppointment}>
         <IconInvite />
       </AddScheduleButton>
     </CalendarUI>

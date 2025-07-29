@@ -13,6 +13,10 @@ export default function MyCalendar() {
 
   const { scheduleMap } = useDateSchedules()
 
+  const goToCreateSchedule = () => {
+    navigate('/my/schedule/create')
+  }
+
   return (
     <CalendarUI
       disablePastDateStyling={true}
@@ -23,7 +27,7 @@ export default function MyCalendar() {
       }}
       showShareButton={true}
     >
-      <AddScheduleButton>
+      <AddScheduleButton onClick={goToCreateSchedule}>
         <IconCalendarAdd />
       </AddScheduleButton>
     </CalendarUI>
