@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { format, addHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
@@ -6,6 +7,7 @@ import { useForm, useWatch, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import z from 'zod'
 
+import { scheduleQueryKeys } from '@/entities/schedule/models/schedule.query'
 import { IconAppointmentArrowLeft, IconQuestion, IconTemp } from '@/shared/assets/icons'
 import {
   BottomSheet,
@@ -84,7 +86,6 @@ export default function ScheduleRegister() {
   const onClickButton = () => {
     navigate(-1)
   }
-  //이전 페이지로 갈 수 없을 경우도 만들어야함
 
   //색 설정
   const [isColorOpen, setIsColorOpen] = useState(false)
@@ -204,7 +205,8 @@ export default function ScheduleRegister() {
               defaultValue={1}
               render={({ field }) => (
                 <Input
-                  className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
+                  type="number"
+                  className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                   {...field}
                   onChange={(e) => field.onChange(Number(e.target.value))}
                 />
@@ -258,18 +260,25 @@ export default function ScheduleRegister() {
     setIsVisibleOpen(true)
   }
 
-  //완료 버튼을 누르지 않았을 때는 선택한 값이 반영되지 않아야 할 것 같음...
-
   //시간 string 형식으로 변환
   function dateToString(date: Date) {
     const year = date.getFullYear()
-    const month = String(date.getMonth() + 1).padStart(2, '0') // 0~11 이므로 +1
+    const month = String(date.getMonth() + 1).padStart(2, '0')
     const day = String(date.getDate()).padStart(2, '0')
     const hour = String(date.getHours()).padStart(2, '0')
     const minute = String(date.getMinutes()).padStart(2, '0')
 
     return `${year}-${month}-${day} ${hour}:${minute}`
   }
+
+  const queryClient = useQueryClient()
+
+  const scheduleRegisterMutate = useMutation({
+    mutationFn: createSchedule,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: scheduleQueryKeys.all })
+    },
+  })
 
   //API
   const onSubmit = async (data: ScheduleFormType) => {
@@ -299,7 +308,7 @@ export default function ScheduleRegister() {
     }
 
     try {
-      const result = await createSchedule(payload)
+      const result = await scheduleRegisterMutate.mutateAsync(payload)
       devLog('log', 'result', result)
       navigate('/')
     } catch (error) {
@@ -466,21 +475,6 @@ export default function ScheduleRegister() {
                             <Radio value="day">일 단위 반복</Radio>
                             {field.value === 'day' && (
                               <div key="repeat-day" className="mt-2 flex flex-col gap-4 pl-6">
-                                <div className="flex items-center gap-2">
-                                  <Controller
-                                    control={methods.control}
-                                    name="interval"
-                                    defaultValue={1}
-                                    render={({ field }) => (
-                                      <Input
-                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
-                                        {...field}
-                                        onChange={(e) => field.onChange(Number(e.target.value))}
-                                      />
-                                    )}
-                                  />
-                                  <span>일 마다</span>
-                                </div>
                                 {renderRepeatDetailOptions()}
                               </div>
                             )}
@@ -489,21 +483,6 @@ export default function ScheduleRegister() {
                             <Radio value="week">주 단위 반복</Radio>
                             {field.value === 'week' && (
                               <div key="repeat-week" className="mt-2 flex flex-col gap-4 pl-6">
-                                <div className="flex items-center gap-2">
-                                  <Controller
-                                    control={methods.control}
-                                    name="interval"
-                                    defaultValue={1}
-                                    render={({ field }) => (
-                                      <Input
-                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
-                                        {...field}
-                                        onChange={(e) => field.onChange(Number(e.target.value))}
-                                      />
-                                    )}
-                                  />
-                                  <span>주 마다</span>
-                                </div>
                                 {renderRepeatDetailOptions()}
                               </div>
                             )}
@@ -512,21 +491,6 @@ export default function ScheduleRegister() {
                             <Radio value="month">월 단위 반복</Radio>
                             {field.value === 'month' && (
                               <div key="repeat-month" className="mt-2 flex flex-col gap-4 pl-6">
-                                <div className="flex items-center gap-2">
-                                  <Controller
-                                    control={methods.control}
-                                    name="interval"
-                                    defaultValue={1}
-                                    render={({ field }) => (
-                                      <Input
-                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
-                                        {...field}
-                                        onChange={(e) => field.onChange(Number(e.target.value))}
-                                      />
-                                    )}
-                                  />
-                                  <span>월 마다</span>
-                                </div>
                                 {renderRepeatDetailOptions()}
                               </div>
                             )}
@@ -535,21 +499,6 @@ export default function ScheduleRegister() {
                             <Radio value="year">연 단위 반복</Radio>
                             {field.value === 'year' && (
                               <div key="repeat-year" className="mt-2 flex flex-col gap-4 pl-6">
-                                <div className="flex items-center gap-2">
-                                  <Controller
-                                    control={methods.control}
-                                    name="interval"
-                                    defaultValue={1}
-                                    render={({ field }) => (
-                                      <Input
-                                        className="w-12 px-4 py-2.5 text-center bg-gray-5 rounded-[0.25rem]"
-                                        {...field}
-                                        onChange={(e) => field.onChange(Number(e.target.value))}
-                                      />
-                                    )}
-                                  />
-                                  <span>년 마다</span>
-                                </div>
                                 {renderRepeatDetailOptions()}
                               </div>
                             )}

@@ -18,7 +18,7 @@ export default function TimeSelector<T extends string | number>({
   return (
     <div
       className={cn(
-        'flex flex-col items-center text-gray-90 p-2.5 h-[16.625rem] gap-y-2.5 overflow-y-scroll snap-y',
+        'flex flex-col items-center text-gray-90 p-2.5 h-[16.625rem] gap-y-2.5 overflow-y-scroll snap-y scrollbar-hide',
         className,
       )}
     >
