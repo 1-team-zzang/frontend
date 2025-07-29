@@ -7,6 +7,7 @@ import { useForm, useWatch, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import z from 'zod'
 
+import { scheduleQueryKeys } from '@/entities/schedule/models/schedule.query'
 import { IconAppointmentArrowLeft, IconQuestion, IconTemp } from '@/shared/assets/icons'
 import {
   BottomSheet,
@@ -275,7 +276,7 @@ export default function ScheduleRegister() {
   const scheduleRegisterMutate = useMutation({
     mutationFn: createSchedule,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['schedule'] })
+      queryClient.invalidateQueries({ queryKey: scheduleQueryKeys.all })
     },
   })
 
