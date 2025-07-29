@@ -27,13 +27,17 @@ export default function FriendCalendar() {
     navigate(`/friends/${friendId}/calendar/detailed-schedule/date/${dateStr}`)
   }
 
+  const goToCreateAppointment = () => {
+    alert('약속 신청하기')
+  }
+
   return (
     <CalendarUI
       disablePastDateStyling
       renderDateCellContent={(date) => <DateCellContent scheduleMap={scheduleMap} date={date} />}
       onDateClick={handleDateClick}
     >
-      <AddScheduleButton>
+      <AddScheduleButton onClick={goToCreateAppointment}>
         <IconCalendarAdd />
       </AddScheduleButton>
     </CalendarUI>
