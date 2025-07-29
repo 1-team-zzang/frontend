@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useRef, type ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 
 import useClickOutside from '@/shared/hooks/use-click-outside'
 
@@ -24,6 +24,12 @@ export default function SideBar({ children }: Props) {
   const sidebarRef = useRef<HTMLElement>(null)
 
   useClickOutside(sidebarRef, handleCloseSidebar)
+
+  useEffect(() => {
+    return () => {
+      handleCloseSidebar()
+    }
+  }, [])
 
   return (
     <motion.nav
