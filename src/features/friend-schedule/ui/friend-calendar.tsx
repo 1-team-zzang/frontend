@@ -28,7 +28,7 @@ export default function FriendCalendar() {
   }
 
   const goToCreateAppointment = () => {
-    alert('약속 생성 기능은 아직 구현되지 않았습니다.')
+    alert('약속 신청하기')
   }
 
   return (
