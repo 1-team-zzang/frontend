@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
 
+import { useGNBContext } from '../gnb/gnb-conext'
+
 import type { ReactNode } from 'react'
 
 /**
@@ -18,15 +20,24 @@ interface Prop {
 }
 
 export default function SidebarMenuList({ icon, children, href, onClick }: Prop) {
-  const Element = href ? Link : 'button'
-
+  const { handleCloseSidebar } = useGNBContext()
+  const handleButtonClick = () => {
+    onClick?.()
+    handleCloseSidebar()
+  }
   return (
     <li className="list-none h-[3.625rem] p-5 rounded-lg cursor-pointer hover:bg-gray-1 active:bg-primary-30 ">
-      <Element to={href!} onClick={onClick} className="flex items-center gap-2">
-        {icon}
-
-        {children}
-      </Element>
+      {href ? (
+        <Link to={href} onClick={handleCloseSidebar} className="flex items-center gap-2">
+          {icon}
+          {children}
+        </Link>
+      ) : (
+        <button onClick={handleButtonClick} className="flex items-center gap-2">
+          {icon}
+          {children}
+        </button>
+      )}
     </li>
   )
 }
