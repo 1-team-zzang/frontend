@@ -32,7 +32,11 @@ export default function UserList({ searchQuery }: Props) {
   return (
     <div className="p-2 overflow-y-auto h-64 mt-2 flex flex-col gap-3 scrollbar-hide">
       {friendsUsers
-        .filter((user) => loginUser?.userId !== user.id || !user.isFriend)
+        .filter((user) => {
+          const isNotLoginUser = loginUser?.userId !== user.id
+          const isNotFriend = !user.isFriend
+          return isNotLoginUser && isNotFriend
+        })
         .map((user) => {
           return (
             <div key={user.id} className="flex justify-between items-center p-2">
