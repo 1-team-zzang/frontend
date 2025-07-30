@@ -14,12 +14,22 @@ interface ToastStore {
   removeToast: (id: string) => void
 }
 
-export const useToastStore = create<ToastStore>((set) => ({
+export const useToastStore = create<ToastStore>((set, get) => ({
   toasts: [],
-  addToast: ({ type, message }) =>
-    set((state) => ({
-      toasts: [...state.toasts, { id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, type, message }],
-    })),
+  addToast: ({ type, message }) => {
+    const id = `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
+    const newToast = { id, type, message }
+
+    set((state) => {
+      const nextToasts = [...state.toasts, newToast]
+      const sliced = nextToasts.slice(-3) //개수제한
+      return { toasts: sliced }
+    })
+
+    setTimeout(() => {
+      get().removeToast(id)
+    }, 2000)
+  },
   removeToast: (id) =>
     set((state) => ({
       toasts: state.toasts.filter((toast) => toast.id !== id),
