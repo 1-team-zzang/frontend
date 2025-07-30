@@ -18,7 +18,9 @@ export default function ToastList() {
     <ToastPortal>
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-toast space-y-1 opacity-80">
         {toasts.map((toast) => (
-          <ToastContent key={toast.id}>{toast.message}</ToastContent>
+          <ToastContent key={toast.id} type={toast.type}>
+            {toast.message}
+          </ToastContent>
         ))}
       </div>
     </ToastPortal>
