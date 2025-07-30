@@ -1,3 +1,5 @@
+import { AnimatePresence } from 'framer-motion'
+
 import ToastContent from './toast-content'
 import ToastPortal from './toast-portal'
 import { useToastStore } from './use-toast-store'
@@ -17,11 +19,13 @@ export default function ToastList() {
   return (
     <ToastPortal>
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-toast space-y-1 opacity-80">
-        {toasts.map((toast) => (
-          <ToastContent key={toast.id} type={toast.type}>
-            {toast.message}
-          </ToastContent>
-        ))}
+        <AnimatePresence>
+          {toasts.map((toast) => (
+            <ToastContent key={toast.id} type={toast.type}>
+              {toast.message}
+            </ToastContent>
+          ))}
+        </AnimatePresence>
       </div>
     </ToastPortal>
   )
