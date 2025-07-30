@@ -36,6 +36,7 @@ export default function FriendCalendar() {
       disablePastDateStyling
       renderDateCellContent={(date) => <DateCellContent scheduleMap={scheduleMap} date={date} />}
       onDateClick={handleDateClick}
+      isFriendCalendar={true}
     >
       <AddScheduleButton onClick={goToCreateAppointment}>
         <IconCalendarAdd />

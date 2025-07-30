@@ -32,6 +32,7 @@ export default function ShareCalendar() {
       disablePastDateStyling={false}
       renderDateCellContent={(date) => DateCellContent({ scheduleMap, date, isPast: isPastDate(date) })}
       onDateClick={(date) => handleDateClick(date, navigate)}
+      isShareCalendar={true}
     >
       <AddScheduleButton onClick={goToCreateAppointment}>
         <IconInvite />
