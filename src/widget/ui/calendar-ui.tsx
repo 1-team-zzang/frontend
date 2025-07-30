@@ -24,7 +24,7 @@ export default function CalendarUI({
       renderDateCellContent={renderDateCellContent}
       onDateClick={onDateClick}
     >
-      <CalendarHeaderContent showShareButton={showShareButton} />
+      <CalendarHeaderContent showShareButton={showShareButton} isFriendCalendar={true} />
       <CalendarDayName />
       <YearlyCalendar />
       {children}
