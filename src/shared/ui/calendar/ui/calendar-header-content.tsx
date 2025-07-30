@@ -31,7 +31,7 @@ export default function CalendarHeaderContent({ showShareButton = false, isFrien
   const navigate = useNavigate()
   return (
     <div>
-      {!isFriendCalendar ? (
+      {isFriendCalendar ? (
         <>
           <CalendarHeader>
             <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>
