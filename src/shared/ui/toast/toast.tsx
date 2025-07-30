@@ -5,8 +5,10 @@ import { useControllableState } from '@/shared/hooks'
 import { ToastProvider } from './toast-context'
 
 /**
- * <Toast>
+ * <Toast open={open} onOpenChange={onOpenChange}>
+ * <ToastContainer>
  * <ToastContent>내용</ToastContent>
+ * </ToastContainer>
  * </Toast>
  */
 

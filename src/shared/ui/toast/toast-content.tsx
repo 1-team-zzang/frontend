@@ -8,7 +8,7 @@ interface Props {
 
 export default function ToastContent({ children }: Props) {
   return (
-    <Text as="span" typography="b2-normal" className="bg-gray-100 z-toast">
+    <Text as="span" typography="b2-normal" className="text-white">
       {children}
     </Text>
   )
