@@ -1,6 +1,6 @@
 import { devLog } from '@/shared/utils/dev-log'
 
-import { toast } from '../../toast/use-toast'
+import { toast } from '../../toast/toast'
 
 export default function handleShareLinkCopy(link: string) {
   return async () => {
