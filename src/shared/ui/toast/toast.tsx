@@ -6,7 +6,7 @@ import { ToastProvider } from './toast-context'
 
 /**
  * <Toast>
- * <ToastContent>
+ * <ToastContent>내용</ToastContent>
  * </Toast>
  */
 
