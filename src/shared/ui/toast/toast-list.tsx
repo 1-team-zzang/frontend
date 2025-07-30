@@ -19,7 +19,7 @@ export default function ToastList() {
 
   return (
     <ToastPortal>
-      <div className="fixed bottom-4 left-1/2 translate-x-1/2 z-toast space-y-1">
+      <div className="fixed bottom-4  translate-x-1/2 z-toast space-y-1">
         {toasts.map((toast) => (
           <ToastContent key={toast.id}>{toast.message}</ToastContent>
         ))}
