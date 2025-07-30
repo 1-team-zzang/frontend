@@ -10,7 +10,7 @@ export default function DetailedScheduleLayout() {
   const formattedDate = date ? format(new Date(date), 'M월 d일') : ''
 
   return (
-    <main className="bg-[#f8f8f8] overflow-y-auto h-[calc(100vh-127px)]">
+    <main className="bg-[#f8f8f8] overflow-y-auto h-[calc(100vh-57px)] scrollbar-hide">
       <DetailedScheduleHeader date={formattedDate} />
       <div className="p-4">
         <Outlet />
