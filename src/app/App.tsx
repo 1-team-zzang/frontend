@@ -1,4 +1,4 @@
-import Toast from '@/shared/ui/toast/toast'
+import { ToastList } from '@/shared/ui/toast'
 
 import QueryProvider from './provider/QueryProvider'
 import ReactRouterProvider from './provider/ReactRouterProvider'
@@ -7,7 +7,7 @@ export default function App() {
   return (
     <QueryProvider>
       <ReactRouterProvider />
-      <Toast />
+      <ToastList />
     </QueryProvider>
   )
 }
