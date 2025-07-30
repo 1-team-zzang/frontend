@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
-
 import ToastContent from './toast-content'
 import ToastPortal from './toast-portal'
 import { useToastStore } from './use-toast-store'
+import useToastTimer from './use-toast-timer'
 
 /**
  *
@@ -13,23 +12,14 @@ import { useToastStore } from './use-toast-store'
  * }
  */
 
-export default function Toast() {
-  const { toasts, removeToast } = useToastStore()
+export default function ToastList() {
+  const { toasts } = useToastStore()
 
-  useEffect(() => {
-    const timers = toasts.map((toast) =>
-      setTimeout(() => {
-        removeToast(toast.id)
-      }, 2000),
-    )
-    return () => {
-      timers.forEach(clearTimeout)
-    }
-  }, [toasts, removeToast])
+  useToastTimer()
 
   return (
     <ToastPortal>
-      <div className="fixed bottom-4 translate-x-1/2 z-toast space-y-1">
+      <div className="fixed bottom-4 left-1/2 translate-x-1/2 z-toast space-y-1">
         {toasts.map((toast) => (
           <ToastContent key={toast.id}>{toast.message}</ToastContent>
         ))}

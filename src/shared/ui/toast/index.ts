@@ -1,5 +1,6 @@
-export { default as Toast } from './toast'
+export { default as ToastList } from './toast-list'
 export { default as ToastPortal } from './toast-portal'
 export { default as ToastContent } from './toast-content'
-export { toast } from './use-toast'
+export { toast } from './toast.ts'
 export { useToastStore } from './use-toast-store'
+export { default as useToastTimer } from './use-toast-timer'
