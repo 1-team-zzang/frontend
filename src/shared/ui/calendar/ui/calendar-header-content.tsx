@@ -24,37 +24,50 @@ import CalendarHeaderMonthLabel from './calendar-header-month-label'
 interface Props {
   showShareButton?: boolean
   isFriendCalendar?: boolean
+  isShareCalendar?: boolean
 }
-export default function CalendarHeaderContent({ showShareButton = false, isFriendCalendar = false }: Props) {
+export default function CalendarHeaderContent({
+  showShareButton = false,
+  isFriendCalendar = false,
+  isShareCalendar = false,
+}: Props) {
   const { containerRef, monthRefs } = useCalendarContext()
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
+
+  if (isFriendCalendar) {
+    return (
+      <CalendarHeader>
+        <IconAppointmentArrowLeft className="size-4 cursor-pointer" onClick={() => navigate(-1)} />
+        <CalendarHeaderMonthLabel />
+        <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>오늘</CalendarHeaderButton>
+      </CalendarHeader>
+    )
+  }
+
+  if (isShareCalendar) {
+    return (
+      <CalendarHeader>
+        <div className="w-[1.625rem]" />
+        <CalendarHeaderMonthLabel />
+        <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>오늘</CalendarHeaderButton>
+      </CalendarHeader>
+    )
+  }
+
+  // 기본값 (내 캘린더)
   return (
-    <div>
-      {!isFriendCalendar ? (
-        <>
-          <CalendarHeader>
-            <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>
-              오늘
-            </CalendarHeaderButton>
-            <CalendarHeaderMonthLabel />
-            {showShareButton ? (
-              <CalendarHeaderButton onClick={() => setIsOpen(true)}>공유</CalendarHeaderButton>
-            ) : (
-              <div className="w-[1.625rem]" />
-            )}
-          </CalendarHeader>
-          {isOpen && <ShareCalendarBottomSheet isOpen={isOpen} setIsOpen={setIsOpen} />}
-        </>
-      ) : (
-        <CalendarHeader>
-          <IconAppointmentArrowLeft className="size-4 cursor-pointer" onClick={() => navigate(-1)} />
-          <CalendarHeaderMonthLabel />
-          <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>
-            오늘
-          </CalendarHeaderButton>
-        </CalendarHeader>
-      )}
-    </div>
+    <>
+      <CalendarHeader>
+        <CalendarHeaderButton onClick={() => scrollToCurrentMonth(containerRef, monthRefs)}>오늘</CalendarHeaderButton>
+        <CalendarHeaderMonthLabel />
+        {showShareButton ? (
+          <CalendarHeaderButton onClick={() => setIsOpen(true)}>공유</CalendarHeaderButton>
+        ) : (
+          <div className="w-[1.625rem]" />
+        )}
+      </CalendarHeader>
+      {isOpen && <ShareCalendarBottomSheet isOpen={isOpen} setIsOpen={setIsOpen} />}
+    </>
   )
 }

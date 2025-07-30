@@ -9,6 +9,8 @@ interface Props {
   onDateClick?: (date: Date) => void
   children?: ReactNode
   showShareButton?: boolean
+  isFriendCalendar?: boolean
+  isShareCalendar?: boolean
 }
 
 export default function CalendarUI({
@@ -16,6 +18,8 @@ export default function CalendarUI({
   renderDateCellContent,
   onDateClick,
   showShareButton = false,
+  isFriendCalendar = false,
+  isShareCalendar = false,
   children,
 }: Props) {
   return (
@@ -24,7 +28,11 @@ export default function CalendarUI({
       renderDateCellContent={renderDateCellContent}
       onDateClick={onDateClick}
     >
-      <CalendarHeaderContent showShareButton={showShareButton} isFriendCalendar={true} />
+      <CalendarHeaderContent
+        showShareButton={showShareButton}
+        isFriendCalendar={isFriendCalendar}
+        isShareCalendar={isShareCalendar}
+      />
       <CalendarDayName />
       <YearlyCalendar />
       {children}
