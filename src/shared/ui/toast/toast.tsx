@@ -1,9 +1,17 @@
-// components/Toast/ToastList.tsx
 import { useEffect } from 'react'
 
 import ToastContent from './toast-content'
 import ToastPortal from './toast-portal'
 import { useToastStore } from './use-toast-store'
+
+/**
+ *
+ * import { toast } from '@/shared/ui/toast'
+ *  const handleClick = () => {
+ *   toast.success('링크가 복사되었습니다!')
+ *   toast.error('에러가 발생했어요')
+ * }
+ */
 
 export default function Toast() {
   const { toasts, removeToast } = useToastStore()
