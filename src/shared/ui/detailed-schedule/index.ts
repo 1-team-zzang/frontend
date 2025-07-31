@@ -2,3 +2,4 @@ export { default as DetailedScheduleListCard } from './detailed-schedule-list-ca
 export { default as DetailedScheduleHeader } from './detailed-schedule-header'
 export { default as DetailedScheduleColorBadge } from './detailed-schedule-color-badge'
 export { default as DetailedScheduleCardContent } from './detailed-schedule-card-content'
+export { default as DetailedScheduleCard } from './detailed-schedule-card'

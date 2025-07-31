@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 
 import { getRepeatText } from '@/entities/utils/format-repeat-text'
 import getDetailedSchedule from '@/features/my-schedule/detailed-schedule/api/detailed-schedule.API'
-import DetailedScheduleCard from '@/shared/ui/calendar/ui/detailed-schedule-card'
+import DetailedScheduleCard from '@/shared/ui/detailed-schedule/detailed-schedule-card'
 
 export default function ShareDetailedSchedule() {
   const { scheduleId } = useParams()

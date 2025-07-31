@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { DetailedScheduleListCard, PrivateScheduleModal } from '@/shared/ui/calendar'
+import { PrivateScheduleModal } from '@/shared/ui'
+import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useShareSchedule } from '../../hooks/use-share-schedule'
 

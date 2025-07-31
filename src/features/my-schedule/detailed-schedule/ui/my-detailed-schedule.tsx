@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
 import { getRepeatText } from '@/entities/utils/format-repeat-text'
-import DetailedScheduleCard from '@/shared/ui/calendar/ui/detailed-schedule-card'
+import DetailedScheduleCard from '@/shared/ui/detailed-schedule/detailed-schedule-card'
 
 import getDetailedSchedule from '../api/detailed-schedule.API'
 
