@@ -2,7 +2,7 @@
 
 import { format } from 'date-fns'
 
-import { PrivateSchedule, ScheduleBadgeFill } from '@/shared/ui/calendar'
+import { PrivateSchedule, ScheduleBadgeFill, ScheduleBadgeMarker } from '@/shared/ui/calendar'
 import Text from '@/shared/ui/text/text'
 
 import type { Schedule } from '@/entities/schedule'
@@ -22,16 +22,27 @@ export default function DateCellContent({ scheduleMap, date, isPast = false, isM
 
   return (
     <div className="flex flex-col gap-1 w-full px-1">
-      {!isPast && // 과거 날짜가 아닐 때만 표시
-        visible.map((item) =>
-          isMine || item.isVisible ? (
+      {!isPast &&
+        visible.map((item) => {
+          if (!(isMine || item.isVisible)) {
+            return <PrivateSchedule key={item.title} />
+          }
+
+          if (item.appointmentId) {
+            return (
+              <ScheduleBadgeMarker key={item.title} color={item.color}>
+                {item.title}
+              </ScheduleBadgeMarker>
+            )
+          }
+
+          return (
             <ScheduleBadgeFill key={item.title} color={item.color}>
               {item.title}
             </ScheduleBadgeFill>
-          ) : (
-            <PrivateSchedule key={item.title} />
-          ),
-        )}
+          )
+        })}
+
       {!isPast && hiddenCount > 0 && (
         <Text as="span" typography="caption-10" className="w-full text-left text-gray-80 z-base">
           +{hiddenCount}
