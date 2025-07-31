@@ -21,7 +21,7 @@ interface Props extends VariantProps<typeof dropDownMenuVariants> {
 }
 
 const dropDownMenuVariants = cva(
-  'w-16 p-2 flex flex-col bg-gray-100 text-white rounded-2xl animate-dropdown gap-2 z-dropdown absolute',
+  'w-16 p-2 flex flex-col bg-gray-100 text-white text-center rounded-2xl animate-dropdown gap-2 z-dropdown absolute',
   {
     variants: {
       position: {

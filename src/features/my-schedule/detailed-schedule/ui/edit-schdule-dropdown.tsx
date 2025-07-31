@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
 import { IconKebabMenu } from '@/shared/assets/icons'
-
-import { Dropdown, DropDownMenu, DropDownMenuItem, DropDownTrigger } from '../../../../shared/ui/dropdown'
+import { Dropdown, DropDownMenu, DropDownMenuItem } from '@/shared/ui/dropdown'
 
 interface Props {
   onDeleteClick: () => void
@@ -10,25 +9,34 @@ interface Props {
 
 export default function EditSchduleDropDown({ onDeleteClick }: Props) {
   const [isOpen, setIsOpen] = useState(false)
-  const onMenuClick = () => {
-    setIsOpen((prev) => !prev)
+
+  const onMenuClick = (callback?: () => void) => {
+    setIsOpen(false)
+    callback?.()
   }
+
   return (
-    <DropDownTrigger onClick={onMenuClick}>
+    <div>
       <IconKebabMenu
-        onClick={(e) => {
-          e.stopPropagation()
-          onMenuClick()
+        className="cursor-pointer"
+        onClick={() => {
+          setIsOpen(true)
         }}
       />
       {isOpen && (
-        <Dropdown handleClose={onMenuClick}>
+        <Dropdown handleClose={() => setIsOpen(false)}>
           <DropDownMenu position="right">
             <DropDownMenuItem>수정</DropDownMenuItem>
-            <DropDownMenuItem onClick={onDeleteClick}>삭제</DropDownMenuItem>
+            <DropDownMenuItem
+              onClick={() => {
+                onMenuClick(onDeleteClick)
+              }}
+            >
+              삭제
+            </DropDownMenuItem>
           </DropDownMenu>
         </Dropdown>
       )}
-    </DropDownTrigger>
+    </div>
   )
 }

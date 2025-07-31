@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
-import { devLog } from '@/shared/utils/dev-log'
 
 import { useDateSchedules } from '../../hooks/use-date-schedules'
 
@@ -37,7 +36,6 @@ export default function MyDetailedScheduleList() {
       ) : (
         <div className="flex flex-col gap-4">
           {list.map((card) => {
-            devLog('log', '아이디', card.scheduleId)
             return (
               <DetailedScheduleListCard
                 onCardClick={() => onClick(card.scheduleId)}
