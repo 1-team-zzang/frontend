@@ -22,6 +22,12 @@ export default function ScheduleEditDate() {
   const today = new Date()
 
   const handleStartDayConfirm = (date: Date) => {
+    if (end < date) {
+      setValue('start', date)
+      setValue('end', date)
+      alert('종료 시간은 시작 시간 이후여야 합니다.')
+      return
+    }
     setValue('start', date)
   }
 
@@ -34,6 +40,12 @@ export default function ScheduleEditDate() {
   }
 
   const handleStartTimeConfirm = (date: Date) => {
+    if (end < date) {
+      setValue('start', date)
+      setValue('end', date)
+      alert('종료 시간은 시작 시간 이후여야 합니다.')
+      return
+    }
     setValue('start', date)
   }
 
