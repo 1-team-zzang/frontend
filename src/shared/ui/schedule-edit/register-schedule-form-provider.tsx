@@ -1,0 +1,49 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import { addHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
+import { useForm } from 'react-hook-form'
+
+import { Form } from '../form'
+
+import { RegisterScheduleSchema, type RegisterScheduleFormType } from './schedule.schema'
+
+import type { ReactNode } from 'react'
+
+//기본 날짜 설정
+const today = new Date()
+const start = setMilliseconds(setSeconds(setMinutes(addHours(today, 1), 0), 0), 0)
+const end = addHours(start, 1)
+
+interface Props {
+  children: ReactNode
+  onSubmit: (data: RegisterScheduleFormType) => void
+  defaultValues?: Partial<RegisterScheduleFormType>
+}
+
+export default function RegisterScheduleFormProvider({ children, onSubmit, defaultValues }: Props) {
+  const methods = useForm<RegisterScheduleFormType>({
+    resolver: zodResolver(RegisterScheduleSchema),
+    mode: 'onChange',
+    defaultValues: {
+      title: '',
+      color: 'red',
+      start: start,
+      end: end,
+      isAllDay: false,
+      repeatUnit: 'none',
+      interval: 1,
+      repeatMode: 'count',
+      repeatCount: 1,
+      repeatEndAt: null,
+      visible: 'visible',
+      content: '',
+      ...defaultValues,
+    },
+    shouldUnregister: false,
+  })
+
+  return (
+    <Form methods={methods} onSubmit={onSubmit}>
+      {children}
+    </Form>
+  )
+}

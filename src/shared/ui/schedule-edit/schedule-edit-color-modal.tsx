@@ -21,7 +21,7 @@ const colorMap: Record<Color, string> = {
   purple: 'bg-calendar-purple',
 }
 
-export default function SelectColorModal({
+export default function ScheduleEditColorModal({
   isColorOpen,
   setIsColorOpen,
   selectedColor,

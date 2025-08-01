@@ -1,48 +1,40 @@
 import { format } from 'date-fns'
 import { ko } from 'date-fns/locale'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 
 import { IconCalendarArrowLeft, IconCalendarArrowRight } from '@/shared/assets/icons'
 import { Modal, ModalContent, ModalOverlay, ModalPortal } from '@/shared/ui/modal'
 import Text from '@/shared/ui/text/text'
 
-import ScheduleMonthlyCalendar from './shedule-monthly-calendar'
+import ScheduleEditMonthlyCalendar from './shedule-edit-monthly-calendar'
 
-interface ScheduleDatePickerProps {
+interface Props {
   open: boolean
   onOpenChange: (open: boolean) => void
-  initialDate?: Date
+  initialDate: Date
   onConfirm: (date: Date) => void
   today: Date
 }
 
-export default function ScheduleDatePicker({
-  open,
-  onOpenChange,
-  initialDate,
-  onConfirm,
-  today,
-}: ScheduleDatePickerProps) {
-  const now = useMemo(() => initialDate ?? new Date(), [initialDate])
-
+export default function ScheduleEditDayPicker({ open, onOpenChange, initialDate, onConfirm, today }: Props) {
   // 현재 보고 있는 연/월 상태
-  const [currentYear, setCurrentYear] = useState(now.getFullYear())
-  const [currentMonth, setCurrentMonth] = useState(now.getMonth())
+  const [currentYear, setCurrentYear] = useState(initialDate.getFullYear())
+  const [currentMonth, setCurrentMonth] = useState(initialDate.getMonth())
 
   // 선택된 날짜 상태
-  const [selectedDate, setSelectedDate] = useState(now)
+  const [selectedDate, setSelectedDate] = useState(initialDate)
 
   // 모달이 열릴 때마다 선택된 날짜를 초기화
   useEffect(() => {
     if (open) {
-      setSelectedDate(now)
-      setCurrentYear(now.getFullYear())
-      setCurrentMonth(now.getMonth())
+      setSelectedDate(initialDate)
+      setCurrentYear(initialDate.getFullYear())
+      setCurrentMonth(initialDate.getMonth())
     }
-  }, [open, now])
+  }, [open, initialDate])
 
   // 날짜 클릭 시 임시 상태만 변경
-  const handleSelectDate = (date: Date) => {
+  const onSelectDate = (date: Date) => {
     setSelectedDate(date)
   }
 
@@ -52,7 +44,7 @@ export default function ScheduleDatePicker({
   }
 
   const handleCancel = () => {
-    setSelectedDate(now)
+    setSelectedDate(initialDate)
     onOpenChange(false)
   }
 
@@ -80,7 +72,6 @@ export default function ScheduleDatePicker({
       <ModalPortal>
         <ModalOverlay />
         <ModalContent className="bg-white rounded-2xl p-4">
-          {/* 헤더: 월 이동 */}
           <div className="flex justify-between items-center py-[0.3125rem]">
             <IconCalendarArrowLeft type="button" onClick={prevMonth} />
             <span className="text-sm font-medium">
@@ -89,11 +80,10 @@ export default function ScheduleDatePicker({
             <IconCalendarArrowRight type="button" onClick={nextMonth} />
           </div>
 
-          {/* 달력 */}
-          <ScheduleMonthlyCalendar
+          <ScheduleEditMonthlyCalendar
             year={currentYear}
             month={currentMonth}
-            onSelectDate={handleSelectDate}
+            onSelectDate={onSelectDate}
             selectedDate={selectedDate}
             today={today}
           />

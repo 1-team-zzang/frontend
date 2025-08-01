@@ -24,11 +24,10 @@ import { Switch, SwitchTrigger } from '@/shared/ui/switch'
 import Text from '@/shared/ui/text/text'
 import { devLog } from '@/shared/utils/dev-log'
 
+import ScheduleEditColorModal from '../../../shared/ui/schedule-edit/schedule-edit-color-modal'
+import ScheduleEditDayPicker from '../../../shared/ui/schedule-edit/schedule-edit-date-picker'
+import ScheduleEditTimePicker from '../../../shared/ui/schedule-edit/schedule-edit-time-picker'
 import { createSchedule, type CreateScheduleRequest } from '../api/schedule-register.API'
-
-import ScheduleDatePicker from './schedule-date-picker'
-import ScheduleTimePicker from './schedule-time-picker'
-import SelectColorModal from './select-color-modal'
 
 //기본 날짜 설정
 const today = new Date()
@@ -105,7 +104,7 @@ export default function ScheduleRegister() {
     methods.setValue('color', color)
   }
 
-  //날짜, 시간 선택
+  //날짜, 시간 선택ㅇ
   const [startTime, setStartTime] = useState(InitialStart)
   const [endTime, setEndTime] = useState(InitialEnd)
 
@@ -124,7 +123,7 @@ export default function ScheduleRegister() {
   }, [endTime, methods])
 
   //하루 종일 스위치
-  const [isChecked, setIsChecked] = useState(false)
+  const [isAllDay, setIsAllDay] = useState(false)
 
   //바텀 시트
   const [isRepeatOpen, setIsRepeatOpen] = useState(false)
@@ -228,9 +227,10 @@ export default function ScheduleRegister() {
             </Text>
             <span>까지</span>
 
-            <ScheduleDatePicker
+            <ScheduleEditDayPicker
               open={isRepeatEndOpen}
               onOpenChange={setIsRepeatEndOpen}
+              initialDate={today}
               onConfirm={(date) => {
                 const parsedDate = format(date, 'yyyy-MM-dd HH:mm')
                 setRepeatEndDate(parsedDate)
@@ -288,7 +288,7 @@ export default function ScheduleRegister() {
       startAt: dateToString(data.start),
       endAt: dateToString(data.end),
       isVisible: data.visible === 'visible',
-      isAllDay: isChecked,
+      isAllDay: isAllDay,
       isRepeated: data.repeatUnit !== 'none',
       repeatRule:
         data.repeatUnit === 'day'
@@ -344,7 +344,7 @@ export default function ScheduleRegister() {
               />
             </div>
           </FormField>
-          <SelectColorModal
+          <ScheduleEditColorModal
             isColorOpen={isColorOpen}
             setIsColorOpen={setIsColorOpen}
             selectedColor={selectedColor}
@@ -364,7 +364,7 @@ export default function ScheduleRegister() {
                 >
                   {format(startTime, 'yyyy.MM.dd (eee)', { locale: ko })}
                 </Text>
-                {!isChecked && (
+                {!isAllDay && (
                   <Text
                     typography="b2-normal"
                     as="button"
@@ -377,14 +377,14 @@ export default function ScheduleRegister() {
                 )}
               </div>
             </div>
-            <ScheduleDatePicker
+            <ScheduleEditDayPicker
               open={isStartDayOpen}
               onOpenChange={setIsStartDayOpen}
               initialDate={startTime}
               onConfirm={(date) => setStartTime(date)}
               today={today}
             />
-            <ScheduleTimePicker
+            <ScheduleEditTimePicker
               open={isStartTimeOpen}
               onOpenChange={setIsStartTimeOpen}
               initialDate={startTime}
@@ -402,7 +402,7 @@ export default function ScheduleRegister() {
                 >
                   {format(endTime, 'yyyy.MM.dd (eee)', { locale: ko })}
                 </Text>
-                {!isChecked && (
+                {!isAllDay && (
                   <Text
                     typography="b2-normal"
                     as="button"
@@ -416,7 +416,7 @@ export default function ScheduleRegister() {
               </div>
             </div>
           </div>
-          <ScheduleDatePicker
+          <ScheduleEditDayPicker
             open={isEndDayOpen}
             onOpenChange={setIsEndDayOpen}
             initialDate={endTime}
@@ -429,7 +429,7 @@ export default function ScheduleRegister() {
             }}
             today={today}
           />
-          <ScheduleTimePicker
+          <ScheduleEditTimePicker
             open={isEndTimeOpen}
             onOpenChange={setIsEndTimeOpen}
             initialDate={endTime}
@@ -443,7 +443,7 @@ export default function ScheduleRegister() {
           />
           <div className="flex py-4 justify-between items-center border-b border-gray-10">
             <Text typography={'b2-heading'}>하루 종일</Text>
-            <Switch checked={isChecked} onCheckedChange={setIsChecked}>
+            <Switch checked={isAllDay} onCheckedChange={setIsAllDay}>
               <SwitchTrigger />
             </Switch>
           </div>

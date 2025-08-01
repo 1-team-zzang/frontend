@@ -1,7 +1,7 @@
 import getMonthDates from '@/shared/ui/calendar/util/get-month-dates'
 import { range } from '@/shared/ui/calendar/util/range'
 
-import ScheduleCalendarCell from './schedule-calandar-cell'
+import ScheduleEditCalendarCell from './schedule-calandar-cell'
 
 interface MonthlyCalendarProps {
   year: number
@@ -11,7 +11,7 @@ interface MonthlyCalendarProps {
   today: Date
 }
 
-export default function ScheduleMonthlyCalendar({
+export default function ScheduleEditMonthlyCalendar({
   year,
   month,
   onSelectDate,
@@ -39,7 +39,7 @@ export default function ScheduleMonthlyCalendar({
         const isSelected = selectedDate?.toDateString() === currentDate.toDateString()
 
         return (
-          <ScheduleCalendarCell
+          <ScheduleEditCalendarCell
             key={day}
             year={year}
             month={month}
