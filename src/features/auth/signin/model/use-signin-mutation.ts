@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { useUserStore } from '@/entities/user/models/use-user-store'
 import { friendQueryKeys } from '@/features/friends/model'
-import { devLog } from '@/shared/utils/dev-log'
+import { toast } from '@/shared/ui/toast'
 
 import { postSignin } from '../api/signin.API'
 
@@ -21,9 +21,9 @@ function useSigninMutation() {
     },
     onError: (error: AxiosError) => {
       if (error?.status === 401) {
-        devLog('error', '로그인 실패', '이메일 및 비밀번호를 확인하세요')
+        toast.error('이메일 및 비밀번호를 확인하세요')
       } else {
-        devLog('error', '로그인 실패', '알 수 없는 에러가 발생했습니다')
+        toast.error('알 수 없는 에러가 발생했습니다')
       }
     },
   })
