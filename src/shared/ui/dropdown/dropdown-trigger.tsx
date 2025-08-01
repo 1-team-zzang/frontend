@@ -1,20 +1,21 @@
-import type { ReactNode } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 
-interface DropDownTriggerProps {
-  children: ReactNode
+interface DropDownTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void
 }
 
-function DropDownTrigger({ children, onClick }: DropDownTriggerProps) {
+function DropDownTrigger({ children, onClick, className, ...restProps }: DropDownTriggerProps) {
   return (
     <button
       type="button"
       onClick={onClick}
+      className={className}
       onKeyDown={(e) => {
         if (e.key === 'Escape') {
           onClick()
         }
       }}
+      {...restProps}
     >
       {children}
     </button>

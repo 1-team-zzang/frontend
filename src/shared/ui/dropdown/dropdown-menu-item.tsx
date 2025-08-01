@@ -1,6 +1,8 @@
+import { cn } from '@/shared/utils'
+
 import Text from '../text/text'
 
-import type { ReactNode } from 'react'
+import type { HTMLAttributes } from 'react'
 /**
  * @description 드롭다운 메뉴 리스트
  *
@@ -15,14 +17,23 @@ import type { ReactNode } from 'react'
  *
  */
 
-interface Props {
-  children: ReactNode
+interface Props extends HTMLAttributes<HTMLLIElement> {
   onClick?: () => void
+  onClose?: () => void
 }
 
-export default function DropDownMenuItem({ children, onClick }: Props) {
+export default function DropDownMenuItem({ children, onClick, className, onClose }: Props) {
+  const handleClick = () => {
+    onClick?.()
+    onClose?.()
+  }
   return (
-    <Text as="li" typography="label" className="cursor-pointer" onClick={onClick}>
+    <Text
+      as="li"
+      typography="label"
+      className={cn('px-4 py-2 whitespace-nowrap cursor-pointer hover:bg-gray-5 active:bg-gray-10 rounded', className)}
+      onClick={handleClick}
+    >
       {children}
     </Text>
   )
