@@ -1,6 +1,6 @@
-import { useDropdownContext } from './use-dropdown-context'
+import Text from '../text/text'
 
-import type { KeyboardEventHandler, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 /**
  * @description 드롭다운 메뉴 리스트
  *
@@ -21,27 +21,9 @@ interface Props {
 }
 
 export default function DropDownMenuItem({ children, onClick }: Props) {
-  const { handleCloseDropdown } = useDropdownContext()
-
-  const handleClick = () => {
-    if (onClick) {
-      onClick()
-    }
-    handleCloseDropdown()
-  }
-
-  const handleKeyDown: KeyboardEventHandler<HTMLButtonElement> = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleClick()
-    }
-  }
-
   return (
-    <li className="w-full cursor-pointer">
-      <button onClick={handleClick} onKeyDown={handleKeyDown}>
-        {children}
-      </button>
-    </li>
+    <Text as="li" typography="label" className="cursor-pointer" onClick={onClick}>
+      {children}
+    </Text>
   )
 }

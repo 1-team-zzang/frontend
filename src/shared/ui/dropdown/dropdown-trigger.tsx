@@ -1,23 +1,24 @@
-/**
- * @description 드롭다운 트리거 버튼
- *
- * @param
- *
- * @returns
- *
- * @example
- *
- */
-
-import { useDropdownContext } from './use-dropdown-context'
-
 import type { ReactNode } from 'react'
 
-export default function DropDownTrigger({ children }: { children: ReactNode }) {
-  const { handleToggleDropdown } = useDropdownContext()
+interface DropDownTriggerProps {
+  children: ReactNode
+  onClick: () => void
+}
+
+function DropDownTrigger({ children, onClick }: DropDownTriggerProps) {
   return (
-    <button type="button" onClick={handleToggleDropdown}>
+    <button
+      type="button"
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          onClick()
+        }
+      }}
+    >
       {children}
     </button>
   )
 }
+
+export default DropDownTrigger

@@ -2,8 +2,8 @@ import { format } from 'date-fns'
 import { Outlet, useParams } from 'react-router'
 
 import { IconCalendarAdd } from '@/shared/assets/icons'
-import { DetailedScheduleHeader } from '@/shared/ui/calendar'
 import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
+import { DetailedScheduleHeader } from '@/shared/ui/detailed-schedule'
 
 export default function DetailedScheduleLayout() {
   const { date } = useParams()

@@ -1,4 +1,4 @@
-import Text from '../../text/text'
+import Text from '../text/text'
 
 import DetailedScheduleCardContent from './detailed-schedule-card-content'
 import DetailedScheduleColorBadge from './detailed-schedule-color-badge'
