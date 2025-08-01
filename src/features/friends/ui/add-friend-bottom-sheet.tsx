@@ -19,9 +19,12 @@ import { Form, FormField } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
 import Text from '@/shared/ui/text/text'
 
+import SearchTypeDropdown from './search-type-dropdown'
 import UserListSkeleton from './user-list-skeleton'
 
 import { UserList } from './index'
+
+import type { FriendSearchType } from '../model'
 
 const FriendRequestSchema = z.object({
   friend: z.string().min(2, '2글자 이상 입력해주세요'),
@@ -34,6 +37,7 @@ interface Props {
 }
 
 export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
+  const [searchType, setSearchType] = useState<FriendSearchType>('EMAIL')
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   const { reset } = useQueryErrorResetBoundary()
@@ -64,8 +68,9 @@ export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
         <BottomSheetContent>
           <Form methods={methods} onSubmit={handleSubmit} className="m-0">
             <FormField name="friend">
-              <div className="relative">
-                <Input placeholder="이메일 검색" className="h-16" />
+              <div className="relative flex items-center gap-2">
+                <SearchTypeDropdown searchType={searchType} onTypeChange={setSearchType} />
+                <Input placeholder={searchType === 'EMAIL' ? '이메일 검색' : '이름 검색'} className="h-14" />
                 <Button
                   intent="outlined"
                   type="submit"
@@ -93,7 +98,7 @@ export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
             )}
           >
             <Suspense fallback={<UserListSkeleton />}>
-              <UserList searchQuery={searchQuery} />
+              <UserList searchQuery={searchQuery} searchType={searchType} />
             </Suspense>
           </ErrorBoundary>
         </BottomSheetContent>
