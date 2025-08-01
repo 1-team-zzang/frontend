@@ -13,18 +13,19 @@
  * <MonthlyCalendar year={2025} month={0} /> // 2025년 1월 달력
  */
 
-
-
 import getMonthDates from '../utils/get-month-dates'
 import { range } from '../utils/range'
+
 import CalendarCell from './calendar-cell'
 
-interface Prop {
-  year: number
-  month: number
+import type { Month } from '../type/calendar.types'
+import type { ReactNode } from 'react'
+
+interface Props extends Month {
+  children?: (date: Date) => ReactNode
 }
 
-export default function MonthlyCalendar({ year, month }: Prop) {
+export default function MonthlyCalendar({ year, month, children }: Props) {
   const date = new Date(year, month, 1)
   const { firstDayOfMonth, LastDayOfMonth, remainingDaysInWeek } = getMonthDates(date)
 
@@ -35,8 +36,10 @@ export default function MonthlyCalendar({ year, month }: Prop) {
       ))}
 
       {range(LastDayOfMonth).map((day: number) => (
-        <div className="h-20 border-t border-gray-10 flex flex-col items-center" key={day}>
-          <CalendarCell year={year} month={month} date={day} showMonthLabel={day === 1} />
+        <div key={`${year}-${month}-${day}`} className="h-20 border-t border-gray-10 ">
+          <CalendarCell date={{ year, month, day }} showMonthLabel={day === 1}>
+            {children?.(new Date(year, month, day))}
+          </CalendarCell>
         </div>
       ))}
       {range(remainingDaysInWeek).map((day: number) => (

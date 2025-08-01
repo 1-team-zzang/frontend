@@ -9,15 +9,21 @@ interface Props {
   bottomRef: RefObject<HTMLDivElement | null>
   scrollContainerRef: RefObject<HTMLDivElement | null>
   setMonths: Dispatch<SetStateAction<Month[]>>
+  disablePrev?: boolean
 }
 
-export default function useInfiniteCalendarScroll({ topRef, bottomRef, scrollContainerRef, setMonths }: Props) {
+export default function useInfiniteCalendarScroll({
+  topRef,
+  bottomRef,
+  scrollContainerRef,
+  setMonths,
+  disablePrev = false, // ← 기본 false
+}: Props) {
   useEffect(() => {
+    const root = scrollContainerRef.current
     const top = topRef.current
     const bottom = bottomRef.current
-    const root = scrollContainerRef.current
-
-    if (!top || !bottom || !root) {
+    if (!root || !bottom || (!top && !disablePrev)) {
       return
     }
 
@@ -25,20 +31,16 @@ export default function useInfiniteCalendarScroll({ topRef, bottomRef, scrollCon
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            //위에 닿았을 때
-            if (entry.target === top) {
+            if (entry.target === top && !disablePrev) {
               setMonths((prev) => {
                 const first = prev[0]
-                const newMonth = getPrevMonth(first)
-                return [newMonth, ...prev]
+                return [getPrevMonth(first), ...prev]
               })
             }
-            //아래에 닿았을때
             if (entry.target === bottom) {
               setMonths((prev) => {
                 const last = prev[prev.length - 1]
-                const newMonth = getNextMonth(last)
-                return [...prev, newMonth]
+                return [...prev, getNextMonth(last)]
               })
             }
           }
@@ -47,12 +49,16 @@ export default function useInfiniteCalendarScroll({ topRef, bottomRef, scrollCon
       { root, rootMargin: '200px' },
     )
 
-    observer.observe(top)
-    observer.observe(bottom)
+    if (top && !disablePrev) {
+      observer.observe(top)
+    }
+    observer.observe(bottom!)
 
     return () => {
-      observer.unobserve(top)
-      observer.unobserve(bottom)
+      if (top && !disablePrev) {
+        observer.unobserve(top)
+      }
+      observer.unobserve(bottom!)
     }
-  }, [topRef, bottomRef, scrollContainerRef, setMonths])
+  }, [topRef, bottomRef, scrollContainerRef, setMonths, disablePrev])
 }

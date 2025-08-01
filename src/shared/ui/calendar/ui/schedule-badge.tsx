@@ -1,0 +1,39 @@
+import { cva, type VariantProps } from 'class-variance-authority'
+
+import Text from '../../text/text'
+
+import type { ReactNode } from 'react'
+
+/**
+ * @description
+ * 배경색이 채워진(pill 형태) 일정 뱃지를 렌더링하는 컴포넌트입니다.
+ *
+ * @param label 뱃지에 표시할 텍스트 (일정 제목)
+ * @param color 뱃지의 배경색 (예: 'red', 'blue', 'green', 'yellow', 'purple')
+ */
+interface Props extends VariantProps<typeof badgeVariants> {
+  children: ReactNode
+}
+
+const badgeVariants = cva(
+  'block h-3 w-full px-0.5 text-white rounded-sm z-base truncate overflow-hidden whitespace-nowrap max-w-full min-w-0',
+  {
+    variants: {
+      color: {
+        RED: 'bg-calendar-red',
+        YELLOW: 'bg-calendar-yellow',
+        GREEN: 'bg-calendar-green',
+        BLUE: 'bg-calendar-blue',
+        PURPLE: 'bg-calendar-purple',
+      },
+    },
+  },
+)
+
+export default function ScheduleBadge({ children, color }: Props) {
+  return (
+    <Text as="span" typography="caption-10" className={badgeVariants({ color })}>
+      {children}
+    </Text>
+  )
+}

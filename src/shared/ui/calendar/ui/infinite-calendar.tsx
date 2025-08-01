@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 
 import { useCalendarRef } from '../hooks/use-calendar-ref.ts'
 import useInfiniteCalendarScroll from '../hooks/use-infinite-calendar-scroll.ts'
@@ -11,7 +11,7 @@ import MonthlyCalendar from './montly-calendar.tsx'
 
 import type { Month } from '../type/calendar.types.ts'
 
-export default function InfiniteCalendar() {
+export default function InfiniteCalendar({ children }: { children?: (date: Date) => ReactNode }) {
   const { scrollContainerRef, topRef, bottomRef, currentMonthRef, monthRefs, setMonthRef } = useCalendarRef()
 
   const [months, setMonths] = useState<Month[]>(getInitialMonth())
@@ -34,7 +34,9 @@ export default function InfiniteCalendar() {
 
         return (
           <div key={key} ref={setMonthRef(key, isCurrent)} data-key={key}>
-            <MonthlyCalendar year={year} month={month} />
+            <MonthlyCalendar year={year} month={month}>
+              {children}
+            </MonthlyCalendar>
           </div>
         )
       })}
