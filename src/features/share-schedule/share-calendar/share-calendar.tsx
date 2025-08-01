@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useNavigate, useParams } from 'react-router'
 
-import isPastDate from '@/entities/utils/is-paste-date'
+import isPastDate from '@/entities/utils/is-past-date'
 import { IconInvite } from '@/shared/assets/icons'
 import {
   AddScheduleButton,
