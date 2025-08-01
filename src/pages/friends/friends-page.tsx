@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router'
 import AddFriendButton from '@/features/friends/ui/add-friend-button'
 import FriendList from '@/features/friends/ui/friend-list'
 import FriendRequestListButton from '@/features/friends/ui/friend-request-list-button'
+import { IconAppointmentArrowLeft } from '@/shared/assets/icons'
 import { ErrorFallback } from '@/shared/ui/error-fallback'
 import Header from '@/shared/ui/header/header'
 
@@ -16,7 +17,14 @@ export default function FriendsPage() {
   const { reset } = useQueryErrorResetBoundary()
   return (
     <>
-      <Header onNavigate={<div> </div>} onClick={<AddFriendButton />}>
+      <Header
+        onNavigate={
+          <button onClick={() => navigate('/')}>
+            <IconAppointmentArrowLeft />
+          </button>
+        }
+        onClick={<AddFriendButton />}
+      >
         캘메이트
       </Header>
       <ErrorBoundary
