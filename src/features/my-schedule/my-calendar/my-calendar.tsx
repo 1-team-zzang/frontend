@@ -1,35 +1,55 @@
 import { format } from 'date-fns'
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 import { IconCalendarAdd } from '@/shared/assets/icons'
-import { DateCellContent } from '@/shared/ui/calendar'
-import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
-import CalendarUI from '@/widget/ui/calendar-ui'
+import { RenderScheduleBadges } from '@/shared/ui'
+import {
+  AddScheduleButton,
+  Calendar,
+  HeaderButton,
+  HeaderContainer,
+  HearderMonthLabel,
+  InfiniteCalendar,
+} from '@/shared/ui/calendar'
+import { devLog } from '@/shared/utils/dev-log'
 
 import { useDateSchedules } from '../hooks/use-date-schedules'
 
+import ShareCalendarBottomSheet from './share-calendar-bottom-sheet'
+
 export default function MyCalendar() {
   const navigate = useNavigate()
-
   const { scheduleMap } = useDateSchedules()
+  devLog('log', 'scheduleMap', scheduleMap)
+
+  const [showModal, setShowModal] = useState(false)
+  const onShareClick = () => setShowModal(true)
 
   const goToCreateSchedule = () => {
     navigate('/my/schedule/create')
   }
+  const onDateClick = (date: Date) => {
+    const dateStr = format(date, 'yyyy-MM-dd')
+    navigate(`/my/detailed-schedule/date/${dateStr}`)
+  }
 
   return (
-    <CalendarUI
-      disablePastDateStyling={true}
-      renderDateCellContent={(date) => DateCellContent({ scheduleMap, date, isMine: true })}
-      onDateClick={(date) => {
-        const dateStr = format(date, 'yyyy-MM-dd')
-        navigate(`/my/detailed-schedule/date/${dateStr}`)
-      }}
-      showShareButton={true}
-    >
-      <AddScheduleButton onClick={goToCreateSchedule}>
-        <IconCalendarAdd />
-      </AddScheduleButton>
-    </CalendarUI>
+    <>
+      <Calendar onDateClick={onDateClick}>
+        <HeaderContainer>
+          <HeaderButton>오늘</HeaderButton>
+          <HearderMonthLabel />
+          <HeaderButton onClick={onShareClick}>공유</HeaderButton>
+        </HeaderContainer>
+        <InfiniteCalendar>
+          {(date) => <RenderScheduleBadges isMine date={date} scheduleMap={scheduleMap} />}
+        </InfiniteCalendar>
+        <AddScheduleButton onClick={goToCreateSchedule}>
+          <IconCalendarAdd />
+        </AddScheduleButton>
+      </Calendar>
+      {showModal && <ShareCalendarBottomSheet isOpen={showModal} setIsOpen={setShowModal} />}
+    </>
   )
 }
