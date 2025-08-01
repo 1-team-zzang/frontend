@@ -2,7 +2,7 @@ import Text from '../../text/text'
 
 import { useCalendarContext } from './calendar-context'
 
-export default function HearderMonthLabel() {
+export default function HeaderMonthLabel() {
   const { visibleMonth } = useCalendarContext()
 
   if (!visibleMonth) {

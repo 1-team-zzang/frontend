@@ -9,7 +9,7 @@ import {
   Calendar,
   HeaderButton,
   HeaderContainer,
-  HearderMonthLabel,
+  HeaderMonthLabel,
   InfiniteCalendar,
   RenderScheduleBadges,
 } from '@/shared/ui/calendar'
@@ -43,7 +43,7 @@ export default function FriendCalendar() {
         <HeaderButton>
           <IconCalendarArrowLeft />
         </HeaderButton>
-        <HearderMonthLabel />
+        <HeaderMonthLabel />
         <HeaderButton>오늘</HeaderButton>
       </HeaderContainer>
       <InfiniteCalendar>{(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} />}</InfiniteCalendar>

@@ -1,7 +1,4 @@
-export interface Month {
-  year: number
-  month: number // 0은 1월임
-}
+import type { Month } from '../type/calendar.types'
 
 export function getNextMonth({ year, month }: Month): Month {
   const next = new Date(year, month + 1, 1)

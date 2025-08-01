@@ -8,7 +8,7 @@ import {
   Calendar,
   HeaderButton,
   HeaderContainer,
-  HearderMonthLabel,
+  HeaderMonthLabel,
   InfiniteCalendar,
   RenderScheduleBadges,
 } from '@/shared/ui/calendar'
@@ -36,7 +36,7 @@ export default function ShareCalendar() {
     <Calendar onDateClick={onDateClick}>
       <HeaderContainer>
         <div className="size-4" />
-        <HearderMonthLabel />
+        <HeaderMonthLabel />
         <HeaderButton>오늘</HeaderButton>
       </HeaderContainer>
       <InfiniteCalendar disablePrev={true}>

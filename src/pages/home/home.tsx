@@ -6,7 +6,7 @@ import EmailSigninModal from '@/features/auth/signin/ui/email-signin-modal'
 import SignupModal from '@/features/auth/signup/ui/signup-modal'
 import { MyCalendar } from '@/features/my-schedule'
 import { IconCalendarArrowLeft } from '@/shared/assets/icons'
-import { Calendar, HeaderButton, HeaderContainer, HearderMonthLabel, InfiniteCalendar } from '@/shared/ui'
+import { Calendar, HeaderButton, HeaderContainer, HeaderMonthLabel, InfiniteCalendar } from '@/shared/ui'
 
 import type { AuthModalType } from '@/features/auth/signin/model/auth-modal.type'
 
@@ -31,7 +31,7 @@ export default function Home() {
             <HeaderButton>
               <IconCalendarArrowLeft />
             </HeaderButton>
-            <HearderMonthLabel />
+            <HeaderMonthLabel />
             <HeaderButton>오늘</HeaderButton>
           </HeaderContainer>
           <InfiniteCalendar />

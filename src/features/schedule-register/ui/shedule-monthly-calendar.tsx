@@ -1,5 +1,5 @@
-import getMonthDates from '@/shared/ui/calendar/util/get-month-dates'
-import { range } from '@/shared/ui/calendar/util/range'
+import { range } from '@/shared/ui'
+import getMonthDates from '@/shared/ui/calendar/utils/get-month-dates'
 
 import ScheduleCalendarCell from './schedule-calandar-cell'
 
