@@ -17,3 +17,8 @@ export * from './utils/get-day-info'
 export * from './utils/get-initial-month'
 export * from './utils/get-month-dates'
 export * from './utils/range'
+
+export { default as useCalendarRef } from './hooks/use-calendar-ref'
+export { default as useInfiniteCalendarScroll } from './hooks/use-infinite-calendar-scroll'
+export { default as useScrollToCurrentMonth } from './hooks/use-scroll-to-current-month'
+export { default as useVisibleMonthObserver } from './hooks/use-visible-month-observer'

@@ -1,25 +1,32 @@
 import { useState, type ReactNode } from 'react'
 
-import { useCalendarRef } from '../hooks/use-calendar-ref.ts'
-import useInfiniteCalendarScroll from '../hooks/use-infinite-calendar-scroll.ts'
-import useScrollToCurrentMonth from '../hooks/use-scroll-to-current-month.ts'
-import useVisibleMonthObserver from '../hooks/use-visible-month-observer.tsx'
+import {
+  useCalendarRef,
+  useInfiniteCalendarScroll,
+  useScrollToCurrentMonth,
+  useVisibleMonthObserver,
+  MonthlyCalendar,
+} from '../../index.ts'
 import getInitialMonth from '../utils/get-initial-month.ts'
 
 import { useCalendarContext } from './calendar-context.tsx'
-import MonthlyCalendar from './montly-calendar.tsx'
 
 import type { Month } from '../type/calendar.types.ts'
 
-export default function InfiniteCalendar({ children }: { children?: (date: Date) => ReactNode }) {
+interface Props {
+  children?: (date: Date) => ReactNode
+  disablePrev?: boolean //이전달 안보이게
+}
+
+export default function InfiniteCalendar({ children, disablePrev = false }: Props) {
   const { scrollContainerRef, topRef, bottomRef, currentMonthRef, monthRefs, setMonthRef } = useCalendarRef()
 
-  const [months, setMonths] = useState<Month[]>(getInitialMonth())
+  const [months, setMonths] = useState<Month[]>(getInitialMonth(disablePrev))
   const { setVisibleMonth } = useCalendarContext()
 
   const today = new Date()
 
-  useInfiniteCalendarScroll({ topRef, bottomRef, scrollContainerRef, setMonths })
+  useInfiniteCalendarScroll({ topRef, bottomRef, scrollContainerRef, setMonths, disablePrev })
 
   useScrollToCurrentMonth({ currentMonthRef })
 

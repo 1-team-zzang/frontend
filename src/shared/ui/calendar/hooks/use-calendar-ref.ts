@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-export function useCalendarRef() {
+export default function useCalendarRef() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null)
   const topRef = useRef<HTMLDivElement | null>(null)
   const bottomRef = useRef<HTMLDivElement | null>(null)
