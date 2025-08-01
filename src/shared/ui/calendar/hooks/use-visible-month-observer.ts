@@ -12,6 +12,7 @@ interface Props {
 export default function useVisibleMonthObserver({ scrollContainerRef, setVisibleMonth, monthRefs, months }: Props) {
   useEffect(() => {
     const root = scrollContainerRef.current
+    const currentMonthRefs = monthRefs.current
     if (!root) {
       return
     }
@@ -19,13 +20,16 @@ export default function useVisibleMonthObserver({ scrollContainerRef, setVisible
     const observer = new IntersectionObserver(
       (entries) => {
         const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+          .filter((entry) => entry.isIntersecting) //지금 보이는부분만 필터링
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top) //화면에 제일 위에 있는것부터 정렬
 
         const firstVisible = visibleEntries[0]
         if (firstVisible) {
-          const [year, month] = firstVisible.target.getAttribute('data-key')!.split('-').map(Number)
-          setVisibleMonth({ year, month })
+          const dataKey = firstVisible.target.getAttribute('data-key')
+          if (dataKey) {
+            const [year, month] = dataKey.split('-').map(Number)
+            setVisibleMonth({ year, month })
+          }
         }
       },
       {
@@ -34,9 +38,9 @@ export default function useVisibleMonthObserver({ scrollContainerRef, setVisible
       },
     )
 
-    monthRefs.current.forEach((el) => observer.observe(el))
+    currentMonthRefs.forEach((el) => observer.observe(el))
     return () => {
-      monthRefs.current.forEach((el) => observer.unobserve(el))
+      currentMonthRefs.forEach((el) => observer.observe(el))
     }
-  }, [months])
+  }, [months, monthRefs, scrollContainerRef, setVisibleMonth])
 }
