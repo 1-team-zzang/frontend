@@ -7,6 +7,7 @@ import ScheduleEditDayPicker from '@/shared/ui/schedule-edit/schedule-edit-date-
 import ScheduleEditTimePicker from '@/shared/ui/schedule-edit/schedule-edit-time-picker'
 
 import Text from '../text/text'
+import { toast } from '../toast'
 
 export default function ScheduleEditDate() {
   const { setValue, watch } = useFormContext()
@@ -25,7 +26,7 @@ export default function ScheduleEditDate() {
     if (end < date) {
       setValue('start', date)
       setValue('end', date)
-      alert('종료 시간은 시작 시간 이후여야 합니다.')
+      toast.error('종료 시간은 시작 시간 이후여야 합니다.')
       return
     }
     setValue('start', date)
@@ -33,7 +34,7 @@ export default function ScheduleEditDate() {
 
   const handleEndDayConfirm = (date: Date) => {
     if (date < start) {
-      alert('종료 날짜는 시작 날짜 이후여야 합니다.')
+      toast.error('종료 시간은 시작 시간 이후여야 합니다.')
       return
     }
     setValue('end', date)
@@ -43,7 +44,7 @@ export default function ScheduleEditDate() {
     if (end < date) {
       setValue('start', date)
       setValue('end', date)
-      alert('종료 시간은 시작 시간 이후여야 합니다.')
+      toast.error('종료 시간은 시작 시간 이후여야 합니다.')
       return
     }
     setValue('start', date)
@@ -51,7 +52,7 @@ export default function ScheduleEditDate() {
 
   const handleEndTimeConfirm = (date: Date) => {
     if (date < start) {
-      alert('종료 시간은 시작 시간 이후여야 합니다.')
+      toast.error('종료 시간은 시작 시간 이후여야 합니다.')
       return
     }
     setValue('end', date)
