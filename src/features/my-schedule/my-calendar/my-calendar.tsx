@@ -43,7 +43,7 @@ export default function MyCalendar() {
           <HeaderButton onClick={onShareClick}>공유</HeaderButton>
         </HeaderContainer>
         <InfiniteCalendar>
-          {(date) => <RenderScheduleBadges isMine date={date} scheduleMap={scheduleMap} />}
+          {(date) => <RenderScheduleBadges isMyCalendar date={date} scheduleMap={scheduleMap} />}
         </InfiniteCalendar>
         <AddScheduleButton onClick={goToCreateSchedule}>
           <IconCalendarAdd />
