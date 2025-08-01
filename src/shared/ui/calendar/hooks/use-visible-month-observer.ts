@@ -40,7 +40,7 @@ export default function useVisibleMonthObserver({ scrollContainerRef, setVisible
 
     currentMonthRefs.forEach((el) => observer.observe(el))
     return () => {
-      currentMonthRefs.forEach((el) => observer.observe(el))
+      currentMonthRefs.forEach((el) => observer.unobserve(el))
     }
   }, [months, monthRefs, scrollContainerRef, setVisibleMonth])
 }
