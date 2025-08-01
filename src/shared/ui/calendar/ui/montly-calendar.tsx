@@ -1,8 +1,3 @@
-import getMonthDates from '../util/get-month-dates'
-import { range } from '../util/range'
-
-import CalendarCell from './calendar-cell'
-
 /**
  * 2025년의 월에 해당하는 달력 셀을 월 단위로 렌더링하는 컴포넌트입니다.
  *
@@ -18,6 +13,12 @@ import CalendarCell from './calendar-cell'
  * <MonthlyCalendar year={2025} month={0} /> // 2025년 1월 달력
  */
 
+
+
+import getMonthDates from '../utils/get-month-dates'
+import { range } from '../utils/range'
+import CalendarCell from './calendar-cell'
+
 interface Prop {
   year: number
   month: number
@@ -28,15 +29,17 @@ export default function MonthlyCalendar({ year, month }: Prop) {
   const { firstDayOfMonth, LastDayOfMonth, remainingDaysInWeek } = getMonthDates(date)
 
   return (
-    <div className="grid grid-cols-7">
-      {range(firstDayOfMonth).map((day) => (
+    <div className="grid grid-cols-7 ">
+      {range(firstDayOfMonth).map((day: number) => (
         <div className="h-20 border-t border-gray-10" key={`empty-${day}`} />
       ))}
 
-      {range(LastDayOfMonth).map((day) => (
-        <CalendarCell key={day} year={year} month={month} date={day} showMonthLabel={day === 1} />
+      {range(LastDayOfMonth).map((day: number) => (
+        <div className="h-20 border-t border-gray-10 flex flex-col items-center" key={day}>
+          <CalendarCell year={year} month={month} date={day} showMonthLabel={day === 1} />
+        </div>
       ))}
-      {range(remainingDaysInWeek).map((day) => (
+      {range(remainingDaysInWeek).map((day: number) => (
         <div className="h-20 border-t border-gray-10" key={`empty-${day}`} />
       ))}
     </div>

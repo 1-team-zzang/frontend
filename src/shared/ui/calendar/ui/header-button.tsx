@@ -10,7 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
 }
 
-export default function CalendarHeaderButton({ children, ...restProps }: Props) {
+export default function HeaderButton({ children, ...restProps }: Props) {
   return (
     <Text as="button" typography="b2-normal" {...restProps}>
       {children}
