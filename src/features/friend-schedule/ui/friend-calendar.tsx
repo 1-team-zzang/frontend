@@ -3,10 +3,16 @@ import { format } from 'date-fns'
 import { useNavigate, useParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
-import { IconCalendarAdd } from '@/shared/assets/icons'
-import { DateCellContent } from '@/shared/ui/calendar'
-import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
-import CalendarUI from '@/widget/ui/calendar-ui'
+import { IconCalendarArrowLeft, IconInvite } from '@/shared/assets/icons'
+import {
+  AddScheduleButton,
+  Calendar,
+  HeaderButton,
+  HeaderContainer,
+  HearderMonthLabel,
+  InfiniteCalendar,
+  RenderScheduleBadges,
+} from '@/shared/ui/calendar'
 
 import { getFriendSchedule } from '../api/friend-schedule.API'
 
@@ -22,7 +28,7 @@ export default function FriendCalendar() {
 
   const scheduleMap = groupByDate(schedules)
 
-  const handleDateClick = (date: Date) => {
+  const onDateClick = (date: Date) => {
     const dateStr = format(date, 'yyyy-MM-dd')
     navigate(`/friends/${friendId}/calendar/detailed-schedule/date/${dateStr}`)
   }
@@ -32,15 +38,18 @@ export default function FriendCalendar() {
   }
 
   return (
-    <CalendarUI
-      disablePastDateStyling
-      renderDateCellContent={(date) => <DateCellContent scheduleMap={scheduleMap} date={date} />}
-      onDateClick={handleDateClick}
-      isFriendCalendar={true}
-    >
+    <Calendar onDateClick={onDateClick}>
+      <HeaderContainer>
+        <HeaderButton>
+          <IconCalendarArrowLeft />
+        </HeaderButton>
+        <HearderMonthLabel />
+        <HeaderButton>오늘</HeaderButton>
+      </HeaderContainer>
+      <InfiniteCalendar>{(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} />}</InfiniteCalendar>
       <AddScheduleButton onClick={goToCreateAppointment}>
-        <IconCalendarAdd />
+        <IconInvite />
       </AddScheduleButton>
-    </CalendarUI>
+    </Calendar>
   )
 }
