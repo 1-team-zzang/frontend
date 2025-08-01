@@ -1,7 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-import { useDropdownContext } from './use-dropdown-context'
-
 import type { ReactNode } from 'react'
 /**
  * @description 드롭다운 메뉴박스
@@ -22,22 +20,21 @@ interface Props extends VariantProps<typeof dropDownMenuVariants> {
   children: ReactNode
 }
 
-const dropDownMenuVariants = cva('flex flex-col absolute animate-dropdown gap-2 p-4', {
-  variants: {
-    size: {
-      sm: 'w-24',
-      lg: 'w-48',
+const dropDownMenuVariants = cva(
+  'w-16 p-2 flex flex-col bg-gray-100 text-white text-center rounded-2xl animate-dropdown gap-2 z-dropdown absolute',
+  {
+    variants: {
+      position: {
+        right: 'right-0',
+        lift: 'left-0',
+      },
+    },
+    defaultVariants: {
+      position: 'right',
     },
   },
-  defaultVariants: {
-    size: 'sm',
-  },
-})
+)
 
-export default function DropDownMenu({ children, size }: Props) {
-  const { isOpen } = useDropdownContext()
-  if (!isOpen) {
-    return null
-  }
-  return <ul className={dropDownMenuVariants({ size })}>{children}</ul>
+export default function DropDownMenu({ children, position }: Props) {
+  return <ul className={dropDownMenuVariants({ position })}>{children}</ul>
 }

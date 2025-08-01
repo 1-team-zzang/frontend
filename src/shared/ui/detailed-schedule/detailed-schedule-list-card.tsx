@@ -1,4 +1,5 @@
-import { IconKebabMenu } from '@/shared/assets/icons'
+import { type ReactNode } from 'react'
+
 import Text from '@/shared/ui/text/text'
 
 import DetailedScheduleColorBadge from './detailed-schedule-color-badge'
@@ -10,14 +11,15 @@ interface Props {
   time: string
   badgeColor: ColorType
   onCardClick: () => void
+  children?: ReactNode
 }
 
-export default function DetailedScheduleListCard({ title, time, badgeColor, onCardClick }: Props) {
+export default function DetailedScheduleListCard({ title, time, badgeColor, onCardClick, children }: Props) {
   return (
-    <button onClick={onCardClick} className="w-full bg-white h-[5.625em] rounded-[0.625rem]">
+    <div className="w-full bg-white h-[5.625em] rounded-[0.625rem]">
       <div className="w-full flex justify-between p-4">
         {/* 일정 정보부분 */}
-        <div className="flex items-center gap-4 ">
+        <button onClick={onCardClick} className="flex items-center gap-4 ">
           <DetailedScheduleColorBadge badgeColor={badgeColor} />
           <div className="flex flex-col">
             <Text as="span" typography="h2-heading" className="text-start">
@@ -27,9 +29,9 @@ export default function DetailedScheduleListCard({ title, time, badgeColor, onCa
               {time}
             </Text>
           </div>
-        </div>
-        <IconKebabMenu />
+        </button>
+        {children}
       </div>
-    </button>
+    </div>
   )
 }

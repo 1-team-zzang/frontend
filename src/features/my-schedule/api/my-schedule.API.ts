@@ -11,6 +11,7 @@ export async function getMySchedule(): Promise<Schedule[]> {
         end: '2025-12-31',
       },
     })
+    devLog('log', 'schdule', res.data?.data?.scheduleResponseList)
     return res.data?.data?.scheduleResponseList ?? []
   } catch (error) {
     devLog('log', '❌ 요청 실패', error)

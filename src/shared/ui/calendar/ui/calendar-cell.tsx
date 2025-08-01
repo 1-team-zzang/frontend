@@ -37,7 +37,7 @@ export default function CalendarCell({ year, month, date, showMonthLabel }: Prop
   const monthLabel = String(month + 1).padStart(2, '0')
 
   return (
-    <button onClick={() => onDateClick?.(fullDate)} className=" h-20 flex flex-col border-t border-gray-10">
+    <button onClick={() => onDateClick?.(fullDate)} className="w-full h-20 flex flex-col border-t border-gray-10">
       <div className="relative flex justify-center mb-1">
         <Text
           as="span"
@@ -55,7 +55,7 @@ export default function CalendarCell({ year, month, date, showMonthLabel }: Prop
         )}
       </div>
 
-      <div>{renderDateCellContent?.(fullDate)}</div>
+      <div className="w-full">{renderDateCellContent?.(fullDate)}</div>
     </button>
   )
 }

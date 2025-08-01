@@ -17,23 +17,23 @@ interface Props extends VariantProps<typeof badgeVariants> {
   children: ReactNode
 }
 
-const badgeVariants = cva('w-1 h-3 text-black rounded-sm z-base truncate overflow-hidden whitespace-nowrap', {
+const badgeVariants = cva('w-1 min-w-1 h-3 rounded-sm z-base', {
   variants: {
     color: {
-      redAlt: 'bg-calendar-red-alt',
-      yellowAlt: 'bg-calendar-yellow-alt',
-      greenAlt: 'bg-calendar-green-alt',
-      blueAlt: 'bg-calendar-blue-alt',
-      purpleAlt: 'bg-calendar-purple-alt',
+      RED: 'bg-calendar-red',
+      YELLOW: 'bg-calendar-yellow',
+      GREEN: 'bg-calendar-green',
+      BLUE: 'bg-calendar-blue',
+      PURPLE: 'bg-calendar-purple',
     },
   },
 })
 
 export default function ScheduleBadgeMarker({ children, color }: Props) {
   return (
-    <div className="flex items-center gap-1 w-full">
+    <div className="flex items-center gap-1 w-full z-base">
       <div className={badgeVariants({ color })} />
-      <Text as="span" typography="caption-10">
+      <Text as="span" typography="caption-10" className="min-w-0 truncate overflow-hidden whitespace-nowrap">
         {children}
       </Text>
     </div>
