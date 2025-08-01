@@ -9,7 +9,7 @@ import {
   Calendar,
   HeaderButton,
   HeaderContainer,
-  HearderMonthLabel,
+  HeaderMonthLabel,
   InfiniteCalendar,
 } from '@/shared/ui/calendar'
 import { devLog } from '@/shared/utils/dev-log'
@@ -39,7 +39,7 @@ export default function MyCalendar() {
       <Calendar onDateClick={onDateClick}>
         <HeaderContainer>
           <HeaderButton>오늘</HeaderButton>
-          <HearderMonthLabel />
+          <HeaderMonthLabel />
           <HeaderButton onClick={onShareClick}>공유</HeaderButton>
         </HeaderContainer>
         <InfiniteCalendar>
