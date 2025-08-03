@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from 'react'
 
+import { devLog } from '@/shared/utils/dev-log.ts'
+
 import {
   useCalendarRef,
   useInfiniteCalendarScroll,
@@ -23,6 +25,7 @@ export default function InfiniteCalendar({ children, disablePrev = false, isPast
   const { scrollContainerRef, topRef, bottomRef, monthRefs, setMonthRef } = useCalendarRef()
 
   const [months, setMonths] = useState<Month[]>(getInitialMonth(disablePrev))
+  devLog('log', 'month[]', months)
   const { setVisibleMonth } = useCalendarContext()
 
   const today = new Date()
