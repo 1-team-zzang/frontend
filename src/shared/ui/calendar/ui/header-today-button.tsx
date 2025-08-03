@@ -4,7 +4,8 @@ import Text from '../../text/text'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 /**
- * 캘린더 헤더에 사용하는 버튼(오늘, 공유 등 공통 버튼 컴포넌트)
+ * 캘린더 헤더에 사용하는 버튼
+ * 누르면 이번달 달력으로 이동
  */
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
