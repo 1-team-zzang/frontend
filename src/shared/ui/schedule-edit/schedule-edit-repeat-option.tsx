@@ -8,12 +8,14 @@ import ScheduleEditDayPicker from '@/shared/ui/schedule-edit/schedule-edit-date-
 
 import Text from '../text/text'
 
+import type { RepeatType } from '@/entities/schedule'
+
 export default function ScheduleEditRepeatOption() {
   const { control, watch, setValue } = useFormContext()
   const [isRepeatEndOpen, setIsRepeatEndOpen] = useState(false)
   const [repeatEndDate, setRepeatEndDate] = useState(format(new Date(), 'yyyy-MM-dd HH:mm'))
 
-  const repeatMode = watch('repeatMode') as 'count' | 'date'
+  const repeatType = watch('repeatMode') as RepeatType
   const today = new Date()
 
   const handleRepeatEndDateConfirm = (date: Date) => {
@@ -30,7 +32,7 @@ export default function ScheduleEditRepeatOption() {
             as="button"
             type="button"
             typography="b2-normal"
-            className={`h-[2.125rem] px-3 py-1 rounded-full ${repeatMode === 'count' ? 'bg-primary-30' : 'bg-gray-5'}`}
+            className={`h-[2.125rem] px-3 py-1 rounded-full ${repeatType === 'COUNT' ? 'bg-primary-30' : 'bg-gray-5'}`}
             onClick={() => setValue('repeatMode', 'count')}
           >
             횟수
@@ -39,13 +41,13 @@ export default function ScheduleEditRepeatOption() {
             as="button"
             type="button"
             typography="b2-normal"
-            className={`h-[2.125rem] px-3 py-1 rounded-full ${repeatMode === 'date' ? 'bg-primary-30' : 'bg-gray-5'}`}
+            className={`h-[2.125rem] px-3 py-1 rounded-full ${repeatType === 'DATE' ? 'bg-primary-30' : 'bg-gray-5'}`}
             onClick={() => setValue('repeatMode', 'date')}
           >
             종료일
           </Text>
         </div>
-        {repeatMode === 'count' && (
+        {repeatType === 'COUNT' && (
           <div className="flex items-center gap-2.5">
             <Controller
               control={control}
@@ -63,7 +65,7 @@ export default function ScheduleEditRepeatOption() {
             <Text typography="b2-normal">회 반복</Text>
           </div>
         )}
-        {repeatMode === 'date' && (
+        {repeatType === 'DATE' && (
           <div className="flex items-center gap-2">
             <Text
               as="button"

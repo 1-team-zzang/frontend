@@ -13,7 +13,9 @@ import {
   ScheduleEditTitle,
   ScheduleEditVisible,
 } from '@/shared/ui/schedule-edit'
+import { toast } from '@/shared/ui/toast'
 import { devLog } from '@/shared/utils/dev-log'
+import { formatDateToString } from '@/shared/utils/format-date-to-string'
 
 import { createSchedule, type CreateScheduleRequest } from '../../features/schedule-register/api/schedule-register.API'
 
@@ -30,40 +32,21 @@ export default function RegisterSchedulePage() {
     },
   })
 
-  function dateToString(date: Date) {
-    const year = date.getFullYear()
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const day = String(date.getDate()).padStart(2, '0')
-    const hour = String(date.getHours()).padStart(2, '0')
-    const minute = String(date.getMinutes()).padStart(2, '0')
-
-    return `${year}-${month}-${day} ${hour}:${minute}`
-  }
-
   const onSubmit = async (data: RegisterScheduleFormType) => {
     const payload: CreateScheduleRequest = {
       title: data.title,
       content: data.content,
-      startAt: dateToString(data.start),
-      endAt: dateToString(data.end),
+      startAt: formatDateToString(data.start),
+      endAt: formatDateToString(data.end),
       isVisible: data.visible === 'visible',
       isAllDay: data.isAllDay,
-      isRepeated: data.repeatUnit !== 'none',
-      repeatRule:
-        data.repeatUnit === 'day'
-          ? 'DAILY'
-          : data.repeatUnit === 'week'
-            ? 'WEEKLY'
-            : data.repeatUnit === 'month'
-              ? 'MONTHLY'
-              : data.repeatUnit === 'year'
-                ? 'YEARLY'
-                : undefined,
+      isRepeated: data.repeatRule !== '',
+      repeatRule: data.repeatRule,
       interval: data.interval,
-      repeatType: data.repeatMode === 'count' ? 'COUNT' : 'DATE',
-      repeatCount: data.repeatMode === 'count' ? data.repeatCount : undefined,
-      repeatEndAt: data.repeatMode === 'date' && data.repeatEndAt ? data.repeatEndAt : undefined,
-      color: data.color.toUpperCase(),
+      repeatType: data.repeatType === 'COUNT' ? 'COUNT' : 'DATE',
+      repeatCount: data.repeatType === 'COUNT' ? data.repeatCount : undefined,
+      repeatEndAt: data.repeatType === 'DATE' && data.repeatEndAt ? data.repeatEndAt : undefined,
+      color: data.color,
     }
 
     try {
@@ -72,13 +55,13 @@ export default function RegisterSchedulePage() {
       navigate('/')
     } catch (error) {
       devLog('error', 'error', error)
-      alert('일정 등록 중 오류가 발생했습니다.')
+      toast.error('일정 등록 중 오류가 발생했습니다.')
     }
   }
 
   return (
     <RegisterScheduleFormProvider onSubmit={onSubmit}>
-      <ScheduleEditHeader />
+      <ScheduleEditHeader>일정 등록</ScheduleEditHeader>
       <div className="flex flex-col px-4">
         <ScheduleEditTitle />
         <ScheduleEditColor />

@@ -14,18 +14,20 @@ import Text from '../text/text'
 
 import ScheduleEditRepeatOption from './schedule-edit-repeat-option'
 
+import type { RepeatRule } from '@/entities/schedule'
+
 export default function ScheduleEditRepeat() {
   const { control, watch } = useFormContext()
   const [isRepeatOpen, setIsRepeatOpen] = useState(false)
 
-  const repeat = watch('repeatUnit') as 'none' | 'day' | 'week' | 'month' | 'year'
+  const repeat = watch('repeatRule') as RepeatRule
 
-  const repeatLabelMap: Record<'none' | 'day' | 'week' | 'month' | 'year', string> = {
-    none: '반복 안함',
-    day: '일 단위 반복',
-    week: '주 단위 반복',
-    month: '월 단위 반복',
-    year: '연 단위 반복',
+  const repeatLabelMap: Record<RepeatRule, string> = {
+    DAILY: '일 단위 반복',
+    WEEKLY: '주 단위 반복',
+    MONTHLY: '월 단위 반복',
+    YEARLY: '연 단위 반복',
+    '': '반복 안함',
   }
 
   const openRepeatBottomSheet = () => {
@@ -49,10 +51,10 @@ export default function ScheduleEditRepeat() {
           <BottomSheetContent>
             <Controller
               control={control}
-              name="repeatUnit"
+              name="repeatRule"
               defaultValue="none"
               render={({ field }) => (
-                <RadioGroup className="flex flex-col gap-6" name="repeatUnit">
+                <RadioGroup className="flex flex-col gap-6" name="repeatRule">
                   <div>
                     <Radio value="none">반복 안함</Radio>
                   </div>

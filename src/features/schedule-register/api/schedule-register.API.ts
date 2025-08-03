@@ -8,7 +8,7 @@ export interface CreateScheduleRequest {
   isVisible: boolean
   isAllDay: boolean
   isRepeated: boolean
-  repeatRule?: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
+  repeatRule?: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | ''
   interval?: number
   repeatType?: 'COUNT' | 'DATE'
   repeatCount?: number
@@ -20,7 +20,7 @@ export interface CreateScheduleResponse {
   scheduleId: number
   title: string
   isRepeated: boolean
-  repeatRule?: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
+  repeatRule?: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | ''
   repeatType?: 'COUNT' | 'DATE'
   repeatCount?: number
 }

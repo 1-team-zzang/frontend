@@ -5,20 +5,22 @@ import ScheduleEditColorModal from '@/shared/ui/schedule-edit/schedule-edit-colo
 
 import Text from '../text/text'
 
+import type { ColorType } from '@/entities/schedule'
+
 export default function ScheduleEditColor() {
   const { setValue } = useFormContext()
   const [isColorOpen, setIsColorOpen] = useState(false)
-  const [selectedColor, setSelectedColor] = useState<'red' | 'yellow' | 'green' | 'blue' | 'purple'>('red')
+  const [selectedColor, setSelectedColor] = useState<ColorType>('RED')
 
-  const colorMap: Record<'red' | 'yellow' | 'green' | 'blue' | 'purple', string> = {
-    red: 'bg-calendar-red',
-    yellow: 'bg-calendar-yellow',
-    green: 'bg-calendar-green',
-    blue: 'bg-calendar-blue',
-    purple: 'bg-calendar-purple',
+  const colorMap: Record<ColorType, string> = {
+    RED: 'bg-calendar-red',
+    YELLOW: 'bg-calendar-yellow',
+    GREEN: 'bg-calendar-green',
+    BLUE: 'bg-calendar-blue',
+    PURPLE: 'bg-calendar-purple',
   }
 
-  const setColor = (color: 'red' | 'yellow' | 'green' | 'blue' | 'purple') => {
+  const setColor = (color: ColorType) => {
     setSelectedColor(color)
     setValue('color', color)
   }

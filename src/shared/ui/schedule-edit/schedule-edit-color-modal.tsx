@@ -10,15 +10,15 @@ interface Props {
   setColor: (color: Color) => void
 }
 
-const colorOptions = ['red', 'yellow', 'green', 'blue', 'purple'] as const
+const colorOptions = ['RED', 'YELLOW', 'GREEN', 'BLUE', 'PURPLE'] as const
 type Color = (typeof colorOptions)[number]
 
 const colorMap: Record<Color, string> = {
-  red: 'bg-calendar-red',
-  yellow: 'bg-calendar-yellow',
-  green: 'bg-calendar-green',
-  blue: 'bg-calendar-blue',
-  purple: 'bg-calendar-purple',
+  RED: 'bg-calendar-red',
+  YELLOW: 'bg-calendar-yellow',
+  GREEN: 'bg-calendar-green',
+  BLUE: 'bg-calendar-blue',
+  PURPLE: 'bg-calendar-purple',
 }
 
 export default function ScheduleEditColorModal({

@@ -22,7 +22,7 @@ export default function ScheduleEditDate() {
 
   const today = new Date()
 
-  const handleStartDayConfirm = (date: Date) => {
+  const handleStartDateConfirm = (date: Date) => {
     if (end < date) {
       setValue('start', date)
       setValue('end', date)
@@ -32,25 +32,7 @@ export default function ScheduleEditDate() {
     setValue('start', date)
   }
 
-  const handleEndDayConfirm = (date: Date) => {
-    if (date < start) {
-      toast.error('종료 시간은 시작 시간 이후여야 합니다.')
-      return
-    }
-    setValue('end', date)
-  }
-
-  const handleStartTimeConfirm = (date: Date) => {
-    if (end < date) {
-      setValue('start', date)
-      setValue('end', date)
-      toast.error('종료 시간은 시작 시간 이후여야 합니다.')
-      return
-    }
-    setValue('start', date)
-  }
-
-  const handleEndTimeConfirm = (date: Date) => {
+  const handleEndDateConfirm = (date: Date) => {
     if (date < start) {
       toast.error('종료 시간은 시작 시간 이후여야 합니다.')
       return
@@ -89,14 +71,14 @@ export default function ScheduleEditDate() {
         open={isStartDayOpen}
         onOpenChange={setIsStartDayOpen}
         initialDate={start}
-        onConfirm={handleStartDayConfirm}
+        onConfirm={handleStartDateConfirm}
         today={today}
       />
       <ScheduleEditTimePicker
         open={isStartTimeOpen}
         onOpenChange={setIsStartTimeOpen}
         initialDate={start}
-        onConfirm={handleStartTimeConfirm}
+        onConfirm={handleStartDateConfirm}
       />
       <div className="flex justify-between items-center">
         <Text typography={'b2-heading'}>종료</Text>
@@ -127,14 +109,14 @@ export default function ScheduleEditDate() {
         open={isEndDayOpen}
         onOpenChange={setIsEndDayOpen}
         initialDate={end}
-        onConfirm={handleEndDayConfirm}
+        onConfirm={handleEndDateConfirm}
         today={today}
       />
       <ScheduleEditTimePicker
         open={isEndTimeOpen}
         onOpenChange={setIsEndTimeOpen}
         initialDate={end}
-        onConfirm={handleEndTimeConfirm}
+        onConfirm={handleEndDateConfirm}
       />
     </div>
   )

@@ -12,21 +12,26 @@ export const BaseScheduleSchema = z.object({
 
 // 일정 등록
 export const RegisterScheduleSchema = BaseScheduleSchema.extend({
-  repeatUnit: z.enum(['none', 'day', 'week', 'month', 'year']),
+  repeatRule: z.enum(['DAILY', 'WEEKLY', 'MONTHLY', 'YEARLY', '']),
   interval: z.number().min(1),
-  repeatMode: z.enum(['count', 'date']).optional(),
+  repeatType: z.enum(['COUNT', 'DATE']).optional(),
   repeatCount: z.number().min(1),
   repeatEndAt: z.string().nullable().optional(),
   visible: z.string(),
-}).refine(
-  (data) =>
-    (data.repeatMode === 'count' && typeof data.repeatCount === 'number' && data.repeatCount > 0) ||
-    (data.repeatMode === 'date' && data.repeatEndAt),
-  {
-    message: '반복 조건이 올바르지 않습니다.',
-    path: ['repeatMode'],
-  },
-)
+})
+  .refine(
+    (data) =>
+      (data.repeatType === 'COUNT' && typeof data.repeatCount === 'number' && data.repeatCount > 0) ||
+      (data.repeatType === 'DATE' && data.repeatEndAt),
+    {
+      message: '반복 조건이 올바르지 않습니다.',
+      path: ['repeatMode'],
+    },
+  )
+  .refine((data) => data.start < data.end, {
+    message: '종료 시간은 시작 시간 이후여야 합니다.',
+    path: ['end'],
+  })
 
 // 약속 신청
 export const AppointmentScheduleSchema = BaseScheduleSchema.extend({

@@ -1,4 +1,4 @@
-export type RepeatRule = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
+export type RepeatRule = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | ''
 export type RepeatType = 'COUNT' | 'DATE'
 export type ColorType = 'RED' | 'YELLOW' | 'GREEN' | 'BLUE' | 'PURPLE'
 
