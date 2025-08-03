@@ -4,23 +4,26 @@ import { cn, Slot } from '@/shared/utils'
 
 import type { ButtonHTMLAttributes } from 'react'
 
-const FloatButtonVariants = cva('bg-gray-20 flex items-center justify-center shadow-md fixed bottom-5 right-4', {
-  variants: {
-    shape: {
-      circle: 'rounded-full',
-      square: 'rounded-lg',
+const FloatButtonVariants = cva(
+  'bg-gray-20 flex items-center justify-center shadow-xl absolute opacity-85 bottom-5 right-4',
+  {
+    variants: {
+      shape: {
+        circle: 'rounded-full',
+        square: 'rounded-lg',
+      },
+      size: {
+        small: 'size-8',
+        medium: 'size-12',
+        large: 'size-16',
+      },
     },
-    size: {
-      small: 'size-8',
-      medium: 'size-12',
-      large: 'size-16',
+    defaultVariants: {
+      shape: 'circle',
+      size: 'medium',
     },
   },
-  defaultVariants: {
-    shape: 'circle',
-    size: 'medium',
-  },
-})
+)
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof FloatButtonVariants> {
   asChild?: boolean
