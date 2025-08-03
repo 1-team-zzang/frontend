@@ -4,7 +4,7 @@ export type NotificationType = 'APPOINTMENT' | 'FRIEND'
 
 export interface Notification {
   content: string
-  type: string
+  type: NotificationType
   createdAt: string
 }
 
