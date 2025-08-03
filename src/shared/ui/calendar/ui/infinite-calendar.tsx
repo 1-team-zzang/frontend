@@ -16,9 +16,10 @@ import type { Month } from '../type/calendar.types.ts'
 interface Props {
   children?: (date: Date) => ReactNode
   disablePrev?: boolean //이전달 안보이게
+  isPast: boolean
 }
 
-export default function InfiniteCalendar({ children, disablePrev = false }: Props) {
+export default function InfiniteCalendar({ children, disablePrev = false, isPast }: Props) {
   const { scrollContainerRef, topRef, bottomRef, monthRefs, setMonthRef } = useCalendarRef()
 
   const [months, setMonths] = useState<Month[]>(getInitialMonth(disablePrev))
@@ -41,7 +42,7 @@ export default function InfiniteCalendar({ children, disablePrev = false }: Prop
 
         return (
           <div key={key} ref={setMonthRef(key, isCurrent)} data-key={key}>
-            <MonthlyCalendar year={year} month={month}>
+            <MonthlyCalendar year={year} month={month} isPast={isPast}>
               {children}
             </MonthlyCalendar>
           </div>

@@ -30,24 +30,23 @@ const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify
   variants: {
     isSunday: { true: 'text-calendar-red' },
     isSaturday: { true: 'text-calendar-blue' },
-    isTodayDate: { true: 'bg-primary-30' },
-    isPastDate: { true: 'opacity-40' },
+    isToday: { true: 'bg-primary-30' },
+    isPast: { true: 'opacity-40' },
   },
 })
-export default function CalendarCell({ date, showMonthLabel, isPast: isPastProp, children }: Props) {
+export default function CalendarCell({ date, showMonthLabel, isPast, children }: Props) {
   const { onDateClick } = useCalendarContext()
   const { year, month, day } = date
-  const { isSunday, isSaturday, isToday } = getDayInfo(year, month, day)
-  const isPastDate = isPastProp ?? false
+  const { isSunday, isSaturday, isToday, isPast: isActualPast } = getDayInfo(year, month, day)
   const fullDate = new Date(year, month, day)
   const monthLabel = String(month + 1).padStart(2, '0')
-
+  const isPastDate = isPast === true && isActualPast === true
   return (
     <button className="relative w-full flex flex-col items-center gap-1" onClick={() => onDateClick?.(fullDate)}>
       <Text
         as="span"
         typography="caption"
-        className={cn(contentVariants({ isSunday, isSaturday, isTodayDate: isToday, isPastDate }))}
+        className={cn(contentVariants({ isSunday, isSaturday, isToday: isToday, isPast: isPastDate }))}
       >
         {day}
       </Text>

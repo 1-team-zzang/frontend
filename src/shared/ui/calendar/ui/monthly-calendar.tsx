@@ -23,9 +23,10 @@ import type { ReactNode } from 'react'
 
 interface Props extends Month {
   children?: (date: Date) => ReactNode
+  isPast?: boolean
 }
 
-export default function MonthlyCalendar({ year, month, children }: Props) {
+export default function MonthlyCalendar({ year, month, children, isPast }: Props) {
   const date = new Date(year, month, 1)
   const { firstDayOfMonth, LastDayOfMonth, remainingDaysInWeek } = getMonthDates(date)
 
@@ -37,7 +38,7 @@ export default function MonthlyCalendar({ year, month, children }: Props) {
 
       {range(LastDayOfMonth).map((day: number) => (
         <div key={`${year}-${month}-${day}`} className="h-20 border-t border-gray-10 ">
-          <CalendarCell date={{ year, month, day }} showMonthLabel={day === 1}>
+          <CalendarCell date={{ year, month, day }} showMonthLabel={day === 1} isPast={isPast}>
             {children?.(new Date(year, month, day))}
           </CalendarCell>
         </div>
