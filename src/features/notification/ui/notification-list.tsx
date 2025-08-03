@@ -35,10 +35,20 @@ const NotificationList = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'di
         <Text as="h2" typography="b1-heading">
           notification
         </Text>
-        <ul className="overflow-y-auto h-48 scrollbar-hide">
+        <ul className="overflow-y-auto h-48 scrollbar-hide flex flex-col gap-2">
           {notifications.map((notification) => (
-            <li key={notification.createdAt}>
-              {notification.content} {formatRelativeDate(new Date(notification.createdAt))}
+            <li key={notification.createdAt} className="flex flex-col">
+              <Text as="span" typography="label">
+                {notification.type === 'APPOINTMENT' ? '약속' : '친구'}
+              </Text>
+              <div className="flex items-center justify-between">
+                <Text as="span" typography="label">
+                  {notification.content}
+                </Text>
+                <Text as="span" typography="label" className="text-gray-500">
+                  {formatRelativeDate(new Date(notification.createdAt))}
+                </Text>
+              </div>
             </li>
           ))}
           <div className="h-[1px]" ref={observerRef} />
