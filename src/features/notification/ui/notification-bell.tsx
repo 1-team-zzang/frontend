@@ -18,11 +18,11 @@ export default function NotificationBell() {
   const ref = useClickOutSide(() => setIsOpen(false))
 
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <button className="flex items-center" onClick={handleClick}>
         {hasUnreadNotifications ? <IconNotificationAlert /> : <IconNotification />}
       </button>
-      {isOpen && <NotificationList ref={ref} />}
+      {isOpen && <NotificationList />}
     </div>
   )
 }
