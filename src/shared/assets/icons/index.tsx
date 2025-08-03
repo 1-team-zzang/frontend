@@ -37,3 +37,5 @@ export { default as IconCalendarArrowLeft } from './calendar-arrow-left.svg?reac
 export { default as IconCalendarArrowRight } from './calendar-arrow-right.svg?react'
 export { default as IconToastFail } from './toast-fail.svg?react'
 export { default as IconToastSuccess } from './toast-success.svg?react'
+export { default as IconNotification } from './notification.svg?react'
+export { default as IconNotificationAlert } from './notification-alert.svg?react'
