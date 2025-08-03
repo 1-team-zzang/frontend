@@ -1,14 +1,21 @@
-import { useEffect, type RefObject } from 'react'
+import { useCallback } from 'react'
 
-interface Props {
-  currentMonthRef: RefObject<HTMLDivElement | null>
-}
+import { useCalendarContext } from '../ui/calendar-context'
 
-export default function useScrollToCurrentMonth({ currentMonthRef }: Props) {
-  useEffect(() => {
-    currentMonthRef.current?.scrollIntoView({
-      behavior: 'auto',
-      block: 'start',
-    })
-  }, [])
+/**
+ *
+ * 클릭했을 때 이번달로 이동하는 훅
+ */
+
+export default function useScrollToCurrentMonth() {
+  const { currentMonthRef } = useCalendarContext()
+
+  return useCallback(() => {
+    if (currentMonthRef?.current) {
+      currentMonthRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }, [currentMonthRef])
 }

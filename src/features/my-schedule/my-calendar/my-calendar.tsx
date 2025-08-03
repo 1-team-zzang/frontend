@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 import { IconCalendarAdd } from '@/shared/assets/icons'
-import { RenderScheduleBadges } from '@/shared/ui'
+import { HeaderTodayButton, RenderScheduleBadges } from '@/shared/ui'
 import {
   AddScheduleButton,
   Calendar,
@@ -38,7 +38,7 @@ export default function MyCalendar() {
     <>
       <Calendar onDateClick={onDateClick}>
         <HeaderContainer>
-          <HeaderButton>오늘</HeaderButton>
+          <HeaderTodayButton>오늘</HeaderTodayButton>
           <HeaderMonthLabel />
           <HeaderButton onClick={onShareClick}>공유</HeaderButton>
         </HeaderContainer>

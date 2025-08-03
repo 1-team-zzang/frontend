@@ -6,9 +6,9 @@ import { IconInvite } from '@/shared/assets/icons'
 import {
   AddScheduleButton,
   Calendar,
-  HeaderButton,
   HeaderContainer,
   HeaderMonthLabel,
+  HeaderTodayButton,
   InfiniteCalendar,
   RenderScheduleBadges,
 } from '@/shared/ui/calendar'
@@ -37,7 +37,7 @@ export default function ShareCalendar() {
       <HeaderContainer>
         <div className="size-4" />
         <HeaderMonthLabel />
-        <HeaderButton>오늘</HeaderButton>
+        <HeaderTodayButton>오늘</HeaderTodayButton>
       </HeaderContainer>
       <InfiniteCalendar disablePrev={true}>
         {(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} />}

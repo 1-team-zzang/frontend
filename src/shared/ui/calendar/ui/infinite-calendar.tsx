@@ -3,7 +3,7 @@ import { useState, type ReactNode } from 'react'
 import {
   useCalendarRef,
   useInfiniteCalendarScroll,
-  useScrollToCurrentMonth,
+  useAutoScrollToCurrentMonth,
   useVisibleMonthObserver,
   MonthlyCalendar,
 } from '../../index.ts'
@@ -19,7 +19,7 @@ interface Props {
 }
 
 export default function InfiniteCalendar({ children, disablePrev = false }: Props) {
-  const { scrollContainerRef, topRef, bottomRef, currentMonthRef, monthRefs, setMonthRef } = useCalendarRef()
+  const { scrollContainerRef, topRef, bottomRef, monthRefs, setMonthRef } = useCalendarRef()
 
   const [months, setMonths] = useState<Month[]>(getInitialMonth(disablePrev))
   const { setVisibleMonth } = useCalendarContext()
@@ -28,7 +28,7 @@ export default function InfiniteCalendar({ children, disablePrev = false }: Prop
 
   useInfiniteCalendarScroll({ topRef, bottomRef, scrollContainerRef, setMonths, disablePrev })
 
-  useScrollToCurrentMonth({ currentMonthRef })
+  useAutoScrollToCurrentMonth()
 
   useVisibleMonthObserver({ scrollContainerRef, setVisibleMonth, monthRefs, months })
 

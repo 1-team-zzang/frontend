@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useRef, useState, type ReactNode } from 'react'
 
 import { CalendarProvider } from './calendar-context'
 
@@ -11,5 +11,10 @@ interface Props {
 
 export default function Calendar({ children, onDateClick }: Props) {
   const [visibleMonth, setVisibleMonth] = useState<Month | null>(null)
-  return <CalendarProvider value={{ visibleMonth, setVisibleMonth, onDateClick }}>{children}</CalendarProvider>
+  const currentMonthRef = useRef<HTMLDivElement | null>(null)
+  return (
+    <CalendarProvider value={{ visibleMonth, setVisibleMonth, onDateClick, currentMonthRef }}>
+      {children}
+    </CalendarProvider>
+  )
 }

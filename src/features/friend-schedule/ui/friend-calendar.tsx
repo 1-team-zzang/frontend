@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { useNavigate, useParams } from 'react-router'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
-import { IconCalendarArrowLeft, IconInvite } from '@/shared/assets/icons'
+import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets/icons'
 import {
   AddScheduleButton,
   Calendar,
@@ -40,8 +40,8 @@ export default function FriendCalendar() {
   return (
     <Calendar onDateClick={onDateClick}>
       <HeaderContainer>
-        <HeaderButton>
-          <IconCalendarArrowLeft />
+        <HeaderButton onClick={() => navigate(-1)}>
+          <IconAppointmentArrowLeft />
         </HeaderButton>
         <HeaderMonthLabel />
         <HeaderButton>오늘</HeaderButton>
