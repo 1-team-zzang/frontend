@@ -16,7 +16,7 @@ import type { Month } from '../type/calendar.types.ts'
 interface Props {
   children?: (date: Date) => ReactNode
   disablePrev?: boolean //이전달 안보이게
-  isPast: boolean
+  isPast?: boolean
 }
 
 export default function InfiniteCalendar({ children, disablePrev = false, isPast }: Props) {
