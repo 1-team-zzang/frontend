@@ -20,9 +20,11 @@ export default function ShareCalendar() {
   const navigate = useNavigate()
   const { userId } = useParams<{ userId: string }>()
   const { scheduleMap } = useShareSchedule()
+
   const onDateClick = (date: Date) => {
     if (isPastDate(date)) {
       toast.error('오늘 이전 날짜는 선택할 수 없습니다')
+      return
     }
     const dateStr = format(date, 'yyyy-MM-dd')
     navigate(`/share/${userId}/detailed-schedule/date/${dateStr}`)
