@@ -27,7 +27,7 @@ const NotificationList = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'di
       <div
         ref={ref}
         className={cn(
-          'absolute top-4 -right-20 m-4 h-64 w-96 rounded bg-white shadow-2xl p-4 whitespace-nowrap',
+          'absolute z-dropdown top-4 -right-20 m-4 h-64 w-96 rounded bg-white shadow-2xl p-4 whitespace-nowrap',
           className,
         )}
         {...restProps}
