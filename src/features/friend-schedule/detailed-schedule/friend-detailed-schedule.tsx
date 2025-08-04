@@ -26,6 +26,8 @@ export default function FriendDetailedSchedule() {
       startDate={data.startAt}
       endDate={data.endAt}
       repeat={repeatText ?? ''}
+      visible={data.isVisible}
+      content={data.content}
     />
   ) : (
     <div>아직 일정이 없어요</div>
