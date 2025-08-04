@@ -48,6 +48,9 @@ function useIntroGuide() {
 
     return () => {
       sidebarButton?.removeEventListener('click', handleClick)
+      if (intro) {
+        intro.exit()
+      }
     }
   }, [])
 }

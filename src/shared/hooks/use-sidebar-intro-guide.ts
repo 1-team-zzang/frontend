@@ -38,6 +38,12 @@ function useSidebarIntroGuide(isOpen: boolean) {
     }, 300)
 
     localStorage.setItem('sidebar-visited', 'true')
+
+    return () => {
+      if (intro) {
+        intro.exit()
+      }
+    }
   }, [isOpen])
 }
 
