@@ -41,7 +41,7 @@ export default function ScheduleEditRepeat() {
         {repeatLabelMap[repeat]}
       </Text>
       <BottomSheet open={isRepeatOpen} onOpenChange={setIsRepeatOpen}>
-        <BottomSheetContainer className="h-[475px]">
+        <BottomSheetContainer className="h-[475px] z-0">
           <BottomSheetHeader>
             <BottomSheetHeaderTitle>일정 등록</BottomSheetHeaderTitle>
             <BottomSheetHeaderButton type="button" onClick={() => setIsRepeatOpen(false)}>

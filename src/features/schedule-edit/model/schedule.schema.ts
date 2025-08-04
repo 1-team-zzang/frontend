@@ -29,7 +29,7 @@ export const RegisterScheduleSchema = BaseScheduleSchema.extend({
       path: ['repeatMode'],
     },
   )
-  .refine((data) => data.start < data.end, {
+  .refine((data) => data.start <= data.end, {
     message: '종료 시간은 시작 시간 이후여야 합니다.',
     path: ['end'],
   })

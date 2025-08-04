@@ -16,6 +16,7 @@ import {
   MySettingsPage,
   PrivateRoute,
   RegisterSchedulePage,
+  RegisterDetailedSchedulePage,
   ShareCalendarPage,
   ShareDetailedScheduleListPage,
   ShareDetailedSchedulePage,
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
                 Component: MySettingsPage,
               },
               { path: 'schedule/create', Component: RegisterSchedulePage },
+              {
+                path: 'detailed-schedule/create',
+                Component: RegisterDetailedSchedulePage,
+              },
             ],
           },
           {
