@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
-import { IconNotification, IconNotificationAlert } from '@/shared/assets/icons'
-import useClickOutSide from '@/shared/ui/dropdown/use-click-outside'
+import { IconNotification, IconNotificationAlert } from '@/shared/assets'
+import { useClickOutside } from '@/shared/hooks'
 
 import NotificationList from './notification-list'
 
@@ -15,7 +15,8 @@ export default function NotificationBell() {
     setIsOpen((prev) => !prev)
   }
 
-  const ref = useClickOutSide(() => setIsOpen(false))
+  const ref = useRef<HTMLDivElement>(null)
+  useClickOutside(ref, () => setIsOpen(false))
 
   return (
     <div className="relative" ref={ref}>

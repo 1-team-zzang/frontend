@@ -1,6 +1,6 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 
-import { getNotification } from '../api/notification.API'
+import { getNotification } from '../api'
 
 import { notificationQueryKeys } from './notification.query'
 
