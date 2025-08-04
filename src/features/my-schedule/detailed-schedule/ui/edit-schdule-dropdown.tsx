@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { IconKebabMenu } from '@/shared/assets/icons'
-import { Dropdown, DropDownMenu, DropDownMenuItem } from '@/shared/ui/dropdown'
+import { Dropdown, DropDownMenu, DropDownMenuItem, DropDownTrigger } from '@/shared/ui/dropdown'
 
 interface Props {
   onDeleteClick: () => void
@@ -16,27 +16,27 @@ export default function EditSchduleDropDown({ onDeleteClick }: Props) {
   }
 
   return (
-    <div>
-      <IconKebabMenu
+    <Dropdown handleClose={() => setIsOpen(false)}>
+      <DropDownTrigger
         className="cursor-pointer"
         onClick={() => {
           setIsOpen(true)
         }}
-      />
+      >
+        <IconKebabMenu />
+      </DropDownTrigger>
       {isOpen && (
-        <Dropdown handleClose={() => setIsOpen(false)}>
-          <DropDownMenu position="right">
-            <DropDownMenuItem>수정</DropDownMenuItem>
-            <DropDownMenuItem
-              onClick={() => {
-                onMenuClick(onDeleteClick)
-              }}
-            >
-              삭제
-            </DropDownMenuItem>
-          </DropDownMenu>
-        </Dropdown>
+        <DropDownMenu position="right">
+          <DropDownMenuItem>수정</DropDownMenuItem>
+          <DropDownMenuItem
+            onClick={() => {
+              onMenuClick(onDeleteClick)
+            }}
+          >
+            삭제
+          </DropDownMenuItem>
+        </DropDownMenu>
       )}
-    </div>
+    </Dropdown>
   )
 }

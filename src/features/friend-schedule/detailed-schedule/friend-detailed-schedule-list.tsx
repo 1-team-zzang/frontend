@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { PrivateScheduleModal } from '@/shared/ui'
+import { IconInvite } from '@/shared/assets/icons'
+import { AddScheduleButton, PrivateScheduleModal } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useFriendSchedule } from '../hooks/useFriendSchedule'
@@ -17,7 +18,9 @@ export default function FriendDetailedScheduleList() {
   const onClick = (scheduleId: number) => {
     navigate(`/friends/${friendId}/calendar/detailed-schedule/date/${date}/schedules/${scheduleId}`)
   }
-
+  const goToCreateAppointment = () => {
+    alert('약속신청하기')
+  }
   return (
     <div>
       {list.length === 0 ? (
@@ -34,11 +37,15 @@ export default function FriendDetailedScheduleList() {
                 title={title}
                 time={formatScheduleTime(card)}
                 badgeColor={card.color}
+                isVisible={card.isVisible}
               />
             )
           })}
         </div>
       )}
+      <AddScheduleButton onClick={goToCreateAppointment}>
+        <IconInvite />
+      </AddScheduleButton>
       {isModalOpen && <PrivateScheduleModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />}
     </div>
   )
