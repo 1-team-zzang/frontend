@@ -6,7 +6,8 @@
   font-display: swap;
   font-family: Pretendard;
   font-weight: 300;
-  src: url('/fonts/pretendard/pretendard-light.woff2') format('woff2'),
+  src:
+    url('/fonts/pretendard/pretendard-light.woff2') format('woff2'),
     url('/fonts/pretendard/pretendard-light.woff') format('woff');
 }
 
@@ -14,7 +15,8 @@
   font-display: swap;
   font-family: Pretendard;
   font-weight: 400;
-  src: url('/fonts/pretendard/pretendard-regular.woff2') format('woff2'),
+  src:
+    url('/fonts/pretendard/pretendard-regular.woff2') format('woff2'),
     url('/fonts/pretendard/pretendard-regular.woff') format('woff');
 }
 
@@ -22,7 +24,8 @@
   font-display: swap;
   font-family: Pretendard;
   font-weight: 500;
-  src: url('/fonts/pretendard/pretendard-medium.woff2') format('woff2'),
+  src:
+    url('/fonts/pretendard/pretendard-medium.woff2') format('woff2'),
     url('/fonts/pretendard/pretendard-medium.woff') format('woff');
 }
 
@@ -30,14 +33,16 @@
   font-display: swap;
   font-family: Pretendard;
   font-weight: 600;
-  src: url('/fonts/pretendard/pretendard-semibold.woff2') format('woff2'),
+  src:
+    url('/fonts/pretendard/pretendard-semibold.woff2') format('woff2'),
     url('/fonts/pretendard/pretendard-semibold.woff') format('woff');
 }
 @font-face {
   font-display: swap;
   font-family: Pretendard;
   font-weight: 700;
-  src: url('/fonts/pretendard/pretendard-bold.woff2') format('woff2'),
+  src:
+    url('/fonts/pretendard/pretendard-bold.woff2') format('woff2'),
     url('/fonts/pretendard/pretendard-bold.woff') format('woff');
 }
 
@@ -45,7 +50,8 @@
   font-display: swap;
   font-family: Pretendard;
   font-weight: 800;
-  src: url('/fonts/pretendard/pretendard-extrabold.woff2') format('woff2'),
+  src:
+    url('/fonts/pretendard/pretendard-extrabold.woff2') format('woff2'),
     url('/fonts/pretendard/pretendard-extrabold.woff') format('woff');
 }
 
@@ -135,4 +141,41 @@
 .tooltip-bottom:after {
   border-width: 13px 10px 0;
   border-color: var(--gray-color-95) transparent;
+}
+
+/* intro js css */
+
+.introjs-helperLayer {
+  box-shadow:
+    rgba(33, 33, 33, 0.2) 0px 0px 1px 1px,
+    rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important; /* 그대로 유지 */
+}
+
+.introjs-tooltiptext {
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  color: var(--gray-color-95);
+  text-align: center;
+  letter-spacing: -0.035em;
+}
+
+.introjs-tooltipbuttons > a {
+  background-color: #ffffff;
+  color: var(--primary-color-80);
+  border: none;
+
+  &:hover {
+    background-color: var(--gray-color-1);
+    color: var(--primary-color-80);
+  }
+
+  &:focus {
+    background-color: var(--gray-color-1);
+    color: var(--primary-color-80);
+    border: none;
+  }
+}
+
+.introjs-progressbar {
+  background-color: var(--primary-color-30) !important;
 }
