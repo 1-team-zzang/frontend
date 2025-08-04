@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { useUserStore } from '@/entities/user/models/use-user-store'
+import { useUserStore } from '@/entities/user'
 import { friendQueryKeys } from '@/features/friends/model'
-import { toast } from '@/shared/ui/toast'
+import { toast } from '@/shared/ui'
 
-import { postSignin } from '../api/signin.API'
+import { postSignin } from '../api'
 
 import type { SigninFormDataType } from './signin.type'
 import type { AxiosError } from 'axios'

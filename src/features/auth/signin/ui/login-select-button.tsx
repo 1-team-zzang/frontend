@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
-import Text from '@/shared/ui/text/text'
+import { Text } from '@/shared/ui'
 import { cn } from '@/shared/utils'
 
-import SignupModal from '../../signup/ui/signup-modal'
+import { SignupModal } from '../../signup/ui'
 
 import EmailSigninModal from './email-signin-modal'
 import LoginSelectModal from './login-select-modal'
 
-import type { AuthModalType } from '../model/auth-modal.type'
+import type { AuthModalType } from '../../types'
 
 export default function LoginSelectButton({ className }: { className?: string }) {
   const [modalType, setModalType] = useState<AuthModalType>(null)

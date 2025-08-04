@@ -1,12 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { toast } from '@/shared/ui/toast'
+import { toast } from '@/shared/ui'
 
-import { getAuthErrorMessage } from '../../model/get-auth-error-message'
-import { postSignup } from '../api/signup.API'
+import { getAuthErrorMessage, type AuthErrorCode } from '../../model'
+import { postSignup } from '../api'
 
 import type { SignupInputData } from './signup.type'
-import type { AuthErrorCode } from '../../model/auth-error-messages'
 import type { AxiosError } from 'axios'
 
 function useSignupMutation() {

@@ -1,7 +1,6 @@
-import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle } from '@/shared/ui/modal'
-import Text from '@/shared/ui/text/text'
+import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle, Text } from '@/shared/ui'
 
-import type { AuthModalType } from '../model/auth-modal.type'
+import type { AuthModalType } from '../../types'
 
 interface Props {
   isOpen: boolean

@@ -1,14 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import Button from '@/shared/ui/button/button.tsx'
-import { Form, FormField, FormFieldWrapper, FormLabel } from '@/shared/ui/form'
-import { Input, PasswordInput } from '@/shared/ui/input'
+import { Form, FormField, FormFieldWrapper, FormLabel, Button, Input, PasswordInput } from '@/shared/ui'
 
-import { SigninSchema } from '../model/signin.schema'
-import useSigninMutation from '../model/use-signin-mutation'
-
-import type { SigninFormDataType } from '../model/signin.type'
+import { SigninSchema, useSigninMutation, type SigninFormDataType } from '../model'
 
 export default function SigninForm({ onSigninSuccess }: { onSigninSuccess?: () => void }) {
   const methods = useForm<SigninFormDataType>({
