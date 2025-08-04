@@ -1,8 +1,6 @@
 import { format } from 'date-fns'
 import { Outlet, useParams } from 'react-router'
 
-import { IconCalendarAdd } from '@/shared/assets/icons'
-import AddScheduleButton from '@/shared/ui/calendar/ui/add-schedule-button'
 import { DetailedScheduleHeader } from '@/shared/ui/detailed-schedule'
 
 export default function DetailedScheduleLayout() {
@@ -14,9 +12,6 @@ export default function DetailedScheduleLayout() {
       <DetailedScheduleHeader date={formattedDate} />
       <div className="p-4">
         <Outlet />
-        <AddScheduleButton>
-          <IconCalendarAdd />
-        </AddScheduleButton>
       </div>
     </main>
   )

@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { PrivateScheduleModal } from '@/shared/ui'
+import { IconInvite } from '@/shared/assets/icons'
+import { AddScheduleButton, PrivateScheduleModal } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useFriendSchedule } from '../hooks/useFriendSchedule'
@@ -39,6 +40,9 @@ export default function FriendDetailedScheduleList() {
           })}
         </div>
       )}
+      <AddScheduleButton>
+        <IconInvite />
+      </AddScheduleButton>
       {isModalOpen && <PrivateScheduleModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />}
     </div>
   )

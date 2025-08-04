@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { PrivateScheduleModal } from '@/shared/ui'
+import { IconInvite } from '@/shared/assets/icons'
+import { AddScheduleButton, PrivateScheduleModal } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useShareSchedule } from '../../hooks/use-share-schedule'
@@ -25,20 +26,23 @@ export default function ShareDetailedScheduleList() {
       ) : (
         <div className="flex flex-col gap-4">
           {list.map((card) => {
-            const title = card.isVisible ? card.title : '비공개일정'
             const handleClick = card.isVisible ? () => onClick(card.scheduleId) : () => setIsModalOpen(true)
             return (
               <DetailedScheduleListCard
                 onCardClick={handleClick}
                 key={`${card.scheduleId}-${card.startAt}`}
-                title={title}
+                title={card.title}
                 time={formatScheduleTime(card)}
                 badgeColor={card.color}
+                isVisible={card.isVisible}
               />
             )
           })}
         </div>
       )}
+      <AddScheduleButton>
+        <IconInvite />
+      </AddScheduleButton>
       {isModalOpen && <PrivateScheduleModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />}
     </div>
   )
