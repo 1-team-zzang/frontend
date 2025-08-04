@@ -5,7 +5,7 @@ import { scheduleQueryKeys } from '../models/schedule.query'
 
 export function useDetailedSchedule(scheduleId: string) {
   const { data } = useSuspenseQuery({
-    queryKey: scheduleQueryKeys.detaildSchedule(scheduleId!),
+    queryKey: scheduleQueryKeys.detailedSchedule(scheduleId!),
     queryFn: () => getDetailedSchedule(scheduleId),
   })
 
