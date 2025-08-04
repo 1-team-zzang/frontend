@@ -1,6 +1,5 @@
 // API
 export * from './api/my-schedule.API'
-export * from './detailed-schedule/api/detailed-schedule.API'
 
 // UI
 export { default as MyCalendar } from './my-calendar/my-calendar'
