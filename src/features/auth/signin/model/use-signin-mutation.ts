@@ -21,11 +21,12 @@ function useSigninMutation() {
     },
     onError: (error: AxiosError) => {
       if (error?.status === 401) {
-        toast.error('이메일 및 비밀번호를 확인하세요')
+        toast.error('이메일 및 비밀번호를 확인해주세요')
       } else {
         toast.error('알 수 없는 에러가 발생했습니다')
       }
     },
+    throwOnError: false,
   })
 }
 

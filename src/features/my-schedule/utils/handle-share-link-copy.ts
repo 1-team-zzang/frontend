@@ -1,3 +1,4 @@
+import { toast } from '@/shared/ui/toast'
 import { devLog } from '@/shared/utils/dev-log'
 
 interface Props {
@@ -10,9 +11,10 @@ export default function handleShareLinkCopy({ link, setIsOpen }: Props) {
     try {
       await navigator.clipboard.writeText(link)
       setIsOpen(true)
-      setTimeout(() => setIsOpen(false), 2000)
+      toast.success('클립보드에 복사되었습니다 :P')
     } catch (err) {
-      devLog('error', '복사실패', err)
+      devLog('log', '복사에러', err)
+      toast.error('처리할 수 없습니다')
     }
   }
 }

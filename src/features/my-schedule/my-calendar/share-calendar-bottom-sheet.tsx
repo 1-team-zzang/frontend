@@ -4,8 +4,8 @@ import { IconClose } from '@/shared/assets/icons'
 import { BottomSheet, BottomSheetContainer, BottomSheetContent } from '@/shared/ui/bottom-sheet'
 import Text from '@/shared/ui/text/text'
 
-import handleShareLinkCopy from '../../../shared/ui/calendar/util/handle-share-link-copy'
 import getUserId from '../api/get-userId.API'
+import handleShareLinkCopy from '../utils/handle-share-link-copy'
 
 interface Props {
   isOpen: boolean
@@ -19,7 +19,7 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
   })
   const link = `https://calpick.vercel.app/share/${userId}`
 
-  const handleCopy = handleShareLinkCopy(link)
+  const handleCopy = handleShareLinkCopy({ link, setIsOpen })
   return (
     <BottomSheet open={isOpen} onOpenChange={setIsOpen}>
       <BottomSheetContainer className="bg-white z-fixed">

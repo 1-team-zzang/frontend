@@ -7,14 +7,16 @@ import { useFriendsUsers } from '../model'
 
 import { FriendRequestButton } from './index'
 
+import type { FriendSearchType } from '../model/friend-list.types'
+
 interface Props {
   searchQuery: string
+  searchType: FriendSearchType
 }
 
-export default function UserList({ searchQuery }: Props) {
-  // TODO 이메일 검색, 이름 검색이 가능하다면 선택할 수 있는 버튼이 있어야할 것 같다 ~~
+export default function UserList({ searchQuery, searchType }: Props) {
   const size = 10
-  const { data, hasNextPage, fetchNextPage } = useFriendsUsers('EMAIL', searchQuery, size)
+  const { data, hasNextPage, fetchNextPage } = useFriendsUsers(searchType, searchQuery, size)
   const { user: loginUser } = useUserStore()
 
   const ref = useIntersect<HTMLDivElement>({

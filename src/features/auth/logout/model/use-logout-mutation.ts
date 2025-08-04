@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 
 import { useUserStore } from '@/entities/user/models/use-user-store'
-import { devLog } from '@/shared/utils/dev-log'
+import { toast } from '@/shared/ui/toast'
 
 import { postLogout } from '../api/logout.API'
 
@@ -15,8 +15,9 @@ export default function useLogoutMutation() {
       clearUser()
       clearUserStorage()
     },
-    onError: (error) => {
-      devLog('error', '로그아웃 에러', error.message)
+    onError: () => {
+      toast.error('로그아웃에 실패했습니다. 다시 시도해주세요')
     },
+    throwOnError: false,
   })
 }

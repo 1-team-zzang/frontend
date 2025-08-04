@@ -29,7 +29,7 @@ const badgeVariants = cva('w-1 min-w-1 h-3 rounded-sm z-base', {
   },
 })
 
-export default function ScheduleBadgeMarker({ children, color }: Props) {
+export default function AppointmentBadge({ children, color }: Props) {
   return (
     <div className="flex items-center gap-1 w-full z-base">
       <div className={badgeVariants({ color })} />

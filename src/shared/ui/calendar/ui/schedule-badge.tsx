@@ -30,7 +30,7 @@ const badgeVariants = cva(
   },
 )
 
-export default function ScheduleBadgeFill({ children, color }: Props) {
+export default function ScheduleBadge({ children, color }: Props) {
   return (
     <Text as="span" typography="caption-10" className={badgeVariants({ color })}>
       {children}
