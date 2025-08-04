@@ -12,11 +12,18 @@ interface Props {
   time: string
   badgeColor: ColorType
   onCardClick: () => void
-  isVisible: boolean
+  isVisible?: boolean
   children?: ReactNode
 }
 
-export default function DetailedScheduleListCard({ title, time, badgeColor, isVisible, onCardClick, children }: Props) {
+export default function DetailedScheduleListCard({
+  title,
+  time,
+  badgeColor,
+  isVisible = true,
+  onCardClick,
+  children,
+}: Props) {
   return (
     <div className="relative flex items-center bg-white h-[5.625em] rounded-[0.625rem]">
       {/* 일정 정보부분 */}
@@ -36,6 +43,7 @@ export default function DetailedScheduleListCard({ title, time, badgeColor, isVi
           </Text>
         </div>
       </button>
+      {/* 케밥버튼 */}
       <div className="absolute top-4 right-4">{children}</div>
     </div>
   )

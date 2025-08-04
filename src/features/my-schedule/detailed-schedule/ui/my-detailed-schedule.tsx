@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 
 import { getRepeatText } from '@/entities/utils/format-repeat-text'
 import DetailedScheduleCard from '@/shared/ui/detailed-schedule/detailed-schedule-card'
+import { devLog } from '@/shared/utils/dev-log'
 
 import getDetailedSchedule from '../api/detailed-schedule.API'
 
@@ -13,6 +14,9 @@ export default function MyDetailedSchedule() {
     queryFn: () => getDetailedSchedule(scheduleId!),
     enabled: !!scheduleId,
   })
+
+  devLog('log', 'data', data)
+
   const repeatText = getRepeatText({
     repeatRule: data?.repeatRule ?? null,
     repeatType: data?.repeatType ?? null,
@@ -26,7 +30,9 @@ export default function MyDetailedSchedule() {
       title={data.title}
       startDate={data.startAt}
       endDate={data.endAt}
-      repeat={repeatText ?? ''}
+      repeat={repeatText}
+      visible={data.isVisible}
+      content={data.content}
     />
   ) : (
     <div>아직 일정이 없어요</div>

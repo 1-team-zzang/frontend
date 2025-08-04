@@ -51,7 +51,9 @@ export default function MyDetailedScheduleList() {
                 time={formatScheduleTime(card)}
                 badgeColor={card.color}
               >
-                <EditSchduleDropDown onDeleteClick={() => onDeleteClick(card.scheduleId)} />
+                {card.appointmentId ? null : (
+                  <EditSchduleDropDown onDeleteClick={() => onDeleteClick(card.scheduleId)} />
+                )}
               </DetailedScheduleListCard>
             )
           })}
