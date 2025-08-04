@@ -18,7 +18,9 @@ export default function FriendDetailedScheduleList() {
   const onClick = (scheduleId: number) => {
     navigate(`/friends/${friendId}/calendar/detailed-schedule/date/${date}/schedules/${scheduleId}`)
   }
-
+  const goToCreateAppointment = () => {
+    alert('약속신청하기')
+  }
   return (
     <div>
       {list.length === 0 ? (
@@ -35,12 +37,13 @@ export default function FriendDetailedScheduleList() {
                 title={title}
                 time={formatScheduleTime(card)}
                 badgeColor={card.color}
+                isVisible={card.isVisible}
               />
             )
           })}
         </div>
       )}
-      <AddScheduleButton>
+      <AddScheduleButton onClick={goToCreateAppointment}>
         <IconInvite />
       </AddScheduleButton>
       {isModalOpen && <PrivateScheduleModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />}

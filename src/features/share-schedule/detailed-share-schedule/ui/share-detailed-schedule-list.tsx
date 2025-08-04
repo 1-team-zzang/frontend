@@ -19,6 +19,10 @@ export default function ShareDetailedScheduleList() {
     navigate(`/share/${userId}/detailed-schedule/date/${date}/schedules/${scheduleId}`)
   }
 
+  const goToCreateAppointment = () => {
+    alert('약속신청하기')
+  }
+
   return (
     <div>
       {list.length === 0 ? (
@@ -40,7 +44,7 @@ export default function ShareDetailedScheduleList() {
           })}
         </div>
       )}
-      <AddScheduleButton>
+      <AddScheduleButton onClick={goToCreateAppointment}>
         <IconInvite />
       </AddScheduleButton>
       {isModalOpen && <PrivateScheduleModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />}
