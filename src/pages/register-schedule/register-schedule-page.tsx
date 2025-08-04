@@ -61,7 +61,7 @@ export default function RegisterSchedulePage() {
 
   return (
     <RegisterScheduleFormProvider onSubmit={onSubmit}>
-      <ScheduleEditHeader>일정 등록</ScheduleEditHeader>
+      <ScheduleEditHeader title="일정 등록" />
       <div className="flex flex-col px-4">
         <ScheduleEditTitle />
         <ScheduleEditColor />
