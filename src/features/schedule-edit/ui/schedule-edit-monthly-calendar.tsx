@@ -1,7 +1,7 @@
 import getMonthDates from '@/shared/ui/calendar/util/get-month-dates'
 import { range } from '@/shared/ui/calendar/util/range'
 
-import ScheduleEditCalendarCell from './schedule-calandar-cell'
+import ScheduleEditCalendarCell from './schedule-edit-calandar-cell'
 
 interface MonthlyCalendarProps {
   year: number
