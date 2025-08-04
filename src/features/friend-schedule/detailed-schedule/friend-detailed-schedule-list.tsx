@@ -6,7 +6,7 @@ import { IconInvite } from '@/shared/assets/icons'
 import { AddScheduleButton, PrivateScheduleModal } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
-import { useFriendSchedule } from '../hooks/useFriendSchedule'
+import { useFriendSchedule } from '../hooks/use-friend-schedule'
 
 export default function FriendDetailedScheduleList() {
   const navigate = useNavigate()

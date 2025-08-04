@@ -1,17 +1,12 @@
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
+import { useDetailedSchedule } from '@/entities/schedule/hooks/use-detailed-schedule'
 import { getRepeatText } from '@/entities/utils/format-repeat-text'
-import getDetailedSchedule from '@/features/my-schedule/detailed-schedule/api/detailed-schedule.API'
 import DetailedScheduleCard from '@/shared/ui/detailed-schedule/detailed-schedule-card'
 
 export default function ShareDetailedSchedule() {
   const { scheduleId } = useParams()
-  const { data } = useQuery({
-    queryKey: ['detailed-share-schedule', scheduleId],
-    queryFn: () => getDetailedSchedule(scheduleId!),
-    enabled: !!scheduleId,
-  })
+  const data = useDetailedSchedule(scheduleId!)
   const repeatText = getRepeatText({
     repeatRule: data?.repeatRule ?? null,
     repeatType: data?.repeatType ?? null,
