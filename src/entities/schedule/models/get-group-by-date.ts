@@ -2,7 +2,7 @@ import { format, eachDayOfInterval } from 'date-fns'
 
 import type { Schedule } from './schedule.types'
 
-export default function groupByDate(schedules: Schedule[]) {
+export function groupByDate(schedules: Schedule[]) {
   const map: Record<string, Schedule[]> = {}
 
   for (const schedule of schedules) {
