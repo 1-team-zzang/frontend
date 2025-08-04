@@ -9,7 +9,7 @@ export interface Schedule {
   startAt: string // ISO 날짜 문자열
   endAt: string
   isRepeated: boolean
-  repeatRule: RepeatRule | null
+  repeatRule: RepeatRule
   isVisible: boolean
   createdAt: string
   modifiedAt: string

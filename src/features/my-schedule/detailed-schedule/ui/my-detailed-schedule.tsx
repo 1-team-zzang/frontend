@@ -14,7 +14,7 @@ export default function MyDetailedSchedule() {
     enabled: !!scheduleId,
   })
   const repeatText = getRepeatText({
-    repeatRule: data?.repeatRule ?? null,
+    repeatRule: data?.repeatRule ?? '',
     repeatType: data?.repeatType ?? null,
     repeatCount: data?.repeatCount ?? null,
     repeatEndAt: data?.repeatEndAt ?? null,
