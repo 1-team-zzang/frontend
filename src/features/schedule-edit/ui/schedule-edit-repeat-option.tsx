@@ -3,10 +3,10 @@ import { ko } from 'date-fns/locale'
 import { useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 
+import ScheduleEditDayPicker from '@/features/schedule-edit/ui/schedule-edit-date-picker'
 import { Input } from '@/shared/ui/input'
-import ScheduleEditDayPicker from '@/shared/ui/schedule-edit/schedule-edit-date-picker'
 
-import Text from '../text/text'
+import Text from '../../../shared/ui/text/text'
 
 import type { RepeatType } from '@/entities/schedule'
 

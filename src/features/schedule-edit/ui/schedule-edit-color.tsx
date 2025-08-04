@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
-import ScheduleEditColorModal from '@/shared/ui/schedule-edit/schedule-edit-color-modal'
+import ScheduleEditColorModal from '@/features/schedule-edit/ui/schedule-edit-color-modal'
 
-import Text from '../text/text'
+import Text from '../../../shared/ui/text/text'
 
 import type { ColorType } from '@/entities/schedule'
 

@@ -10,9 +10,9 @@ import {
   BottomSheetHeader,
   BottomSheetHeaderButton,
   BottomSheetHeaderTitle,
-} from '../bottom-sheet'
-import { Radio, RadioGroup } from '../radio'
-import Text from '../text/text'
+} from '../../../shared/ui/bottom-sheet'
+import { Radio, RadioGroup } from '../../../shared/ui/radio'
+import Text from '../../../shared/ui/text/text'
 
 export default function ScheduleEditVisible() {
   const { control, watch } = useFormContext()

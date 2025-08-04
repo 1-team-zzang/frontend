@@ -1,6 +1,6 @@
-import { FormField } from '../form'
-import { Textarea } from '../input'
-import Text from '../text/text'
+import { FormField } from '../../../shared/ui/form'
+import { Textarea } from '../../../shared/ui/input'
+import Text from '../../../shared/ui/text/text'
 
 export default function ScheduleEditContent() {
   return (

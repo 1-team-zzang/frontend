@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router'
 
 import { scheduleQueryKeys } from '@/entities/schedule/models/schedule.query'
+import { formatDateToString } from '@/features/schedule-edit/model/format-date-to-string'
 import {
   ScheduleEditAllDay,
   ScheduleEditContent,
@@ -12,14 +13,13 @@ import {
   ScheduleEditColor,
   ScheduleEditTitle,
   ScheduleEditVisible,
-} from '@/shared/ui/schedule-edit'
+} from '@/features/schedule-edit/ui'
 import { toast } from '@/shared/ui/toast'
 import { devLog } from '@/shared/utils/dev-log'
-import { formatDateToString } from '@/shared/utils/format-date-to-string'
 
-import { createSchedule, type CreateScheduleRequest } from '../../features/schedule-register/api/schedule-register.API'
+import { createSchedule, type CreateScheduleRequest } from '../../features/schedule-edit/api/schedule-register.API'
 
-import type { RegisterScheduleFormType } from '../../shared/ui/schedule-edit/schedule.schema'
+import type { RegisterScheduleFormType } from '../../features/schedule-edit/model/schedule.schema'
 
 export default function RegisterSchedulePage() {
   const navigate = useNavigate()

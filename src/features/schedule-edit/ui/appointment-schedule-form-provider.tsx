@@ -2,40 +2,39 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { addHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
 import { useForm } from 'react-hook-form'
 
-import { Form } from '../form'
+import {
+  AppointmentScheduleSchema,
+  type AppointmentScheduleFormType,
+} from '@/features/schedule-edit/model/schedule.schema'
 
-import { RegisterScheduleSchema, type RegisterScheduleFormType } from './schedule.schema'
+import { Form } from '../../../shared/ui/form'
 
 import type { ReactNode } from 'react'
 
-//기본 날짜 설정
 const today = new Date()
 const start = setMilliseconds(setSeconds(setMinutes(addHours(today, 1), 0), 0), 0)
 const end = addHours(start, 1)
 
 interface Props {
   children: ReactNode
-  onSubmit: (data: RegisterScheduleFormType) => void
-  defaultValues?: Partial<RegisterScheduleFormType>
+  onSubmit: (data: AppointmentScheduleFormType) => void
+  defaultValues?: Partial<AppointmentScheduleFormType>
 }
 
-export default function RegisterScheduleFormProvider({ children, onSubmit, defaultValues }: Props) {
-  const methods = useForm<RegisterScheduleFormType>({
-    resolver: zodResolver(RegisterScheduleSchema),
+export default function AppointmentScheduleFormProvider({ children, onSubmit, defaultValues }: Props) {
+  const methods = useForm<AppointmentScheduleFormType>({
+    resolver: zodResolver(AppointmentScheduleSchema),
     mode: 'onChange',
     defaultValues: {
       title: '',
-      color: 'RED',
+      color: 'red',
       start: start,
       end: end,
       isAllDay: false,
-      repeatRule: '',
-      interval: 1,
-      repeatType: 'COUNT',
-      repeatCount: 1,
-      repeatEndAt: null,
-      visible: 'visible',
       content: '',
+      requesterName: '',
+      requesterEmail: '',
+      receiverId: 0,
       ...defaultValues,
     },
     shouldUnregister: false,

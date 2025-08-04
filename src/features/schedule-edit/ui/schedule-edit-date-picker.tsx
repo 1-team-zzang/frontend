@@ -6,7 +6,7 @@ import { IconCalendarArrowLeft, IconCalendarArrowRight } from '@/shared/assets/i
 import { Modal, ModalContent, ModalOverlay, ModalPortal } from '@/shared/ui/modal'
 import Text from '@/shared/ui/text/text'
 
-import ScheduleEditMonthlyCalendar from './shedule-edit-monthly-calendar'
+import ScheduleEditMonthlyCalendar from './schedule-edit-monthly-calendar'
 
 interface Props {
   open: boolean

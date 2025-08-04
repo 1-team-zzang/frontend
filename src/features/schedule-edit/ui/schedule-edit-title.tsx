@@ -1,8 +1,8 @@
 import { cn } from '@/shared/utils'
 
-import { FormField } from '../form'
-import { Input } from '../input'
-import Text from '../text/text'
+import { FormField } from '../../../shared/ui/form'
+import { Input } from '../../../shared/ui/input'
+import Text from '../../../shared/ui/text/text'
 
 export default function ScheduleEditTitle({ className }: { className?: string }) {
   return (

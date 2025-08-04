@@ -3,11 +3,11 @@ import { ko } from 'date-fns/locale'
 import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
-import ScheduleEditDayPicker from '@/shared/ui/schedule-edit/schedule-edit-date-picker'
-import ScheduleEditTimePicker from '@/shared/ui/schedule-edit/schedule-edit-time-picker'
+import ScheduleEditDayPicker from '@/features/schedule-edit/ui/schedule-edit-date-picker'
+import ScheduleEditTimePicker from '@/features/schedule-edit/ui/schedule-edit-time-picker'
 
-import Text from '../text/text'
-import { toast } from '../toast'
+import Text from '../../../shared/ui/text/text'
+import { toast } from '../../../shared/ui/toast'
 
 export default function ScheduleEditDate() {
   const { setValue, watch } = useFormContext()

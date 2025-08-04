@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router'
 
 import { IconAppointmentArrowLeft } from '@/shared/assets/icons'
 
-import Text from '../text/text'
+import Text from '../../../shared/ui/text/text'
 
 interface Props {
   title: string
