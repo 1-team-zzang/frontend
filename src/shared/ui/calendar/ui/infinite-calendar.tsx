@@ -8,8 +8,8 @@ import {
   useAutoScrollToCurrentMonth,
   useVisibleMonthObserver,
   MonthlyCalendar,
+  getInitialMonth,
 } from '../../index.ts'
-import getInitialMonth from '../utils/get-initial-month.ts'
 
 import { useCalendarContext } from './calendar-context.tsx'
 

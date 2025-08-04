@@ -13,7 +13,7 @@
  * <MonthlyCalendar year={2025} month={0} /> // 2025년 1월 달력
  */
 
-import getMonthDates from '../utils/get-month-dates'
+import { getMonthDates } from '../..'
 import { range } from '../utils/range'
 
 import CalendarCell from './calendar-cell'
