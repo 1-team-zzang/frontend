@@ -1,1 +1,1 @@
-export * from './channel-talk'
+export { default as ChannelService } from './channel-talk'
