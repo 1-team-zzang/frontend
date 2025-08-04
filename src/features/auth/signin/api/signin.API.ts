@@ -1,7 +1,7 @@
-import axiosInstance from '@/shared/api/axios-instance'
+import { axiosInstance } from '@/shared/api'
 
-import type { SigninFormDataType } from '../model/signin.type'
-import type { User } from '@/entities/user/models/user.types'
+import type { SigninFormDataType } from '../model'
+import type { User } from '@/entities/user'
 
 export async function postSignin(data: SigninFormDataType): Promise<User> {
   const res = await axiosInstance.post('/auth/login', data)

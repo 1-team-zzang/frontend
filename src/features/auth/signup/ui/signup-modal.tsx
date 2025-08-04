@@ -1,9 +1,8 @@
-import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle } from '@/shared/ui/modal'
-import Text from '@/shared/ui/text/text'
+import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle, Text } from '@/shared/ui'
 
 import SignupForm from './signup-form'
 
-import type { AuthModalType } from '../../signin/model/auth-modal.type'
+import type { AuthModalType } from '../../types'
 
 interface Props {
   isSignupOpen: boolean

@@ -1,6 +1,6 @@
 import { Button, Modal, ModalContent, ModalDescription, ModalOverlay, ModalPortal, ModalTitle } from '@/shared/ui'
 
-import useWithdrawMutation from '../model/use-withdraw-mutation'
+import { useWithdrawMutation } from '../model'
 
 interface Props {
   isOpen: boolean
