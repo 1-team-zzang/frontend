@@ -1,9 +1,14 @@
 export function formatRelativeDate(date: Date) {
+  if (!(date instanceof Date) || isNaN(date.getTime())) {
+    throw new Error('Invalid date provided')
+  }
+
   const now = new Date()
   const diffMs = now.getTime() - date.getTime()
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
 
-  if (diffDays < 1) {
+  // 미래 날짜 처리
+  if (diffMs < 0) {
     return '오늘'
   }
   if (diffDays < 7) {
