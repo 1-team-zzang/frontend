@@ -1,17 +1,12 @@
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
+import { useDetailedSchedule } from '@/entities/schedule/hooks/use-detailed-schedule'
 import { getRepeatText } from '@/entities/utils/format-repeat-text'
-import getDetailedSchedule from '@/features/my-schedule/detailed-schedule/api/detailed-schedule.API'
 import DetailedScheduleCard from '@/shared/ui/detailed-schedule/detailed-schedule-card'
 
 export default function FriendDetailedSchedule() {
   const { scheduleId } = useParams()
-  const { data } = useQuery({
-    queryKey: ['detailed-friend-schedule', scheduleId],
-    queryFn: () => getDetailedSchedule(scheduleId!),
-    enabled: !!scheduleId,
-  })
+  const data = useDetailedSchedule(scheduleId!)
   const repeatText = getRepeatText({
     repeatRule: data?.repeatRule ?? '',
     repeatType: data?.repeatType ?? null,
@@ -26,6 +21,8 @@ export default function FriendDetailedSchedule() {
       startDate={data.startAt}
       endDate={data.endAt}
       repeat={repeatText ?? ''}
+      visible={data.isVisible}
+      content={data.content}
     />
   ) : (
     <div>아직 일정이 없어요</div>

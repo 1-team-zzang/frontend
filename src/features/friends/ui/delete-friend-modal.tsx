@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-import { IconClose } from '@/shared/assets/icons'
-import Button from '@/shared/ui/button/button.tsx'
+import { IconClose } from '@/shared/assets'
 import {
   Modal,
   ModalContent,
@@ -10,7 +9,8 @@ import {
   ModalPortal,
   ModalTitle,
   ModalTrigger,
-} from '@/shared/ui/modal'
+  Button,
+} from '@/shared/ui'
 
 import { useFriendDeleteMutation } from '../model'
 

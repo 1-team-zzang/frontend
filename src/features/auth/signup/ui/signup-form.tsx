@@ -1,15 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import Button from '@/shared/ui/button/button.tsx'
-import { Form, FormField, FormLabel } from '@/shared/ui/form'
-import FormFieldWrapper from '@/shared/ui/form/form-field-wrapper'
-import { Input, PasswordInput } from '@/shared/ui/input'
+import { Input, PasswordInput, FormFieldWrapper, Button, Form, FormField, FormLabel } from '@/shared/ui'
 
-import { SignupSchema } from '../model/signup.schema'
-import useSignupMutation from '../model/use-signup-mutation'
-
-import type { SignupFormDataType } from '../model/signup.type'
+import { SignupSchema, useSignupMutation, type SignupFormDataType } from '../model'
 
 export default function SignupForm({ onSignupSuccess }: { onSignupSuccess?: () => void }) {
   const signupMutation = useSignupMutation()

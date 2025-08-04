@@ -7,8 +7,7 @@ export function formatRelativeDate(date: Date) {
   const diffMs = now.getTime() - date.getTime()
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
 
-  // 미래 날짜 처리
-  if (diffMs < 0) {
+  if (diffDays < 1) {
     return '오늘'
   }
   if (diffDays < 7) {

@@ -1,9 +1,8 @@
-import { useUserStore } from '@/entities/user/models/use-user-store'
+import { useUserStore } from '@/entities/user'
 import NotificationBell from '@/features/notification/ui/notification-bell'
-import { GNB } from '@/shared/ui/gnb'
-import Hamburger from '@/shared/ui/gnb/hamburger'
+import { GNB, Hamburger } from '@/shared/ui'
 
-import LoginSelectButton from '../../signin/ui/login-select-button'
+import { LoginSelectButton } from '../../signin/ui'
 
 import AuthSidebar from './auth-sidebar'
 

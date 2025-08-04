@@ -1,5 +1,5 @@
-import type { Friend, FriendRequest, FriendUser } from '@/entities/friends/models/friend.types'
-import type { PaginatedResponse } from '@/shared/types/api.types'
+import type { Friend, FriendRequest, FriendUser } from '@/entities/friends'
+import type { PaginatedResponse } from '@/shared/types'
 
 export type FriendSearchType = 'EMAIL' | 'NAME'
 

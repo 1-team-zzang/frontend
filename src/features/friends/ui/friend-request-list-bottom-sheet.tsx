@@ -5,11 +5,11 @@ import {
   BottomSheetHeader,
   BottomSheetHeaderButton,
   BottomSheetHeaderTitle,
-} from '@/shared/ui/bottom-sheet'
+} from '@/shared/ui'
 
-import { FriendRequestItem } from './index'
+import FriendRequestItem from './friend-request-item'
 
-import type { FriendRequest } from '@/entities/friends/models/friend.types'
+import type { FriendRequest } from '@/entities/friends'
 import type { Dispatch, SetStateAction } from 'react'
 
 interface Props {

@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
+import { IconCalendarAdd } from '@/shared/assets/icons'
+import { AddScheduleButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useDateSchedules } from '../../hooks/use-date-schedules'
@@ -24,9 +26,14 @@ export default function MyDetailedScheduleList() {
   const [selectedScheduleId, setSelectedScheduleId] = useState<number | null>(null)
 
   const [isModalOpen, setIsModalOpen] = useState(false)
+
   const onDeleteClick = (scheduleId: number) => {
     setSelectedScheduleId(scheduleId)
     setIsModalOpen(true)
+  }
+
+  const goToCreateSchedule = () => {
+    navigate(`/my/detailed-schedule/create?date=${date}`)
   }
 
   return (
@@ -44,10 +51,15 @@ export default function MyDetailedScheduleList() {
                 time={formatScheduleTime(card)}
                 badgeColor={card.color}
               >
-                <EditSchduleDropDown onDeleteClick={() => onDeleteClick(card.scheduleId)} />
+                {card.appointmentId ? null : (
+                  <EditSchduleDropDown onDeleteClick={() => onDeleteClick(card.scheduleId)} />
+                )}
               </DetailedScheduleListCard>
             )
           })}
+          <AddScheduleButton onClick={goToCreateSchedule}>
+            <IconCalendarAdd />
+          </AddScheduleButton>
           {isModalOpen && (
             <DeleteConfirmModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} scheduleId={selectedScheduleId} />
           )}

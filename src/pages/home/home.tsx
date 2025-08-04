@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 
-import { useUserStore } from '@/entities/user/models/use-user-store'
-import EmailSigninModal from '@/features/auth/signin/ui/email-signin-modal'
-import SignupModal from '@/features/auth/signup/ui/signup-modal'
+import { useUserStore } from '@/entities/user'
+import { EmailSigninModal } from '@/features/auth/signin/ui'
+import { SignupModal } from '@/features/auth/signup/ui'
 import { MyCalendar } from '@/features/my-schedule'
-import { IconCalendarArrowLeft } from '@/shared/assets/icons'
+import { IconCalendarArrowLeft } from '@/shared/assets'
+import { useIntroGuide } from '@/shared/hooks'
 import { Calendar, HeaderButton, HeaderContainer, HeaderMonthLabel, InfiniteCalendar } from '@/shared/ui'
 
-import type { AuthModalType } from '@/features/auth/signin/model/auth-modal.type'
+import type { AuthModalType } from '@/features/auth/types'
 
 export default function Home() {
   const user = useUserStore((state) => state.user)
@@ -22,6 +23,8 @@ export default function Home() {
       return
     }
   }
+
+  useIntroGuide()
   return (
     <>
       <Outlet />

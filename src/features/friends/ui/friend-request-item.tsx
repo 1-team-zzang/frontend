@@ -1,9 +1,9 @@
-import { IconCheck, IconClose } from '@/shared/assets/icons'
-import Text from '@/shared/ui/text/text'
+import { IconCheck, IconClose } from '@/shared/assets'
+import { Text } from '@/shared/ui'
 
 import { useUpdateFriendRequestByStatusMutation } from '../model'
 
-import type { FriendRequest } from '@/entities/friends/models/friend.types'
+import type { FriendRequest } from '@/entities/friends'
 
 export default function FriendRequestItem({ friendRequest }: { friendRequest: FriendRequest }) {
   const updateFriendRequestMutation = useUpdateFriendRequestByStatusMutation(friendRequest.friendRequestId)

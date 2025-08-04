@@ -10,14 +10,6 @@ export function getRepeatText({ repeatRule, repeatType, repeatCount, repeatEndAt
     return '없음'
   }
 
-  const unitMap: Record<NonNullable<RepeatTextOptions['repeatRule']>, string> = {
-    DAILY: '일',
-    WEEKLY: '주',
-    MONTHLY: '개월',
-    YEARLY: '년',
-    '': '',
-  }
-
   const prefixMap: Record<NonNullable<RepeatTextOptions['repeatRule']>, string> = {
     DAILY: '매일',
     WEEKLY: '매주',
@@ -26,15 +18,14 @@ export function getRepeatText({ repeatRule, repeatType, repeatCount, repeatEndAt
     '': '',
   }
 
-  const unit = unitMap[repeatRule]
   const prefix = prefixMap[repeatRule]
 
   if (repeatType === 'COUNT') {
-    return `${prefix} 1${unit}마다 ${repeatCount}회 반복`
+    return `${prefix}  ${repeatCount}회 반복`
   }
 
   if (repeatType === 'DATE') {
-    return `${prefix} 1${unit}마다 ${repeatEndAt}까지 반복`
+    return `${prefix} ${repeatEndAt}까지 반복`
   }
 
   return '없음'

@@ -1,7 +1,7 @@
-import { IconCalendarCheck, IconCalendarDay, IconKakaoLogo, IconLogout, IconSetting } from '@/shared/assets/icons'
-import { SidebarMenu, SidebarMenuFooter, SidebarMenuList, Sidebar, SidebarMenuHeader } from '@/shared/ui/sidebar'
+import { IconCalendarCheck, IconCalendarDay, IconKakaoLogo, IconLogout, IconSetting } from '@/shared/assets'
+import { SidebarMenu, SidebarMenuFooter, SidebarMenuList, Sidebar, SidebarMenuHeader } from '@/shared/ui'
 
-import useLogoutMutation from '../../logout/model/use-logout-mutation'
+import { useLogoutMutation } from '../../logout/model'
 
 export default function AuthSidebar() {
   const logoutMutation = useLogoutMutation()
@@ -11,14 +11,13 @@ export default function AuthSidebar() {
       <div>
         <SidebarMenuHeader />
         <SidebarMenu>
-          {/* TODO 나머지들 페이지 prop 추가 */}
-          <SidebarMenuList icon={<IconCalendarDay />} href="/">
+          <SidebarMenuList id="my-calendar" icon={<IconCalendarDay />} href="/">
             내 캘린더
           </SidebarMenuList>
-          <SidebarMenuList icon={<IconCalendarCheck />} href="/appointments">
+          <SidebarMenuList id="my-appointments" icon={<IconCalendarCheck />} href="/appointments">
             내 약속
           </SidebarMenuList>
-          <SidebarMenuList icon={<IconKakaoLogo />} href="/friends">
+          <SidebarMenuList id="friends" icon={<IconKakaoLogo />} href="/friends">
             캘메이트
           </SidebarMenuList>
         </SidebarMenu>

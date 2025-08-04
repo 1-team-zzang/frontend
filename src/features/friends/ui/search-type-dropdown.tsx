@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { IconCalendarArrowRight } from '@/shared/assets/icons'
+import { IconCalendarArrowRight } from '@/shared/assets'
 import { Dropdown, DropDownMenu, DropDownMenuItem, DropDownTrigger, Text } from '@/shared/ui'
 
 import type { FriendSearchType } from '../model'

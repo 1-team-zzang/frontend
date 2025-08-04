@@ -4,7 +4,7 @@ import z from 'zod'
 
 import { Button, Form, FormField, FormLabel, PasswordInput } from '@/shared/ui'
 
-import usePasswordChangeMutation from '../model/use-password-change-mutation'
+import { usePasswordChangeMutation } from '../model'
 
 const BasePasswordChangeSchema = z.object({
   currentPassword: z.string().min(8, '현재 비밀번호를 8자 이상 입력해주세요'),

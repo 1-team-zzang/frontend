@@ -1,6 +1,6 @@
-import Button from '@/shared/ui/button/button.tsx'
+import { Button } from '@/shared/ui'
 
-import useLogoutMutation from '../model/use-logout-mutation'
+import { useLogoutMutation } from '../model'
 
 export default function LogoutButton() {
   const logoutMutation = useLogoutMutation()
