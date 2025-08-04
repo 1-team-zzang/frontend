@@ -1,6 +1,6 @@
-import axiosInstance from '@/shared/api/axios-instance'
+import { axiosInstance } from '@/shared/api'
 
-import type { FriendListResponse, FriendRequestsResponse, FriendUsersResponse } from '../model/friend-list.types'
+import type { FriendListResponse, FriendRequestsResponse, FriendUsersResponse } from '../model'
 
 // GET 친구 목록
 export async function getFriends(page = 1, size = 10): Promise<FriendListResponse> {
