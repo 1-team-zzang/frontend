@@ -3,59 +3,60 @@ import { cva } from 'class-variance-authority'
 import { cn } from '@/shared/utils'
 
 import Text from '../../text/text'
-import { useCalendarContext } from '../hooks/calendar-context'
-import { getDayInfo } from '../util/get-day-info'
+import { getDayInfo } from '../utils/get-day-info'
+
+import { useCalendarContext } from './calendar-context'
+
+import type { ReactNode } from 'react'
 
 /**
  * 캘린더에서 하나의 날짜 셀을 렌더링하는 컴포넌트
  * 요일색상, 오늘 날짜, 일정뱃지 표시 담당
  */
+interface CalendarDate {
+  year: number
+  month: number
+  day: number
+}
 
 interface Props {
-  year: number //셀에 해당하는 년도
-  month: number //셀에 해당하는 월(0 = 1월)
-  date: number // 셀에 해당하는 일
+  date: CalendarDate
   showMonthLabel?: boolean //월 1일마다 표시하는 라벨
   isPast?: boolean //오늘 이전의 날짜인지
-  isSelected?: boolean //선택된 날짜
+  children?: ReactNode
 }
 
 const contentVariants = cva('w-6 h-6 mt-1 rounded-full flex items-center justify-center', {
   variants: {
     isSunday: { true: 'text-calendar-red' },
     isSaturday: { true: 'text-calendar-blue' },
-    isTodayDate: { true: 'bg-primary-30' },
+    isToday: { true: 'bg-primary-30' },
     isPast: { true: 'opacity-40' },
-    isSelected: { true: 'rounded-lg bg-primary-70 p-2.5' },
   },
 })
-export default function CalendarCell({ year, month, date, showMonthLabel }: Props) {
-  const { renderDateCellContent, onDateClick, disablePastDateStyling } = useCalendarContext()
-  const { isSunday, isSaturday, isToday, isPast } = getDayInfo(year, month, date)
-
-  const fullDate = new Date(year, month, date)
+export default function CalendarCell({ date, showMonthLabel, isPast, children }: Props) {
+  const { onDateClick } = useCalendarContext()
+  const { year, month, day } = date
+  const { isSunday, isSaturday, isToday, isPast: isActualPast } = getDayInfo(year, month, day)
+  const fullDate = new Date(year, month, day)
   const monthLabel = String(month + 1).padStart(2, '0')
-
+  const isPastDate = isPast === true && isActualPast === true
   return (
-    <button onClick={() => onDateClick?.(fullDate)} className="w-full h-20 flex flex-col border-t border-gray-10">
-      <div className="relative flex justify-center mb-1">
-        <Text
-          as="span"
-          typography="caption"
-          className={cn(
-            contentVariants({ isSunday, isSaturday, isTodayDate: isToday, isPast: !disablePastDateStyling && isPast }),
-          )}
-        >
-          {date}
-        </Text>
-        {showMonthLabel && (
-          <Text as="span" typography="title-heading" className="absolute top-6 text-primary-1 z-base">
-            {monthLabel}
-          </Text>
-        )}
-      </div>
+    <button className="relative w-full flex flex-col items-center gap-1" onClick={() => onDateClick?.(fullDate)}>
+      <Text
+        as="span"
+        typography="caption"
+        className={cn(contentVariants({ isSunday, isSaturday, isToday: isToday, isPast: isPastDate }))}
+      >
+        {day}
+      </Text>
 
-      <div className="w-full">{renderDateCellContent?.(fullDate)}</div>
+      {showMonthLabel && (
+        <Text as="span" typography="title-heading" className="absolute top-6 text-primary-1">
+          {monthLabel}
+        </Text>
+      )}
+      <div className="w-full px-1 flex flex-col gap-1">{children}</div>
     </button>
   )
 }

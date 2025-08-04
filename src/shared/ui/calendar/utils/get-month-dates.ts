@@ -4,7 +4,7 @@
  * @returns
  */
 
-export default function getMonthDates(targetDate: Date) {
+export function getMonthDates(targetDate: Date) {
   const getStartOfCurrentMonth = () => {
     return new Date(targetDate.getFullYear(), targetDate.getMonth(), 1)
   } //시작 날짜 구하는 함수
