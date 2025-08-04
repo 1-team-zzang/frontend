@@ -1,8 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { getFriendsUsers } from '../api/friend.API'
+import { getFriendsUsers } from '../api'
 
-import { friendQueryKeys, type FriendSearchType } from './index'
+import { type FriendSearchType } from './friend-list.types'
+import { friendQueryKeys } from './friend.query'
 
 function useFriendsUsers(searchType: FriendSearchType, query: string, size: number) {
   return useInfiniteQuery({

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-import Button from '@/shared/ui/button/button.tsx'
+import { Button } from '@/shared/ui'
 
 import { useFriendRequestList } from '../model'
 
-import { FriendRequestListBottomSheet } from './index'
+import FriendRequestListBottomSheet from './friend-request-list-bottom-sheet'
 
 export default function FriendRequestListButton() {
   const page = 1

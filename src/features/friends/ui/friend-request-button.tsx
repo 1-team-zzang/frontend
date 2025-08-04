@@ -1,4 +1,4 @@
-import Button from '@/shared/ui/button/button.tsx'
+import { Button } from '@/shared/ui'
 
 import { useFriendRequestMutation } from '../model'
 
