@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { devLog } from '@/shared/utils/dev-log'
+import { toast } from '@/shared/ui/toast'
 
 import { getAuthErrorMessage } from '../../model/get-auth-error-message'
 import { postSignup } from '../api/signup.API'
@@ -14,8 +14,9 @@ function useSignupMutation() {
     mutationFn: (data: SignupInputData) => postSignup(data),
     onSuccess: () => {},
     onError: (error: AxiosError<{ errorCode?: string }>) => {
-      devLog('log', 'error', getAuthErrorMessage(error?.response?.data?.errorCode as AuthErrorCode))
+      toast.error(getAuthErrorMessage(error?.response?.data?.errorCode as AuthErrorCode))
     },
+    throwOnError: false,
   })
 }
 

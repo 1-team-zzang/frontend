@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { devLog } from '@/shared/utils/dev-log'
+import { toast } from '@/shared/ui/toast'
 
 import { deleteFriend } from '../api/friend.API'
 
@@ -11,11 +11,11 @@ function useFriendDeleteMutation() {
   return useMutation({
     mutationFn: (friendRequestId: number) => deleteFriend(friendRequestId),
     onSuccess: () => {
-      devLog('log', '성공적으로 친구 삭제')
+      toast.success('친구가 삭제되었습니다')
       queryClient.invalidateQueries({ queryKey: friendQueryKeys.all })
     },
-    onError: (error) => {
-      devLog('error', '친구 삭제 실패', error.message)
+    onError: () => {
+      toast.error('친구가 삭제되지 않았습니다. 다시 시도해주세요')
     },
   })
 }
