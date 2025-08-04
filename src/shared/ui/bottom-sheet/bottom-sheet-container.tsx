@@ -7,7 +7,7 @@ import { useBottomSheetContext } from './bottom-sheet-context'
 import type { HTMLAttributes } from 'react'
 
 const containerVariants = cva(
-  'fixed bottom-0 left-0 w-full h-2/5 z-modal bg-white rounded-t-[1.5rem] shadow-[0_-4px_12px_0_rgba(0,0,0,0.08)] px-6 pt-8',
+  'fixed bottom-0 left-0 w-full max-w-[640px] sm:left-1/2 sm:-translate-x-1/2 h-2/5 z-modal bg-white rounded-t-[1.5rem] shadow-[0_-4px_12px_0_rgba(0,0,0,0.08)] px-6 pt-8',
   {
     variants: {
       isOpen: {
