@@ -14,30 +14,32 @@ function useSidebarIntroGuide(isOpen: boolean) {
     }
     const intro = introJs()
 
+    intro.setOptions({
+      steps: [
+        {
+          element: '#my-calendar',
+          intro: "'내 캘린더' 페이지에서<br>내 일정을 확인하고<br/>일정을 등록할 수 있어요!",
+        },
+        {
+          element: '#my-appointments',
+          intro: "'내 약속' 페이지에서<br/>친구와 맺은 약속 및 <br/>신청한 약속을 확인할 수 있어요!",
+        },
+        {
+          element: '#friends',
+          intro: "'캘메이트' 페이지에서<br/>친구들의 일정을 확인하고<br/>약속을 신청할 수 있어요!",
+        },
+      ],
+      showProgress: true,
+      showBullets: false,
+    })
+
     setTimeout(() => {
-      intro
-        .setOptions({
-          steps: [
-            {
-              element: '#my-calendar',
-              intro: "'내 캘린더' 페이지에서<br>내 일정을 확인하고<br/>일정을 등록할 수 있어요!",
-            },
-            {
-              element: '#my-appointments',
-              intro: "'내 약속' 페이지에서<br/>친구와 맺은 약속 및 <br/>신청한 약속을 확인할 수 있어요!",
-            },
-            {
-              element: '#friends',
-              intro: "'캘메이트' 페이지에서<br/>친구들의 일정을 확인하고<br/>약속을 신청할 수 있어요!",
-            },
-          ],
-          showProgress: true,
-          showBullets: false,
-        })
-        .start()
+      intro.start()
     }, 300)
 
-    localStorage.setItem('sidebar-visited', 'true')
+    intro.onComplete(() => {
+      localStorage.setItem('sidebar-visited', 'true')
+    })
 
     return () => {
       if (intro) {

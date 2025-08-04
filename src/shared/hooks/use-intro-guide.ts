@@ -32,7 +32,9 @@ function useIntroGuide() {
 
     intro.start()
 
-    localStorage.setItem('main-visited', 'true')
+    intro.onComplete(() => {
+      localStorage.setItem('main-visited', 'true')
+    })
 
     const handleClick = () => {
       const isOnClickStep = document.querySelector('.introjs-tooltip.wait-for-click')
