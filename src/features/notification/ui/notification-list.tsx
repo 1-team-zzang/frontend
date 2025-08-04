@@ -4,7 +4,7 @@ import { useIntersect } from '@/shared/hooks'
 import { Text } from '@/shared/ui'
 import { cn, formatRelativeDate } from '@/shared/utils'
 
-import useNotification from '../model/use-notification'
+import { useNotification } from '../model'
 
 // TODO 디자인 시안 나오면 디자인 수정
 const NotificationList = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'>>(
