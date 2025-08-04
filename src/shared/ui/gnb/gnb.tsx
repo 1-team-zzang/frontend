@@ -35,11 +35,13 @@ export default function GNB({ rightSlot, sidebar }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const handleOpenSidebar = () => setIsOpen(true)
   const handleCloseSidebar = () => setIsOpen(false)
+  const handleToggleSidebar = () => setIsOpen((prev) => !prev)
 
   const providerValue = {
     isOpen,
     handleOpenSidebar,
     handleCloseSidebar,
+    handleToggleSidebar,
   }
 
   return (
