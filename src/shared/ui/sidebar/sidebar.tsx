@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, type ReactNode } from 'react'
 
-import useClickOutside from '@/shared/hooks/use-click-outside'
+import { useClickOutside, useSidebarIntroGuide } from '@/shared/hooks'
 
 import { useGNBContext } from '../gnb/gnb-conext'
 
@@ -10,8 +10,8 @@ import { useGNBContext } from '../gnb/gnb-conext'
  */
 
 const sidebarVariants = {
-  closed: { x: '100%' },
-  open: { x: 0 },
+  closed: { x: '100%', boxShadow: 'none' },
+  open: { x: 0, boxShadow: '-2px 0 16px rgba(0, 0, 0, 0.05)' },
 }
 
 interface Props {
@@ -20,6 +20,8 @@ interface Props {
 
 export default function SideBar({ children }: Props) {
   const { isOpen, handleCloseSidebar } = useGNBContext()
+
+  useSidebarIntroGuide(isOpen)
 
   const sidebarRef = useRef<HTMLElement>(null)
 

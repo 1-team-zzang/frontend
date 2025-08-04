@@ -17,16 +17,17 @@ interface Prop {
   icon: ReactNode
   href?: string
   onClick?: () => void
+  id?: string
 }
 
-export default function SidebarMenuList({ icon, children, href, onClick }: Prop) {
+export default function SidebarMenuList({ icon, children, href, onClick, id }: Prop) {
   const { handleCloseSidebar } = useGNBContext()
   const handleButtonClick = () => {
     onClick?.()
     handleCloseSidebar()
   }
   return (
-    <li className="list-none h-[3.625rem] p-5 rounded-lg cursor-pointer hover:bg-gray-1 active:bg-primary-30 ">
+    <li id={id} className="list-none h-[3.625rem] p-5 rounded-lg cursor-pointer hover:bg-gray-1 active:bg-primary-30 ">
       {href ? (
         <Link to={href} onClick={handleCloseSidebar} className="flex items-center gap-2">
           {icon}

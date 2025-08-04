@@ -11,14 +11,13 @@ export default function AuthSidebar() {
       <div>
         <SidebarMenuHeader />
         <SidebarMenu>
-          {/* TODO 나머지들 페이지 prop 추가 */}
-          <SidebarMenuList icon={<IconCalendarDay />} href="/">
+          <SidebarMenuList id="my-calendar" icon={<IconCalendarDay />} href="/">
             내 캘린더
           </SidebarMenuList>
-          <SidebarMenuList icon={<IconCalendarCheck />} href="/appointments">
+          <SidebarMenuList id="my-appointments" icon={<IconCalendarCheck />} href="/appointments">
             내 약속
           </SidebarMenuList>
-          <SidebarMenuList icon={<IconKakaoLogo />} href="/friends">
+          <SidebarMenuList id="friends" icon={<IconKakaoLogo />} href="/friends">
             캘메이트
           </SidebarMenuList>
         </SidebarMenu>
