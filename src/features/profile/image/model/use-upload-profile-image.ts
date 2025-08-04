@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { useUserStore } from '@/entities/user/models/use-user-store'
-import { toast } from '@/shared/ui/toast'
+import { useUserStore } from '@/entities/user'
+import { toast } from '@/shared/ui'
 
-import { putUserProfile } from '../../api/profile.API'
+import { putUserProfile } from '../../api'
 
-import type { UserProfileRequestData } from '../../types/profile.types'
+import type { UserProfileRequestData } from '../../types'
 
 export default function useUploadProfileImageMutation() {
   return useMutation({
