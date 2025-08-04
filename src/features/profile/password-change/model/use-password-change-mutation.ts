@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { toast } from '@/shared/ui/toast'
+import { toast } from '@/shared/ui'
 
-import { putUserPassword } from '../../api/profile.API'
+import { putUserPassword } from '../../api'
 
-import type { PasswordChangeRequestData } from '../../types/profile.types'
+import type { PasswordChangeRequestData } from '../../types'
 
 export default function usePasswordChangeMutation() {
   return useMutation({
