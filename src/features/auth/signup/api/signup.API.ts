@@ -1,6 +1,6 @@
-import axiosInstance from '@/shared/api/axios-instance'
+import { axiosInstance } from '@/shared/api'
 
-import type { SignupInputData, SignupResponse } from '../model/signup.type'
+import type { SignupInputData, SignupResponse } from '../model'
 
 export async function postSignup(data: SignupInputData): Promise<SignupResponse> {
   const res = await axiosInstance.post('/auth/signup', data)
