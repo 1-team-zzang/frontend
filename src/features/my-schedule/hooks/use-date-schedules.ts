@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
 import groupByDate from '@/entities/schedule/models/get-group-by-date'
 import { scheduleQueryKeys } from '@/entities/schedule/models/schedule.query'
@@ -7,21 +7,14 @@ import { getMySchedule } from '@/features/my-schedule'
 
 export function useDateSchedules() {
   const userId = useUserStore((state) => state.user?.userId)
-  const {
-    data: schedules = [],
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: schedules = [] } = useSuspenseQuery({
     queryKey: scheduleQueryKeys.userSchedules(userId!),
     queryFn: getMySchedule,
-    enabled: !!userId,
   })
 
   const scheduleMap = groupByDate(schedules)
 
   return {
     scheduleMap,
-    isLoading,
-    isError,
   }
 }
