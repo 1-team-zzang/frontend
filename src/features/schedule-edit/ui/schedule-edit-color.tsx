@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form'
 import ScheduleEditColorModal from '@/features/schedule-edit/ui/schedule-edit-color-modal'
 
 import Text from '../../../shared/ui/text/text'
+import { formatColor } from '../model/format-color-map'
 
 import type { ColorType } from '@/entities/schedule'
 
@@ -12,13 +13,7 @@ export default function ScheduleEditColor() {
   const [isColorOpen, setIsColorOpen] = useState(false)
   const [selectedColor, setSelectedColor] = useState<ColorType>('RED')
 
-  const colorMap: Record<ColorType, string> = {
-    RED: 'bg-calendar-red',
-    YELLOW: 'bg-calendar-yellow',
-    GREEN: 'bg-calendar-green',
-    BLUE: 'bg-calendar-blue',
-    PURPLE: 'bg-calendar-purple',
-  }
+  const colorMap = formatColor()
 
   const setColor = (color: ColorType) => {
     setSelectedColor(color)

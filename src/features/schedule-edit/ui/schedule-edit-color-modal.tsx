@@ -2,6 +2,8 @@ import { type SetStateAction, type Dispatch } from 'react'
 
 import { ModalContent, ModalOverlay, Modal, ModalPortal } from '@/shared/ui/modal'
 
+import { formatColor } from '../model/format-color-map'
+
 interface Props {
   isColorOpen: boolean
   setIsColorOpen: Dispatch<SetStateAction<boolean>>
@@ -13,13 +15,7 @@ interface Props {
 const colorOptions = ['RED', 'YELLOW', 'GREEN', 'BLUE', 'PURPLE'] as const
 type Color = (typeof colorOptions)[number]
 
-const colorMap: Record<Color, string> = {
-  RED: 'bg-calendar-red',
-  YELLOW: 'bg-calendar-yellow',
-  GREEN: 'bg-calendar-green',
-  BLUE: 'bg-calendar-blue',
-  PURPLE: 'bg-calendar-purple',
-}
+const colorMap = formatColor()
 
 export default function ScheduleEditColorModal({
   isColorOpen,

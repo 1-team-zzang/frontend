@@ -1,16 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { addHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
 import { useForm } from 'react-hook-form'
 
 import { Form } from '../../../shared/ui/form'
+import { formatToday } from '../model/format-today'
 import { RegisterScheduleSchema, type RegisterScheduleFormType } from '../model/schedule.schema'
 
 import type { ReactNode } from 'react'
 
-//기본 날짜 설정
-const today = new Date()
-const start = setMilliseconds(setSeconds(setMinutes(addHours(today, 1), 0), 0), 0)
-const end = addHours(start, 1)
+const { start, end } = formatToday()
 
 interface Props {
   children: ReactNode

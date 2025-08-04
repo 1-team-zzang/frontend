@@ -14,13 +14,14 @@ export const BaseScheduleSchema = z.object({
 export const RegisterScheduleSchema = BaseScheduleSchema.extend({
   repeatRule: z.enum(['DAILY', 'WEEKLY', 'MONTHLY', 'YEARLY', '']),
   interval: z.number().min(1),
-  repeatType: z.enum(['COUNT', 'DATE']).optional(),
+  repeatType: z.enum(['COUNT', 'DATE']).nullable(),
   repeatCount: z.number().min(1),
   repeatEndAt: z.string().nullable().optional(),
-  visible: z.string(),
+  visible: z.enum(['visible', 'invisible']),
 })
   .refine(
     (data) =>
+      data.repeatRule === '' ||
       (data.repeatType === 'COUNT' && typeof data.repeatCount === 'number' && data.repeatCount > 0) ||
       (data.repeatType === 'DATE' && data.repeatEndAt),
     {

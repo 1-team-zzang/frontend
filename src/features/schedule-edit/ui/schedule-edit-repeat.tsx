@@ -52,40 +52,40 @@ export default function ScheduleEditRepeat() {
             <Controller
               control={control}
               name="repeatRule"
-              defaultValue="none"
+              defaultValue=""
               render={({ field }) => (
                 <RadioGroup className="flex flex-col gap-6" name="repeatRule">
                   <div>
-                    <Radio value="none">반복 안함</Radio>
+                    <Radio value="">반복 안함</Radio>
                   </div>
                   <div>
-                    <Radio value="day">일 단위 반복</Radio>
-                    {field.value === 'day' && (
-                      <div key="repeat-day" className="mt-2 flex flex-col gap-4 pl-6">
+                    <Radio value="DAILY">일 단위 반복</Radio>
+                    {field.value === 'DAILY' && (
+                      <div key="DAILY" className="mt-2 flex flex-col gap-4 pl-6">
                         <ScheduleEditRepeatOption />
                       </div>
                     )}
                   </div>
                   <div>
-                    <Radio value="week">주 단위 반복</Radio>
-                    {field.value === 'week' && (
-                      <div key="repeat-week" className="mt-2 flex flex-col gap-4 pl-6">
+                    <Radio value="WEEKLY">주 단위 반복</Radio>
+                    {field.value === 'WEEKLY' && (
+                      <div key="WEEKLY" className="mt-2 flex flex-col gap-4 pl-6">
                         <ScheduleEditRepeatOption />
                       </div>
                     )}
                   </div>
                   <div>
-                    <Radio value="month">월 단위 반복</Radio>
-                    {field.value === 'month' && (
-                      <div key="repeat-month" className="mt-2 flex flex-col gap-4 pl-6">
+                    <Radio value="MONTHLY">월 단위 반복</Radio>
+                    {field.value === 'MONTHLY' && (
+                      <div key="MONTHLY" className="mt-2 flex flex-col gap-4 pl-6">
                         <ScheduleEditRepeatOption />
                       </div>
                     )}
                   </div>
                   <div>
-                    <Radio value="year">연 단위 반복</Radio>
-                    {field.value === 'year' && (
-                      <div key="repeat-year" className="mt-2 flex flex-col gap-4 pl-6">
+                    <Radio value="YEARLY">연 단위 반복</Radio>
+                    {field.value === 'YEARLY' && (
+                      <div key="YEARLY" className="mt-2 flex flex-col gap-4 pl-6">
                         <ScheduleEditRepeatOption />
                       </div>
                     )}

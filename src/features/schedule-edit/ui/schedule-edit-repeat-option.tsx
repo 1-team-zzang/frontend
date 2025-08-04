@@ -33,7 +33,7 @@ export default function ScheduleEditRepeatOption() {
             type="button"
             typography="b2-normal"
             className={`h-[2.125rem] px-3 py-1 rounded-full ${repeatType === 'COUNT' ? 'bg-primary-30' : 'bg-gray-5'}`}
-            onClick={() => setValue('repeatMode', 'count')}
+            onClick={() => setValue('repeatMode', 'COUNT')}
           >
             횟수
           </Text>
@@ -42,7 +42,7 @@ export default function ScheduleEditRepeatOption() {
             type="button"
             typography="b2-normal"
             className={`h-[2.125rem] px-3 py-1 rounded-full ${repeatType === 'DATE' ? 'bg-primary-30' : 'bg-gray-5'}`}
-            onClick={() => setValue('repeatMode', 'date')}
+            onClick={() => setValue('repeatMode', 'DATE')}
           >
             종료일
           </Text>

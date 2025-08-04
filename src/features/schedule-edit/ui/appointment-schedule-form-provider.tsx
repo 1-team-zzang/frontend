@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { addHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns'
 import { useForm } from 'react-hook-form'
 
 import {
@@ -8,12 +7,11 @@ import {
 } from '@/features/schedule-edit/model/schedule.schema'
 
 import { Form } from '../../../shared/ui/form'
+import { formatToday } from '../model/format-today'
 
 import type { ReactNode } from 'react'
 
-const today = new Date()
-const start = setMilliseconds(setSeconds(setMinutes(addHours(today, 1), 0), 0), 0)
-const end = addHours(start, 1)
+const { start, end } = formatToday()
 
 interface Props {
   children: ReactNode
@@ -27,7 +25,7 @@ export default function AppointmentScheduleFormProvider({ children, onSubmit, de
     mode: 'onChange',
     defaultValues: {
       title: '',
-      color: 'red',
+      color: 'RED',
       start: start,
       end: end,
       isAllDay: false,

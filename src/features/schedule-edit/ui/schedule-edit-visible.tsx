@@ -53,7 +53,9 @@ export default function ScheduleEditVisible() {
                   <Radio value="visible">전체 공개</Radio>
                   <div className="flex justify-between">
                     <Radio value="invisible">나만 보기</Radio>
-                    <IconQuestion type="button" onClick={() => setQuestion(!question)} />
+                    <button type="button" onClick={() => setQuestion(!question)}>
+                      <IconQuestion />
+                    </button>
                   </div>
                   {question && <IconTemp className="flex self-end" />}
                 </RadioGroup>
