@@ -1,13 +1,16 @@
+import { format } from 'date-fns'
+
 import axiosInstance from '@/shared/api/axios-instance'
 import { devLog } from '@/shared/utils/dev-log'
 
 import type { Schedule } from '@/entities/schedule'
 
 export async function getShareSchedule(userId: string): Promise<Schedule[]> {
+  const start = format(new Date(), 'yyyy-MM-dd')
   try {
     const res = await axiosInstance.get(`/schedules/user/${userId}`, {
       params: {
-        start: '2025-05-01',
+        start: start,
         end: '2025-12-31',
       },
     })

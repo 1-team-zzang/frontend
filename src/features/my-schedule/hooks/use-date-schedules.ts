@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 
-import groupByDate from '@/entities/schedule/models/get-group-by-date'
+import { groupByDate } from '@/entities/schedule'
 import { scheduleQueryKeys } from '@/entities/schedule/models/schedule.query'
 import { useUserStore } from '@/entities/user/models/use-user-store'
 import { getMySchedule } from '@/features/my-schedule'

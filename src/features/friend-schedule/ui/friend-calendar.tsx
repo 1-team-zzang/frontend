@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import { useNavigate, useParams } from 'react-router'
 
-import groupByDate from '@/entities/schedule/models/get-group-by-date'
+import { groupByDate, scheduleQueryKeys } from '@/entities/schedule'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets/icons'
 import {
   AddScheduleButton,
@@ -21,7 +21,7 @@ export default function FriendCalendar() {
   const navigate = useNavigate()
 
   const { data: schedules = [] } = useQuery({
-    queryKey: ['friend-schedule', friendId],
+    queryKey: scheduleQueryKeys.userSchedules(friendId!),
     queryFn: () => getFriendSchedule(friendId!),
     enabled: !!friendId,
   })
