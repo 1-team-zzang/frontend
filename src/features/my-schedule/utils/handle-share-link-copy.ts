@@ -11,7 +11,6 @@ export default function handleShareLinkCopy({ link, setIsOpen }: Props) {
     try {
       await navigator.clipboard.writeText(link)
       setIsOpen(true)
-
       toast.success('클립보드에 복사되었습니다 :P')
     } catch (err) {
       devLog('log', '복사에러', err)
