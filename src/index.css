@@ -58,6 +58,7 @@
 :root {
   font-family: Pretendard;
   -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
 
   /************/
   /** colors **/
