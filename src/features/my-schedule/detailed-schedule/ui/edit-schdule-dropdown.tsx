@@ -5,9 +5,10 @@ import { Dropdown, DropDownMenu, DropDownMenuItem, DropDownTrigger } from '@/sha
 
 interface Props {
   onDeleteClick: () => void
+  onEditClick: () => void
 }
 
-export default function EditSchduleDropDown({ onDeleteClick }: Props) {
+export default function EditSchduleDropDown({ onDeleteClick, onEditClick }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
   const onMenuClick = (callback?: () => void) => {
@@ -27,7 +28,7 @@ export default function EditSchduleDropDown({ onDeleteClick }: Props) {
       </DropDownTrigger>
       {isOpen && (
         <DropDownMenu position="right">
-          <DropDownMenuItem>수정</DropDownMenuItem>
+          <DropDownMenuItem onClick={() => onMenuClick(onEditClick)}>수정</DropDownMenuItem>
           <DropDownMenuItem
             onClick={() => {
               onMenuClick(onDeleteClick)

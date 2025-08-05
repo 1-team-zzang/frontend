@@ -19,3 +19,4 @@ export { default as ShareDetailedScheduleListPage } from '@/pages/detailed-sched
 export { default as ShareDetailedSchedulePage } from '@/pages/detailed-schedule/share-detailed-schedule/share-detailed-schedule-page'
 export { default as RegisterSchedulePage } from './schedule-edit/register-schedule-page'
 export { default as RegisterDetailedSchedulePage } from './schedule-edit/register-detailed-schedule-page'
+export { default as EditMySchedulePage } from './edit-my-schedule/edit-my-schedule-page'
