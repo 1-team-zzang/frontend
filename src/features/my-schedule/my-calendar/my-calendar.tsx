@@ -6,12 +6,12 @@ import { IconCalendarAdd } from '@/shared/assets'
 import {
   HeaderTodayButton,
   RenderScheduleBadges,
-  AddScheduleButton,
   Calendar,
   HeaderButton,
   HeaderContainer,
   HeaderMonthLabel,
   InfiniteCalendar,
+  FloatButton,
 } from '@/shared/ui'
 import { devLog } from '@/shared/utils'
 
@@ -48,9 +48,9 @@ export default function MyCalendar() {
         <InfiniteCalendar>
           {(date) => <RenderScheduleBadges isMyCalendar date={date} scheduleMap={scheduleMap} />}
         </InfiniteCalendar>
-        <AddScheduleButton onClick={goToCreateSchedule}>
-          <IconCalendarAdd />
-        </AddScheduleButton>
+        <FloatButton className="bg-primary-60" size="large" onClick={goToCreateSchedule}>
+          <IconCalendarAdd className="size-8" />
+        </FloatButton>
       </Calendar>
       {showModal && <ShareCalendarBottomSheet isOpen={showModal} setIsOpen={setShowModal} />}
     </>

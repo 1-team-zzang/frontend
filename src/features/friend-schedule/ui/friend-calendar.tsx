@@ -4,8 +4,8 @@ import { useNavigate, useParams } from 'react-router'
 
 import { groupByDate, scheduleQueryKeys } from '@/entities/schedule'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets/icons'
+import { FloatButton } from '@/shared/ui'
 import {
-  AddScheduleButton,
   Calendar,
   HeaderButton,
   HeaderContainer,
@@ -47,9 +47,9 @@ export default function FriendCalendar() {
         <HeaderButton>오늘</HeaderButton>
       </HeaderContainer>
       <InfiniteCalendar>{(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} />}</InfiniteCalendar>
-      <AddScheduleButton onClick={goToCreateAppointment}>
-        <IconInvite />
-      </AddScheduleButton>
+      <FloatButton className="bg-primary-60" size="large" onClick={goToCreateAppointment}>
+        <IconInvite className="size-8" />
+      </FloatButton>
     </Calendar>
   )
 }
