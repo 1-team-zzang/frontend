@@ -5,8 +5,8 @@ import {
   AppointmentScheduleSchema,
   type AppointmentScheduleFormType,
 } from '@/features/schedule-edit/model/schedule.schema'
+import { Form } from '@/shared/ui'
 
-import { Form } from '../../../shared/ui/form'
 import { formatToday } from '../model/format-today'
 
 import type { ReactNode } from 'react'

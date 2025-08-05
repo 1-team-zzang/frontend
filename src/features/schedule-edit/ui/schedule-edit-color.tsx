@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import ScheduleEditColorModal from '@/features/schedule-edit/ui/schedule-edit-color-modal'
+import { Text } from '@/shared/ui'
 
-import Text from '../../../shared/ui/text/text'
 import { formatColor } from '../model/format-color-map'
 
 import type { ColorType } from '@/entities/schedule'

@@ -1,7 +1,6 @@
 import { useFormContext } from 'react-hook-form'
 
-import { Switch, SwitchTrigger } from '../../../shared/ui/switch'
-import Text from '../../../shared/ui/text/text'
+import { Switch, SwitchTrigger, Text } from '@/shared/ui'
 
 export default function ScheduleEditAllDay() {
   const { watch, setValue } = useFormContext()

@@ -1,7 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { Form } from '../../../shared/ui/form'
+import { Form } from '@/shared/ui'
+
 import { formatToday } from '../model/format-today'
 import { RegisterScheduleSchema, type RegisterScheduleFormType } from '../model/schedule.schema'
 

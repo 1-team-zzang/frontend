@@ -2,7 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useSearchParams } from 'react-router'
 
-import { Form } from '../../../shared/ui/form'
+import { Form } from '@/shared/ui'
+
 import { RegisterScheduleSchema, type RegisterScheduleFormType } from '../model/schedule.schema'
 
 import type { ReactNode } from 'react'

@@ -4,9 +4,8 @@ import { useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 
 import ScheduleEditDayPicker from '@/features/schedule-edit/ui/schedule-edit-date-picker'
+import { Text } from '@/shared/ui'
 import { Input } from '@/shared/ui/input'
-
-import Text from '../../../shared/ui/text/text'
 
 import type { RepeatType } from '@/entities/schedule'
 

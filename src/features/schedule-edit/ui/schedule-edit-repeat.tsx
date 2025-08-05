@@ -8,9 +8,10 @@ import {
   BottomSheetHeader,
   BottomSheetHeaderButton,
   BottomSheetHeaderTitle,
-} from '../../../shared/ui/bottom-sheet'
-import { Radio, RadioGroup } from '../../../shared/ui/radio'
-import Text from '../../../shared/ui/text/text'
+  Radio,
+  RadioGroup,
+  Text,
+} from '@/shared/ui'
 
 import ScheduleEditRepeatOption from './schedule-edit-repeat-option'
 

@@ -5,9 +5,7 @@ import { useFormContext } from 'react-hook-form'
 
 import ScheduleEditDayPicker from '@/features/schedule-edit/ui/schedule-edit-date-picker'
 import ScheduleEditTimePicker from '@/features/schedule-edit/ui/schedule-edit-time-picker'
-
-import Text from '../../../shared/ui/text/text'
-import { toast } from '../../../shared/ui/toast'
+import { Text, toast } from '@/shared/ui'
 
 export default function ScheduleEditDate() {
   const { setValue, watch } = useFormContext()
