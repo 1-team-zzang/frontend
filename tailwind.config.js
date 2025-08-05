@@ -53,6 +53,7 @@ export default {
     extend: {
       zIndex: {
         base: 0,
+        overlay: 900,
         dropdown: 1000,
         sticky: 1020,
         fixed: 1030,
