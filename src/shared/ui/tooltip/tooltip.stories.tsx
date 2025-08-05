@@ -43,9 +43,7 @@ export const Default: Story = {
     <div style={{ width: '600px', height: '300px' }} className="flex items-center justify-center">
       <Tooltip>
         <TooltipTrigger>
-          <button>
-            <IconQuestionMark />
-          </button>
+          <IconQuestionMark />
         </TooltipTrigger>
         <TooltipMessage {...args} />
       </Tooltip>

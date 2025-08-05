@@ -82,16 +82,16 @@ describe('SigninForm', () => {
     expect(errorMessage).toBeInTheDocument()
   })
 
-  it('이메일을 잘못 입력하면 "이메일 형식으로 입력해주세요" 라는 에러 메시지 확인', async () => {
+  it('비밀번호를 잘못 입력하면 "비밀번호를 8자 이상 입력해주세요" 라는 에러 메시지 확인', async () => {
     render(<SigninForm />)
 
     const emailInput = screen.getByPlaceholderText('이메일을 입력하세요')
     const passwordInput = screen.getByPlaceholderText('비밀번호를 입력해주세요')
 
-    fireEvent.change(emailInput, { target: { value: 'test' } })
-    fireEvent.change(passwordInput, { target: { value: 'password123!' } })
+    fireEvent.change(emailInput, { target: { value: 'test1234@naver.com' } })
+    fireEvent.change(passwordInput, { target: { value: 'pass' } })
 
-    const errorMessage = await screen.findByText('이메일 형식으로 입력해주세요')
+    const errorMessage = await screen.findByText('비밀번호를 8자 이상 입력해주세요')
 
     expect(errorMessage).toBeInTheDocument()
   })
