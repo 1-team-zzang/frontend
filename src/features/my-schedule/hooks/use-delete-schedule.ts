@@ -4,7 +4,7 @@ import { scheduleQueryKeys } from '@/entities/schedule/models/schedule.query'
 import { useUserStore } from '@/entities/user/models/use-user-store'
 import { toast } from '@/shared/ui/toast'
 
-import deleteSchedule from '../api/delete-schedule.API'
+import { deleteSchedule } from '../api'
 
 export default function useDeleteSchedule() {
   const userId = useUserStore((state) => state.user?.userId)
