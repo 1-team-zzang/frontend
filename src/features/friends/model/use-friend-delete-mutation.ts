@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { toast } from '@/shared/ui/toast'
+import { toast } from '@/shared/ui'
 
-import { deleteFriend } from '../api/friend.API'
+import { deleteFriend } from '../api'
 
-import { friendQueryKeys } from './index'
+import { friendQueryKeys } from './friend.query'
 
 function useFriendDeleteMutation() {
   const queryClient = useQueryClient()

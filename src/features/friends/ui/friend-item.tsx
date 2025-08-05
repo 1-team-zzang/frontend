@@ -1,11 +1,11 @@
 import { Link } from 'react-router'
 
-import { IconAppointmentArrowLeft } from '@/shared/assets/icons'
-import { Profile, ProfileImage, ProfileName } from '@/shared/ui/profile'
+import { IconAppointmentArrowLeft } from '@/shared/assets'
+import { Profile, ProfileImage, ProfileName } from '@/shared/ui'
 
 import DeleteFriendModal from './delete-friend-modal'
 
-import type { Friend } from '@/entities/friends/models/friend.types'
+import type { Friend } from '@/entities/friends'
 
 export default function FriendItem({ friend }: { friend: Friend }) {
   const { profileUrl, name, friendRequestId } = friend

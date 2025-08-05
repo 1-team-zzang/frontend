@@ -1,4 +1,4 @@
-export type RepeatRule = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
+export type RepeatRule = 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | ''
 export type RepeatType = 'COUNT' | 'DATE'
 export type ColorType = 'RED' | 'YELLOW' | 'GREEN' | 'BLUE' | 'PURPLE'
 
@@ -9,7 +9,7 @@ export interface Schedule {
   startAt: string // ISO 날짜 문자열
   endAt: string
   isRepeated: boolean
-  repeatRule: RepeatRule | null
+  repeatRule: RepeatRule
   isVisible: boolean
   createdAt: string
   modifiedAt: string

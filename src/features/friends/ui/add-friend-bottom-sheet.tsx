@@ -5,7 +5,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 
-import { IconCheck } from '@/shared/assets/icons'
+import { IconCheck } from '@/shared/assets'
 import {
   BottomSheet,
   BottomSheetContainer,
@@ -13,16 +13,16 @@ import {
   BottomSheetHeader,
   BottomSheetHeaderButton,
   BottomSheetHeaderTitle,
-} from '@/shared/ui/bottom-sheet'
-import Button from '@/shared/ui/button/button.tsx'
-import { Form, FormField } from '@/shared/ui/form'
-import { Input } from '@/shared/ui/input'
-import Text from '@/shared/ui/text/text'
+  Button,
+  Form,
+  FormField,
+  Input,
+  Text,
+} from '@/shared/ui'
 
 import SearchTypeDropdown from './search-type-dropdown'
+import UserList from './user-list'
 import UserListSkeleton from './user-list-skeleton'
-
-import { UserList } from './index'
 
 import type { FriendSearchType } from '../model'
 

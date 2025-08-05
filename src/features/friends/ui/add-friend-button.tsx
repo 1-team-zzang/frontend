@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import Text from '@/shared/ui/text/text'
+import { Text } from '@/shared/ui'
 
-import { AddFriendBottomSheet } from './index'
+import AddFriendBottomSheet from './add-friend-bottom-sheet'
 
 export default function AddFriendButton() {
   const [isOpen, setIsOpen] = useState<boolean>(false)

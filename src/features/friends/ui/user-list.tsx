@@ -1,13 +1,10 @@
-import { useUserStore } from '@/entities/user/models/use-user-store'
+import { useUserStore } from '@/entities/user/models'
 import { useIntersect } from '@/shared/hooks'
-import { Profile, ProfileImage, ProfileName } from '@/shared/ui/profile'
-import Text from '@/shared/ui/text/text'
+import { Profile, ProfileImage, ProfileName, Text } from '@/shared/ui'
 
-import { useFriendsUsers } from '../model'
+import { useFriendsUsers, type FriendSearchType } from '../model'
 
-import { FriendRequestButton } from './index'
-
-import type { FriendSearchType } from '../model/friend-list.types'
+import FriendRequestButton from './friend-request-button'
 
 interface Props {
   searchQuery: string

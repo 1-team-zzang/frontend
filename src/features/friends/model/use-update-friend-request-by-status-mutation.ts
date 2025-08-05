@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { notificationQueryKeys } from '@/features/notification/model/notification.query'
-import { devLog } from '@/shared/utils/dev-log'
+import { notificationQueryKeys } from '@/features/notification/model'
+import { devLog } from '@/shared/utils'
 
-import { putFriendRequest } from '../api/friend.API'
+import { putFriendRequest } from '../api'
 
-import { friendQueryKeys } from './index'
+import { friendQueryKeys } from './friend.query'
 
 function useUpdateFriendRequestByStatusMutation(friendRequestId: number) {
   const queryClient = useQueryClient()

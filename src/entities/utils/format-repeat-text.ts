@@ -1,12 +1,12 @@
 interface RepeatTextOptions {
-  repeatRule: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | null
+  repeatRule: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | ''
   repeatType: 'COUNT' | 'DATE' | null
   repeatCount: number | null
   repeatEndAt: string | null
 }
 
 export function getRepeatText({ repeatRule, repeatType, repeatCount, repeatEndAt }: RepeatTextOptions): string {
-  if (!repeatRule || !repeatType) {
+  if (repeatRule === '' || !repeatType) {
     return '없음'
   }
 
@@ -15,6 +15,7 @@ export function getRepeatText({ repeatRule, repeatType, repeatCount, repeatEndAt
     WEEKLY: '매주',
     MONTHLY: '매월',
     YEARLY: '매년',
+    '': '',
   }
 
   const prefix = prefixMap[repeatRule]

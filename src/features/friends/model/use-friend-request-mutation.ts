@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { devLog } from '@/shared/utils/dev-log'
+import { devLog } from '@/shared/utils'
 
-import { postFriendRequest } from '../api/friend.API'
+import { postFriendRequest } from '../api'
 
 import { friendQueryKeys } from './friend.query'
 

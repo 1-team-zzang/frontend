@@ -4,7 +4,7 @@ import { useFriends } from '../model'
 
 import FriendItem from './friend-item'
 
-import type { Friend } from '@/entities/friends/models/friend.types'
+import type { Friend } from '@/entities/friends'
 
 export default function FriendList() {
   const size = 10

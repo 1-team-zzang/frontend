@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { useUserStore } from '@/entities/user/models/use-user-store'
-import { toast } from '@/shared/ui/toast'
+import { useUserStore } from '@/entities/user'
+import { toast } from '@/shared/ui'
 
-import { postLogout } from '../api/logout.API'
+import { postLogout } from '../api'
 
 export default function useLogoutMutation() {
   const clearUser = useUserStore((state) => state.clearUser)

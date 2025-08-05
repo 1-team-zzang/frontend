@@ -1,6 +1,6 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 
-import { getFriends } from '../api/friend.API'
+import { getFriends } from '../api'
 
 import { friendQueryKeys } from './friend.query'
 

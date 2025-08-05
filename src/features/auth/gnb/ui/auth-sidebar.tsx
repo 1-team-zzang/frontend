@@ -1,7 +1,7 @@
-import { IconCalendarCheck, IconCalendarDay, IconKakaoLogo, IconLogout, IconSetting } from '@/shared/assets/icons'
-import { SidebarMenu, SidebarMenuFooter, SidebarMenuList, Sidebar, SidebarMenuHeader } from '@/shared/ui/sidebar'
+import { IconCalendarCheck, IconCalendarDay, IconKakaoLogo, IconLogout, IconSetting } from '@/shared/assets'
+import { SidebarMenu, SidebarMenuFooter, SidebarMenuList, Sidebar, SidebarMenuHeader } from '@/shared/ui'
 
-import useLogoutMutation from '../../logout/model/use-logout-mutation'
+import { useLogoutMutation } from '../../logout/model'
 
 export default function AuthSidebar() {
   const logoutMutation = useLogoutMutation()

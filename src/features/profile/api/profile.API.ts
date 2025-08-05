@@ -1,7 +1,7 @@
-import axiosInstance from '@/shared/api/axios-instance'
+import { axiosInstance } from '@/shared/api'
 
-import type { PasswordChangeRequestData, UserProfileRequestData } from '../types/profile.types'
-import type { User } from '@/entities/user/models/user.types'
+import type { PasswordChangeRequestData, UserProfileRequestData } from '../types'
+import type { User } from '@/entities/user'
 
 export async function putUserProfile(data: UserProfileRequestData): Promise<User> {
   const res = await axiosInstance.put('/user/profile', data)
