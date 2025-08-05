@@ -34,7 +34,7 @@ export default function FriendCalendar() {
   }
 
   const goToCreateAppointment = () => {
-    alert('약속 신청하기')
+    navigate('schedule/create')
   }
 
   return (

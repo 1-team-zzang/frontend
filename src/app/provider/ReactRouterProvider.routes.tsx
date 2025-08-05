@@ -22,6 +22,7 @@ import {
   ShareDetailedSchedulePage,
   SigninPage,
   SignupPage,
+  AppointmentSchedulePage,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: 'test',
+        Component: AppointmentSchedulePage,
       },
       {
         Component: PrivateRoute,

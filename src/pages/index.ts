@@ -17,5 +17,6 @@ export { default as MyDetailedScheduleListPage } from '@/pages/detailed-schedule
 export { default as MyDetailedSchedulePage } from '@/pages/detailed-schedule/my-detailed-schedule/my-detailed-schedule-page'
 export { default as ShareDetailedScheduleListPage } from '@/pages/detailed-schedule/share-detailed-schedule/share-detailed-schedule-list-page'
 export { default as ShareDetailedSchedulePage } from '@/pages/detailed-schedule/share-detailed-schedule/share-detailed-schedule-page'
-export { default as RegisterSchedulePage } from './schedule-edit/register-schedule-page'
-export { default as RegisterDetailedSchedulePage } from './schedule-edit/register-detailed-schedule-page'
+export { default as RegisterSchedulePage } from './create-schedule/register-schedule-page'
+export { default as RegisterDetailedSchedulePage } from './create-schedule/register-detailed-schedule-page'
+export { default as AppointmentSchedulePage } from './create-schedule/appointment-schedule-page'

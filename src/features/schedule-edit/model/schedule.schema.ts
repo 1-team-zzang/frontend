@@ -38,6 +38,7 @@ export const RegisterScheduleSchema = BaseScheduleSchema.extend({
 export const AppointmentScheduleSchema = BaseScheduleSchema.extend({
   requesterName: z.string().min(1, '이름은 필수입니다'),
   requesterEmail: z.string().email('올바른 이메일을 입력하세요'),
+  message: z.string().min(1, '초대 메세지를 입력하세요'),
   receiverId: z.number(),
 })
 
