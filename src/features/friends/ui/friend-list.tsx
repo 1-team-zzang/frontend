@@ -1,4 +1,5 @@
 import { useIntersect } from '@/shared/hooks'
+import { Text } from '@/shared/ui'
 
 import { useFriends } from '../model'
 
@@ -21,6 +22,19 @@ export default function FriendList() {
   })
 
   const friends: Friend[] = data.friends ?? []
+
+  if (friends.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[calc(100vh-200px)] gap-4">
+        <div className="size-40 bg-gray-5" />
+        <Text as="span" typography="b2-normal" className="text-center">
+          등록된 캘메이트가
+          <br />
+          아직 없어요
+        </Text>
+      </div>
+    )
+  }
 
   return (
     <div className="p-3 overflow-y-auto scrollbar-hide h-[calc(100vh-200px)]">
