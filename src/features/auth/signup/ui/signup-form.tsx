@@ -32,19 +32,19 @@ export default function SignupForm({ onSignupSuccess }: { onSignupSuccess?: () =
       <FormFieldWrapper>
         <FormField name="email">
           <FormLabel>이메일</FormLabel>
-          <Input placeholder="이메일을 입력해주세요" />
+          <Input placeholder="이메일을 입력해주세요" data-testid="email-input" />
         </FormField>
         <FormField name="name">
           <FormLabel>닉네임</FormLabel>
-          <Input placeholder="이름을 입력해주세요" />
+          <Input placeholder="이름을 입력해주세요" data-testid="name-input" />
         </FormField>
         <FormField name="password">
           <FormLabel>비밀번호</FormLabel>
-          <PasswordInput mode="password" />
+          <PasswordInput mode="password" data-testid="password-input" />
         </FormField>
         <FormField name="passwordConfirm">
           <FormLabel>비밀번호 확인</FormLabel>
-          <PasswordInput mode="confirm" />
+          <PasswordInput mode="confirm" data-testid="password-confirm-input" />
         </FormField>
       </FormFieldWrapper>
       <Button type="submit" intent="solid" disabled={!methods.formState.isValid} className="w-full">
