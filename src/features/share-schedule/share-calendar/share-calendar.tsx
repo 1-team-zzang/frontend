@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router'
 
 import isPastDate from '@/entities/utils/is-past-date'
 import { IconInvite } from '@/shared/assets/icons'
+import { FloatButton } from '@/shared/ui'
 import {
-  AddScheduleButton,
   Calendar,
   HeaderContainer,
   HeaderMonthLabel,
@@ -44,9 +44,9 @@ export default function ShareCalendar() {
       <InfiniteCalendar disablePrev isPast>
         {(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} />}
       </InfiniteCalendar>
-      <AddScheduleButton onClick={goToCreateAppointment}>
-        <IconInvite />
-      </AddScheduleButton>
+      <FloatButton className="bg-primary-60" size="large" onClick={goToCreateAppointment}>
+        <IconInvite className="size-8" />
+      </FloatButton>
     </Calendar>
   )
 }

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { IconCalendarAdd } from '@/shared/assets/icons'
-import { AddScheduleButton } from '@/shared/ui'
+import { FloatButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useDateSchedules } from '../../hooks/use-date-schedules'
@@ -57,14 +57,15 @@ export default function MyDetailedScheduleList() {
               </DetailedScheduleListCard>
             )
           })}
-          <AddScheduleButton onClick={goToCreateSchedule}>
-            <IconCalendarAdd />
-          </AddScheduleButton>
+
           {isModalOpen && (
             <DeleteConfirmModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} scheduleId={selectedScheduleId} />
           )}
         </div>
       )}
+      <FloatButton className="bg-primary-60" size="large" onClick={goToCreateSchedule}>
+        <IconCalendarAdd className="size-8" />
+      </FloatButton>
     </div>
   )
 }

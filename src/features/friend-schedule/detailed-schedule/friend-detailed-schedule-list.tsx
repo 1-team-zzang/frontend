@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { IconInvite } from '@/shared/assets/icons'
-import { AddScheduleButton, PrivateScheduleModal } from '@/shared/ui'
+import { IconInvite } from '@/shared/assets'
+import { FloatButton, PrivateScheduleModal } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useFriendSchedule } from '../hooks/use-friend-schedule'
@@ -43,10 +43,10 @@ export default function FriendDetailedScheduleList() {
           })}
         </div>
       )}
-      <AddScheduleButton onClick={goToCreateAppointment}>
-        <IconInvite />
-      </AddScheduleButton>
       {isModalOpen && <PrivateScheduleModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />}
+      <FloatButton className="bg-primary-60" size="large" onClick={goToCreateAppointment}>
+        <IconInvite className="size-8" />
+      </FloatButton>
     </div>
   )
 }
