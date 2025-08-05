@@ -41,3 +41,6 @@ export { default as IconNotificationAlert } from './notification-alert.svg?react
 export { default as IconLock } from './lock.svg?react'
 export { default as IconLockGray } from './lock-gray.svg?react'
 export { default as IconCalmate } from './calmate.svg?react'
+export { default as IconUserAdd } from './user-add.svg?react'
+export { default as IconUserDelete } from './user-delete.svg?react'
+export { default as IconCalendar } from './calendar.svg?react'
