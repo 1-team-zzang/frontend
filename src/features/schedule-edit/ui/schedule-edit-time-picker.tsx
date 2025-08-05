@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Modal, ModalContent, ModalOverlay, ModalPortal } from '@/shared/ui/modal'
 import Text from '@/shared/ui/text/text'
 
-import TimeSelector from './schedule-time-selector'
+import ScheduleEditTimeSelector from './schedule-edit-time-selector'
 
 interface ScheduleTimePickerProps {
   open: boolean
@@ -12,7 +12,12 @@ interface ScheduleTimePickerProps {
   onConfirm: (date: Date) => void
 }
 
-export default function ScheduleTimePicker({ open, onOpenChange, initialDate, onConfirm }: ScheduleTimePickerProps) {
+export default function ScheduleEditTimePicker({
+  open,
+  onOpenChange,
+  initialDate,
+  onConfirm,
+}: ScheduleTimePickerProps) {
   // initialDate에서 시/분/오전·오후 초기값 세팅
   const initialHour = initialDate.getHours()
   const initialMinute = initialDate.getMinutes()
@@ -65,7 +70,7 @@ export default function ScheduleTimePicker({ open, onOpenChange, initialDate, on
         <ModalOverlay />
         <ModalContent className="flex w-[17.5rem] flex-col rounded-2xl py-6 px-3 gap-4">
           <div className="flex justify-between">
-            <TimeSelector
+            <ScheduleEditTimeSelector
               className="flex-1 border-r border-gray-20 pr-5"
               values={hours}
               selected={hour}
@@ -73,7 +78,7 @@ export default function ScheduleTimePicker({ open, onOpenChange, initialDate, on
               formatter={(h) => h.toString().padStart(2, '0')}
             />
 
-            <TimeSelector
+            <ScheduleEditTimeSelector
               className="flex-1 border-r border-gray-20 px-5"
               values={minutes}
               selected={minute}
@@ -81,7 +86,7 @@ export default function ScheduleTimePicker({ open, onOpenChange, initialDate, on
               formatter={(m) => m.toString().padStart(2, '0')}
             />
 
-            <TimeSelector
+            <ScheduleEditTimeSelector
               className="flex-1 pl-5"
               values={['AM', 'PM']}
               selected={ampm}

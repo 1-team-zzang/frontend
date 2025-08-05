@@ -7,7 +7,7 @@ interface ScheduleCalendarCellProps {
   onClick?: () => void
 }
 
-export default function ScheduleCalendarCell({ date, isSelected, isToday, onClick }: ScheduleCalendarCellProps) {
+export default function ScheduleEditCalendarCell({ date, isSelected, isToday, onClick }: ScheduleCalendarCellProps) {
   return (
     <button
       onClick={onClick}

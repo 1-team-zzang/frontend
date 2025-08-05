@@ -15,13 +15,14 @@ import {
   MyDetailedSchedulePage,
   MySettingsPage,
   PrivateRoute,
+  RegisterSchedulePage,
+  RegisterDetailedSchedulePage,
   ShareCalendarPage,
   ShareDetailedScheduleListPage,
   ShareDetailedSchedulePage,
   SigninPage,
   SignupPage,
 } from '@/pages'
-import ScheduleRegisterPage from '@/pages/schedule-register/schedule-register'
 
 export const router = createBrowserRouter([
   {
@@ -56,7 +57,11 @@ export const router = createBrowserRouter([
                 path: 'settings',
                 Component: MySettingsPage,
               },
-              { path: 'schedule/create', Component: ScheduleRegisterPage },
+              { path: 'schedule/create', Component: RegisterSchedulePage },
+              {
+                path: 'detailed-schedule/create',
+                Component: RegisterDetailedSchedulePage,
+              },
             ],
           },
           {

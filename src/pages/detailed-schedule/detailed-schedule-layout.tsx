@@ -7,9 +7,9 @@ import { ErrorFallback } from '@/shared/ui'
 import { DetailedScheduleHeader } from '@/shared/ui/detailed-schedule'
 
 export default function DetailedScheduleLayout() {
+  const navigate = useNavigate()
   const { date } = useParams()
   const { reset } = useQueryErrorResetBoundary()
-  const navigate = useNavigate()
   const formattedDate = date ? format(new Date(date), 'M월 d일') : ''
 
   return (

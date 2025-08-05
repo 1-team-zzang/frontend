@@ -33,7 +33,7 @@ export default function MyDetailedScheduleList() {
   }
 
   const goToCreateSchedule = () => {
-    navigate('/my/schedule/create')
+    navigate(`/my/detailed-schedule/create?date=${date}`)
   }
 
   return (

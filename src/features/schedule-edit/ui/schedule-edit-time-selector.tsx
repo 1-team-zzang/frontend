@@ -8,7 +8,7 @@ interface TimeSelectorProps<T extends string | number> {
   className?: string
 }
 
-export default function TimeSelector<T extends string | number>({
+export default function ScheduleEditTimeSelector<T extends string | number>({
   values,
   selected,
   onSelect,
