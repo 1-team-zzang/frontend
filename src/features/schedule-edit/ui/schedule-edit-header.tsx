@@ -15,6 +15,7 @@ export default function ScheduleEditHeader({ title, button = '저장', isPage }:
     <div className="flex justify-between items-center px-[1.25rem] py-[0.625rem]">
       <button
         aria-label="뒤로 가기"
+        type="button"
         onClick={() => {
           navigate(-1)
         }}

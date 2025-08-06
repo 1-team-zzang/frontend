@@ -22,6 +22,7 @@ import {
   ShareDetailedSchedulePage,
   SigninPage,
   SignupPage,
+  EditMySchedulePage,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -62,6 +63,7 @@ export const router = createBrowserRouter([
                 path: 'detailed-schedule/create',
                 Component: RegisterDetailedSchedulePage,
               },
+              { path: 'edit/schedules/:scheduleId', Component: EditMySchedulePage },
             ],
           },
           {
