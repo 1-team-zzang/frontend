@@ -42,7 +42,7 @@ export default function ShareCalendar() {
         <HeaderTodayButton>오늘</HeaderTodayButton>
       </HeaderContainer>
       <InfiniteCalendar disablePrev isPast>
-        {(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} />}
+        {(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} isShareCalendar />}
       </InfiniteCalendar>
       <FloatButton className="bg-primary-60" size="large" onClick={goToCreateAppointment}>
         <IconInvite className="size-8" />
