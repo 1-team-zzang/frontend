@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { IconClose } from '@/shared/assets'
+import { IconUserDelete } from '@/shared/assets'
 import {
   Modal,
   ModalContent,
@@ -36,7 +36,7 @@ export default function DeleteFriendModal({ name, friendRequestId }: Props) {
   return (
     <Modal open={isOpen} onOpenChange={setIsOpen}>
       <ModalTrigger>
-        <IconClose width={24} height={24} className="text-system-warning" />
+        <IconUserDelete />
       </ModalTrigger>
       <ModalPortal>
         <ModalOverlay />
