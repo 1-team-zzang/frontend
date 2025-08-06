@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { AppointmentBadge, PrivateScheduleBadge, Text } from '@/shared/ui'
 import { ScheduleBadge } from '@/shared/ui/calendar'
 
-import type { Schedule } from '@/entities/schedule'
+import type { Schedule } from '@/entities/schedule/models'
 
 interface Props {
   date: Date
