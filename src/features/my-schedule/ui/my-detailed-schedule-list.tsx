@@ -32,6 +32,10 @@ export default function MyDetailedScheduleList() {
     setIsModalOpen(true)
   }
 
+  const onEditClick = (scheduleId: number) => {
+    navigate(`/my/edit/schedules/${scheduleId}`)
+  }
+
   const goToCreateSchedule = () => {
     navigate(`/my/detailed-schedule/create?date=${date}`)
   }
@@ -52,7 +56,10 @@ export default function MyDetailedScheduleList() {
                 badgeColor={card.color}
               >
                 {card.appointmentId ? null : (
-                  <EditSchduleDropDown onDeleteClick={() => onDeleteClick(card.scheduleId)} />
+                  <EditSchduleDropDown
+                    onDeleteClick={() => onDeleteClick(card.scheduleId)}
+                    onEditClick={() => onEditClick(card.scheduleId)}
+                  />
                 )}
               </DetailedScheduleListCard>
             )

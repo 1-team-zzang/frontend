@@ -36,7 +36,10 @@ export default function ModalOverlay({ className, ...restProps }: HTMLAttributes
 
   return (
     <div
-      className={cn('fixed w-full h-full left-0 top-0 bg-black/40 z-50', className)}
+      className={cn(
+        'fixed w-full h-full left-0 top-0 bg-black/40 z-overlay sm:w-[40rem] sm:left-1/2 sm:-translate-x-1/2',
+        className,
+      )}
       onClick={() => onOpenChange(false)}
       onKeyDown={() => onOpenChange(false)}
       role="button"

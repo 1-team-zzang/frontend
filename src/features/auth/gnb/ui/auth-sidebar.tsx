@@ -1,4 +1,4 @@
-import { IconCalendarCheck, IconCalendarDay, IconKakaoLogo, IconLogout, IconSetting } from '@/shared/assets'
+import { IconCalendarCheck, IconCalendarDay, IconCalmate, IconLogout, IconSetting } from '@/shared/assets'
 import { SidebarMenu, SidebarMenuFooter, SidebarMenuList, Sidebar, SidebarMenuHeader } from '@/shared/ui'
 
 import { useLogoutMutation } from '../../logout/model'
@@ -17,17 +17,17 @@ export default function AuthSidebar() {
           <SidebarMenuList id="my-appointments" icon={<IconCalendarCheck />} href="/appointments">
             내 약속
           </SidebarMenuList>
-          <SidebarMenuList id="friends" icon={<IconKakaoLogo />} href="/friends">
+          <SidebarMenuList id="friends" icon={<IconCalmate />} href="/friends">
             캘메이트
           </SidebarMenuList>
         </SidebarMenu>
       </div>
       <SidebarMenuFooter>
-        <SidebarMenuList icon={<IconLogout />} onClick={() => logoutMutation.mutate()}>
-          로그아웃
-        </SidebarMenuList>
         <SidebarMenuList icon={<IconSetting />} href="/my/settings">
           설정
+        </SidebarMenuList>
+        <SidebarMenuList icon={<IconLogout />} onClick={() => logoutMutation.mutate()}>
+          로그아웃
         </SidebarMenuList>
       </SidebarMenuFooter>
     </Sidebar>
