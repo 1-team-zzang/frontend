@@ -1,7 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 
-import { getDetailedSchedule } from '../models'
-import { scheduleQueryKeys } from '../models/schedule.query'
+import { getDetailedSchedule, scheduleQueryKeys } from '../models'
 
 export function useDetailedSchedule(scheduleId: string) {
   const { data } = useSuspenseQuery({
