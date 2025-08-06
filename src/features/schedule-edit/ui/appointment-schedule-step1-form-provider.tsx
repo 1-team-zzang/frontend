@@ -2,8 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
 import {
-  AppointmentScheduleSchema,
-  type AppointmentScheduleFormType,
+  AppointmentScheduleStep1Schema,
+  type AppointmentScheduleStep1FormType,
 } from '@/features/schedule-edit/model/schedule.schema'
 import { Form } from '@/shared/ui'
 
@@ -15,13 +15,13 @@ const { start, end } = formatToday()
 
 interface Props {
   children: ReactNode
-  onSubmit: (data: AppointmentScheduleFormType) => void
-  defaultValues?: Partial<AppointmentScheduleFormType>
+  onSubmit: (data: AppointmentScheduleStep1FormType) => void
+  defaultValues?: Partial<AppointmentScheduleStep1FormType>
 }
 
-export default function AppointmentScheduleFormProvider({ children, onSubmit, defaultValues }: Props) {
-  const methods = useForm<AppointmentScheduleFormType>({
-    resolver: zodResolver(AppointmentScheduleSchema),
+export default function AppointmentScheduleStep1FormProvider({ children, onSubmit, defaultValues }: Props) {
+  const methods = useForm<AppointmentScheduleStep1FormType>({
+    resolver: zodResolver(AppointmentScheduleStep1Schema),
     mode: 'onChange',
     defaultValues: {
       title: '',
@@ -30,15 +30,12 @@ export default function AppointmentScheduleFormProvider({ children, onSubmit, de
       end: end,
       isAllDay: false,
       content: '',
-      requesterName: '',
-      requesterEmail: '',
-      receiverId: 0,
       ...defaultValues,
     },
     shouldUnregister: false,
   })
 
-  const handleFormSubmit = (data: AppointmentScheduleFormType) => {
+  const handleFormSubmit = (data: AppointmentScheduleStep1FormType) => {
     onSubmit(data)
   }
 

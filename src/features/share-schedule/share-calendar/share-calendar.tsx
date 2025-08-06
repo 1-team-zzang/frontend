@@ -31,7 +31,7 @@ export default function ShareCalendar() {
   }
 
   const goToCreateAppointment = () => {
-    alert('약속신청하기')
+    navigate(`/share/${userId}/appointment/create`)
   }
 
   return (

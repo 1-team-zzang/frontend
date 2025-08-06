@@ -34,7 +34,7 @@ export default function FriendCalendar() {
   }
 
   const goToCreateAppointment = () => {
-    navigate('schedule/create')
+    navigate(`/friends/${friendId}/calendar/appointment/create`)
   }
 
   return (

@@ -81,6 +81,10 @@ export const router = createBrowserRouter([
                 Component: FriendCalendarPage,
               },
               {
+                path: ':friendId/calendar/appointment/create',
+                Component: AppointmentSchedulePage,
+              },
+              {
                 path: ':friendId/calendar/detailed-schedule',
                 Component: DetailedScheduleLayout,
                 children: [
@@ -109,6 +113,10 @@ export const router = createBrowserRouter([
       {
         path: 'share/:userId',
         Component: ShareCalendarPage,
+      },
+      {
+        path: 'share/:userId/appointment/create',
+        Component: AppointmentSchedulePage,
       },
       {
         path: 'share/:userId/detailed-schedule',

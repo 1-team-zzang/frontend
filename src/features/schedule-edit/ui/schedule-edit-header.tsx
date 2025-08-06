@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router'
+
 import { IconAppointmentArrowLeft } from '@/shared/assets/icons'
 import { Text } from '@/shared/ui'
 
@@ -10,7 +12,16 @@ interface Props {
 }
 
 export default function ScheduleEditHeader({ title, button = '저장', onBack, onNext, buttonType = 'submit' }: Props) {
-  const handleButtonClick = () => {
+  const navigate = useNavigate()
+  const handleBackClick = () => {
+    if (onBack) {
+      onBack()
+    } else {
+      navigate(-1)
+    }
+  }
+
+  const handleNextClick = () => {
     if (buttonType === 'next' && onNext) {
       onNext()
     }
@@ -18,7 +29,7 @@ export default function ScheduleEditHeader({ title, button = '저장', onBack, o
 
   return (
     <div className="flex justify-between items-center px-[1.25rem] py-[0.625rem]">
-      <button aria-label="뒤로 가기" onClick={onBack} className="w-10 cursor-pointer">
+      <button aria-label="뒤로 가기" onClick={handleBackClick} className="w-10 cursor-pointer">
         <IconAppointmentArrowLeft />
       </button>
       <Text typography={'h2-heading'}>{title}</Text>
@@ -27,7 +38,7 @@ export default function ScheduleEditHeader({ title, button = '저장', onBack, o
         type={buttonType === 'submit' ? 'submit' : 'button'}
         typography={'b2-normal'}
         className={'w-10 cursor-pointer'}
-        onClick={buttonType === 'next' ? handleButtonClick : undefined}
+        onClick={buttonType === 'next' ? handleNextClick : undefined}
       >
         {button}
       </Text>

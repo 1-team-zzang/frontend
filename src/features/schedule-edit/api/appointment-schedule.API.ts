@@ -14,6 +14,6 @@ export interface AppointmentScheduleRequest {
 }
 
 export async function appointmentSchedule(data: AppointmentScheduleRequest) {
-  const res = await axiosInstance.post('/schedules', data)
+  const res = await axiosInstance.post('/appointments/requests', data)
   return res.data
 }

@@ -34,7 +34,18 @@ export const RegisterScheduleSchema = BaseScheduleSchema.extend({
     path: ['end'],
   })
 
-// 약속 신청
+// 약속 신청 Step 1 (기본 정보만)
+export const AppointmentScheduleStep1Schema = BaseScheduleSchema
+
+// 약속 신청 Step 2 (추가 정보)
+export const AppointmentScheduleStep2Schema = z.object({
+  requesterName: z.string().min(1, '이름은 필수입니다'),
+  requesterEmail: z.string().email('올바른 이메일을 입력하세요'),
+  message: z.string().min(1, '초대 메세지를 입력하세요'),
+  receiverId: z.number(),
+})
+
+// 약속 신청 전체
 export const AppointmentScheduleSchema = BaseScheduleSchema.extend({
   requesterName: z.string().min(1, '이름은 필수입니다'),
   requesterEmail: z.string().email('올바른 이메일을 입력하세요'),
@@ -44,3 +55,5 @@ export const AppointmentScheduleSchema = BaseScheduleSchema.extend({
 
 export type RegisterScheduleFormType = z.infer<typeof RegisterScheduleSchema>
 export type AppointmentScheduleFormType = z.infer<typeof AppointmentScheduleSchema>
+export type AppointmentScheduleStep1FormType = z.infer<typeof AppointmentScheduleStep1Schema>
+export type AppointmentScheduleStep2FormType = z.infer<typeof AppointmentScheduleStep2Schema>
