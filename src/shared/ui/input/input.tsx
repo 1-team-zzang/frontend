@@ -6,20 +6,23 @@ import { cn } from '@/shared/utils/cn'
 
 import type { InputHTMLAttributes } from 'react'
 
-export const InputVariants = cva(
-  'w-full bg-gray-1 rounded-[0.25rem] px-4 py-2.5 placeholder-gray-40 text-gray-95 focus:outline focus:outline-gray-95 text-base leading-[1.6] tracking-[-0.64px]',
-  {
-    variants: {
-      isError: {
-        true: 'outline outline-system-warning focus:outline-system-warning',
-        false: '',
-      },
-    },
-    defaultVariants: {
-      isError: false,
+const BaseInputClassName = cn(
+  'w-full bg-gray-1 rounded-[0.25rem] px-4 py-2.5 placeholder-gray-40 text-gray-95 text-base leading-[1.6] tracking-[-0.64px]',
+  'focus:outline focus:outline-gray-95 ',
+  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-40',
+)
+
+export const InputVariants = cva(BaseInputClassName, {
+  variants: {
+    isError: {
+      true: 'outline outline-system-warning focus:outline-system-warning',
+      false: '',
     },
   },
-)
+  defaultVariants: {
+    isError: false,
+  },
+})
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name?: string
