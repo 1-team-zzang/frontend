@@ -6,7 +6,7 @@ import { IconInvite } from '@/shared/assets/icons'
 import { FloatButton, PrivateScheduleModal } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
-import { useShareSchedule } from '../../hooks/use-share-schedule'
+import { useShareSchedule } from '../hooks'
 
 export default function ShareDetailedScheduleList() {
   const navigate = useNavigate()

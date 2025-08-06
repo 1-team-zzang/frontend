@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { ShareDetailedSchedule } from '@/features/share-schedule'
+import { ShareDetailedSchedule } from '@/features/share-schedule/ui'
 
 import DetailedScheduleSkeleton from '../detailed-schedule-skeleton'
 
