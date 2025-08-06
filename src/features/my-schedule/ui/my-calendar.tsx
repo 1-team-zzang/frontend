@@ -13,7 +13,6 @@ import {
   InfiniteCalendar,
   FloatButton,
 } from '@/shared/ui'
-import { devLog } from '@/shared/utils'
 
 import { useDateSchedules } from '../hooks/use-date-schedules'
 
@@ -22,7 +21,6 @@ import ShareCalendarBottomSheet from './share-calendar-bottom-sheet'
 export default function MyCalendar() {
   const navigate = useNavigate()
   const { scheduleMap } = useDateSchedules()
-  devLog('log', 'scheduleMap', scheduleMap)
 
   const [showModal, setShowModal] = useState(false)
   const onShareClick = () => setShowModal(true)

@@ -6,10 +6,10 @@ import { IconCalendarAdd } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
-import { useDateSchedules } from '../../hooks/use-date-schedules'
+import { useDateSchedules } from '../hooks'
 
 import DeleteConfirmModal from './delete-confirm-modal'
-import EditSchduleDropDown from './edit-schdule-dropdown'
+import EditSchduleDropDown from './edit-schedule-dropdown'
 
 export default function MyDetailedScheduleList() {
   const navigate = useNavigate()
