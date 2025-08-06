@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { FriendDetailedSchedule } from '@/features/friend-schedule'
+import { FriendDetailedSchedule } from '@/features/friend-schedule/ui'
 
 import DetailedScheduleSkeleton from '../detailed-schedule-skeleton'
 

@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 
 import { useGNBContext } from '../gnb/gnb-conext'
+import Text from '../text/text'
 
 import type { ReactNode } from 'react'
 
@@ -27,7 +28,12 @@ export default function SidebarMenuList({ icon, children, href, onClick, id }: P
     handleCloseSidebar()
   }
   return (
-    <li id={id} className="list-none h-[3.625rem] p-5 rounded-lg cursor-pointer hover:bg-gray-1 active:bg-primary-30 ">
+    <Text
+      as="li"
+      typography="b2-heading"
+      id={id}
+      className="list-none h-[3.625rem] p-5 rounded-lg cursor-pointer hover:bg-gray-1 active:bg-primary-1 "
+    >
       {href ? (
         <Link to={href} onClick={handleCloseSidebar} className="flex items-center gap-2">
           {icon}
@@ -39,6 +45,6 @@ export default function SidebarMenuList({ icon, children, href, onClick, id }: P
           {children}
         </button>
       )}
-    </li>
+    </Text>
   )
 }
