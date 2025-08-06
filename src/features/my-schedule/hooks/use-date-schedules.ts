@@ -8,9 +8,11 @@ import { getMySchedule } from '../api'
 
 export function useDateSchedules() {
   const userId = useUserStore((state) => state.user?.userId)
+  const start = '2025-01-01'
+  const end = '2025-12-31'
   const { data: schedules = [] } = useSuspenseQuery({
     queryKey: scheduleQueryKeys.userSchedules(userId!),
-    queryFn: getMySchedule,
+    queryFn: () => getMySchedule(start, end),
   })
 
   const scheduleMap = groupByDate(schedules)

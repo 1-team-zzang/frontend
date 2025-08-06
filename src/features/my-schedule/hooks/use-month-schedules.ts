@@ -3,6 +3,7 @@ import { format, startOfMonth, endOfMonth } from 'date-fns'
 
 import { groupByDate, scheduleQueryKeys, type Schedule } from '@/entities/schedule'
 import { useUserStore } from '@/entities/user/models/use-user-store'
+import { devLog } from '@/shared/utils'
 
 import { getMySchedule } from '../api'
 
@@ -32,6 +33,7 @@ export function useMonthSchedules(months: Month[]) {
     queries.forEach((query) => {
       const data = query.data ?? []
       const grouped = groupByDate(data)
+      devLog('log', 'grouped', grouped)
 
       for (const date in grouped) {
         if (!combinedMap[date]) {
