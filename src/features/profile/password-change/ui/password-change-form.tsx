@@ -38,7 +38,7 @@ export default function PasswordChangeForm() {
   }
 
   return (
-    <Form methods={methods} onSubmit={handleSubmit}>
+    <Form methods={methods} onSubmit={handleSubmit} className="flex flex-col gap-6">
       <FormField name="currentPassword">
         <FormLabel>현재 비밀번호 입력</FormLabel>
         <PasswordInput mode="password" />
@@ -51,7 +51,11 @@ export default function PasswordChangeForm() {
         <FormLabel>새 비밀번호 확인</FormLabel>
         <PasswordInput mode="confirm" />
       </FormField>
-      <Button type="submit" className="w-full mt-4">
+      <Button
+        type="submit"
+        className="w-full mt-4"
+        disabled={passwordChangeMutation.isPending || !methods.formState.isValid}
+      >
         변경
       </Button>
     </Form>
