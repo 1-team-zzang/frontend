@@ -12,16 +12,19 @@ import {
   HeaderMonthLabel,
   InfiniteCalendar,
   FloatButton,
+  getInitialMonth,
 } from '@/shared/ui'
 
-import { useDateSchedules } from '../hooks/use-date-schedules'
+import { useMonthSchedules } from '../hooks'
 
 import ShareCalendarBottomSheet from './share-calendar-bottom-sheet'
 
+import type { Month } from '@/shared/ui/calendar/type/calendar.types'
+
 export default function MyCalendar() {
   const navigate = useNavigate()
-  const { scheduleMap } = useDateSchedules()
-
+  const [months, setMonths] = useState<Month[]>(getInitialMonth(false))
+  const { scheduleMap } = useMonthSchedules(months)
   const [showModal, setShowModal] = useState(false)
   const onShareClick = () => setShowModal(true)
 
@@ -43,7 +46,7 @@ export default function MyCalendar() {
             공유
           </HeaderButton>
         </HeaderContainer>
-        <InfiniteCalendar>
+        <InfiniteCalendar months={months} setMonths={setMonths}>
           {(date) => <RenderScheduleBadges isMyCalendar date={date} scheduleMap={scheduleMap} />}
         </InfiniteCalendar>
         <FloatButton className="bg-primary-60" size="large" onClick={goToCreateSchedule}>

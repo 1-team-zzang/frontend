@@ -3,13 +3,10 @@ import { toast } from '@/shared/ui'
 
 import type { Schedule } from '@/entities/schedule'
 
-export async function getMySchedule(): Promise<Schedule[]> {
+export async function getMySchedule(start: string, end: string): Promise<Schedule[]> {
   try {
     const res = await axiosInstance.get('/schedules', {
-      params: {
-        start: '2025-01-01',
-        end: '2025-12-31',
-      },
+      params: { start, end },
     })
     return res.data?.data?.scheduleResponseList ?? []
   } catch (error) {
