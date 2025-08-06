@@ -1,5 +1,5 @@
 export * from './bottom-sheet'
-export { default as Button } from './button/button.tsx'
+export * from './button'
 export * from './calendar'
 export * from './checkbox'
 export * from './dropdown'
