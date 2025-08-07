@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-import type { ColorType } from '@/entities/schedule'
+import type { ColorType } from '@/entities/schedule/models'
 
 const variants = cva('size-4 rounded-full', {
   variants: {

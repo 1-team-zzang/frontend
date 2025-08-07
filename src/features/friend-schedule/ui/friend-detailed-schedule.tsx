@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 
-import { useDetailedSchedule } from '@/entities/schedule/hooks/use-detailed-schedule'
+import { useDetailedSchedule } from '@/entities/schedule/hooks'
 import { getRepeatText } from '@/entities/utils/format-repeat-text'
 import DetailedScheduleCard from '@/shared/ui/detailed-schedule/detailed-schedule-card'
 
