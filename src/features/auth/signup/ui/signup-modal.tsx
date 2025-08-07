@@ -1,4 +1,4 @@
-import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle, Text } from '@/shared/ui'
+import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle } from '@/shared/ui'
 
 import { PromptSwitch } from '../../ui'
 
@@ -21,11 +21,7 @@ export default function SignupModal({ isSignupOpen, setSwitchModal, setClose }: 
           <ModalTitle className="text-center">회원가입</ModalTitle>
           <SignupForm onSignupSuccess={() => setSwitchModal('EmailLogin')} />
 
-          <Text typography="b2-normal" className="text-gray-80 flex gap-1 items-center justify-center mt-6">
-            <span>이미 회원이신가요?</span>
-
-            <PromptSwitch type="signup" to="/auth/signin" className="mt-6" />
-          </Text>
+          <PromptSwitch type="signup" to="/auth/signin" className="mt-6" />
         </ModalContent>
       </ModalPortal>
     </Modal>
