@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router'
 
-import { scheduleQueryKeys } from '@/entities/schedule/models/schedule.query'
+import { scheduleQueryKeys } from '@/entities/schedule/models'
 import { formatDateToString } from '@/features/schedule-edit/model/format-date-to-string'
 import {
   ScheduleEditAllDay,

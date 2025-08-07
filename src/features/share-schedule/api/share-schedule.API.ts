@@ -3,7 +3,7 @@ import { addMonths, format } from 'date-fns'
 import axiosInstance from '@/shared/api/axios-instance'
 import { devLog } from '@/shared/utils/dev-log'
 
-import type { Schedule } from '@/entities/schedule'
+import type { Schedule } from '@/entities/schedule/models'
 
 export async function getShareSchedule(userId: string): Promise<Schedule[]> {
   const start = format(new Date(), 'yyyy-MM-dd')

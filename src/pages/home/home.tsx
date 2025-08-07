@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Outlet } from 'react-router'
 
 import { useUserStore } from '@/entities/user'
-import { EmailSigninModal } from '@/features/auth/signin/ui'
+import { LoginSelectModal } from '@/features/auth/signin/ui'
 import { SignupModal } from '@/features/auth/signup/ui'
 import { MyCalendar } from '@/features/my-schedule/ui'
 import { IconCalendarArrowLeft } from '@/shared/assets'
@@ -39,7 +39,7 @@ export default function Home() {
           </HeaderContainer>
           <InfiniteCalendar />
           {switchModal === 'EmailLogin' ? (
-            <EmailSigninModal
+            <LoginSelectModal
               isOpen={isOpen}
               setClose={setIsOpen}
               setSwitchModal={(mode) => {

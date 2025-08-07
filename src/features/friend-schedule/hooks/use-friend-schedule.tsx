@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
-import { groupByDate, scheduleQueryKeys } from '@/entities/schedule'
+import { groupByDate, scheduleQueryKeys } from '@/entities/schedule/models'
 
 import { getFriendSchedule } from '../api/friend-schedule.API'
 

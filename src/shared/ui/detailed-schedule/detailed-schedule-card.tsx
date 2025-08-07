@@ -5,7 +5,7 @@ import Text from '../text/text'
 
 import { DetailedScheduleCardContent, DetailedScheduleColorBadge, DetailedScheduleDate } from '.'
 
-import type { ColorType } from '@/entities/schedule'
+import type { ColorType } from '@/entities/schedule/models'
 
 interface Props {
   badgeColor: ColorType

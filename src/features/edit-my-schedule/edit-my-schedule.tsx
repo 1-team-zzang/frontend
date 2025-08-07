@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 
-import { useDetailedSchedule } from '@/entities/schedule/hooks/use-detailed-schedule'
+import { useDetailedSchedule } from '@/entities/schedule/hooks'
 
 import {
   RegisterScheduleFormProvider,
