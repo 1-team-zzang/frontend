@@ -7,24 +7,24 @@ interface Props {
 }
 
 export function formattedDate({ startDate, endDate }: Props) {
-  const formattedStartData = format(startDate, 'yyyy년 M월 d일')
-  const formattedStartDataweekday = format(startDate, 'EE', { locale: ko })
-  const formattedStateDateAmPm = format(startDate, 'a', { locale: ko })
-  const formattedStateDateTime = format(startDate, 'h:mm')
+  const startData = format(startDate, 'yyyy년 M월 d일')
+  const startDataweekday = format(startDate, 'EE', { locale: ko })
+  const stateDateAmPm = format(startDate, 'a', { locale: ko })
+  const stateDateTime = format(startDate, 'h:mm')
 
-  const formattedEndData = format(endDate, 'yyyy년 M월 d일')
-  const formattedEndDataweekday = format(endDate, 'EE', { locale: ko })
-  const formattedEndDateAmPm = format(endDate, 'a', { locale: ko })
-  const formattedEndDateTime = format(endDate, 'h:mm')
+  const endData = format(endDate, 'yyyy년 M월 d일')
+  const endDataweekday = format(endDate, 'EE', { locale: ko })
+  const endDateAmPm = format(endDate, 'a', { locale: ko })
+  const endDateTime = format(endDate, 'h:mm')
 
   return {
-    formattedStartData,
-    formattedStartDataweekday,
-    formattedStateDateAmPm,
-    formattedStateDateTime,
-    formattedEndData,
-    formattedEndDataweekday,
-    formattedEndDateAmPm,
-    formattedEndDateTime,
+    startData,
+    startDataweekday,
+    stateDateAmPm,
+    stateDateTime,
+    endData,
+    endDataweekday,
+    endDateAmPm,
+    endDateTime,
   }
 }

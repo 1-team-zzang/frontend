@@ -25,16 +25,7 @@ export default function DetailedScheduleCard({
   visible,
   content,
 }: Props) {
-  const {
-    formattedStartData,
-    formattedStartDataweekday,
-    formattedStateDateAmPm,
-    formattedStateDateTime,
-    formattedEndData,
-    formattedEndDataweekday,
-    formattedEndDateAmPm,
-    formattedEndDateTime,
-  } = formattedDate({ startDate, endDate })
+  const formatted = formattedDate({ startDate, endDate })
 
   return (
     <div className="w-full h-full bg-white p-6 rounded-[0.625em] flex flex-col  gap-4 mb-4">
@@ -47,19 +38,19 @@ export default function DetailedScheduleCard({
 
       <div className="flex justify-between items-center">
         <DetailedScheduleDate
-          date={formattedStartData}
-          weekday={formattedStartDataweekday}
-          AmPm={formattedStateDateAmPm}
-          time={formattedStateDateTime}
+          date={formatted.startData}
+          weekday={formatted.startDataweekday}
+          AmPm={formatted.stateDateAmPm}
+          time={formatted.stateDateTime}
         />
         <Text typography="h1-heading" className="text-gray-80">
           {'〉'}
         </Text>
         <DetailedScheduleDate
-          date={formattedEndData}
-          weekday={formattedEndDataweekday}
-          AmPm={formattedEndDateAmPm}
-          time={formattedEndDateTime}
+          date={formatted.endData}
+          weekday={formatted.endDataweekday}
+          AmPm={formatted.endDateAmPm}
+          time={formatted.endDateTime}
         />
       </div>
       <DetailedScheduleCardContent label="공개" value={visible ? '전체공개' : '나만보기'} />
