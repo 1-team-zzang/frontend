@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format, isBefore, startOfDay } from 'date-fns'
 
 import { AppointmentBadge, PrivateScheduleBadge, Text } from '@/shared/ui'
 import { ScheduleBadge } from '@/shared/ui/calendar'
@@ -9,13 +9,23 @@ interface Props {
   date: Date
   scheduleMap: Record<string, Schedule[]>
   isMyCalendar?: boolean
+  isShareCalendar?: boolean
 }
 
-export default function RenderScheduleBadges({ date, scheduleMap, isMyCalendar = false }: Props) {
+export default function RenderScheduleBadges({
+  date,
+  scheduleMap,
+  isMyCalendar = false,
+  isShareCalendar = false,
+}: Props) {
   const key = format(date, 'yyyy-MM-dd')
   const schedules = scheduleMap[key] ?? []
   const visible = schedules.slice(0, 1)
   const hiddenCount = schedules.length - visible.length
+
+  if (isShareCalendar && isBefore(startOfDay(date), startOfDay(new Date()))) {
+    return null
+  }
 
   const renderBadge = (schedule: Schedule) => {
     const BadgeComponent = schedule.appointmentId ? AppointmentBadge : ScheduleBadge
