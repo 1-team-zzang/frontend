@@ -1,7 +1,6 @@
-import { format } from 'date-fns'
-import { ko } from 'date-fns/locale'
-
 import Text from '../text/text'
+
+import { formattedDate } from './utils/formatted-date'
 
 import { DetailedScheduleCardContent, DetailedScheduleColorBadge, DetailedScheduleDate } from '.'
 
@@ -26,15 +25,16 @@ export default function DetailedScheduleCard({
   visible,
   content,
 }: Props) {
-  const formattedStartData = format(startDate, 'yyyy년 M월 d일')
-  const formattedStartDataweekday = format(startDate, 'EE', { locale: ko })
-  const formattedStateDateAmPm = format(startDate, 'a', { locale: ko })
-  const formattedStateDateTime = format(startDate, 'h:mm')
-
-  const formattedEndData = format(endDate, 'yyyy년 M월 d일')
-  const formattedEndDataweekday = format(endDate, 'EE', { locale: ko })
-  const formattedEndDateAmPm = format(endDate, 'a', { locale: ko })
-  const formattedEndDateTime = format(endDate, 'h:mm')
+  const {
+    formattedStartData,
+    formattedStartDataweekday,
+    formattedStateDateAmPm,
+    formattedStateDateTime,
+    formattedEndData,
+    formattedEndDataweekday,
+    formattedEndDateAmPm,
+    formattedEndDateTime,
+  } = formattedDate({ startDate, endDate })
 
   return (
     <div className="w-full h-full bg-white p-6 rounded-[0.625em] flex flex-col  gap-4 mb-4">
