@@ -1,7 +1,7 @@
 import axiosInstance from '@/shared/api/axios-instance'
-import { devLog } from '@/shared/utils/dev-log'
+import { toast } from '@/shared/ui'
 
-import type { Schedule } from '@/entities/schedule'
+import type { Schedule } from '@/entities/schedule/models'
 
 export async function getMySchedule(): Promise<Schedule[]> {
   try {
@@ -13,7 +13,7 @@ export async function getMySchedule(): Promise<Schedule[]> {
     })
     return res.data?.data?.scheduleResponseList ?? []
   } catch (error) {
-    devLog('log', '❌ 요청 실패', error)
+    toast.error('캘린더 불러오기 실패')
     throw error
   }
 }

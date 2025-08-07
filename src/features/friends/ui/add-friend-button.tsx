@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import { Text } from '@/shared/ui'
+import { IconUserAdd } from '@/shared/assets'
+import { Tooltip, TooltipMessage, TooltipTrigger } from '@/shared/ui'
 
 import AddFriendBottomSheet from './add-friend-bottom-sheet'
 
@@ -12,9 +13,12 @@ export default function AddFriendButton() {
   }
   return (
     <>
-      <Text as="button" typography="b2-normal" className="text-gray-95" onClick={handleClick}>
-        추가
-      </Text>
+      <Tooltip>
+        <TooltipTrigger onClick={handleClick}>
+          <IconUserAdd />
+        </TooltipTrigger>
+        <TooltipMessage>친구 추가하기</TooltipMessage>
+      </Tooltip>
       <AddFriendBottomSheet isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   )

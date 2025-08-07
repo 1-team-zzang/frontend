@@ -5,10 +5,10 @@ import { Form, FormField, FormFieldWrapper, FormLabel, Button, Input, PasswordIn
 
 import { SigninSchema, useSigninMutation, type SigninFormDataType } from '../model'
 
-export default function SigninForm({ onSigninSuccess }: { onSigninSuccess?: () => void }) {
+export default function SigninForm({ onSigninSuccess, isPage }: { onSigninSuccess?: () => void; isPage?: boolean }) {
   const methods = useForm<SigninFormDataType>({
     resolver: zodResolver(SigninSchema),
-    mode: 'onChange', // NOTE: 'onChange' 과 'onSubmit'중에 어떤게 나을지
+    mode: 'onChange',
   })
 
   const {
@@ -29,7 +29,7 @@ export default function SigninForm({ onSigninSuccess }: { onSigninSuccess?: () =
 
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
-      <FormFieldWrapper>
+      <FormFieldWrapper isPage={isPage}>
         <FormField name="email">
           <FormLabel>이메일</FormLabel>
           <Input placeholder="이메일을 입력하세요" />

@@ -33,7 +33,7 @@ export default function ModalContent({ children, className, ...restProps }: HTML
   return (
     <div
       className={cn(
-        'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl w-[calc(100%-32px)] py-8 px-4 z-50',
+        'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl w-[calc(100%-32px)] sm:w-[38rem] py-8 px-4 z-modal',
         className,
       )}
       {...restProps}

@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { ko } from 'date-fns/locale'
 
-import type { Schedule } from '../schedule'
+import type { Schedule } from '../schedule/models'
 
 export function formatScheduleTime(schedule: Pick<Schedule, 'isAllDay' | 'startAt' | 'endAt'>): string {
   if (schedule.isAllDay) {

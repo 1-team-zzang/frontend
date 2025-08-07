@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router'
 
-import ShareCalendar from '@/features/share-schedule/share-calendar/share-calendar'
+import { ShareCalendar } from '@/features/share-schedule/ui'
 
 export default function ShareCalendarPage() {
   return (

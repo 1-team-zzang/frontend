@@ -1,4 +1,0 @@
-export * from './models/schedule.types'
-export * from './models/get-group-by-date'
-export * from './models/detailed-schedule.API'
-export * from './models/schedule.query'

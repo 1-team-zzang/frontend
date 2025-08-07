@@ -2,7 +2,7 @@ import { addMonths, endOfMonth, format, startOfMonth } from 'date-fns'
 
 import axiosInstance from '@/shared/api/axios-instance'
 
-import type { Schedule } from '@/entities/schedule'
+import type { Schedule } from '@/entities/schedule/models'
 
 export async function getFriendSchedule(friendID: string): Promise<Schedule[]> {
   const start = format(startOfMonth(new Date()), 'yyyy-MM-dd')

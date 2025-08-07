@@ -5,7 +5,7 @@ import Text from '@/shared/ui/text/text'
 
 import DetailedScheduleColorBadge from './detailed-schedule-color-badge'
 
-import type { ColorType } from '@/entities/schedule'
+import type { ColorType } from '@/entities/schedule/models'
 
 interface Props {
   title: string

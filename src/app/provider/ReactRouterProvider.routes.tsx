@@ -13,7 +13,6 @@ import {
   MainLayout,
   MyDetailedScheduleListPage,
   MyDetailedSchedulePage,
-  MySettingsPage,
   PrivateRoute,
   RegisterSchedulePage,
   RegisterDetailedSchedulePage,
@@ -23,6 +22,11 @@ import {
   SigninPage,
   SignupPage,
   AppointmentSchedulePage,
+  EditMySchedulePage,
+  SettingsPage,
+  ProfileEditPage,
+  PasswordChangePage,
+  WithdrawPage,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -42,6 +46,27 @@ export const router = createBrowserRouter([
         Component: PrivateRoute,
         children: [
           {
+            path: 'settings',
+            children: [
+              {
+                index: true,
+                Component: SettingsPage,
+              },
+              {
+                path: 'profile-edit',
+                Component: ProfileEditPage,
+              },
+              {
+                path: 'password-change',
+                Component: PasswordChangePage,
+              },
+              {
+                path: 'withdraw',
+                Component: WithdrawPage,
+              },
+            ],
+          },
+          {
             path: 'my',
             children: [
               {
@@ -58,15 +83,13 @@ export const router = createBrowserRouter([
                   },
                 ],
               },
-              {
-                path: 'settings',
-                Component: MySettingsPage,
-              },
+
               { path: 'schedule/create', Component: RegisterSchedulePage },
               {
                 path: 'detailed-schedule/create',
                 Component: RegisterDetailedSchedulePage,
               },
+              { path: 'edit/schedules/:scheduleId', Component: EditMySchedulePage },
             ],
           },
           {

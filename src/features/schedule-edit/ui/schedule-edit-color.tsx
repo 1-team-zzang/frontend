@@ -6,7 +6,7 @@ import { Text } from '@/shared/ui'
 
 import { formatColor } from '../model/format-color-map'
 
-import type { ColorType } from '@/entities/schedule'
+import type { ColorType } from '@/entities/schedule/models'
 
 export default function ScheduleEditColor() {
   const { setValue } = useFormContext()

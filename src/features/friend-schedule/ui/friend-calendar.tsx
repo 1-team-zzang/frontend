@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import { useNavigate, useParams } from 'react-router'
 
-import { groupByDate, scheduleQueryKeys } from '@/entities/schedule'
+import { groupByDate, scheduleQueryKeys } from '@/entities/schedule/models'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
 import {
