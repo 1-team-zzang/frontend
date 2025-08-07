@@ -23,7 +23,7 @@ export default function AuthSidebar() {
         </SidebarMenu>
       </div>
       <SidebarMenuFooter>
-        <SidebarMenuList icon={<IconSetting />} href="/my/settings">
+        <SidebarMenuList icon={<IconSetting />} href="/settings">
           설정
         </SidebarMenuList>
         <SidebarMenuList icon={<IconLogout />} onClick={() => logoutMutation.mutate()}>
