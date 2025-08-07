@@ -3,7 +3,6 @@ import { Outlet } from 'react-router'
 
 import { useUserStore } from '@/entities/user'
 import { EmailSigninModal, LoginSelectModal } from '@/features/auth/signin/ui'
-import { SignupModal } from '@/features/auth/signup/ui'
 import { MyCalendar } from '@/features/my-schedule/ui'
 import { IconCalendarArrowLeft } from '@/shared/assets'
 import { useIntroGuide } from '@/shared/hooks'
@@ -45,22 +44,6 @@ export default function Home() {
               setClose={setIsOpen}
               setSwitchModal={(mode) => {
                 setSwitchModal(mode)
-                if (mode === 'Signup') {
-                  setIsOpen(true)
-                }
-              }}
-            />
-          )}
-
-          {switchModal === 'Signup' && (
-            <SignupModal
-              isSignupOpen={isOpen}
-              setClose={setIsOpen}
-              setSwitchModal={(mode) => {
-                setSwitchModal(mode)
-                if (mode === 'EmailLogin') {
-                  setIsOpen(true)
-                }
               }}
             />
           )}
@@ -71,9 +54,6 @@ export default function Home() {
               setClose={setIsOpen}
               setSwitchModal={(mode) => {
                 setSwitchModal(mode)
-                if (mode === 'EmailLogin') {
-                  setIsOpen(true)
-                }
               }}
             />
           )}
