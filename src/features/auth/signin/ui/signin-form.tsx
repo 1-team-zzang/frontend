@@ -8,7 +8,7 @@ import { SigninSchema, useSigninMutation, type SigninFormDataType } from '../mod
 export default function SigninForm({ onSigninSuccess, isPage }: { onSigninSuccess?: () => void; isPage?: boolean }) {
   const methods = useForm<SigninFormDataType>({
     resolver: zodResolver(SigninSchema),
-    mode: 'onTouched',
+    mode: 'onChange',
   })
 
   const {
