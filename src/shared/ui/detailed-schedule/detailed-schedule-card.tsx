@@ -40,8 +40,8 @@ export default function DetailedScheduleCard({
         <DetailedScheduleDate
           date={formatted.startData}
           weekday={formatted.startDataweekday}
-          AmPm={formatted.stateDateAmPm}
-          time={formatted.stateDateTime}
+          AmPm={formatted.startDateAmPm}
+          time={formatted.startDateTime}
         />
         <Text typography="h1-heading" className="text-gray-80">
           {'〉'}

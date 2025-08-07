@@ -9,8 +9,8 @@ interface Props {
 export function formattedDate({ startDate, endDate }: Props) {
   const startData = format(startDate, 'yyyy년 M월 d일')
   const startDataweekday = format(startDate, 'EE', { locale: ko })
-  const stateDateAmPm = format(startDate, 'a', { locale: ko })
-  const stateDateTime = format(startDate, 'h:mm')
+  const startDateAmPm = format(startDate, 'a', { locale: ko })
+  const startDateTime = format(startDate, 'h:mm')
 
   const endData = format(endDate, 'yyyy년 M월 d일')
   const endDataweekday = format(endDate, 'EE', { locale: ko })
@@ -20,8 +20,8 @@ export function formattedDate({ startDate, endDate }: Props) {
   return {
     startData,
     startDataweekday,
-    stateDateAmPm,
-    stateDateTime,
+    startDateAmPm,
+    startDateTime,
     endData,
     endDataweekday,
     endDateAmPm,
