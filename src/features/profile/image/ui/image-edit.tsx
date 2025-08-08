@@ -6,10 +6,10 @@ import { Profile, ProfileImage } from '@/shared/ui'
 import ImageEditBottomSheet from './image-edit-bottom-sheet'
 
 export default function ImageEdit({
-  imageUrl,
+  imageUrl = null,
   onChange,
 }: {
-  imageUrl: string | null
+  imageUrl?: string | null
   onChange: (newUrl: string | null) => void
 }) {
   const [preview, setPreview] = useState<string | null>(imageUrl)

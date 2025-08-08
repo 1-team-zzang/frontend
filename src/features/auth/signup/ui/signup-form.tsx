@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
+import { ImageEdit } from '@/features/profile/image/ui'
 import { Input, PasswordInput, FormFieldWrapper, Button, Form, FormField, FormLabel } from '@/shared/ui'
 
 import { SignupSchema, useSignupMutation, type SignupFormDataType } from '../model'
@@ -14,9 +15,9 @@ export default function SignupForm({ onSignupSuccess }: { onSignupSuccess?: () =
   })
 
   const handleSubmit = (data: SignupFormDataType) => {
-    const { email, name, password } = data // 회원가입 API 요청 데이터에는 비밀번호 확인 없음
+    const { email, name, password, profileUrl } = data // 회원가입 API 요청 데이터에는 비밀번호 확인 없음
     signupMutation.mutateAsync(
-      { email, name, password },
+      { email, name, password, profileUrl },
       {
         onSuccess: () => {
           if (onSignupSuccess) {
@@ -29,6 +30,9 @@ export default function SignupForm({ onSignupSuccess }: { onSignupSuccess?: () =
 
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
+      <div className="flex justify-center">
+        <ImageEdit onChange={(newUrl: string | null) => methods.setValue('profileUrl', newUrl)} />
+      </div>
       <FormFieldWrapper>
         <FormField name="email">
           <FormLabel>이메일</FormLabel>
