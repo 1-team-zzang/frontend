@@ -27,6 +27,7 @@ import {
   PasswordChangePage,
   WithdrawPage,
   KaKaoRedirectPage,
+  PasswordChangeRoute,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -53,8 +54,13 @@ export const router = createBrowserRouter([
                 Component: ProfileEditPage,
               },
               {
-                path: 'password-change',
-                Component: PasswordChangePage,
+                Component: PasswordChangeRoute,
+                children: [
+                  {
+                    path: 'password-change',
+                    Component: PasswordChangePage,
+                  },
+                ],
               },
               {
                 path: 'withdraw',
