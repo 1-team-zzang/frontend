@@ -5,6 +5,7 @@ export const BaseSignupSchema = z.object({
   name: z.string().trim().min(1, { message: '이름을 입력해주세요' }),
   password: z.string().min(8, { message: '비밀번호를 8자 이상 입력해주세요' }),
   passwordConfirm: z.string(),
+  profileUrl: z.union([z.string(), z.null()]),
 })
 
 export const SignupSchema = BaseSignupSchema.superRefine(({ password, passwordConfirm }, ctx) => {
