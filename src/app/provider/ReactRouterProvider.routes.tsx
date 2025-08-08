@@ -26,6 +26,7 @@ import {
   ProfileEditPage,
   PasswordChangePage,
   WithdrawPage,
+  KaKaoRedirectPage,
 } from '@/pages'
 
 export const router = createBrowserRouter([
@@ -158,5 +159,9 @@ export const router = createBrowserRouter([
         Component: SignupPage,
       },
     ],
+  },
+  {
+    path: '/oauth/kakao',
+    Component: KaKaoRedirectPage,
   },
 ])
