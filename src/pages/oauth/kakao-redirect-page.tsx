@@ -1,20 +1,18 @@
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router'
 
-import { postKakaoLogin } from '@/features/oauth/kakao/api/kakao.API'
+import useKakaoSigninMutation from '@/features/oauth/kakao/model/use-kakao-signin-mutation'
 // 배럴 패턴으로 import 하면 에러 떠서 실제 경로로 import했어요
 
 export default function KaKaoRedirectPage() {
   const [searchParams] = useSearchParams()
   const code = searchParams.get('code')
 
+  const kakaoSigninMutation = useKakaoSigninMutation()
+
   useEffect(() => {
     if (code) {
-      try {
-        postKakaoLogin(code)
-      } catch (error) {
-        console.error(error)
-      }
+      kakaoSigninMutation.mutate(code)
     }
   }, [code])
 
