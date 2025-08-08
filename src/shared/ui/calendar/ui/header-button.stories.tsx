@@ -6,7 +6,11 @@ const meta: Meta<typeof HeaderButton> = {
   title: 'shared/calendar/header-button',
   component: HeaderButton,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    onClick: {
+      action: '클릭됨',
+    },
+  },
 }
 export default meta
 

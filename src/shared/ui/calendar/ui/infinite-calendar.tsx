@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
 
 import {
   useCalendarRef,
@@ -17,12 +17,24 @@ interface Props {
   children?: (date: Date) => ReactNode
   disablePrev?: boolean //이전달 안보이게
   isPast?: boolean
+  months?: Month[] //달력 배열 초기값:이전달, 현재달, 다음달
+  setMonths?: Dispatch<SetStateAction<Month[]>>
 }
 
-export default function InfiniteCalendar({ children, disablePrev = false, isPast }: Props) {
+export default function InfiniteCalendar({
+  children,
+  disablePrev = false,
+  isPast,
+  months: externalMonths,
+  setMonths: externalSetMonths,
+}: Props) {
   const { scrollContainerRef, topRef, bottomRef, monthRefs, setMonthRef } = useCalendarRef()
 
-  const [months, setMonths] = useState<Month[]>(getInitialMonth(disablePrev))
+  const [internalMonths, internalSetMonths] = useState<Month[]>(getInitialMonth(disablePrev))
+
+  const months = externalMonths ?? internalMonths
+  const setMonths = externalSetMonths ?? internalSetMonths
+
   const { setVisibleMonth } = useCalendarContext()
 
   const today = new Date()
