@@ -2,6 +2,8 @@ import axios from 'axios'
 
 import { devLog } from '@/shared/utils/dev-log'
 
+import { toast } from '../ui'
+
 const API_BASE_URL = import.meta.env.VITE_API_URL
 const REQUEST_TIMEOUT = Number(import.meta.env.VITE_API_TIMEOUT) || 7000
 
@@ -49,7 +51,10 @@ axiosInstance.interceptors.response.use(
     if (status === 401) {
       // 토큰 만료 및 미인증
       localStorage.removeItem('token')
-      devLog('error', '권한이 없습니다')
+      localStorage.removeItem('user')
+      window.location.href = '/auth/signin'
+      toast.error('로그인 정보가 만료되었습니다. 다시 로그인해주세요.')
+      return
     } else if (status === 403) {
       // 로그인됐으나 권한 x
       devLog('error', '접근 권한이 없습니다', error)
@@ -59,6 +64,7 @@ axiosInstance.interceptors.response.use(
     } else if (status >= 500) {
       // 백엔드 내부 오류
       devLog('error', '서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.')
+      toast.error('서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.')
     }
 
     return Promise.reject(error)
