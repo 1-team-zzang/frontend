@@ -20,7 +20,7 @@ export function useMonthSchedules(months: Month[]) {
       return {
         queryKey: scheduleQueryKeys.userMonthlySchedules(userId!, start, end),
         queryFn: () => getMySchedule(start, end),
-        staleTime: Infinity,
+        staleTime: 1000 * 60 * 5,
       }
     }),
   })
