@@ -2,7 +2,6 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 
 import { groupByDate, scheduleQueryKeys } from '@/entities/schedule/models'
 import { useUserStore } from '@/entities/user/models/use-user-store'
-import { devLog } from '@/shared/utils'
 
 import { getMySchedule } from '../api'
 
@@ -19,8 +18,7 @@ export function useDateSchedules({ start, end }: Props) {
   })
 
   const scheduleMap = groupByDate(schedules)
-  devLog('log', 'scheduleMap', scheduleMap)
-  devLog('log', 'start, end', { start, end })
+
   return {
     scheduleMap,
   }
