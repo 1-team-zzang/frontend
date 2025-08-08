@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSearchParams } from 'react-router'
+import { useNavigate, useSearchParams } from 'react-router'
 
 import useKakaoSigninMutation from '@/features/oauth/kakao/model/use-kakao-signin-mutation'
 // 배럴 패턴으로 import 하면 에러 떠서 실제 경로로 import했어요
@@ -10,9 +10,15 @@ export default function KaKaoRedirectPage() {
 
   const kakaoSigninMutation = useKakaoSigninMutation()
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (code) {
-      kakaoSigninMutation.mutate(code)
+      kakaoSigninMutation.mutate(code, {
+        onSuccess: () => {
+          navigate('/')
+        },
+      })
     }
   }, [code])
 
