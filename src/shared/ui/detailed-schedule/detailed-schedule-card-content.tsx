@@ -2,13 +2,13 @@ import { cn } from '@/shared/utils'
 
 import Text from '../text/text'
 
-interface DetailRowProps {
+interface Props {
   label: string
   value: string
   className?: string
 }
 
-export default function DetailedScheduleCardContent({ label, value, className }: DetailRowProps) {
+export default function DetailedScheduleCardContent({ label, value, className }: Props) {
   return (
     <>
       <hr className="text-gray-10" />

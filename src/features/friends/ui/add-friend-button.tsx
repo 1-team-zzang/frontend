@@ -14,10 +14,8 @@ export default function AddFriendButton() {
   return (
     <>
       <Tooltip>
-        <TooltipTrigger>
-          <button onClick={handleClick}>
-            <IconUserAdd />
-          </button>
+        <TooltipTrigger onClick={handleClick}>
+          <IconUserAdd />
         </TooltipTrigger>
         <TooltipMessage>친구 추가하기</TooltipMessage>
       </Tooltip>

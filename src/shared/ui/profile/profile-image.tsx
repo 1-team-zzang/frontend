@@ -1,33 +1,35 @@
-import { useState } from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { type HTMLAttributes } from 'react'
 
-import { cn } from '@/shared/utils/cn.ts'
+import { IconProfile } from '@/shared/assets'
+import { cn } from '@/shared/utils'
 
 import { useProfileContext } from './profile-context'
 
-const profileSize = {
-  sm: '',
-  lg: '',
-}
+const ProfileImageVariants = cva('flex items-center justify-center border-gray-20 bg-white rounded-full', {
+  variants: {
+    size: {
+      sm: 'size-10 border',
+      lg: 'size-20 border-2 ',
+    },
+  },
+  defaultVariants: {
+    size: 'sm',
+  },
+})
 
-interface Props {
-  size?: 'sm' | 'lg'
-  className?: string
-}
+interface Props extends HTMLAttributes<HTMLImageElement>, VariantProps<typeof ProfileImageVariants> {}
 
 export default function ProfileImage({ size = 'sm', className }: Props) {
   const { src } = useProfileContext()
-  const [error, setError] = useState(false)
 
-  if (!src || error) {
-    return <div className="size-10 rounded-full bg-gray-5" />
+  if (!src) {
+    return (
+      <div className={cn(ProfileImageVariants({ size }))}>
+        <IconProfile width={size === 'sm' ? 32 : 64} />
+      </div>
+    )
   }
 
-  return (
-    <img
-      src={src}
-      alt="프로필 이미지"
-      onError={() => setError(true)}
-      className={cn('rounded-full size-10', profileSize[size], className)}
-    />
-  )
+  return <img src={src} alt="프로필 이미지" className={cn(ProfileImageVariants({ size }), className)} />
 }

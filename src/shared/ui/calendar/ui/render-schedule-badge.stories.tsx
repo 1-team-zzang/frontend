@@ -1,6 +1,6 @@
 import RenderScheduleBadges from './render-schedule-badges'
 
-import type { Schedule } from '@/entities/schedule'
+import type { Schedule } from '@/entities/schedule/models'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof RenderScheduleBadges> = {
