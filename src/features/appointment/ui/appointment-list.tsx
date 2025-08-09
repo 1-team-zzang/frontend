@@ -9,6 +9,7 @@ import {
   SegmentedControlList,
 } from '@/shared/ui/segmented-control'
 import Text from '@/shared/ui/text/text'
+import { devLog } from '@/shared/utils'
 
 import { appointmentListEmptyMessage } from '../consts/appointment-list-empty-message'
 import { useMyAppointmentsByStatus } from '../models'
@@ -24,6 +25,11 @@ export default function AppointmentList() {
     size: 10,
     status,
   })
+
+  // 디버깅을 위한 로그 추가
+  devLog('log', 'AppointmentList - status', status)
+  devLog('log', 'AppointmentList - data', data)
+  devLog('log', 'AppointmentList - appointments length', data.appointments.length)
 
   const ref = useIntersect<HTMLDivElement>({
     onIntersect: (entry, _observer) => {

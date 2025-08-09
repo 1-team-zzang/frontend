@@ -19,7 +19,7 @@ export default function FriendDetailedScheduleList() {
     navigate(`/friends/${friendId}/calendar/detailed-schedule/date/${date}/schedules/${scheduleId}`)
   }
   const goToCreateAppointment = () => {
-    alert('약속신청하기')
+    navigate(`/friends/${friendId}/calendar/appointment/create?date=${date}`)
   }
   return (
     <div>

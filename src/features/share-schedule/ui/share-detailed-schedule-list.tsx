@@ -20,7 +20,7 @@ export default function ShareDetailedScheduleList() {
   }
 
   const goToCreateAppointment = () => {
-    alert('약속신청하기')
+    navigate(`/share/${userId}/appointment/create?date=${date}`)
   }
 
   return (
