@@ -3,18 +3,11 @@ import { format } from 'date-fns'
 import { useNavigate, useParams } from 'react-router'
 
 import { groupByDate, scheduleQueryKeys } from '@/entities/schedule/models'
+import { Calendar, HeaderButton, HeaderLayout, InfiniteCalendar, RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
-import {
-  Calendar,
-  HeaderButton,
-  HeaderContainer,
-  HeaderMonthLabel,
-  InfiniteCalendar,
-  RenderScheduleBadges,
-} from '@/shared/ui/calendar'
 
-import { getFriendSchedule } from '../api/friend-schedule.API'
+import { getFriendSchedule } from '../../../entities/schedule/api/get-friend-schedule.API'
 
 export default function FriendCalendar() {
   const { friendId } = useParams()
@@ -39,13 +32,14 @@ export default function FriendCalendar() {
 
   return (
     <Calendar onDateClick={onDateClick}>
-      <HeaderContainer>
-        <HeaderButton onClick={() => navigate(-1)}>
-          <IconAppointmentArrowLeft />
-        </HeaderButton>
-        <HeaderMonthLabel />
-        <HeaderButton>오늘</HeaderButton>
-      </HeaderContainer>
+      <HeaderLayout
+        left={
+          <HeaderButton onClick={() => navigate(-1)}>
+            <IconAppointmentArrowLeft />
+          </HeaderButton>
+        }
+        right={<HeaderButton>오늘</HeaderButton>}
+      />
       <InfiniteCalendar>{(date) => <RenderScheduleBadges date={date} scheduleMap={scheduleMap} />}</InfiniteCalendar>
       <FloatButton className="bg-primary-60" size="large" onClick={goToCreateAppointment}>
         <IconInvite className="size-8" />

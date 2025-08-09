@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
+import { PrivateScheduleModal } from '@/features/calendar/ui'
 import { IconInvite } from '@/shared/assets/icons'
-import { FloatButton, PrivateScheduleModal } from '@/shared/ui'
+import { FloatButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 import { useShareSchedule } from '../hooks'

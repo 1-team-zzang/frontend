@@ -21,9 +21,9 @@ interface Props {
   right?: ReactNode
 }
 
-export default function HeaderContainer({ left, center, right }: Props) {
+export default function HeaderLayout({ left, center, right }: Props) {
   return (
-    <div className="z-10 bg-white grid grid-cols[auto-1fr-auto] items-center px-5 py-[0.625rem]">
+    <div className="z-10 bg-white flex justify-between items-center px-5 py-[0.625rem]">
       <div>{left}</div>
       <div>{center ?? <HeaderMonthLabel />}</div>
       <div>{right}</div>

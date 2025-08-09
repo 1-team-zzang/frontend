@@ -1,10 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-
+import { useUserStore } from '@/entities/user'
 import { IconClose } from '@/shared/assets/icons'
 import { BottomSheet, BottomSheetContainer, BottomSheetContent } from '@/shared/ui/bottom-sheet'
 import Text from '@/shared/ui/text/text'
 
-import getUserId from '../api/get-userId.API'
 import handleShareLinkCopy from '../utils/handle-share-link-copy'
 
 interface Props {
@@ -13,10 +11,7 @@ interface Props {
 }
 
 export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
-  const { data: userId } = useQuery({
-    queryKey: ['userId'],
-    queryFn: getUserId,
-  })
+  const userId = useUserStore((state) => state.user?.userId)
   const link = `https://calpick.vercel.app/share/${userId}`
 
   const handleCopy = handleShareLinkCopy({ link, setIsOpen })

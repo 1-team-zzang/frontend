@@ -2,13 +2,13 @@ import { useQueries } from '@tanstack/react-query'
 import { format, startOfMonth, endOfMonth } from 'date-fns'
 
 import { groupByDate, scheduleQueryKeys, type Schedule } from '@/entities/schedule/models'
-import { useUserStore } from '@/entities/user/models/use-user-store'
+import { useUserStore } from '@/entities/user'
 
-import { getMySchedule } from '../api'
+import { getMySchedule } from '../api/get-my-schedule.API'
 
-import type { Month } from '@/shared/ui/calendar/type/calendar.types'
+import type { Month } from '@/features/calendar/type'
 
-export function useMonthSchedules(months: Month[]) {
+export function useMySchedulesByMonth(months: Month[]) {
   const userId = useUserStore((state) => state.user?.userId)
 
   const queries = useQueries({

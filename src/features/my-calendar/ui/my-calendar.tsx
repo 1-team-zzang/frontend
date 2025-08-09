@@ -2,29 +2,27 @@ import { format } from 'date-fns'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
-import { IconCalendarAdd } from '@/shared/assets'
+import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
 import {
-  HeaderTodayButton,
-  RenderScheduleBadges,
   Calendar,
   HeaderButton,
-  HeaderContainer,
-  HeaderMonthLabel,
+  HeaderLayout,
+  HeaderTodayButton,
   InfiniteCalendar,
-  FloatButton,
-  getInitialMonth,
-} from '@/shared/ui'
-
-import { useMonthSchedules } from '../hooks'
+  RenderScheduleBadges,
+} from '@/features/calendar/ui'
+import { getInitialMonth } from '@/features/calendar/utils'
+import { IconCalendarAdd } from '@/shared/assets'
+import { FloatButton } from '@/shared/ui'
 
 import ShareCalendarBottomSheet from './share-calendar-bottom-sheet'
 
-import type { Month } from '@/shared/ui/calendar/type/calendar.types'
+import type { Month } from '@/features/calendar/type'
 
 export default function MyCalendar() {
   const navigate = useNavigate()
   const [months, setMonths] = useState<Month[]>(getInitialMonth(false))
-  const { scheduleMap } = useMonthSchedules(months)
+  const { scheduleMap } = useMySchedulesByMonth(months)
   const [showModal, setShowModal] = useState(false)
   const onShareClick = () => setShowModal(true)
 
@@ -39,13 +37,15 @@ export default function MyCalendar() {
   return (
     <>
       <Calendar onDateClick={onDateClick}>
-        <HeaderContainer>
-          <HeaderTodayButton>오늘</HeaderTodayButton>
-          <HeaderMonthLabel />
-          <HeaderButton id="share-button" onClick={onShareClick}>
-            공유
-          </HeaderButton>
-        </HeaderContainer>
+        <HeaderLayout
+          left={<HeaderTodayButton>오늘</HeaderTodayButton>}
+          right={
+            <HeaderButton id="share-button" onClick={onShareClick}>
+              공유
+            </HeaderButton>
+          }
+        />
+
         <InfiniteCalendar months={months} setMonths={setMonths}>
           {(date) => <RenderScheduleBadges isMyCalendar date={date} scheduleMap={scheduleMap} />}
         </InfiniteCalendar>

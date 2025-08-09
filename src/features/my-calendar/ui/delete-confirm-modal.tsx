@@ -1,6 +1,6 @@
 import { Modal, ModalContent, ModalOverlay, ModalPortal, Text } from '@/shared/ui'
 
-import useDeleteSchedule from '../hooks/use-delete-schedule'
+import useDeleteSchedule from '../../../entities/schedule/hooks/use-delete-schedule'
 
 interface Props {
   isOpen: boolean

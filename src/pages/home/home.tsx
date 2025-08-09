@@ -1,43 +1,54 @@
+import { format } from 'date-fns'
 import { useState } from 'react'
-import { Outlet } from 'react-router'
+import { Outlet, useNavigate } from 'react-router'
 
+import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
 import { useUserStore } from '@/entities/user'
 import { EmailSigninModal, LoginSelectModal } from '@/features/auth/signin/ui'
-import { MyCalendar } from '@/features/my-schedule/ui'
-import { IconCalendarArrowLeft } from '@/shared/assets'
+import { HeaderButton, HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
+import { getInitialMonth } from '@/features/calendar/utils'
+import { ShareCalendarBottomSheet } from '@/features/my-calendar/ui'
+import { IconCalendarAdd } from '@/shared/assets'
 import { useIntroGuide } from '@/shared/hooks'
-import { Calendar, HeaderButton, HeaderContainer, HeaderMonthLabel, InfiniteCalendar } from '@/shared/ui'
+import { CalendarLayout } from '@/widgets/calendar'
 
 import type { AuthModalType } from '@/features/auth/types'
+import type { Month } from '@/features/calendar/type'
 
 export default function Home() {
   const user = useUserStore((state) => state.user)
+  const navigate = useNavigate()
 
-  const [isOpen, setIsOpen] = useState(!user) // 로그인 안 되어 있으면 기본값 true
+  const [isOpen, setIsOpen] = useState(!user)
   const [switchModal, setSwitchModal] = useState<AuthModalType>('LoginSelect')
-  const onDateClick = () => {
+
+  const onDateClick = (date: Date) => {
     if (!user) {
       setSwitchModal('EmailLogin')
       setIsOpen(true)
       return
     }
+    const dateStr = format(date, 'yyyy-MM-dd')
+    navigate(`/my/detailed-schedule/date/${dateStr}`)
   }
 
+  const goToCreateSchedule = () => {
+    navigate('/my/schedule/create')
+  }
+
+  const [months, setMonths] = useState<Month[]>(getInitialMonth(false))
+  const { scheduleMap } = useMySchedulesByMonth(months)
+
+  const [showModal, setShowModal] = useState(false)
+  const onShareClick = () => setShowModal(true)
+
   useIntroGuide()
+
   return (
     <>
       <Outlet />
       {!user ? (
-        <Calendar onDateClick={onDateClick}>
-          <HeaderContainer>
-            <HeaderButton>
-              <IconCalendarArrowLeft />
-            </HeaderButton>
-            <HeaderMonthLabel />
-            <HeaderButton>오늘</HeaderButton>
-          </HeaderContainer>
-          <InfiniteCalendar />
-
+        <CalendarLayout onDateClick={onDateClick}>
           {switchModal === 'LoginSelect' && (
             <LoginSelectModal
               isOpen={isOpen}
@@ -47,7 +58,6 @@ export default function Home() {
               }}
             />
           )}
-
           {switchModal === 'EmailLogin' && (
             <EmailSigninModal
               isOpen={isOpen}
@@ -57,9 +67,25 @@ export default function Home() {
               }}
             />
           )}
-        </Calendar>
+        </CalendarLayout>
       ) : (
-        <MyCalendar />
+        <>
+          <CalendarLayout
+            onDateClick={onDateClick}
+            headerLeft={<HeaderTodayButton>오늘</HeaderTodayButton>}
+            headerRight={
+              <HeaderButton id="share-button" onClick={onShareClick}>
+                공유
+              </HeaderButton>
+            }
+            months={months}
+            setMonths={setMonths}
+            onCreateSchedule={goToCreateSchedule}
+            renderDay={(date) => <RenderScheduleBadges isMyCalendar date={date} scheduleMap={scheduleMap} />}
+            buttonIcon={<IconCalendarAdd />}
+          />
+          {showModal && <ShareCalendarBottomSheet isOpen={showModal} setIsOpen={setShowModal} />}
+        </>
       )}
     </>
   )
