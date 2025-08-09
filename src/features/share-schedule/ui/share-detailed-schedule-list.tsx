@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
+import { useShareSchedule } from '@/entities/schedule/hooks'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { PrivateScheduleModal } from '@/features/calendar/ui'
 import { IconInvite } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
-
-import { useShareSchedule } from '../hooks'
 
 export default function ShareDetailedScheduleList() {
   const navigate = useNavigate()

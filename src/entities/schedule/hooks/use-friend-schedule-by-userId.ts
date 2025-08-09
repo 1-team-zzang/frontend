@@ -16,9 +16,8 @@ export function useFriendSchedulesByMonth(months: Month[]) {
       const baseDate = new Date(year, month)
       const start = format(startOfMonth(baseDate), 'yyyy-MM-dd')
       const end = format(endOfMonth(baseDate), 'yyyy-MM-dd')
-
       return {
-        queryKey: scheduleQueryKeys.userMonthlySchedules(friendId!, start, end),
+        queryKey: scheduleQueryKeys.friendSchedules(friendId!, start, end),
         queryFn: () => getFriendSchedule({ start, end, friendId }),
         staleTime: 1000 * 60 * 5,
       }
@@ -43,6 +42,5 @@ export function useFriendSchedulesByMonth(months: Month[]) {
 
     return combinedMap
   })()
-
   return { scheduleMap }
 }

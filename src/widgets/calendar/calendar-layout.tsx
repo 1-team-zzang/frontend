@@ -2,12 +2,12 @@ import { type Dispatch, type ReactNode, type SetStateAction } from 'react'
 
 import { FloatButton } from '@/shared/ui'
 
-import { Calendar, HeaderContainer, InfiniteCalendar } from '.'
+import { Calendar, HeaderLayout, InfiniteCalendar } from '../../features/calendar/ui'
 
-import type { Month } from '../type'
+import type { Month } from '../../features/calendar/type'
 
 interface Props {
-  onDateClick: (date: Date) => void
+  onDateClick?: (date: Date) => void
   headerLeft?: ReactNode
   headerCenter?: ReactNode
   headerRight?: ReactNode
@@ -15,8 +15,8 @@ interface Props {
   setMonths?: Dispatch<SetStateAction<Month[]>>
   renderDay?: (date: Date) => ReactNode
   onCreateSchedule?: () => void
-  buttonIcon: ReactNode
-  children: ReactNode
+  buttonIcon?: ReactNode
+  children?: ReactNode
 }
 
 export default function CalendarLayout({
@@ -33,7 +33,7 @@ export default function CalendarLayout({
 }: Props) {
   return (
     <Calendar onDateClick={onDateClick}>
-      <HeaderContainer left={headerLeft} center={headerCenter} right={headerRight} />
+      <HeaderLayout left={headerLeft} center={headerCenter} right={headerRight} />
 
       <InfiniteCalendar months={months} setMonths={setMonths}>
         {renderDay}

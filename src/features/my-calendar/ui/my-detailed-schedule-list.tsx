@@ -1,13 +1,12 @@
-import { parseISO } from 'date-fns'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
+import { useMonthsStore } from '@/entities/schedule/models/use-month-store'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { IconCalendarAdd } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
-import { devLog } from '@/shared/utils'
 
 import DeleteConfirmModal from './delete-confirm-modal'
 import EditSchduleDropDown from './edit-schedule-dropdown'
@@ -15,17 +14,12 @@ import EditSchduleDropDown from './edit-schedule-dropdown'
 export default function MyDetailedScheduleList() {
   const navigate = useNavigate()
   const { date } = useParams() // ex: '2025-08-01'
+  const months = useMonthsStore((s) => s.months)
 
-  const parsed = parseISO(date!)
-  const year = parsed.getFullYear()
-  const monthIndex = parsed.getMonth()
+  const { scheduleMap } = useMySchedulesByMonth(months)
 
-  devLog('log', 'schedulesList', { year, monthIndex })
-
-  const { scheduleMap } = useMySchedulesByMonth([{ year, month: monthIndex }])
-  devLog('log', 'scheduleMap', scheduleMap)
   const list = date ? (scheduleMap[date] ?? []) : []
-  devLog('log', 'list', list)
+
   const onClick = (scheduleId: number) => {
     navigate(`/my/detailed-schedule/date/${date}/schedules/${scheduleId}`)
   }

@@ -18,7 +18,7 @@ export function useMySchedulesByMonth(months: Month[]) {
       const end = format(endOfMonth(baseDate), 'yyyy-MM-dd')
 
       return {
-        queryKey: scheduleQueryKeys.userMonthlySchedules(userId!, start, end),
+        queryKey: scheduleQueryKeys.mySchedules(userId!, start, end),
         queryFn: () => getMySchedule(start, end),
         staleTime: 1000 * 60 * 5,
       }
@@ -43,6 +43,5 @@ export function useMySchedulesByMonth(months: Month[]) {
 
     return combinedMap
   })()
-
   return { scheduleMap }
 }

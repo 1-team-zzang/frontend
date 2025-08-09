@@ -1,7 +1,7 @@
 import { addMonths, format } from 'date-fns'
 
 import axiosInstance from '@/shared/api/axios-instance'
-import { devLog } from '@/shared/utils/dev-log'
+import { toast } from '@/shared/ui'
 
 import type { Schedule } from '@/entities/schedule/models'
 
@@ -18,7 +18,7 @@ export async function getShareSchedule(userId: string): Promise<Schedule[]> {
     })
     return res.data?.data?.scheduleResponseList ?? []
   } catch (error) {
-    devLog('log', '❌ 요청 실패', error)
+    toast.error('일정 불러오기 실패')
     throw error
   }
 }
