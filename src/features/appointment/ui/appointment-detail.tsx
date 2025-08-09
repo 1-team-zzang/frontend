@@ -56,7 +56,12 @@ export default function AppointmentDetail() {
         </AppointmentCard>
 
         <AppointmentCard className="p-0">
-          <AppointmentSchedule title={appointment.title} startAt={appointment.startAt} endAt={appointment.endAt} />
+          <AppointmentSchedule
+            color={appointment.color}
+            title={appointment.title}
+            startAt={appointment.startAt}
+            endAt={appointment.endAt}
+          />
           {canRespond && (
             <div className="flex">
               <AppointmentDetailRejectButton onReject={handleReject} />

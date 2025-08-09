@@ -48,5 +48,6 @@ export interface AppointmentDetail {
   startAt: string
   endAt: string
   inviteAt: string
+  color: string
   status: AppointmentRequestStatus
 }
