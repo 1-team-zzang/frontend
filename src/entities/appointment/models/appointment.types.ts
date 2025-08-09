@@ -43,8 +43,10 @@ export interface AppointmentDetail {
   id: number
   title: string
   requesterName: string
+  receiverName: string
   content: string
   startAt: string
   endAt: string
   inviteAt: string
+  status: AppointmentRequestStatus
 }

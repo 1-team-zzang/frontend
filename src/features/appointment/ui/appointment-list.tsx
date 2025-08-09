@@ -71,7 +71,12 @@ export default function AppointmentList() {
             </div>
           ) : (
             data.appointments.map((appointment) => (
-              <AppointmentListItem key={appointment.id} {...appointment} status={status} />
+              <AppointmentListItem
+                key={appointment.id}
+                {...appointment}
+                status={status}
+                appointmentStatus={appointment.status}
+              />
             ))
           )}
 

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router'
 
 import { scheduleQueryKeys } from '@/entities/schedule/models'
 import { useUserStore } from '@/entities/user'
+import { appointmentsQuery } from '@/features/appointment/models/appointments.query'
 import {
   appointmentSchedule,
   type AppointmentScheduleRequest,
@@ -48,7 +49,10 @@ export default function AppointmentSchedulePage() {
   const appointmentScheduleMutate = useMutation({
     mutationFn: appointmentSchedule,
     onSuccess: () => {
+      // 일정 관련 쿼리 무효화
       queryClient.invalidateQueries({ queryKey: scheduleQueryKeys.all })
+      // 약속 관련 쿼리도 무효화 (새로운 약속이 생성되므로)
+      queryClient.invalidateQueries({ queryKey: appointmentsQuery.all })
     },
   })
 
@@ -94,7 +98,7 @@ export default function AppointmentSchedulePage() {
     try {
       const result = await appointmentScheduleMutate.mutateAsync(payload)
       devLog('log', 'result', result)
-      navigate('/')
+      navigate('/appointments?status=SENT')
     } catch (error) {
       devLog('error', 'error', error)
       toast.error('약속 신청 중 오류가 발생했습니다.')
@@ -119,7 +123,7 @@ export default function AppointmentSchedulePage() {
       const user = useUserStore.getState().user
       if (user) {
         defaultStep2Values.requesterName = user.name
-        defaultStep2Values.requesterEmail = user.email
+        defaultStep2Values.requesterEmail = ''
       }
     }
 
