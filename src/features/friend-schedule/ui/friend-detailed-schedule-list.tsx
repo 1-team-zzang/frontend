@@ -1,27 +1,24 @@
-import { parseISO } from 'date-fns'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { useFriendSchedulesByMonth } from '@/entities/schedule/hooks'
+import { useFriendMonths } from '@/entities/schedule/models'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { PrivateScheduleModal } from '@/features/calendar/ui'
 import { IconInvite } from '@/shared/assets'
 import { FloatButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
-import { devLog } from '@/shared/utils'
 
 export default function FriendDetailedScheduleList() {
   const navigate = useNavigate()
   const { date, friendId } = useParams() // ex: '2025-08-01'
-  const parsed = parseISO(date!)
-  const year = parsed.getFullYear()
-  const monthIndex = parsed.getMonth()
 
-  const { scheduleMap } = useFriendSchedulesByMonth([{ year, month: monthIndex }])
+  const { months } = useFriendMonths(friendId!)
+
+  const { scheduleMap } = useFriendSchedulesByMonth({ months, friendId })
 
   const list = date ? (scheduleMap[date] ?? []) : []
-  devLog('log', 'list', list)
-  devLog('log', 'scheduleMap-listpage', scheduleMap)
+
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const onClick = (scheduleId: number) => {

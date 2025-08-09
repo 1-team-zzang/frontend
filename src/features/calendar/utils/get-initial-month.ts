@@ -5,7 +5,6 @@ export function getInitialMonth(disablePrev: boolean): Month[] {
   const current = { year: now.getFullYear(), month: now.getMonth() }
   const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1)
   const next = new Date(now.getFullYear(), now.getMonth() + 1, 1)
-
   if (disablePrev) {
     return [current, { year: next.getFullYear(), month: next.getMonth() }]
   }

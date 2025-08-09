@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
-import { useMonthsStore } from '@/entities/schedule/models/use-month-store'
+import { useMyMonthsStore } from '@/entities/schedule/models/use-month-store'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { IconCalendarAdd } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
@@ -14,7 +14,7 @@ import EditSchduleDropDown from './edit-schedule-dropdown'
 export default function MyDetailedScheduleList() {
   const navigate = useNavigate()
   const { date } = useParams() // ex: '2025-08-01'
-  const months = useMonthsStore((s) => s.months)
+  const months = useMyMonthsStore((s) => s.months)
 
   const { scheduleMap } = useMySchedulesByMonth(months)
 
