@@ -39,10 +39,6 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: 'test',
-        Component: AppointmentSchedulePage,
-      },
-      {
         Component: PrivateRoute,
         children: [
           {
