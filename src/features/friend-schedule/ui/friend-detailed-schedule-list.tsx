@@ -15,7 +15,7 @@ export default function FriendDetailedScheduleList() {
 
   const { months } = useFriendMonths(friendId!)
 
-  const { scheduleMap } = useFriendSchedulesByMonth({ months, friendId })
+  const { scheduleMap } = useFriendSchedulesByMonth({ months, friendId: friendId! })
 
   const list = date ? (scheduleMap[date] ?? []) : []
 

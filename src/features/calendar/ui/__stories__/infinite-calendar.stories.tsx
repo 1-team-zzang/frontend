@@ -1,4 +1,5 @@
-import { CalendarProvider, InfiniteCalendar } from '..'
+import { InfiniteCalendar } from '..'
+import { CalendarProvider } from '../calendar-context'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

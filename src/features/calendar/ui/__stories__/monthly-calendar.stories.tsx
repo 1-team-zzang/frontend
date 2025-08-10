@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 
-import { CalendarProvider, MonthlyCalendar } from '..'
+import { MonthlyCalendar } from '..'
+import { CalendarProvider } from '../calendar-context'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
