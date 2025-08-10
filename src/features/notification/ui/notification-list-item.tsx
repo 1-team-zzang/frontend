@@ -14,8 +14,12 @@ export default function NotificationListItem({ notification }: { notification: N
   const { onOpenChange } = useNotificationContext()
 
   return (
-    <li key={createdAt} className="flex flex-col p-2 rounded-xl hover:bg-gray-1">
-      <Link to={isAppointment ? '/appointments' : '/friends'} onClick={() => onOpenChange(false)}>
+    <li className="flex flex-col p-2 rounded-xl hover:bg-gray-1">
+      <Link
+        to={isAppointment ? '/appointments' : '/friends'}
+        onClick={() => onOpenChange(false)}
+        aria-label={`${isAppointment ? '약속' : '친구'} 알림: ${content}`}
+      >
         <div className="flex items-center gap-2">
           <Text
             as="span"

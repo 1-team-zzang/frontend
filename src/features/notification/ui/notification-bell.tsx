@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import { IconNotification, IconNotificationAlert } from '@/shared/assets'
@@ -7,6 +7,7 @@ import { useClickOutside } from '@/shared/hooks'
 import FallbackNotificationList from './fallback-notification-list'
 import { NotificationProvider } from './notification-context'
 import NotificationList from './notification-list'
+import NotificationListSkeleton from './notification-list-skeleton'
 
 export default function NotificationBell() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -31,7 +32,9 @@ export default function NotificationBell() {
           <ErrorBoundary
             fallbackRender={({ resetErrorBoundary }) => <FallbackNotificationList reset={resetErrorBoundary} />}
           >
-            <NotificationList />
+            <Suspense fallback={<NotificationListSkeleton />}>
+              <NotificationList />
+            </Suspense>
           </ErrorBoundary>
         )}
       </div>
