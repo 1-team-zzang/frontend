@@ -1,6 +1,9 @@
+import { useQueryErrorResetBoundary } from '@tanstack/react-query'
 import { type Dispatch, type ReactNode, type SetStateAction } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+import { useNavigate } from 'react-router'
 
-import { FloatButton } from '@/shared/ui'
+import { ErrorFallback, FloatButton } from '@/shared/ui'
 
 import { Calendar, HeaderLayout, InfiniteCalendar } from '../../features/calendar/ui'
 
@@ -31,13 +34,21 @@ export default function CalendarLayout({
   buttonIcon,
   children,
 }: Props) {
+  const { reset } = useQueryErrorResetBoundary()
+  const navigate = useNavigate()
   return (
     <Calendar onDateClick={onDateClick}>
       <HeaderLayout left={headerLeft} center={headerCenter} right={headerRight} />
-
-      <InfiniteCalendar months={months} setMonths={setMonths}>
-        {renderDay}
-      </InfiniteCalendar>
+      <ErrorBoundary
+        onReset={reset}
+        FallbackComponent={({ error, resetErrorBoundary }) => (
+          <ErrorFallback error={error} resetErrorBoundary={resetErrorBoundary} navigate={navigate} />
+        )}
+      >
+        <InfiniteCalendar months={months} setMonths={setMonths}>
+          {renderDay}
+        </InfiniteCalendar>
+      </ErrorBoundary>
 
       <FloatButton className="bg-primary-60" size="large" onClick={onCreateSchedule}>
         {buttonIcon}
