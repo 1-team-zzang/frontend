@@ -8,7 +8,9 @@ import {
 } from '../hooks'
 import { getInitialMonth } from '../utils'
 
-import { MonthlyCalendar, useCalendarContext } from '.'
+import { useCalendarContext } from './calendar-context.tsx'
+
+import { MonthlyCalendar } from '.'
 
 import type { Month } from '../type'
 

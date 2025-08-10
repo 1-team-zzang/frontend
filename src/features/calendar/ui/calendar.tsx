@@ -1,6 +1,6 @@
 import { useRef, useState, type ReactNode } from 'react'
 
-import { CalendarProvider } from '.'
+import { CalendarProvider } from './calendar-context'
 
 import type { Month } from '../type'
 

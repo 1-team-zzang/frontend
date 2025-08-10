@@ -9,7 +9,7 @@ import type { Month } from '@/features/calendar/type'
 
 interface Props {
   months: Month[]
-  friendId?: string
+  friendId: string
 }
 
 export function useFriendSchedulesByMonth({ months, friendId }: Props) {
@@ -19,8 +19,9 @@ export function useFriendSchedulesByMonth({ months, friendId }: Props) {
       const start = format(startOfMonth(baseDate), 'yyyy-MM-dd')
       const end = format(endOfMonth(baseDate), 'yyyy-MM-dd')
       return {
-        queryKey: scheduleQueryKeys.userSchedules(friendId!, start, end),
+        queryKey: scheduleQueryKeys.userSchedules(friendId, start, end),
         queryFn: () => getFriendSchedule({ start, end, friendId }),
+        enabled: !!friendId,
         staleTime: 1000 * 60 * 5,
       }
     }),

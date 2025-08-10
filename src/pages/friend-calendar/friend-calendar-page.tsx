@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useParams } from 'react-router'
 
 import { useFriendSchedulesByMonth } from '@/entities/schedule/hooks/use-friend-schedule-by-userId'
 import { useFriendMonths } from '@/entities/schedule/models'
-import { HeaderButton, RenderScheduleBadges } from '@/features/calendar/ui'
+import { HeaderButton, HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets'
 import { CalendarLayout } from '@/widgets/calendar'
 
@@ -12,7 +12,8 @@ export default function FriendCalendarPage() {
   const navigate = useNavigate()
 
   const { months, setMonths } = useFriendMonths(friendId!)
-  const { scheduleMap } = useFriendSchedulesByMonth({ months, friendId })
+
+  const { scheduleMap } = useFriendSchedulesByMonth({ months, friendId: friendId! })
 
   const onDateClick = (date: Date) => {
     const dateStr = format(date, 'yyyy-MM-dd')
@@ -32,7 +33,7 @@ export default function FriendCalendarPage() {
             <IconAppointmentArrowLeft />
           </HeaderButton>
         }
-        headerRight={<HeaderButton>오늘</HeaderButton>}
+        headerRight={<HeaderTodayButton>오늘</HeaderTodayButton>}
         months={months}
         setMonths={setMonths}
         onCreateSchedule={goToCreateAppointment}

@@ -3,7 +3,7 @@ import { HeaderButton } from '..'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof HeaderButton> = {
-  title: 'shared/calendar/header-button',
+  title: 'features/calendar/header-button',
   component: HeaderButton,
   tags: ['autodocs'],
   argTypes: {

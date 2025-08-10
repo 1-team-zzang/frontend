@@ -4,7 +4,7 @@ import type { Schedule } from '@/entities/schedule/models'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof RenderScheduleBadges> = {
-  title: 'shared/calendar/render-schedule-badge',
+  title: 'features/calendar/render-schedule-badge',
   component: RenderScheduleBadges,
   tags: ['autodocs'],
   decorators: [

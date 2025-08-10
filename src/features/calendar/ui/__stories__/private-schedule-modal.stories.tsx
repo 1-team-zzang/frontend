@@ -5,7 +5,7 @@ import { PrivateScheduleModal } from '..'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof PrivateScheduleModal> = {
-  title: 'shared/calendar/private-schedule-modal',
+  title: 'features/calendar/private-schedule-modal',
   component: PrivateScheduleModal,
   tags: ['autodocs'],
   decorators: [

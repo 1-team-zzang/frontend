@@ -8,7 +8,7 @@ const mockContextValue = {
 }
 
 const meta: Meta<typeof CalendarCell> = {
-  title: 'shared/calendar/calendar-cell',
+  title: 'features/calendar/calendar-cell',
   component: CalendarCell,
   decorators: [
     (Story) => (

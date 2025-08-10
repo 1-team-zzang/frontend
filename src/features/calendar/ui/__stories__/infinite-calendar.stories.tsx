@@ -3,7 +3,7 @@ import { CalendarProvider, InfiniteCalendar } from '..'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof InfiniteCalendar> = {
-  title: 'shared/calendar/infinite-calendar',
+  title: 'features/calendar/infinite-calendar',
   component: InfiniteCalendar,
   decorators: [
     (Story) => {

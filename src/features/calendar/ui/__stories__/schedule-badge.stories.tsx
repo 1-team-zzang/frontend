@@ -3,7 +3,7 @@ import { ScheduleBadge } from '..'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof ScheduleBadge> = {
-  title: 'shared/calendar/schedule-badge',
+  title: 'features/calendar/schedule-badge',
   component: ScheduleBadge,
   tags: ['autodocs'],
   decorators: [

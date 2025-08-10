@@ -11,7 +11,7 @@ const mockContextValue = {
 }
 
 const meta: Meta<typeof HeaderMonthLabel> = {
-  title: 'shared/calendar/header-month-label',
+  title: 'features/calendar/header-month-label',
   component: HeaderMonthLabel,
   decorators: [
     (Story) => (

@@ -5,7 +5,7 @@ import { cn } from '@/shared/utils'
 
 import { getDayInfo } from '../utils/get-day-info'
 
-import { useCalendarContext } from '.'
+import { useCalendarContext } from './calendar-context'
 
 import type { ReactNode } from 'react'
 
