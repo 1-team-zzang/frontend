@@ -1,4 +1,4 @@
-import DetailedScheduleColorBadge from './detailed-schedule-color-badge'
+import { DetailedScheduleColorBadge } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

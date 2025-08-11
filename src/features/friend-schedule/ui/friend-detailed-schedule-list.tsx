@@ -5,9 +5,9 @@ import { useFriendSchedulesByuserId } from '@/entities/schedule/hooks'
 import { useFriendMonths } from '@/entities/schedule/models'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { PrivateScheduleModal } from '@/features/calendar/ui'
+import { DetailedScheduleListCard } from '@/features/detailed-schedule/ui'
 import { IconInvite } from '@/shared/assets'
 import { FloatButton } from '@/shared/ui'
-import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
 export default function FriendDetailedScheduleList() {
   const navigate = useNavigate()

@@ -1,4 +1,4 @@
-import DetailedScheduleDate from './detailed-schedule-date'
+import { DetailedScheduleDate } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

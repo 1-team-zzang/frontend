@@ -1,6 +1,5 @@
+import { Text } from '@/shared/ui'
 import { cn } from '@/shared/utils'
-
-import Text from '../text/text'
 
 interface Props {
   label: string

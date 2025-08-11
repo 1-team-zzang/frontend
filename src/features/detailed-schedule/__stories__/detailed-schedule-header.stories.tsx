@@ -1,6 +1,6 @@
 import { MemoryRouter } from 'react-router'
 
-import DetailedScheduleHeader from './detailed-schedule-header'
+import { DetailedScheduleHeader } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

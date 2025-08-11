@@ -1,4 +1,4 @@
-import DetailedScheduleCard from './detailed-schedule-card'
+import { DetailedScheduleCard } from '../ui'
 
 import type { Schedule } from '@/entities/schedule/models'
 import type { Meta, StoryObj } from '@storybook/react-vite'

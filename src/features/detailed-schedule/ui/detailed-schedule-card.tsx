@@ -1,6 +1,6 @@
-import Text from '../text/text'
+import { Text } from '@/shared/ui'
 
-import { formattedDate } from './utils/formatted-date'
+import { formattedDate } from '../utils/formatted-date'
 
 import { DetailedScheduleCardContent, DetailedScheduleColorBadge, DetailedScheduleDate } from '.'
 

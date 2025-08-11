@@ -1,4 +1,4 @@
-import DetailedScheduleCardContent from './detailed-schedule-card-content'
+import { DetailedScheduleCardContent } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

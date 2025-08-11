@@ -1,5 +1,4 @@
-import Text from '../text/text'
-
+import { Text } from '@/shared/ui'
 interface Props {
   date: string
   weekday: string
