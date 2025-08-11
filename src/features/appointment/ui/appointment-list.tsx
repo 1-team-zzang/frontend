@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router'
 
 import { useIntersect, useQueryParamValue } from '@/shared/hooks'
-import Button from '@/shared/ui/button/button.tsx'
 import {
   SegmentedControl,
   SegmentedControlContent,
@@ -9,7 +8,6 @@ import {
   SegmentedControlList,
 } from '@/shared/ui/segmented-control'
 import Text from '@/shared/ui/text/text'
-import { devLog } from '@/shared/utils'
 
 import { appointmentListEmptyMessage } from '../consts/appointment-list-empty-message'
 import { useMyAppointmentsByStatus } from '../models'
@@ -25,11 +23,6 @@ export default function AppointmentList() {
     size: 10,
     status,
   })
-
-  // 디버깅을 위한 로그 추가
-  devLog('log', 'AppointmentList - status', status)
-  devLog('log', 'AppointmentList - data', data)
-  devLog('log', 'AppointmentList - appointments length', data.appointments.length)
 
   const ref = useIntersect<HTMLDivElement>({
     onIntersect: (entry, _observer) => {
@@ -65,9 +58,6 @@ export default function AppointmentList() {
           {data.appointments.length === 0 ? (
             <div className="flex flex-col items-center py-6 gap-6 px-4 text-center">
               <Text typography="b2-normal">{appointmentListEmptyMessage[status]}</Text>
-              <Button intent="solid" onClick={() => navigate('/appointment/create')} className="w-full bg-primary-50">
-                약속 만들기
-              </Button>
             </div>
           ) : (
             data.appointments.map((appointment) => (
