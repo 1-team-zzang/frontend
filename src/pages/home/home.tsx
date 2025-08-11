@@ -2,10 +2,10 @@ import { format } from 'date-fns'
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 
-import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
-import { useMyMonthsStore } from '@/entities/schedule/hooks/use-month-store'
+import { HeaderButton, HeaderTodayButton } from '@/entities/calendar/ui'
+import { useMyMonthsStore, useMySchedulesByMonth } from '@/entities/schedule/model'
 import { useUserStore } from '@/entities/user'
-import { HeaderButton, HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
+import { RenderScheduleBadges } from '@/features/calendar/ui'
 import { ShareCalendarBottomSheet, SwitchModal } from '@/features/my-calendar/ui'
 import { IconCalendarAdd } from '@/shared/assets'
 import { useIntroGuide } from '@/shared/hooks'
@@ -46,8 +46,7 @@ export default function Home() {
   const [showShareSheet, setShowShareSheet] = useState(false)
   const onShareClick = () => setShowShareSheet(true)
 
-  useIntroGuide()
-
+  useIntroGuide(!!user)
   return (
     <>
       <Outlet />

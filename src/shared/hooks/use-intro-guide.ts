@@ -1,9 +1,14 @@
 import introJs from 'intro.js'
 import { useEffect } from 'react'
+
 import 'intro.js/introjs.css'
 
-function useIntroGuide() {
+function useIntroGuide(loggedIn: boolean) {
   useEffect(() => {
+    if (!loggedIn) {
+      return
+    }
+
     const isMainVisited = localStorage.getItem('main-visited')
     if (isMainVisited) {
       return
@@ -54,7 +59,7 @@ function useIntroGuide() {
         intro.exit()
       }
     }
-  }, [])
+  }, [loggedIn])
 }
 
 export default useIntroGuide

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router'
 
 import { DetailedScheduleCard, NonSchedule } from '@/entities/detailed-schedule/ui'
-import { useDetailedSchedule } from '@/entities/schedule/hooks'
+import { useDetailedSchedule } from '@/entities/schedule/model'
 import { getRepeatText } from '@/entities/utils'
 
 export default function MyDetailedSchedule() {

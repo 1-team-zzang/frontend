@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
-import { DetailedScheduleListCard, NonSchedule } from '@/entities/detailed-schedule/ui'
-import { useShareScheduleByUserId } from '@/entities/schedule/hooks'
-import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { PrivateScheduleModal } from '@/features/calendar/ui'
-import { IconInvite } from '@/shared/assets/icons'
+import { PrivateScheduleModal } from '@/entities/calendar/ui'
+import { DetailedScheduleListCard } from '@/entities/detailed-schedule/ui'
+import { useShareScheduleByUserId } from '@/entities/schedule/model'
+import { formatScheduleTime } from '@/entities/utils'
+import { IconInvite } from '@/shared/assets'
 import { FloatButton } from '@/shared/ui'
 
 export default function ShareDetailedScheduleList() {
@@ -26,7 +26,7 @@ export default function ShareDetailedScheduleList() {
   return (
     <div>
       {list.length === 0 ? (
-        <NonSchedule />
+        <div className="text-center">아직 일정이 없어요</div>
       ) : (
         <div className="flex flex-col gap-4">
           {list.map((card) => {

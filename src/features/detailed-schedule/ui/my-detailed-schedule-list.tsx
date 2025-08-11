@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { DetailedScheduleListCard, NonSchedule } from '@/entities/detailed-schedule/ui'
-import { useMyMonthsStore, useMySchedulesByMonth } from '@/entities/schedule/hooks'
-import { DeleteConfirmModal, EditScheduleDropDown } from '@/entities/schedule/ui'
-import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
-import { IconCalendarAdd } from '@/shared/assets/icons'
+import { useMyMonthsStore, useMySchedulesByMonth } from '@/entities/schedule/model'
+import { formatScheduleTime } from '@/entities/utils'
+import { DeleteConfirmModal, EditScheduleDropDown } from '@/features/edit-my-schedule/ui'
+import { IconCalendarAdd } from '@/shared/assets'
 import { FloatButton } from '@/shared/ui'
 
 export default function MyDetailedScheduleList() {

@@ -47,11 +47,18 @@ export default function AppointmentDetail() {
         </AppointmentCard>
 
         <AppointmentCard className="p-0">
-          <AppointmentSchedule title={appointment.title} startAt={appointment.startAt} endAt={appointment.endAt} />
-          <div className="flex">
-            <AppointmentDetailRejectButton onReject={handleReject} />
-            <AppointmentDetailAcceptButton onAccept={handleAccept} />
-          </div>
+          <AppointmentSchedule
+            color={appointment.color}
+            title={appointment.title}
+            startAt={appointment.startAt}
+            endAt={appointment.endAt}
+          />
+          {appointment.status === 'REQUESTED' && (
+            <div className="flex">
+              <AppointmentDetailRejectButton onReject={handleReject} />
+              <AppointmentDetailAcceptButton onAccept={handleAccept} />
+            </div>
+          )}
         </AppointmentCard>
       </div>
     </section>

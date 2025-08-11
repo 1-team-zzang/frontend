@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router'
 
-import { useMyMonthsStore } from '@/entities/schedule/hooks'
-import { monthToRange, scheduleQueryKeys } from '@/entities/schedule/lib'
+import { monthToRange } from '@/entities/calendar/lib'
+import { scheduleQueryKeys } from '@/entities/schedule/lib'
+import { useMyMonthsStore } from '@/entities/schedule/model'
 import { useUserStore } from '@/entities/user'
 import { toast } from '@/shared/ui/toast'
 

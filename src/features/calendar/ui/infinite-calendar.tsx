@@ -1,18 +1,17 @@
 import { useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
 
+import { getInitialMonth } from '@/entities/calendar/lib'
+import { useCalendarContext } from '@/entities/calendar/model'
+import { MonthlyCalendar } from '@/entities/calendar/ui'
+
 import {
   useAutoScrollToCurrentMonth,
   useCalendarRef,
   useInfiniteCalendarScroll,
   useVisibleMonthObserver,
-} from '../hooks'
-import { getInitialMonth } from '../utils'
+} from '../model/index.ts'
 
-import { useCalendarContext } from './calendar-context.tsx'
-
-import { MonthlyCalendar } from '.'
-
-import type { Month } from '@/entities/schedule/lib/calendar.types.ts'
+import type { Month } from '@/entities/calendar/model/calendar.types.ts'
 
 interface Props {
   children?: (date: Date) => ReactNode

@@ -1,8 +1,7 @@
 import { format, isBefore, startOfDay } from 'date-fns'
 
+import { AppointmentBadge, PrivateScheduleBadge, ScheduleBadge } from '@/entities/calendar/ui'
 import { Text } from '@/shared/ui'
-
-import { AppointmentBadge, PrivateScheduleBadge, ScheduleBadge } from '.'
 
 import type { Schedule } from '@/entities/schedule/lib'
 

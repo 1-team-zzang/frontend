@@ -1,9 +1,10 @@
 import { format } from 'date-fns'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
-import { useShareScheduleByUserId } from '@/entities/schedule/hooks'
-import isPastDate from '@/entities/utils/is-past-date'
-import { HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
+import { isPastDate } from '@/entities/calendar/lib'
+import { HeaderTodayButton } from '@/entities/calendar/ui'
+import { useShareScheduleByUserId } from '@/entities/schedule/model'
+import { RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconInvite } from '@/shared/assets'
 import { toast } from '@/shared/ui'
 import { CalendarLayout } from '@/widgets/calendar'
