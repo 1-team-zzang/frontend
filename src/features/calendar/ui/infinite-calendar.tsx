@@ -47,7 +47,7 @@ export default function InfiniteCalendar({
   useVisibleMonthObserver({ scrollContainerRef, setVisibleMonth, monthRefs, months })
 
   return (
-    <div ref={scrollContainerRef} className="flex flex-col overflow-y-auto h-[calc(100vh-128px)] scrollbar-hide">
+    <div ref={scrollContainerRef} className="flex flex-col overflow-y-auto h-[calc(100dvh-128px)] scrollbar-hide">
       <div ref={topRef} />
       {months.map(({ year, month }) => {
         const key = `${year}-${month}`
