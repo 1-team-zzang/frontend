@@ -3,8 +3,8 @@ import { format } from 'date-fns'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
+import DetailedScheduleHeader from '@/features/detailed-schedule/ui/detailed-schedule-header'
 import { ErrorFallback } from '@/shared/ui'
-import { DetailedScheduleHeader } from '@/shared/ui/detailed-schedule'
 
 export default function DetailedScheduleLayout() {
   const navigate = useNavigate()

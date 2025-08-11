@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 
 import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
-import { useMyMonthsStore } from '@/entities/schedule/models/use-month-store'
+import { useMyMonthsStore } from '@/entities/schedule/hooks/use-month-store'
 import { useUserStore } from '@/entities/user'
 import { HeaderButton, HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
 import { ShareCalendarBottomSheet, SwitchModal } from '@/features/my-calendar/ui'

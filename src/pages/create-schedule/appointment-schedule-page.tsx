@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
-import { scheduleQueryKeys } from '@/entities/schedule/models'
+import { scheduleQueryKeys } from '@/entities/schedule/lib'
 import { useUserStore } from '@/entities/user'
 import {
   appointmentSchedule,

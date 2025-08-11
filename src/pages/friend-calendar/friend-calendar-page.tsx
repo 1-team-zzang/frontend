@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
 import { useFriendSchedulesByuserId } from '@/entities/schedule/hooks/use-friend-schedule-by-userId'
-import { useFriendMonths } from '@/entities/schedule/models'
+import { useFriendMonths } from '@/entities/schedule/lib'
 import { HeaderButton, HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets'
 import { CalendarLayout } from '@/widgets/calendar'
