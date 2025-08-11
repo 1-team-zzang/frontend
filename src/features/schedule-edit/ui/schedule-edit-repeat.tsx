@@ -15,7 +15,7 @@ import {
 
 import ScheduleEditRepeatOption from './schedule-edit-repeat-option'
 
-import type { RepeatRule } from '@/entities/schedule/models'
+import type { RepeatRule } from '@/entities/schedule/lib'
 
 export default function ScheduleEditRepeat() {
   const { control, watch } = useFormContext()

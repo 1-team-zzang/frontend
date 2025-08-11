@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
+import { DetailedScheduleListCard } from '@/entities/detailed-schedule/ui'
 import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
-import { useMyMonthsStore } from '@/entities/schedule/models/use-month-store'
+import { useMyMonthsStore } from '@/entities/schedule/hooks/use-month-store'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { IconCalendarAdd } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
-import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 
-import DeleteConfirmModal from './delete-confirm-modal'
-import EditSchduleDropDown from './edit-schedule-dropdown'
+import DeleteConfirmModal from '../../../entities/schedule/ui/delete-schedule-confirm-modal'
+import EditSchduleDropDown from '../../../entities/schedule/ui/edit-schedule-dropdown'
 
 export default function MyDetailedScheduleList() {
   const navigate = useNavigate()

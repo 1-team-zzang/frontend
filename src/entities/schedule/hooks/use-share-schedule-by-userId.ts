@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
-import { groupByDate, scheduleQueryKeys } from '@/entities/schedule/models'
+import { groupByDate, scheduleQueryKeys } from '@/entities/schedule/lib'
 
 import { getShareSchedule } from '../api'
 

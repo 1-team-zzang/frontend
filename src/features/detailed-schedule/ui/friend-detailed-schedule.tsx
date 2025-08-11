@@ -1,10 +1,10 @@
 import { useParams } from 'react-router'
 
+import { DetailedScheduleCard } from '@/entities/detailed-schedule/ui'
 import { useDetailedSchedule } from '@/entities/schedule/hooks'
 import { getRepeatText } from '@/entities/utils'
-import { DetailedScheduleCard } from '@/features/detailed-schedule/ui'
 
-export default function ShareDetailedSchedule() {
+export default function FriendDetailedSchedule() {
   const { scheduleId } = useParams()
   const data = useDetailedSchedule(scheduleId!)
   const repeatText = getRepeatText({

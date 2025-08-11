@@ -1,13 +1,12 @@
 import { useParams } from 'react-router'
 
+import { DetailedScheduleCard } from '@/entities/detailed-schedule/ui'
 import { useDetailedSchedule } from '@/entities/schedule/hooks'
-import { getRepeatText } from '@/entities/utils/format-repeat-text'
-import DetailedScheduleCard from '@/shared/ui/detailed-schedule/detailed-schedule-card'
+import { getRepeatText } from '@/entities/utils'
 
-export default function MyDetailedSchedule() {
+export default function ShareDetailedSchedule() {
   const { scheduleId } = useParams()
   const data = useDetailedSchedule(scheduleId!)
-
   const repeatText = getRepeatText({
     repeatRule: data?.repeatRule ?? '',
     repeatType: data?.repeatType ?? null,
@@ -21,7 +20,7 @@ export default function MyDetailedSchedule() {
       title={data.title}
       startDate={data.startAt}
       endDate={data.endAt}
-      repeat={repeatText}
+      repeat={repeatText ?? ''}
       visible={data.isVisible}
       content={data.content}
     />

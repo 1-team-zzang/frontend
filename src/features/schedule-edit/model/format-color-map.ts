@@ -1,4 +1,4 @@
-import type { ColorType } from '@/entities/schedule/models'
+import type { ColorType } from '@/entities/schedule/lib'
 
 export function formatColor() {
   const colorMap: Record<ColorType, string> = {

@@ -1,10 +1,10 @@
 import { Text } from '@/shared/ui'
 
-import { formattedDate } from '../utils/formatted-date'
+import { formattedDate } from '../../schedule/lib/formatted-date'
 
 import { DetailedScheduleCardContent, DetailedScheduleColorBadge, DetailedScheduleDate } from '.'
 
-import type { ColorType } from '@/entities/schedule/models'
+import type { ColorType } from '@/entities/schedule/lib'
 
 interface Props {
   badgeColor: ColorType

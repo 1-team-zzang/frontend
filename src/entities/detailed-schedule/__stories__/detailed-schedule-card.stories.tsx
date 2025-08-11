@@ -1,6 +1,6 @@
 import { DetailedScheduleCard } from '../ui'
 
-import type { Schedule } from '@/entities/schedule/models'
+import type { Schedule } from '@/entities/schedule/lib'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta: Meta<typeof DetailedScheduleCard> = {

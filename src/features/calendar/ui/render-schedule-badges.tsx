@@ -4,7 +4,7 @@ import { Text } from '@/shared/ui'
 
 import { AppointmentBadge, PrivateScheduleBadge, ScheduleBadge } from '.'
 
-import type { Schedule } from '@/entities/schedule/models'
+import type { Schedule } from '@/entities/schedule/lib'
 
 interface Props {
   date: Date

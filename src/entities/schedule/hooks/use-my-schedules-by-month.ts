@@ -1,7 +1,7 @@
 import { useQueries } from '@tanstack/react-query'
 import { format, startOfMonth, endOfMonth } from 'date-fns'
 
-import { groupByDate, scheduleQueryKeys, type Schedule } from '@/entities/schedule/models'
+import { groupByDate, scheduleQueryKeys, type Schedule } from '@/entities/schedule/lib'
 import { useUserStore } from '@/entities/user'
 
 import { getMySchedule } from '../api/get-my-schedule.API'
