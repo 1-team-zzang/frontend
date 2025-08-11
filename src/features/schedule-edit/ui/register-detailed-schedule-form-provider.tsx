@@ -45,7 +45,7 @@ export default function RegisterDetailedScheduleFormProvider({ children, onSubmi
   })
 
   return (
-    <Form methods={methods} onSubmit={onSubmit}>
+    <Form methods={methods} onSubmit={onSubmit} className="m-0">
       {children}
     </Form>
   )
