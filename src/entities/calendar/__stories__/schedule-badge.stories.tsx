@@ -1,4 +1,4 @@
-import { ScheduleBadge } from '..'
+import { ScheduleBadge } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

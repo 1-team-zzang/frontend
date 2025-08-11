@@ -1,4 +1,4 @@
-import HeaderMonthLabel from './header-month-label'
+import { HeaderMonthLabel } from '@/entities/calendar/ui'
 
 import type { ReactNode } from 'react'
 

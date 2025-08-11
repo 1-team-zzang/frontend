@@ -1,4 +1,4 @@
-import { HeaderButton } from '..'
+import { HeaderButton } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

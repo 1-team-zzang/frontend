@@ -1,8 +1,9 @@
 import { format } from 'date-fns'
 import { useState } from 'react'
 
-import { HeaderMonthLabel } from '..'
-import { CalendarProvider } from '../calendar-context'
+import { CalendarProvider } from '@/features/calendar/ui/calendar-context'
+
+import { HeaderMonthLabel } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

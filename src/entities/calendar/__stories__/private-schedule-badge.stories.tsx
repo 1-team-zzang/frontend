@@ -1,4 +1,4 @@
-import { PrivateScheduleBadge } from '..'
+import { PrivateScheduleBadge } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

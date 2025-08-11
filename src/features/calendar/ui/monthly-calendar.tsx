@@ -13,9 +13,9 @@
  * <MonthlyCalendar year={2025} month={0} /> // 2025년 1월 달력
  */
 
-import { range, getMonthDates } from '../utils'
+import { CalendarCell } from '@/entities/calendar/ui'
 
-import { CalendarCell } from '.'
+import { range, getMonthDates } from '../utils'
 
 import type { Month } from '../type'
 import type { ReactNode } from 'react'

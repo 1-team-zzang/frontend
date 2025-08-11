@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { PrivateScheduleModal } from '..'
+import { PrivateScheduleModal } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

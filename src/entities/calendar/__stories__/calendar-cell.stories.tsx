@@ -1,5 +1,5 @@
-import { AppointmentBadge, CalendarCell } from '..'
-import { CalendarProvider } from '../calendar-context'
+import { AppointmentBadge, CalendarCell } from '../../../features/calendar/ui'
+import { CalendarProvider } from '../../../features/calendar/ui/calendar-context'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 

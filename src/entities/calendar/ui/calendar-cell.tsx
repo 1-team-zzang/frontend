@@ -3,9 +3,8 @@ import { cva } from 'class-variance-authority'
 import { Text } from '@/shared/ui'
 import { cn } from '@/shared/utils'
 
-import { getDayInfo } from '../utils/get-day-info'
-
-import { useCalendarContext } from './calendar-context'
+import { useCalendarContext } from '../../../features/calendar/ui/calendar-context'
+import { getDayInfo } from '../../../features/calendar/utils/get-day-info'
 
 import type { ReactNode } from 'react'
 
