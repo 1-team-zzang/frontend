@@ -26,7 +26,7 @@ export default function NotificationListItem({ notification }: { notification: N
             typography="caption-10"
             className={cn(
               'py-0.5 px-2 w-fit rounded-xl',
-              isAppointment ? 'bg-calendar-red-alt' : 'bg-calendar-blue-alt text-calendar-blue',
+              isAppointment ? 'bg-calendar-red-alt text-calendar-red' : 'bg-calendar-blue-alt text-calendar-blue',
             )}
           >
             {isAppointment ? '약속' : '친구'}
