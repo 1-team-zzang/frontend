@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
-import { useFriendSchedulesByMonth } from '@/entities/schedule/hooks/use-friend-schedule-by-userId'
+import { useFriendSchedulesByuserId } from '@/entities/schedule/hooks/use-friend-schedule-by-userId'
 import { useFriendMonths } from '@/entities/schedule/models'
 import { HeaderButton, HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets'
@@ -13,7 +13,7 @@ export default function FriendCalendarPage() {
 
   const { months, setMonths } = useFriendMonths(friendId!)
 
-  const { scheduleMap } = useFriendSchedulesByMonth({ months, friendId: friendId! })
+  const { scheduleMap } = useFriendSchedulesByuserId({ months, friendId: friendId! })
 
   const onDateClick = (date: Date) => {
     const dateStr = format(date, 'yyyy-MM-dd')

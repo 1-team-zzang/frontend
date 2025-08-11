@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
-import { useShareSchedule } from '@/entities/schedule/hooks'
+import { useShareScheduleByUserId } from '@/entities/schedule/hooks'
 import isPastDate from '@/entities/utils/is-past-date'
 import { HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconInvite } from '@/shared/assets'
@@ -11,7 +11,7 @@ import { CalendarLayout } from '@/widgets/calendar'
 export default function ShareCalendarPage() {
   const navigate = useNavigate()
   const { userId } = useParams<{ userId: string }>()
-  const { scheduleMap } = useShareSchedule()
+  const { scheduleMap } = useShareScheduleByUserId()
 
   const onDateClick = (date: Date) => {
     if (isPastDate(date)) {

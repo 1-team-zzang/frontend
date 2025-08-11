@@ -12,7 +12,7 @@ interface Props {
   friendId: string
 }
 
-export function useFriendSchedulesByMonth({ months, friendId }: Props) {
+export function useFriendSchedulesByuserId({ months, friendId }: Props) {
   const queries = useQueries({
     queries: months.map(({ year, month }) => {
       const baseDate = new Date(year, month)

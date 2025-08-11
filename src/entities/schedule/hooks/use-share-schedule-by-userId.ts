@@ -5,7 +5,7 @@ import { groupByDate, scheduleQueryKeys } from '@/entities/schedule/models'
 
 import { getShareSchedule } from '../api'
 
-export function useShareSchedule() {
+export function useShareScheduleByUserId() {
   const { userId } = useParams<{ userId: string }>()
   const { data: schedules = [] } = useSuspenseQuery({
     queryKey: scheduleQueryKeys.shareSchedules(userId!),

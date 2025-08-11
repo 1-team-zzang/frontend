@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
-import { useFriendSchedulesByMonth } from '@/entities/schedule/hooks'
+import { useFriendSchedulesByuserId } from '@/entities/schedule/hooks'
 import { useFriendMonths } from '@/entities/schedule/models'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { PrivateScheduleModal } from '@/features/calendar/ui'
@@ -15,7 +15,7 @@ export default function FriendDetailedScheduleList() {
 
   const { months } = useFriendMonths(friendId!)
 
-  const { scheduleMap } = useFriendSchedulesByMonth({ months, friendId: friendId! })
+  const { scheduleMap } = useFriendSchedulesByuserId({ months, friendId: friendId! })
 
   const list = date ? (scheduleMap[date] ?? []) : []
 

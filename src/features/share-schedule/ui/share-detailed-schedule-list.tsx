@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
-import { useShareSchedule } from '@/entities/schedule/hooks'
+import { useShareScheduleByUserId } from '@/entities/schedule/hooks'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { PrivateScheduleModal } from '@/features/calendar/ui'
 import { IconInvite } from '@/shared/assets/icons'
@@ -11,7 +11,7 @@ import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
 export default function ShareDetailedScheduleList() {
   const navigate = useNavigate()
   const { date, userId } = useParams() // ex: '2025-08-01'
-  const { scheduleMap } = useShareSchedule()
+  const { scheduleMap } = useShareScheduleByUserId()
   const list = date ? (scheduleMap[date] ?? []) : []
   const [isModalOpen, setIsModalOpen] = useState(false)
 
