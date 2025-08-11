@@ -1,3 +1,5 @@
+import type { ColorType } from '@/entities/schedule/models'
+
 export type AppointmentStatus = 'PENDING' | 'RESPONDED' | 'SENT'
 
 export interface Appointment {
@@ -47,4 +49,6 @@ export interface AppointmentDetail {
   startAt: string
   endAt: string
   inviteAt: string
+  color: ColorType
+  status: AppointmentRequestStatus
 }
