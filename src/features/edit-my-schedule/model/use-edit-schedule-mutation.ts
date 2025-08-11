@@ -10,7 +10,7 @@ import { editSchedule } from '../api/edit-schedule-API'
 import type { EditScheduleRequest } from './edit-schedule.types'
 import type { AxiosResponse } from 'axios'
 
-export function useEditScheduleMutation() {
+export function useEditScheduleMutation(scheduleId: string) {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const userId = useUserStore((s) => s.user?.userId)!
@@ -21,15 +21,21 @@ export function useEditScheduleMutation() {
     onSuccess: async () => {
       toast.success('일정이 수정되었습니다.')
 
-      for (const { year, month } of months) {
-        const { start, end } = monthToRange(year, month)
-
-        await queryClient.invalidateQueries({
-          queryKey: scheduleQueryKeys.userSchedules(userId, start, end),
+      await Promise.all([
+        // 상세 조회 쿼리 무효화 (scheduleId 기준)
+        queryClient.invalidateQueries({
+          queryKey: scheduleQueryKeys.detailedSchedule(scheduleId),
           exact: true,
-        })
-      }
-
+        }),
+        // 월별 목록 쿼리들 무효화
+        ...months.map(({ year, month }) => {
+          const { start, end } = monthToRange(year, month)
+          return queryClient.invalidateQueries({
+            queryKey: scheduleQueryKeys.userSchedules(userId, start, end),
+            exact: true,
+          })
+        }),
+      ])
       navigate(-1)
     },
     onError: () => {
