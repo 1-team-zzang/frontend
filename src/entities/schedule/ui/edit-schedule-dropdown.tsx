@@ -8,7 +8,7 @@ interface Props {
   onEditClick: () => void
 }
 
-export default function EditSchduleDropDown({ onDeleteClick, onEditClick }: Props) {
+export default function EditScheduleDropDown({ onDeleteClick, onEditClick }: Props) {
   const [isOpen, setIsOpen] = useState(false)
 
   const onMenuClick = (callback?: () => void) => {

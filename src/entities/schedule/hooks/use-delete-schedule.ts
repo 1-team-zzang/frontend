@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { monthToRange, scheduleQueryKeys } from '@/entities/schedule/lib'
 import { useUserStore } from '@/entities/user/models/use-user-store'
 import { toast } from '@/shared/ui/toast'
+import { devLog } from '@/shared/utils'
 
 import { deleteSchedule } from '../api'
 
@@ -18,18 +19,22 @@ export default function useDeleteSchedule() {
     onSuccess: async () => {
       toast.success('일정이 삭제되었습니다.')
 
-      for (const { year, month } of months) {
-        const { start, end } = monthToRange(year, month)
-
-        await queryClient.invalidateQueries({
-          queryKey: scheduleQueryKeys.userSchedules(userId!, start, end),
-          exact: true,
-        })
+      if (!userId || months.length === 0) {
+        return
       }
+      await Promise.all(
+        months.map(({ year, month }) => {
+          const { start, end } = monthToRange(year, month)
+          return queryClient.invalidateQueries({
+            queryKey: scheduleQueryKeys.userSchedules(userId, start, end),
+            exact: true,
+          })
+        }),
+      )
     },
     onError: (error) => {
       toast.error('일정 삭제가 실패했습니다')
-      throw error
+      devLog('error', '일정 삭제 에러', error)
     },
   })
 

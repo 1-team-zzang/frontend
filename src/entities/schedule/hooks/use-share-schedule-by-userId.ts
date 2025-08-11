@@ -10,6 +10,7 @@ export function useShareScheduleByUserId() {
   const { data: schedules = [] } = useQuery({
     queryKey: scheduleQueryKeys.shareSchedules(userId!),
     queryFn: () => getShareSchedule(userId!),
+    enabled: !!userId,
   })
 
   const scheduleMap = groupByDate(schedules)

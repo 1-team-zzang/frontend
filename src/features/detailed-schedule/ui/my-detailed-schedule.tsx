@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 
-import { DetailedScheduleCard } from '@/entities/detailed-schedule/ui'
+import { DetailedScheduleCard, NonSchedule } from '@/entities/detailed-schedule/ui'
 import { useDetailedSchedule } from '@/entities/schedule/hooks'
 import { getRepeatText } from '@/entities/utils'
 
@@ -26,6 +26,6 @@ export default function MyDetailedSchedule() {
       content={data.content}
     />
   ) : (
-    <div>아직 일정이 없어요</div>
+    <NonSchedule />
   )
 }

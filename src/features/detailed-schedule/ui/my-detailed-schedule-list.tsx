@@ -2,14 +2,11 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { DetailedScheduleListCard, NonSchedule } from '@/entities/detailed-schedule/ui'
-import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
-import { useMyMonthsStore } from '@/entities/schedule/hooks/use-month-store'
+import { useMyMonthsStore, useMySchedulesByMonth } from '@/entities/schedule/hooks'
+import { DeleteConfirmModal, EditScheduleDropDown } from '@/entities/schedule/ui'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { IconCalendarAdd } from '@/shared/assets/icons'
 import { FloatButton } from '@/shared/ui'
-
-import DeleteConfirmModal from '../../../entities/schedule/ui/delete-schedule-confirm-modal'
-import EditSchduleDropDown from '../../../entities/schedule/ui/edit-schedule-dropdown'
 
 export default function MyDetailedScheduleList() {
   const navigate = useNavigate()
@@ -57,7 +54,7 @@ export default function MyDetailedScheduleList() {
                 badgeColor={card.color}
               >
                 {card.appointmentId ? null : (
-                  <EditSchduleDropDown
+                  <EditScheduleDropDown
                     onDeleteClick={() => onDeleteClick(card.scheduleId)}
                     onEditClick={() => onEditClick(card.scheduleId)}
                   />
