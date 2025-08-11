@@ -32,20 +32,11 @@ export default function AppointmentSchedulePage() {
   const queryClient = useQueryClient()
   const { user } = useUserStore()
 
-  // URL 파라미터 확인
-  devLog('log', 'URL 파라미터', params)
-
   // 시나리오 구분
   const isFriendScenario = params.friendId // /friends/:friendId/calendar/appointment
   const isShareScenario = params.userId // /share/:userId/appointment
 
   const receiverId = isFriendScenario ? parseInt(params.friendId!) : isShareScenario ? parseInt(params.userId!) : 0
-
-  devLog('log', '시나리오 구분', {
-    isFriendScenario,
-    isShareScenario,
-    receiverId,
-  })
 
   const appointmentScheduleMutate = useMutation({
     mutationFn: appointmentSchedule,
@@ -55,10 +46,8 @@ export default function AppointmentSchedulePage() {
   })
 
   const handleStepNext = (data: AppointmentScheduleStep1FormType) => {
-    devLog('log', 'handleStepNext 호출됨', data)
     setStep1Data(data)
     setCurrentStep(2)
-    devLog('log', 'currentStep을 2로 설정함')
   }
 
   const handleStepBack = () => {

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { useUserStore } from '@/entities/user'
+import { appointmentsQuery } from '@/features/appointment/models'
 import { friendQueryKeys } from '@/features/friends/model'
 import { toast } from '@/shared/ui'
 
@@ -18,6 +19,7 @@ function useSigninMutation() {
     onSuccess: (res) => {
       setUser(res)
       queryClient.invalidateQueries({ queryKey: friendQueryKeys.all })
+      queryClient.invalidateQueries({ queryKey: appointmentsQuery.all })
     },
     onError: (error: AxiosError) => {
       if (error?.status === 401) {

@@ -41,10 +41,11 @@ const NotificationList = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'di
 
         <Suspense fallback={<NotificationListSkeleton />}>
           <ul className="overflow-y-auto h-48 scrollbar-hide flex flex-col">
-            {notifications.map((notification, idx) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <NotificationListItem notification={notification} key={idx} />
-              // key값에 Idx값을 사용하면 안되는건 아는데 현재 백엔드에서 넘겨주는 데이터에 key값으로 사용할 고유한 데이터나 id가 없어서 임시로 Idx사용했습니다
+            {notifications.map((notification) => (
+              <NotificationListItem
+                notification={notification}
+                key={`${notification.createdAt}-${notification.content.slice(0, 20)}`}
+              />
             ))}
             <div className="h-[1px]" ref={observerRef} />
           </ul>

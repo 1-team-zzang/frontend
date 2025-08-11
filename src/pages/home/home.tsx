@@ -1,65 +1,83 @@
+import { format } from 'date-fns'
 import { useState } from 'react'
-import { Outlet } from 'react-router'
+import { Outlet, useNavigate } from 'react-router'
 
+import { HeaderButton } from '@/entities/calendar/ui'
+import { useMySchedulesByMonth } from '@/entities/schedule/hooks'
+import { useMyMonthsStore } from '@/entities/schedule/models/use-month-store'
 import { useUserStore } from '@/entities/user'
-import { EmailSigninModal, LoginSelectModal } from '@/features/auth/signin/ui'
-import { MyCalendar } from '@/features/my-schedule/ui'
-import { IconCalendarArrowLeft } from '@/shared/assets'
+import { HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
+import { ShareCalendarBottomSheet, SwitchModal } from '@/features/my-calendar/ui'
+import { IconCalendarAdd } from '@/shared/assets'
 import { useIntroGuide } from '@/shared/hooks'
-import { Calendar, HeaderButton, HeaderContainer, HeaderMonthLabel, InfiniteCalendar } from '@/shared/ui'
+import { CalendarLayout } from '@/widgets/calendar'
 
-import type { AuthModalType } from '@/features/auth/types'
+import type { AuthModalType } from '@/features/auth'
 
 export default function Home() {
-  const user = useUserStore((state) => state.user)
+  const navigate = useNavigate()
 
-  const [isOpen, setIsOpen] = useState(!user) // 로그인 안 되어 있으면 기본값 true
+  const user = useUserStore((s) => s.user)
+
+  const { months, setMonths } = useMyMonthsStore()
+  const { scheduleMap } = useMySchedulesByMonth(user ? months : [])
+
+  const [isOpen, setIsOpen] = useState(!user)
   const [switchModal, setSwitchModal] = useState<AuthModalType>('LoginSelect')
-  const onDateClick = () => {
+
+  const onDateClick = (date: Date) => {
     if (!user) {
-      setSwitchModal('EmailLogin')
+      setSwitchModal('LoginSelect')
       setIsOpen(true)
       return
     }
+    const dateStr = format(date, 'yyyy-MM-dd')
+    navigate(`/my/detailed-schedule/date/${dateStr}`)
   }
 
-  useIntroGuide()
+  const goToCreateSchedule = () => {
+    if (!user) {
+      setSwitchModal('LoginSelect')
+      setIsOpen(true)
+      return
+    }
+    navigate('/my/schedule/create')
+  }
+
+  const [showShareSheet, setShowShareSheet] = useState(false)
+  const onShareClick = () => setShowShareSheet(true)
+
+  useIntroGuide(!!user)
   return (
     <>
       <Outlet />
       {!user ? (
-        <Calendar onDateClick={onDateClick}>
-          <HeaderContainer>
-            <HeaderButton>
-              <IconCalendarArrowLeft />
-            </HeaderButton>
-            <HeaderMonthLabel />
-            <HeaderButton>오늘</HeaderButton>
-          </HeaderContainer>
-          <InfiniteCalendar />
-
-          {switchModal === 'LoginSelect' && (
-            <LoginSelectModal
-              isOpen={isOpen}
-              setClose={setIsOpen}
-              setSwitchModal={(mode) => {
-                setSwitchModal(mode)
-              }}
-            />
-          )}
-
-          {switchModal === 'EmailLogin' && (
-            <EmailSigninModal
-              isOpen={isOpen}
-              setClose={setIsOpen}
-              setSwitchModal={(mode) => {
-                setSwitchModal(mode)
-              }}
-            />
-          )}
-        </Calendar>
+        <CalendarLayout onDateClick={onDateClick}>
+          <SwitchModal
+            switchModal={switchModal}
+            setSwitchModal={setSwitchModal}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
+        </CalendarLayout>
       ) : (
-        <MyCalendar />
+        <>
+          <CalendarLayout
+            onDateClick={onDateClick}
+            headerLeft={<HeaderTodayButton>오늘</HeaderTodayButton>}
+            headerRight={
+              <HeaderButton id="share-button" onClick={onShareClick}>
+                공유
+              </HeaderButton>
+            }
+            months={months}
+            setMonths={setMonths}
+            onCreateSchedule={goToCreateSchedule}
+            renderDay={(date) => <RenderScheduleBadges isMyCalendar date={date} scheduleMap={scheduleMap} />}
+            buttonIcon={<IconCalendarAdd />}
+          />
+          {showShareSheet && <ShareCalendarBottomSheet isOpen={showShareSheet} setIsOpen={setShowShareSheet} />}
+        </>
       )}
     </>
   )

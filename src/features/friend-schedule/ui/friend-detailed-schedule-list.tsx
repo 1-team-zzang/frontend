@@ -1,18 +1,24 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
+import { PrivateScheduleModal } from '@/entities/calendar/ui'
+import { useFriendSchedulesByuserId } from '@/entities/schedule/hooks'
+import { useFriendMonths } from '@/entities/schedule/models'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { IconInvite } from '@/shared/assets'
-import { FloatButton, PrivateScheduleModal } from '@/shared/ui'
+import { FloatButton } from '@/shared/ui'
 import { DetailedScheduleListCard } from '@/shared/ui/detailed-schedule'
-
-import { useFriendSchedule } from '../hooks/use-friend-schedule'
 
 export default function FriendDetailedScheduleList() {
   const navigate = useNavigate()
   const { date, friendId } = useParams() // ex: '2025-08-01'
-  const { scheduleMap } = useFriendSchedule()
+
+  const { months } = useFriendMonths(friendId!)
+
+  const { scheduleMap } = useFriendSchedulesByuserId({ months, friendId: friendId! })
+
   const list = date ? (scheduleMap[date] ?? []) : []
+
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const onClick = (scheduleId: number) => {

@@ -1,4 +1,4 @@
-import { getMonthDates, range } from '@/shared/ui'
+import { getMonthDates, range } from '@/features/calendar/utils'
 
 import ScheduleEditCalendarCell from './schedule-edit-calandar-cell'
 
