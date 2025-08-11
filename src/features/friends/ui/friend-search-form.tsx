@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button, Form, FormField, Input } from '@/shared/ui'
@@ -25,6 +26,10 @@ export default function FriendSearchForm({ searchType, onTypeChange, onSubmit }:
   }
 
   const placeholder = SEARCH_CONFIG[searchType].placeholder
+
+  useEffect(() => {
+    methods.reset()
+  }, [searchType])
 
   return (
     <Form methods={methods} onSubmit={handleSubmit} className="m-0">

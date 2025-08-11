@@ -37,7 +37,12 @@ export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
           <BottomSheetHeaderButton>닫기</BottomSheetHeaderButton>
         </BottomSheetHeader>
         <BottomSheetContent>
-          <FriendSearchForm searchType={searchType} onTypeChange={setSearchType} onSubmit={setSearchQuery} />
+          <FriendSearchForm
+            key={searchType}
+            searchType={searchType}
+            onTypeChange={setSearchType}
+            onSubmit={setSearchQuery}
+          />
           <FriendSearchResult searchType={searchType} searchQuery={searchQuery} />
         </BottomSheetContent>
       </BottomSheetContainer>
