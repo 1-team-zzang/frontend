@@ -7,7 +7,7 @@ import { ErrorFallback, FloatButton } from '@/shared/ui'
 
 import { Calendar, HeaderLayout, InfiniteCalendar } from '../../features/calendar/ui'
 
-import type { Month } from '../../entities/schedule/type'
+import type { Month } from '@/entities/schedule/lib'
 
 interface Props {
   onDateClick?: (date: Date) => void //날짜 셀 클릭시 실행되는 함수

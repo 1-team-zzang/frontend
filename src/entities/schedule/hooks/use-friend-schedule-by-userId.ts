@@ -1,11 +1,9 @@
 import { useQueries } from '@tanstack/react-query'
 import { format, startOfMonth, endOfMonth } from 'date-fns'
 
-import { groupByDate, scheduleQueryKeys, type Schedule } from '@/entities/schedule/lib'
+import { groupByDate, scheduleQueryKeys, type Month, type Schedule } from '@/entities/schedule/lib'
 
 import { getFriendSchedule } from '../api'
-
-import type { Month } from '@/entities/schedule/type'
 
 interface Props {
   months: Month[]

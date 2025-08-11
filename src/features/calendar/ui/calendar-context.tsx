@@ -1,6 +1,6 @@
 import { createContextScope } from '@/shared/utils'
 
-import type { Month } from '../../../entities/schedule/type'
+import type { Month } from '@/entities/schedule/lib'
 import type { Dispatch, RefObject, SetStateAction } from 'react'
 
 export interface CalendarContextValue {

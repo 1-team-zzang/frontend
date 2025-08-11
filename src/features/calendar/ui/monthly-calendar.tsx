@@ -17,7 +17,7 @@ import { range, getMonthDates } from '../utils'
 
 import { CalendarCell } from '.'
 
-import type { Month } from '../../../entities/schedule/type'
+import type { Month } from '@/entities/schedule/lib'
 import type { ReactNode } from 'react'
 
 interface Props extends Month {
