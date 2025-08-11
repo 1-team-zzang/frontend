@@ -59,7 +59,7 @@ export default function AppointmentScheduleFormProvider({ children, onSubmit, de
   }
 
   return (
-    <Form methods={methods} onSubmit={handleFormSubmit}>
+    <Form methods={methods} onSubmit={handleFormSubmit} className="m-0">
       {children}
     </Form>
   )
