@@ -10,15 +10,16 @@ import { Calendar, HeaderLayout, InfiniteCalendar } from '../../features/calenda
 import type { Month } from '../../features/calendar/type'
 
 interface Props {
-  onDateClick?: (date: Date) => void
-  headerLeft?: ReactNode
-  headerCenter?: ReactNode
-  headerRight?: ReactNode
-  months?: Month[]
+  onDateClick?: (date: Date) => void //날짜 셀 클릭시 실행되는 함수
+  headerLeft?: ReactNode //헤더 왼쪽
+  headerCenter?: ReactNode //헤더 가운데, 없으면 월 라벨 표시
+  headerRight?: ReactNode //헤더 오른쪽
+  months?: Month[] //월 배열, 초기값: 이전달, 현재달, 다음달
+  isPast?: boolean //오늘 이전의 날짜 투명하게 표시
   setMonths?: Dispatch<SetStateAction<Month[]>>
-  renderDay?: (date: Date) => ReactNode
-  onCreateSchedule?: () => void
-  buttonIcon?: ReactNode
+  renderDay?: (date: Date) => ReactNode // 셀 안에 표시될 컴포넌트들
+  onCreateSchedule?: () => void //플로팅버튼 클릭시 실행되는 함수
+  buttonIcon?: ReactNode //플로팅 버튼 안에 표시될 아이콘
   children?: ReactNode
 }
 
@@ -29,6 +30,7 @@ export default function CalendarLayout({
   headerRight,
   months,
   setMonths,
+  isPast,
   renderDay,
   onCreateSchedule,
   buttonIcon,
@@ -45,7 +47,7 @@ export default function CalendarLayout({
           <ErrorFallback error={error} resetErrorBoundary={resetErrorBoundary} navigate={navigate} />
         )}
       >
-        <InfiniteCalendar months={months} setMonths={setMonths}>
+        <InfiniteCalendar months={months} setMonths={setMonths} isPast={isPast}>
           {renderDay}
         </InfiniteCalendar>
       </ErrorBoundary>

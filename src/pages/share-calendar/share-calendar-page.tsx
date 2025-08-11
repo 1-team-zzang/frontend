@@ -35,6 +35,7 @@ export default function ShareCalendarPage() {
         onCreateSchedule={goToCreateAppointment}
         renderDay={(date) => <RenderScheduleBadges isShareCalendar date={date} scheduleMap={scheduleMap} />}
         buttonIcon={<IconInvite />}
+        isPast={true}
       />
     </>
   )
