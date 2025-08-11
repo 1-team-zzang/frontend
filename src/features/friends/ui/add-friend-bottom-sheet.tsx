@@ -1,11 +1,5 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useQueryErrorResetBoundary } from '@tanstack/react-query'
-import { Suspense, useEffect, useState } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
-import { useForm } from 'react-hook-form'
-import z from 'zod'
+import { useEffect, useState } from 'react'
 
-import { IconCheck } from '@/shared/assets'
 import {
   BottomSheet,
   BottomSheetContainer,
@@ -13,23 +7,12 @@ import {
   BottomSheetHeader,
   BottomSheetHeaderButton,
   BottomSheetHeaderTitle,
-  Button,
-  Form,
-  FormField,
-  Input,
-  Text,
 } from '@/shared/ui'
 
-import SearchTypeDropdown from './search-type-dropdown'
-import UserList from './user-list'
-import UserListSkeleton from './user-list-skeleton'
+import FriendSearchForm from './friend-search-form'
+import FriendSearchResult from './friend-search-result'
 
 import type { FriendSearchType } from '../model'
-
-const FriendRequestSchema = z.object({
-  friend: z.string().min(2, '2글자 이상 입력해주세요'),
-})
-type FriendRequestType = z.infer<typeof FriendRequestSchema>
 
 interface Props {
   isOpen: boolean
@@ -40,23 +23,11 @@ export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
   const [searchType, setSearchType] = useState<FriendSearchType>('EMAIL')
   const [searchQuery, setSearchQuery] = useState<string>('')
 
-  const { reset } = useQueryErrorResetBoundary()
-
-  const methods = useForm<FriendRequestType>({
-    resolver: zodResolver(FriendRequestSchema),
-    mode: 'onChange',
-  })
-
-  const handleSubmit = (data: FriendRequestType) => {
-    setSearchQuery(data.friend)
-  }
-
   useEffect(() => {
     if (!isOpen) {
-      methods.reset()
       setSearchQuery('')
     }
-  }, [isOpen, methods])
+  }, [isOpen])
 
   return (
     <BottomSheet open={isOpen} onOpenChange={setIsOpen}>
@@ -66,41 +37,8 @@ export default function AddFriendBottomSheet({ isOpen, setIsOpen }: Props) {
           <BottomSheetHeaderButton>닫기</BottomSheetHeaderButton>
         </BottomSheetHeader>
         <BottomSheetContent>
-          <Form methods={methods} onSubmit={handleSubmit} className="m-0">
-            <FormField name="friend">
-              <div className="relative flex items-center gap-2">
-                <SearchTypeDropdown searchType={searchType} onTypeChange={setSearchType} />
-                <Input placeholder={searchType === 'EMAIL' ? '이메일 검색' : '이름 검색'} className="h-14" />
-                <Button
-                  intent="outlined"
-                  type="submit"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-fit px-6 bg-white"
-                >
-                  검색
-                </Button>
-              </div>
-            </FormField>
-          </Form>
-          <ErrorBoundary
-            onReset={reset}
-            fallbackRender={({ resetErrorBoundary }) => (
-              <div className="p-2 h-64 mt-2 flex items-center justify-center">
-                <div>
-                  <Text as="span" typography="label">
-                    다시시도{' '}
-                  </Text>
-                  {/* TODO 빙글 도는 아이콘으로 추가하면 좋을듯 */}
-                  <button onClick={resetErrorBoundary} className="rounded-full border border-gray-20 p-2">
-                    <IconCheck />
-                  </button>
-                </div>
-              </div>
-            )}
-          >
-            <Suspense fallback={<UserListSkeleton />}>
-              <UserList searchQuery={searchQuery} searchType={searchType} />
-            </Suspense>
-          </ErrorBoundary>
+          <FriendSearchForm searchType={searchType} onTypeChange={setSearchType} onSubmit={setSearchQuery} />
+          <FriendSearchResult searchType={searchType} searchQuery={searchQuery} />
         </BottomSheetContent>
       </BottomSheetContainer>
     </BottomSheet>
