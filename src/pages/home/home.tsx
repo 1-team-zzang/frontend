@@ -23,7 +23,7 @@ export default function Home() {
     }
   }
 
-  useIntroGuide()
+  useIntroGuide(!!user)
   return (
     <>
       <Outlet />
