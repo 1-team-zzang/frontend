@@ -15,7 +15,7 @@ export default function MyDetailedScheduleList() {
   const navigate = useNavigate()
   const { date } = useParams() // ex: '2025-08-01'
 
-  const { scheduleMap } = useDateSchedules()
+  const { scheduleMap } = useDateSchedules({ start: date!, end: date! })
 
   const list = date ? (scheduleMap[date] ?? []) : []
 

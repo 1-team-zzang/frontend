@@ -1,10 +1,13 @@
-import { forwardRef, type ComponentPropsWithoutRef } from 'react'
+import { forwardRef, Suspense, type ComponentPropsWithoutRef } from 'react'
 
 import { useIntersect } from '@/shared/hooks'
 import { Text } from '@/shared/ui'
-import { cn, formatRelativeDate } from '@/shared/utils'
+import { cn } from '@/shared/utils'
 
 import { useNotification } from '../model'
+
+import NotificationListItem from './notification-list-item'
+import NotificationListSkeleton from './notification-list-skeleton'
 
 // TODO 디자인 시안 나오면 디자인 수정
 const NotificationList = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'>>(
@@ -27,32 +30,25 @@ const NotificationList = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'di
       <div
         ref={ref}
         className={cn(
-          'absolute z-dropdown top-4 -right-20 m-4 h-64 w-96 rounded bg-white shadow-2xl p-4 whitespace-nowrap',
+          'absolute z-dropdown top-4 -right-20 m-4 h-68 rounded-2xl w-fit sm:w-96 bg-white shadow-2xl p-4 whitespace-nowrap',
           className,
         )}
         {...restProps}
       >
-        <Text as="h2" typography="b1-heading">
-          notification
+        <Text as="h2" typography="b1-heading" className="mb-4">
+          캘픽 알림
         </Text>
-        <ul className="overflow-y-auto h-48 scrollbar-hide flex flex-col gap-2">
-          {notifications.map((notification) => (
-            <li key={notification.createdAt} className="flex flex-col">
-              <Text as="span" typography="label">
-                {notification.type === 'APPOINTMENT' ? '약속' : '친구'}
-              </Text>
-              <div className="flex items-center justify-between">
-                <Text as="span" typography="label">
-                  {notification.content}
-                </Text>
-                <Text as="span" typography="label" className="text-gray-500">
-                  {formatRelativeDate(new Date(notification.createdAt))}
-                </Text>
-              </div>
-            </li>
-          ))}
-          <div className="h-[1px]" ref={observerRef} />
-        </ul>
+
+        <Suspense fallback={<NotificationListSkeleton />}>
+          <ul className="overflow-y-auto h-48 scrollbar-hide flex flex-col">
+            {notifications.map((notification, idx) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <NotificationListItem notification={notification} key={idx} />
+              // key값에 Idx값을 사용하면 안되는건 아는데 현재 백엔드에서 넘겨주는 데이터에 key값으로 사용할 고유한 데이터나 id가 없어서 임시로 Idx사용했습니다
+            ))}
+            <div className="h-[1px]" ref={observerRef} />
+          </ul>
+        </Suspense>
       </div>
     )
   },

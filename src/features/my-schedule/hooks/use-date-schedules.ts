@@ -5,11 +5,16 @@ import { useUserStore } from '@/entities/user/models/use-user-store'
 
 import { getMySchedule } from '../api'
 
-export function useDateSchedules() {
+interface Props {
+  start: string
+  end: string
+}
+
+export function useDateSchedules({ start, end }: Props) {
   const userId = useUserStore((state) => state.user?.userId)
   const { data: schedules = [] } = useSuspenseQuery({
-    queryKey: scheduleQueryKeys.userSchedules(userId!),
-    queryFn: getMySchedule,
+    queryKey: scheduleQueryKeys.userSchedulesList(userId!, start),
+    queryFn: () => getMySchedule(start, end),
   })
 
   const scheduleMap = groupByDate(schedules)

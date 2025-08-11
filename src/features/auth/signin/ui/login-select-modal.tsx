@@ -1,3 +1,4 @@
+import { KakaoSignin } from '@/features/oauth/kakao/ui'
 import { ModalContent, ModalOverlay, ModalPortal, Modal, ModalTitle, Text } from '@/shared/ui'
 
 import { PromptSwitch } from '../../ui'
@@ -18,15 +19,7 @@ export default function LoginSelectModal({ isOpen, setSwitchModal, setClose }: P
         <ModalContent>
           <ModalTitle className="text-center">캘픽 로그인</ModalTitle>
           <div className="flex flex-col gap-3 mt-8 mb-6">
-            {/* TODO 카카오 로그인 onClick 추가 */}
-            {/* <Text
-              as="button"
-              typography="label"
-              className="bg-[#FEE500] font-semibold flex gap-2 items-center justify-center w-full rounded-[0.25rem] py-2.5"
-            >
-              <IconKakaoLogo />
-              카카오로그인
-            </Text> */}
+            <KakaoSignin />
             <Text
               as="button"
               typography="label"

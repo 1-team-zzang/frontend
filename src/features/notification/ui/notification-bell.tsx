@@ -1,15 +1,18 @@
 import { useRef, useState } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 
 import { IconNotification, IconNotificationAlert } from '@/shared/assets'
 import { useClickOutside } from '@/shared/hooks'
 
+import FallbackNotificationList from './fallback-notification-list'
+import { NotificationProvider } from './notification-context'
 import NotificationList from './notification-list'
 
 export default function NotificationBell() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   // TODO: 알림 읽음 처리 후 수정 / 현재는 임시값
-  const hasUnreadNotifications = true
+  const hasUnreadNotifications = false
 
   const handleClick = () => {
     setIsOpen((prev) => !prev)
@@ -19,11 +22,19 @@ export default function NotificationBell() {
   useClickOutside(ref, () => setIsOpen(false))
 
   return (
-    <div className="relative" ref={ref}>
-      <button className="flex items-center" onClick={handleClick}>
-        {hasUnreadNotifications ? <IconNotificationAlert /> : <IconNotification />}
-      </button>
-      {isOpen && <NotificationList />}
-    </div>
+    <NotificationProvider value={{ isOpen, onOpenChange: setIsOpen, onToggleChange: () => setIsOpen((prev) => !prev) }}>
+      <div className="relative" ref={ref}>
+        <button className="flex items-center" onClick={handleClick}>
+          {hasUnreadNotifications ? <IconNotificationAlert /> : <IconNotification />}
+        </button>
+        {isOpen && (
+          <ErrorBoundary
+            fallbackRender={({ resetErrorBoundary }) => <FallbackNotificationList reset={resetErrorBoundary} />}
+          >
+            <NotificationList />
+          </ErrorBoundary>
+        )}
+      </div>
+    </NotificationProvider>
   )
 }
