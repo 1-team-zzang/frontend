@@ -1,5 +1,6 @@
 import { useUserStore } from '@/entities/user'
 import { IconClose } from '@/shared/assets/icons'
+import { toast } from '@/shared/ui'
 import { BottomSheet, BottomSheetContainer, BottomSheetContent } from '@/shared/ui/bottom-sheet'
 import Text from '@/shared/ui/text/text'
 
@@ -13,8 +14,9 @@ interface Props {
 export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
   const userId = useUserStore((state) => state.user?.userId)
   const link = `https://calpick.vercel.app/share/${userId}`
+  const error = () => toast.error('로그인 후 이용 가능합니다')
 
-  const handleCopy = handleShareLinkCopy({ link, setIsOpen })
+  const handleCopy = userId ? handleShareLinkCopy({ link, setIsOpen }) : error
   return (
     <BottomSheet open={isOpen} onOpenChange={setIsOpen}>
       <BottomSheetContainer className="bg-white z-fixed">
@@ -26,7 +28,7 @@ export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
             </Text>
             <IconClose className="size-6 cursor-pointer" onClick={() => setIsOpen(false)} />
           </div>
-          <Text as="span" typography="b2-normal" className="mt-4">
+          <Text as="span" typography="b2-normal" className="mt-4 text-center">
             캘린더 링크가 생성되었습니다. 과거 일정은 나만보기로 자동 전환되어 공개되지 않습니다.
           </Text>
           <div className="w-full flex justify-between items-center h-16 bg-gray-1 px-4">
