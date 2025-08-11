@@ -24,7 +24,6 @@ export default function ScheduleEditDate() {
     if (end < date) {
       setValue('start', date)
       setValue('end', date)
-      toast.error('종료 시간은 시작 시간 이후여야 합니다.')
       return
     }
     setValue('start', date)

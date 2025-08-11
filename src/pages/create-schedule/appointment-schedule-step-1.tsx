@@ -33,7 +33,7 @@ export default function AppointmentScheduleStep1() {
   }
 
   return (
-    <>
+    <main>
       <ScheduleEditHeader title="약속 신청 (1/2)" button="다음" buttonType="next" onNext={handleNextClick} />
       <div className="flex flex-col px-4">
         <ScheduleEditTitle />
@@ -42,6 +42,6 @@ export default function AppointmentScheduleStep1() {
         <ScheduleEditAllDay />
         <ScheduleEditContent />
       </div>
-    </>
+    </main>
   )
 }

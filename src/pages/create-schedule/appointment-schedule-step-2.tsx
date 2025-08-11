@@ -23,12 +23,12 @@ export default function AppointmentScheduleStep2({ handleStepBack, isFriendScena
   )
 
   return (
-    <>
+    <main>
       <ScheduleEditHeader title="약속 신청 (2/2)" button="보내기" onBack={handleStepBack} buttonType="submit" />
       <div className="px-4">
         {RequesterComponent}
         <ScheduleEditMessage />
       </div>
-    </>
+    </main>
   )
 }
