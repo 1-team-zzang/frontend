@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
-import { DetailedScheduleListCard } from '@/entities/detailed-schedule/ui'
+import { DetailedScheduleListCard, NonSchedule } from '@/entities/detailed-schedule/ui'
 import { useFriendMonths, useFriendSchedulesByuserId } from '@/entities/schedule/hooks'
 import { formatScheduleTime } from '@/entities/utils/format-schedule-time'
 import { PrivateScheduleModal } from '@/features/calendar/ui'
@@ -29,7 +29,7 @@ export default function FriendDetailedScheduleList() {
   return (
     <div>
       {list.length === 0 ? (
-        <div className="text-center">아직 일정이 없어요</div>
+        <NonSchedule />
       ) : (
         <div className="flex flex-col gap-4">
           {list.map((card) => {
