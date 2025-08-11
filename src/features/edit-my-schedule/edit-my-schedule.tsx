@@ -20,7 +20,7 @@ import type { RegisterScheduleFormType } from '../schedule-edit/model/schedule.s
 
 export default function EditMySchedule() {
   const { scheduleId } = useParams<{ scheduleId: string }>()
-  const { mutate } = useEditScheduleMutation()
+  const { mutate } = useEditScheduleMutation(scheduleId!)
   const data = useDetailedSchedule(scheduleId!)
 
   const onSubmit = (formData: RegisterScheduleFormType) => {
