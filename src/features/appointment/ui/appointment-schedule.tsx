@@ -12,7 +12,6 @@ export default function AppointmentSchedule({
   color,
 }: Pick<AppointmentDetail, 'title' | 'startAt' | 'endAt' | 'color'>) {
   const colorMap = formatColor()
-
   return (
     <div className="flex flex-col gap-4 px-6 pt-5 pb-6">
       <div className="flex items-center gap-4">

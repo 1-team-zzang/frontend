@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router'
 
 import { useIntersect, useQueryParamValue } from '@/shared/hooks'
-import Button from '@/shared/ui/button/button.tsx'
 import {
   SegmentedControl,
   SegmentedControlContent,
@@ -59,9 +58,6 @@ export default function AppointmentList() {
           {data.appointments.length === 0 ? (
             <div className="flex flex-col items-center py-6 gap-6 px-4 text-center">
               <Text typography="b2-normal">{appointmentListEmptyMessage[status]}</Text>
-              <Button intent="solid" onClick={() => navigate('/appointment/create')} className="w-full bg-primary-50">
-                약속 만들기
-              </Button>
             </div>
           ) : (
             data.appointments.map((appointment) => (

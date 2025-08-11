@@ -1,7 +1,5 @@
 import { useNavigate, useParams } from 'react-router'
 
-import { useUserStore } from '@/entities/user/models/use-user-store'
-
 import useAppointmentById from '../models/use-appointment-by-id'
 import { useRespondToMyAppointmentRequest } from '../models/use-respond-to-my-appointment-request'
 
@@ -14,7 +12,6 @@ import { AppointmentCard, AppointmentHeader, AppointmentOverview, AppointmentSch
 export default function AppointmentDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const currentUser = useUserStore((state) => state.user)
 
   if (!id) {
     throw new Error('요청하신 약속 페이지가 존재하지 않아요.')
@@ -22,12 +19,6 @@ export default function AppointmentDetail() {
 
   const { data: appointment } = useAppointmentById(id)
   const { mutateAsync: respondToMyAppointmentRequest } = useRespondToMyAppointmentRequest()
-
-  // 권한 체크: 받은 약속인지 확인
-  const canRespond =
-    currentUser &&
-    (appointment.receiverName === currentUser.name || appointment.receiverName === undefined) &&
-    (appointment.status === 'REQUESTED' || appointment.status === undefined)
 
   const handleRespondToAppointment = async (status: 'ACCEPT' | 'REJECT', content: string = '') => {
     await respondToMyAppointmentRequest({ appointmentId: id, status, content })
@@ -62,7 +53,7 @@ export default function AppointmentDetail() {
             startAt={appointment.startAt}
             endAt={appointment.endAt}
           />
-          {canRespond && (
+          {appointment.status === 'REQUESTED' && (
             <div className="flex">
               <AppointmentDetailRejectButton onReject={handleReject} />
               <AppointmentDetailAcceptButton onAccept={handleAccept} />

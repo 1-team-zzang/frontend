@@ -24,3 +24,5 @@ export { default as EditMySchedulePage } from './edit-my-schedule/edit-my-schedu
 export { default as ProfileEditPage } from './settings/profile-edit-page'
 export { default as PasswordChangePage } from './settings/password-change-page'
 export { default as WithdrawPage } from './settings/withdraw-page'
+export { default as KaKaoRedirectPage } from './oauth/kakao-redirect-page'
+export { default as PasswordChangeRoute } from './settings/password-change-route'
