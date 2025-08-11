@@ -1,6 +1,6 @@
 import { useEffect, type Dispatch, type RefObject, type SetStateAction } from 'react'
 
-import type { Month } from '../../../entities/schedule/lib/calendar.types'
+import type { Month } from '@/entities/schedule/lib'
 
 interface Props {
   scrollContainerRef: RefObject<HTMLDivElement | null>
