@@ -30,20 +30,11 @@ export default function AppointmentSchedulePage() {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  // URL 파라미터 확인
-  devLog('log', 'URL 파라미터', params)
-
   // 시나리오 구분
   const isFriendScenario = params.friendId // /friends/:friendId/calendar/appointment
   const isShareScenario = params.userId // /share/:userId/appointment
 
   const receiverId = isFriendScenario ? parseInt(params.friendId!) : isShareScenario ? parseInt(params.userId!) : 0
-
-  devLog('log', '시나리오 구분', {
-    isFriendScenario,
-    isShareScenario,
-    receiverId,
-  })
 
   const appointmentScheduleMutate = useMutation({
     mutationFn: appointmentSchedule,
@@ -53,10 +44,8 @@ export default function AppointmentSchedulePage() {
   })
 
   const handleStepNext = (data: AppointmentScheduleStep1FormType) => {
-    devLog('log', 'handleStepNext 호출됨', data)
     setStep1Data(data)
     setCurrentStep(2)
-    devLog('log', 'currentStep을 2로 설정함')
   }
 
   const handleStepBack = () => {
@@ -84,12 +73,6 @@ export default function AppointmentSchedulePage() {
       message: totalData.message,
       color: totalData.color,
     }
-
-    devLog('log', '서버로 전송할 payload', payload)
-    devLog('log', 'totalData', totalData)
-    devLog('log', 'data', data)
-    devLog('log', 'step1Data', step1Data)
-    devLog('log', 'receiverId', receiverId)
 
     try {
       const result = await appointmentScheduleMutate.mutateAsync(payload)
