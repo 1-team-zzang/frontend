@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router'
 
 import { scheduleQueryKeys } from '@/entities/schedule/models'
 import { useUserStore } from '@/entities/user'
-import { appointmentsQuery } from '@/features/appointment/models/appointments.query'
 import {
   appointmentSchedule,
   type AppointmentScheduleRequest,
@@ -30,6 +29,10 @@ export default function AppointmentSchedulePage() {
 
   const navigate = useNavigate()
   const queryClient = useQueryClient()
+  const { user } = useUserStore()
+
+  // URL 파라미터 확인
+  devLog('log', 'URL 파라미터', params)
 
   // 시나리오 구분
   const isFriendScenario = params.friendId // /friends/:friendId/calendar/appointment
@@ -37,19 +40,24 @@ export default function AppointmentSchedulePage() {
 
   const receiverId = isFriendScenario ? parseInt(params.friendId!) : isShareScenario ? parseInt(params.userId!) : 0
 
+  devLog('log', '시나리오 구분', {
+    isFriendScenario,
+    isShareScenario,
+    receiverId,
+  })
+
   const appointmentScheduleMutate = useMutation({
     mutationFn: appointmentSchedule,
     onSuccess: () => {
-      // 일정 관련 쿼리 무효화
       queryClient.invalidateQueries({ queryKey: scheduleQueryKeys.all })
-      // 약속 관련 쿼리도 무효화 (새로운 약속이 생성되므로)
-      queryClient.invalidateQueries({ queryKey: appointmentsQuery.all })
     },
   })
 
   const handleStepNext = (data: AppointmentScheduleStep1FormType) => {
+    devLog('log', 'handleStepNext 호출됨', data)
     setStep1Data(data)
     setCurrentStep(2)
+    devLog('log', 'currentStep을 2로 설정함')
   }
 
   const handleStepBack = () => {
@@ -78,10 +86,16 @@ export default function AppointmentSchedulePage() {
       color: totalData.color,
     }
 
+    devLog('log', '서버로 전송할 payload', payload)
+    devLog('log', 'totalData', totalData)
+    devLog('log', 'data', data)
+    devLog('log', 'step1Data', step1Data)
+    devLog('log', 'receiverId', receiverId)
+
     try {
       const result = await appointmentScheduleMutate.mutateAsync(payload)
       devLog('log', 'result', result)
-      navigate('/appointments?status=SENT')
+      navigate('/')
     } catch (error) {
       devLog('error', 'error', error)
       toast.error('약속 신청 중 오류가 발생했습니다.')
@@ -102,12 +116,9 @@ export default function AppointmentSchedulePage() {
     }
 
     // 친구 시나리오에서는 현재 사용자 정보를 기본값으로 설정
-    if (isFriendScenario) {
-      const user = useUserStore.getState().user
-      if (user) {
-        defaultStep2Values.requesterName = user.name
-        defaultStep2Values.requesterEmail = ''
-      }
+    if (isFriendScenario && user) {
+      defaultStep2Values.requesterName = user.name
+      defaultStep2Values.requesterEmail = user.email
     }
 
     return (
