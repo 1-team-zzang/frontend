@@ -47,8 +47,7 @@ export default function Home() {
   const [showShareSheet, setShowShareSheet] = useState(false)
   const onShareClick = () => setShowShareSheet(true)
 
-  useIntroGuide()
-
+  useIntroGuide(!!user)
   return (
     <>
       <Outlet />
