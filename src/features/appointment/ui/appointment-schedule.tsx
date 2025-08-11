@@ -3,7 +3,6 @@ import Text from '@/shared/ui/text/text'
 import { formatDateTimeWithDay } from '@/shared/utils'
 
 import type { AppointmentDetail } from '@/entities/appointment/models/appointment.types'
-import type { ColorType } from '@/entities/schedule/models'
 
 export default function AppointmentSchedule({
   title,
@@ -15,7 +14,7 @@ export default function AppointmentSchedule({
   return (
     <div className="flex flex-col gap-4 px-6 pt-5 pb-6">
       <div className="flex items-center gap-4">
-        <div className={`w-4 h-4 rounded-full ${colorMap[color as ColorType]}`} />
+        <div className={`w-4 h-4 rounded-full ${colorMap[color]}`} />
         <Text typography="b2-heading">{title}</Text>
       </div>
       <div>
