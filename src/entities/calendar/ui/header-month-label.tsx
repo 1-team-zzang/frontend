@@ -1,6 +1,6 @@
 import { Text } from '@/shared/ui'
 
-import { useCalendarContext } from '../../../features/calendar/ui/calendar-context'
+import { useCalendarContext } from '../model'
 
 export default function HeaderMonthLabel() {
   const { visibleMonth } = useCalendarContext()

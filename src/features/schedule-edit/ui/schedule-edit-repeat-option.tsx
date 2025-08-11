@@ -7,7 +7,7 @@ import ScheduleEditDayPicker from '@/features/schedule-edit/ui/schedule-edit-dat
 import { Text } from '@/shared/ui'
 import { Input } from '@/shared/ui/input'
 
-import type { RepeatType } from '@/entities/schedule/models'
+import type { RepeatType } from '@/entities/schedule/lib'
 
 export default function ScheduleEditRepeatOption() {
   const { control, watch, setValue } = useFormContext()

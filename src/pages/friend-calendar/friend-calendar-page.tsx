@@ -1,10 +1,9 @@
 import { format } from 'date-fns'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
-import { HeaderButton } from '@/entities/calendar/ui'
-import { useFriendSchedulesByuserId } from '@/entities/schedule/hooks/use-friend-schedule-by-userId'
-import { useFriendMonths } from '@/entities/schedule/models'
-import { HeaderTodayButton, RenderScheduleBadges } from '@/features/calendar/ui'
+import { HeaderButton, HeaderTodayButton } from '@/entities/calendar/ui'
+import { useFriendMonths, useFriendSchedulesByuserId } from '@/entities/schedule/model'
+import { RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets'
 import { CalendarLayout } from '@/widgets/calendar'
 

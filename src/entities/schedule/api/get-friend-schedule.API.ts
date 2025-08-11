@@ -1,6 +1,6 @@
 import axiosInstance from '@/shared/api/axios-instance'
 
-import type { Schedule } from '@/entities/schedule/models'
+import type { Schedule } from '../lib'
 
 interface Props {
   friendId: string

@@ -1,5 +1,4 @@
-import { CalendarProvider } from '@/features/calendar/ui/calendar-context'
-
+import { CalendarProvider } from '../model/calendar-context'
 import { AppointmentBadge, CalendarCell } from '../ui'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'

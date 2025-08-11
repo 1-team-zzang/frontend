@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { scheduleQueryKeys } from '@/entities/schedule/models'
+import { scheduleQueryKeys } from '@/entities/schedule/lib'
 
 import { respondToMyAppointmentRequest } from '../apis/respond-to-my-appointment-request'
 

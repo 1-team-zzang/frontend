@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { MyDetailedScheduleList } from '@/features/my-calendar/ui'
+import { MyDetailedScheduleList } from '@/features/detailed-schedule/ui'
 
 import DetailedScheduleListSkeleton from '../detailed-schedule-list-skeleton'
 

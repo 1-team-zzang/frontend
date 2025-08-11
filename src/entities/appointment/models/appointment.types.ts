@@ -1,4 +1,4 @@
-import type { ColorType } from '@/entities/schedule/models'
+import type { ColorType } from '@/entities/schedule/lib'
 
 export type AppointmentStatus = 'PENDING' | 'RESPONDED' | 'SENT'
 

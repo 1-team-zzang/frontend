@@ -3,11 +3,11 @@ import { type Dispatch, type ReactNode, type SetStateAction } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useNavigate } from 'react-router'
 
+import { Calendar, HeaderLayout } from '@/entities/calendar/ui'
+import { InfiniteCalendar } from '@/features/calendar/ui'
 import { ErrorFallback, FloatButton } from '@/shared/ui'
 
-import { Calendar, HeaderLayout, InfiniteCalendar } from '../../features/calendar/ui'
-
-import type { Month } from '../../features/calendar/type'
+import type { Month } from '@/entities/calendar/model'
 
 interface Props {
   onDateClick?: (date: Date) => void //날짜 셀 클릭시 실행되는 함수

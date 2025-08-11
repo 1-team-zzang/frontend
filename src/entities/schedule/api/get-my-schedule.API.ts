@@ -1,7 +1,7 @@
 import axiosInstance from '@/shared/api/axios-instance'
 import { toast } from '@/shared/ui'
 
-import type { Schedule } from '@/entities/schedule/models'
+import type { Schedule } from '../lib'
 
 export async function getMySchedule(start: string, end: string): Promise<Schedule[]> {
   try {

@@ -1,10 +1,10 @@
 import { cva } from 'class-variance-authority'
 
+import { useCalendarContext } from '@/entities/calendar/model'
 import { Text } from '@/shared/ui'
 import { cn } from '@/shared/utils'
 
-import { useCalendarContext } from '../../../features/calendar/ui/calendar-context'
-import { getDayInfo } from '../../../features/calendar/utils/get-day-info'
+import { getDayInfo } from '../lib'
 
 import type { ReactNode } from 'react'
 
