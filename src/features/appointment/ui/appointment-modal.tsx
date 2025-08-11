@@ -25,7 +25,7 @@ export default function AppointmentModal({
     <Modal open={isOpen} onOpenChange={onOpenChange}>
       <ModalPortal>
         <ModalOverlay />
-        <ModalContent className="flex flex-col w-[19.375rem] rounded-xl p-0 overflow-hidden">
+        <ModalContent className="flex flex-col w-[19.375rem] sm:w-[19.375rem] rounded-xl p-0 overflow-hidden">
           <InvitePopup />
           <div className="flex">
             <button className="flex-1 py-3 bg-gray-80 text-white" onClick={onContinue}>
