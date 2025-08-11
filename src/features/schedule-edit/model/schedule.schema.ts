@@ -40,7 +40,9 @@ export const AppointmentScheduleStep1Schema = BaseScheduleSchema
 // 약속 신청 Step 2 (추가 정보)
 export const AppointmentScheduleStep2Schema = z.object({
   requesterName: z.string().min(1, '이름은 필수입니다'),
-  requesterEmail: z.string().email('올바른 이메일을 입력하세요'),
+  requesterEmail: z.string().refine((val) => val === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), {
+    message: '올바른 이메일을 입력하세요',
+  }),
   message: z.string().min(1, '초대 메세지를 입력하세요'),
   receiverId: z.number(),
 })
@@ -48,7 +50,9 @@ export const AppointmentScheduleStep2Schema = z.object({
 // 약속 신청 전체
 export const AppointmentScheduleSchema = BaseScheduleSchema.extend({
   requesterName: z.string().min(1, '이름은 필수입니다'),
-  requesterEmail: z.string().email('올바른 이메일을 입력하세요'),
+  requesterEmail: z.string().refine((val) => val === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), {
+    message: '올바른 이메일을 입력하세요',
+  }),
   message: z.string().min(1, '초대 메세지를 입력하세요'),
   receiverId: z.number(),
 })
