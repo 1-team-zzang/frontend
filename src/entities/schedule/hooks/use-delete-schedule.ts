@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { monthToRange, scheduleQueryKeys, useMyMonthsStore } from '@/entities/schedule/lib'
+import { monthToRange, scheduleQueryKeys } from '@/entities/schedule/lib'
 import { useUserStore } from '@/entities/user/models/use-user-store'
 import { toast } from '@/shared/ui/toast'
 
 import { deleteSchedule } from '../api'
+
+import { useMyMonthsStore } from './use-month-store'
 
 export default function useDeleteSchedule() {
   const userId = useUserStore((state) => state.user?.userId)
