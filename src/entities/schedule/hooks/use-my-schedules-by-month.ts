@@ -6,7 +6,7 @@ import { useUserStore } from '@/entities/user'
 
 import { getMySchedule } from '../api/get-my-schedule.API'
 
-import type { Month } from '@/features/calendar/type'
+import type { Month } from '@/entities/schedule/type'
 
 export function useMySchedulesByMonth(months: Month[]) {
   const userId = useUserStore((state) => state.user?.userId)

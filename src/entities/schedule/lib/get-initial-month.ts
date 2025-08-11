@@ -1,4 +1,4 @@
-import type { Month } from '../type/calendar.types'
+import type { Month } from './calendar.types'
 
 export function getInitialMonth(disablePrev: boolean): Month[] {
   const now = new Date()

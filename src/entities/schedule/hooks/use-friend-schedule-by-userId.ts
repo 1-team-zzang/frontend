@@ -5,7 +5,7 @@ import { groupByDate, scheduleQueryKeys, type Schedule } from '@/entities/schedu
 
 import { getFriendSchedule } from '../api'
 
-import type { Month } from '@/features/calendar/type'
+import type { Month } from '@/entities/schedule/type'
 
 interface Props {
   months: Month[]

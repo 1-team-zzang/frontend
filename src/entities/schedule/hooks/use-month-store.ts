@@ -1,8 +1,7 @@
 import { create } from 'zustand'
 
-import { getInitialMonth } from '@/features/calendar/utils'
+import { getInitialMonth, type Month } from '../lib'
 
-import type { Month } from '@/features/calendar/type'
 import type { SetStateAction } from 'react'
 
 interface MonthsState {

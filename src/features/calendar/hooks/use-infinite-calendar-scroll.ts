@@ -2,7 +2,7 @@ import { useEffect, type Dispatch, type RefObject, type SetStateAction } from 'r
 
 import { getNextMonth, getPrevMonth } from '../utils/date'
 
-import type { Month } from '../type/calendar.types'
+import type { Month } from '../../../entities/schedule/lib/calendar.types'
 
 interface Props {
   topRef: RefObject<HTMLDivElement | null>

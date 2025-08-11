@@ -1,4 +1,4 @@
-import type { Month } from '../type/calendar.types'
+import type { Month } from '../../../entities/schedule/lib/calendar.types'
 
 export function getNextMonth({ year, month }: Month): Month {
   const next = new Date(year, month + 1, 1)

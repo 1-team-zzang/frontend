@@ -12,7 +12,7 @@ import { useCalendarContext } from './calendar-context.tsx'
 
 import { MonthlyCalendar } from '.'
 
-import type { Month } from '../type'
+import type { Month } from '../../../entities/schedule/type/index.ts'
 
 interface Props {
   children?: (date: Date) => ReactNode

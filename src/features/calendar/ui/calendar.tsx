@@ -2,7 +2,7 @@ import { useRef, useState, type ReactNode } from 'react'
 
 import { CalendarProvider } from './calendar-context'
 
-import type { Month } from '../type'
+import type { Month } from '../../../entities/schedule/type'
 
 interface Props {
   children: ReactNode
