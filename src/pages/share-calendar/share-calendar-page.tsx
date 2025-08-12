@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
 import { isPastDate } from '@/entities/calendar/lib'
-import { HeaderTodayButton } from '@/entities/calendar/ui'
+import { HeaderTodayButton, OwnerFloating } from '@/entities/calendar/ui'
 import { useShareScheduleByUserId } from '@/entities/schedule/model'
 import { useUserStore } from '@/entities/user'
 import { AppointmentModal } from '@/features/appointment/ui'
@@ -67,6 +67,7 @@ export default function ShareCalendarPage() {
         />
       )}
       <Outlet />
+      <OwnerFloating />
       <CalendarLayout
         onDateClick={onDateClick}
         headerLeft={<div className="size-4" />}
