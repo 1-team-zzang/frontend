@@ -51,7 +51,7 @@ export default function Home() {
     <>
       <Outlet />
       {!user ? (
-        <CalendarLayout onDateClick={onDateClick}>
+        <CalendarLayout onDateClick={onDateClick} user={!user}>
           <SwitchModal
             switchModal={switchModal}
             setSwitchModal={setSwitchModal}
