@@ -53,6 +53,7 @@ export default function RegisterSchedulePage() {
       const result = await scheduleRegisterMutate.mutateAsync(payload)
       devLog('log', 'result', result)
       navigate('/')
+      toast.success('일정이 등록되었습니다.')
     } catch (error) {
       devLog('error', 'error', error)
       toast.error('일정 등록 중 오류가 발생했습니다.')
