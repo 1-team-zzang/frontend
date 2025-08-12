@@ -41,6 +41,10 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
+        path: '/oauth/kakao',
+        Component: KaKaoRedirectPage,
+      },
+      {
         Component: PrivateRoute,
         children: [
           {
@@ -174,9 +178,5 @@ export const router = createBrowserRouter([
         Component: SignupPage,
       },
     ],
-  },
-  {
-    path: '/oauth/kakao',
-    Component: KaKaoRedirectPage,
   },
 ])
