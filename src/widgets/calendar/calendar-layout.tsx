@@ -20,6 +20,7 @@ interface Props {
   setMonths?: Dispatch<SetStateAction<Month[]>>
   renderDay?: (date: Date) => ReactNode // 셀 안에 표시될 컴포넌트들
   onCreateSchedule?: () => void //플로팅버튼 클릭시 실행되는 함수
+  disablePrev?: boolean
   buttonIcon?: ReactNode //플로팅 버튼 안에 표시될 아이콘
   children?: ReactNode
 }
@@ -34,6 +35,7 @@ export default function CalendarLayout({
   isPast,
   renderDay,
   onCreateSchedule,
+  disablePrev,
   buttonIcon,
   children,
 }: Props) {
@@ -49,7 +51,7 @@ export default function CalendarLayout({
           <ErrorFallback error={error} resetErrorBoundary={resetErrorBoundary} navigate={navigate} />
         )}
       >
-        <InfiniteCalendar months={months} setMonths={setMonths} isPast={isPast}>
+        <InfiniteCalendar months={months} setMonths={setMonths} isPast={isPast} disablePrev={disablePrev}>
           {renderDay}
         </InfiniteCalendar>
       </ErrorBoundary>
