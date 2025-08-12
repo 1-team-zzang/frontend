@@ -1,7 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router'
 
-import { devLog } from '@/shared/utils'
-
 import useAppointmentById from '../models/use-appointment-by-id'
 import { useRespondToMyAppointmentRequest } from '../models/use-respond-to-my-appointment-request'
 
@@ -36,8 +34,6 @@ export default function AppointmentDetail() {
   const handleReject = (content: string) => {
     handleRespondToAppointment('REJECT', content)
   }
-
-  devLog('log', 'appointment', { appointment })
 
   return (
     <section>

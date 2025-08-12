@@ -9,7 +9,6 @@ import {
   SegmentedControlList,
 } from '@/shared/ui/segmented-control'
 import Text from '@/shared/ui/text/text'
-import { devLog } from '@/shared/utils'
 
 import { appointmentListEmptyMessage } from '../consts/appointment-list-empty-message'
 import { useMyAppointmentsByStatus } from '../models'
@@ -41,9 +40,6 @@ export default function AppointmentList() {
   const handleStatusChange = (value: string) => {
     navigate(`/appointments?status=${value}`)
   }
-
-  devLog('log', 'apointment', { status })
-  devLog('log', 'apointment', { data })
 
   return (
     <div className="flex flex-col items-center py-6 gap-6 px-4 h-[calc(100vh-111px)]">
