@@ -41,12 +41,18 @@ const NotificationList = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'di
 
         <Suspense fallback={<NotificationListSkeleton />}>
           <ul className="overflow-y-auto h-48 scrollbar-hide flex flex-col">
-            {notifications.map((notification) => (
-              <NotificationListItem
-                notification={notification}
-                key={`${notification.createdAt}-${notification.content.slice(0, 20)}`}
-              />
-            ))}
+            {notifications.length === 0 ? (
+              <Text as="li" typography="label" className="w-full h-full flex items-center justify-center">
+                현재 알림이 없습니다
+              </Text>
+            ) : (
+              notifications.map((notification) => (
+                <NotificationListItem
+                  notification={notification}
+                  key={`${notification.createdAt}-${notification.content.slice(0, 20)}`}
+                />
+              ))
+            )}
             <div className="h-[1px]" ref={observerRef} />
           </ul>
         </Suspense>
