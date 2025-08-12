@@ -4,6 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { useNavigate } from 'react-router'
 
 import { Calendar, HeaderLayout } from '@/entities/calendar/ui'
+import WeeklyHeader from '@/entities/calendar/ui/weekly-header'
 import { InfiniteCalendar } from '@/features/calendar/ui'
 import { ErrorFallback, FloatButton } from '@/shared/ui'
 
@@ -41,6 +42,7 @@ export default function CalendarLayout({
   return (
     <Calendar onDateClick={onDateClick}>
       <HeaderLayout left={headerLeft} center={headerCenter} right={headerRight} />
+      <WeeklyHeader />
       <ErrorBoundary
         onReset={reset}
         FallbackComponent={({ error, resetErrorBoundary }) => (

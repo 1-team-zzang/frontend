@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { Outlet, useNavigate, useParams } from 'react-router'
 
-import { HeaderButton, HeaderTodayButton } from '@/entities/calendar/ui'
+import { HeaderButton, HeaderTodayButton, OwnerFloating } from '@/entities/calendar/ui'
 import { useFriendMonths, useFriendSchedulesByuserId } from '@/entities/schedule/model'
 import { RenderScheduleBadges } from '@/features/calendar/ui'
 import { IconAppointmentArrowLeft, IconInvite } from '@/shared/assets'
@@ -26,6 +26,7 @@ export default function FriendCalendarPage() {
   return (
     <>
       <Outlet />
+      <OwnerFloating />
       <CalendarLayout
         onDateClick={onDateClick}
         headerLeft={
