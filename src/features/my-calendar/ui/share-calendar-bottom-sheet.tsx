@@ -13,7 +13,8 @@ interface Props {
 
 export default function ShareCalendarBottomSheet({ isOpen, setIsOpen }: Props) {
   const userId = useUserStore((state) => state.user?.userId)
-  const link = `https://calpick.vercel.app/share/${userId}`
+  const userName = useUserStore((state) => state.user?.name)
+  const link = `https://calpick.vercel.app/share/${userId}${userName ? `?userName=${encodeURIComponent(userName)}` : ''}`
   const error = () => toast.error('로그인 후 이용 가능합니다')
 
   const handleCopy = userId ? handleShareLinkCopy({ link, setIsOpen }) : error
