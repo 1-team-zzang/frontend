@@ -79,6 +79,7 @@ export default function AppointmentSchedulePage() {
     try {
       const result = await appointmentScheduleMutate.mutateAsync(payload)
       devLog('log', 'result', result)
+      toast.success('약속이 신청되었습니다.')
       navigate(isFriendScenario ? `/friends/${receiverId}/calendar/` : isShareScenario ? `/share/${receiverId}` : '0')
     } catch (error) {
       devLog('error', 'error', error)
