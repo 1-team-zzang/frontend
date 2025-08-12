@@ -4,8 +4,6 @@ import { useNavigate, useSearchParams } from 'react-router'
 import { useKakaoSigninMutation } from '@/features/oauth/kakao/model'
 import { Text, Dots } from '@/shared/ui'
 
-// 배럴 패턴으로 import 하면 에러 떠서 실제 경로로 import했어요
-
 export default function KaKaoRedirectPage() {
   const [searchParams] = useSearchParams()
   const code = searchParams.get('code')
