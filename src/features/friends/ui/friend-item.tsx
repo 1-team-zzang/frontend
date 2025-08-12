@@ -27,7 +27,12 @@ export default function FriendItem({ friend }: { friend: Friend }) {
         {isEditMode ? (
           <DeleteFriendModal name={name} friendRequestId={friendRequestId} />
         ) : (
-          <Link to={`/friends/${friend.userId}/calendar?userName=${name}`}>
+          <Link
+            to={{
+              pathname: `/friends/${friend.userId}/calendar`,
+              search: new URLSearchParams({ userName: name }).toString(),
+            }}
+          >
             <IconCalendar />
           </Link>
         )}
