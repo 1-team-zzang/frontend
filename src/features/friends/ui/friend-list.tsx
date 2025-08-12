@@ -1,3 +1,4 @@
+import { IconNonSchedule } from '@/shared/assets'
 import { useIntersect } from '@/shared/hooks'
 import { Text } from '@/shared/ui'
 
@@ -26,7 +27,7 @@ export default function FriendList() {
   if (friends.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-[calc(100vh-200px)] gap-4">
-        <div className="size-40 bg-gray-5" />
+        <IconNonSchedule />
         <Text as="span" typography="b2-normal" className="text-center">
           등록된 캘메이트가
           <br />
