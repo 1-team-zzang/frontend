@@ -1,4 +1,6 @@
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate, useParams, useSearchParams } from 'react-router'
+
+import { devLog } from '@/shared/utils'
 
 import useAppointmentById from '../models/use-appointment-by-id'
 import { useRespondToMyAppointmentRequest } from '../models/use-respond-to-my-appointment-request'
@@ -12,6 +14,8 @@ import { AppointmentCard, AppointmentHeader, AppointmentOverview, AppointmentSch
 export default function AppointmentDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const statusFromQuery = searchParams.get('status') as 'PENDING' | 'RESPONDED' | 'SENT' | null
 
   if (!id) {
     throw new Error('요청하신 약속 페이지가 존재하지 않아요.')
@@ -33,6 +37,8 @@ export default function AppointmentDetail() {
     handleRespondToAppointment('REJECT', content)
   }
 
+  devLog('log', 'appointment', { appointment })
+
   return (
     <section>
       <AppointmentHeader>약속 상세</AppointmentHeader>
@@ -53,7 +59,7 @@ export default function AppointmentDetail() {
             startAt={appointment.startAt}
             endAt={appointment.endAt}
           />
-          {appointment.status === 'REQUESTED' && (
+          {statusFromQuery === 'PENDING' && (
             <div className="flex">
               <AppointmentDetailRejectButton onReject={handleReject} />
               <AppointmentDetailAcceptButton onAccept={handleAccept} />

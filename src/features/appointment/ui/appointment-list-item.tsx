@@ -40,7 +40,7 @@ export default function AppointmentListItem({
   const isClickable = !isResponded && (canRespond || requesterName === currentUser?.name)
 
   return (
-    <Link to={`/appointments/requests/${id}`} className={!isClickable ? 'pointer-events-none' : ''}>
+    <Link to={`/appointments/requests/${id}?status=${status}`} className={!isClickable ? 'pointer-events-none' : ''}>
       <AppointmentCard className="p-0" disabled={!isClickable}>
         <AppointmentSender inviteAt={inviteAt} requesterName={requesterName} className="py-4 px-6 bg-gray-1" />
         <div className="flex flex-col items-center gap-[0.188rem] py-6">

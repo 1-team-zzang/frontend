@@ -52,4 +52,5 @@ export interface AppointmentDetail {
   inviteAt: string
   color: ColorType
   status: AppointmentRequestStatus
+  appointmentStatus: AppointmentStatus
 }
