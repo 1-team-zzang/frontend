@@ -1,5 +1,7 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router'
 
+import { useUserStore } from '@/entities/user'
+
 import useAppointmentById from '../models/use-appointment-by-id'
 import { useRespondToMyAppointmentRequest } from '../models/use-respond-to-my-appointment-request'
 
@@ -13,7 +15,9 @@ export default function AppointmentDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const statusFromQuery = searchParams.get('status') as 'PENDING' | 'RESPONDED' | 'SENT' | null
+  const receiverName = searchParams.get('receiverName') as string
+  const user = useUserStore((state) => state.user)
+  const userName = user?.name
 
   if (!id) {
     throw new Error('요청하신 약속 페이지가 존재하지 않아요.')
@@ -40,11 +44,20 @@ export default function AppointmentDetail() {
       <AppointmentHeader>약속 상세</AppointmentHeader>
       <div className="flex flex-col gap-4 mx-4 mt-6">
         <AppointmentCard className="bg-gray-1 pt-4 pb-5">
-          <AppointmentSender
-            className="pb-3"
-            inviteAt={appointment.inviteAt}
-            requesterName={appointment.requesterName}
-          />
+          {receiverName === userName ? (
+            <AppointmentSender
+              className="pb-3"
+              inviteAt={appointment.inviteAt}
+              requesterName={appointment.requesterName}
+            >
+              From
+            </AppointmentSender>
+          ) : (
+            <AppointmentSender className="pb-3" inviteAt={appointment.inviteAt} requesterName={receiverName}>
+              To
+            </AppointmentSender>
+          )}
+
           <AppointmentOverview content={appointment.content} />
         </AppointmentCard>
 
@@ -55,7 +68,7 @@ export default function AppointmentDetail() {
             startAt={appointment.startAt}
             endAt={appointment.endAt}
           />
-          {statusFromQuery === 'PENDING' && (
+          {receiverName === userName && (
             <div className="flex">
               <AppointmentDetailRejectButton onReject={handleReject} />
               <AppointmentDetailAcceptButton onAccept={handleAccept} />
