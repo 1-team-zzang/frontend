@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router'
 
+import { IconNonSchedule } from '@/shared/assets'
 import { useIntersect, useQueryParamValue } from '@/shared/hooks'
 import {
   SegmentedControl,
@@ -57,6 +58,7 @@ export default function AppointmentList() {
         <SegmentedControlContent value={status} className="w-full flex flex-col gap-5 overflow-y-auto scrollbar-hide">
           {data.appointments.length === 0 ? (
             <div className="flex flex-col items-center py-6 gap-6 px-4 text-center">
+              <IconNonSchedule />
               <Text typography="b2-normal">{appointmentListEmptyMessage[status]}</Text>
             </div>
           ) : (
