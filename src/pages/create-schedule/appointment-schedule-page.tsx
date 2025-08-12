@@ -79,7 +79,7 @@ export default function AppointmentSchedulePage() {
     try {
       const result = await appointmentScheduleMutate.mutateAsync(payload)
       devLog('log', 'result', result)
-      navigate('/')
+      navigate(isFriendScenario ? `/friends/${receiverId}/calendar/` : isShareScenario ? `/share/${receiverId}` : '0')
     } catch (error) {
       devLog('error', 'error', error)
       toast.error('약속 신청 중 오류가 발생했습니다.')
