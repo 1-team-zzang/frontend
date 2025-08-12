@@ -76,6 +76,7 @@ export default function ShareCalendarPage() {
         renderDay={(date) => <RenderScheduleBadges isShareCalendar date={date} scheduleMap={scheduleMap} />}
         buttonIcon={<IconInvite />}
         isPast={true}
+        disablePrev={true}
       />
     </>
   )
