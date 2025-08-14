@@ -151,5 +151,5 @@
 
 ## 6. 트러블 슈팅
 
-- [트러블슈팅-캘린더 스크롤]()
+- [트러블슈팅-캘린더 페이지 일정 중복 및 상세일정 누락 문제 해결](https://github.com/1-team-zzang/frontend/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D-%EC%BA%98%EB%A6%B0%EB%8D%94-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%9D%BC%EC%A0%95-%EC%A4%91%EB%B3%B5-%EB%B0%8F-%EC%83%81%EC%84%B8%EC%9D%BC%EC%A0%95-%EB%88%84%EB%9D%BD-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0)
 - [트러블슈팅-vercel 404 에러](https://github.com/1-team-zzang/frontend/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85%5D-vercel-404-%EC%97%90%EB%9F%AC)
