@@ -19,6 +19,7 @@ const schedules = Array.from({ length: 200 }).map((_, idx) => {
 })
 
 export const handlers = [
+  //로그인
   http.post('/api/auth/login', async ({ request }) => {
     const { email, password } = (await request.json()) as LoginRequest
     let currentUser: { id: number; email: string; name: string } | null = null
@@ -52,6 +53,19 @@ export const handlers = [
     }
 
     return HttpResponse.json({ message: '로그인 실패' }, { status: 401 })
+  }),
+
+  //로그아웃
+  http.post('/api/auth/logout', () => {
+    return HttpResponse.json(
+      { code: 200, message: 'success', data: true },
+      {
+        status: 200,
+        headers: {
+          'Set-Cookie': 'Refresh-Token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0',
+        },
+      },
+    )
   }),
 
   // 일정 목록 불러오기

@@ -5,7 +5,7 @@ import './index.css'
 
 if (import.meta.env.MODE === 'development') {
   const { worker } = await import('./mocks/browser')
-  worker.start()
+  await worker.start({ onUnhandledRequest: 'bypass' })
 }
 
 createRoot(document.getElementById('root')!).render(<App />)
