@@ -1,22 +1,10 @@
 import { http, HttpResponse } from 'msw'
 
+import { schedules } from './mock-schedule'
 interface LoginRequest {
   email: string
   password: string
 }
-
-// 더미 일정 데이터 200개
-const schedules = Array.from({ length: 200 }).map((_, idx) => {
-  const day = (idx % 30) + 1
-  return {
-    scheduleId: idx + 1,
-    title: `Mock 일정 ${idx + 1}`,
-    startAt: `2025-09-${String(day).padStart(2, '0')}T09:00:00`,
-    endAt: `2025-09-${String(day).padStart(2, '0')}T10:00:00`,
-    isRepeated: idx % 10 === 0, // 10개마다 반복 일정
-    repeatRule: idx % 10 === 0 ? 'WEEKLY' : null,
-  }
-})
 
 export const handlers = [
   //로그인
@@ -70,7 +58,14 @@ export const handlers = [
 
   // 일정 목록 불러오기
   http.get('/api/schedules', () => {
-    return HttpResponse.json(schedules)
+    return HttpResponse.json({
+      code: 200,
+      message: 'success',
+      data: {
+        owner: true,
+        scheduleResponseList: schedules,
+      },
+    })
   }),
 
   // 일정 상세 조회
@@ -80,22 +75,82 @@ export const handlers = [
     if (!schedule) {
       return HttpResponse.json({ message: 'Not found' }, { status: 404 })
     }
-    return HttpResponse.json(schedule)
+    return HttpResponse.json({
+      code: 200,
+      message: 'success',
+      data: schedule,
+    })
+  }),
+
+  // 일정 생성
+  http.post('/api/schedules', async ({ request }) => {
+    const body = (await request.json()) as Partial<(typeof schedules)[number]>
+    const nextId = (schedules.reduce((m, s) => Math.max(m, s.scheduleId), 0) || 0) + 1
+
+    const now = new Date().toISOString()
+
+    const newItem = {
+      scheduleId: nextId,
+      title: body.title ?? `Mock 일정 ${nextId}`,
+      content: body.content ?? `${nextId}번째 일정`,
+      startAt: body.startAt ?? new Date().toISOString(),
+      endAt: body.endAt ?? new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+      isRepeated: body.isRepeated ?? false,
+      repeatRule: body.repeatRule ?? '', // RepeatRule 타입
+      isVisible: body.isVisible ?? true,
+      createdAt: now,
+      modifiedAt: now,
+      isAllDay: body.isAllDay ?? false,
+      repeatType: body.repeatType ?? null,
+      repeatCount: body.repeatCount ?? null,
+      repeatEndAt: body.repeatEndAt ?? null,
+      color: body.color ?? 'RED',
+      userId: body.userId ?? 1,
+      appointmentId: body.appointmentId ?? null,
+    }
+
+    schedules.push(newItem)
+
+    return HttpResponse.json(
+      {
+        code: 201,
+        message: 'created',
+        data: {
+          owner: true,
+          scheduleResponseList: schedules,
+        },
+      },
+      { status: 201 },
+    )
   }),
 
   // 일정 수정
   http.put('/api/schedules/:scheduleId', async ({ params, request }) => {
     const { scheduleId } = params
-    const body = (await request.json()) as unknown as Partial<(typeof schedules)[number]>
+    const body = (await request.json()) as Partial<(typeof schedules)[number]>
+
     const index = schedules.findIndex((s) => s.scheduleId === Number(scheduleId))
     if (index === -1) {
-      return HttpResponse.json({ message: 'Not found' }, { status: 404 })
+      return HttpResponse.json({ code: 404, message: 'Not found' }, { status: 404 })
     }
 
-    schedules[index] = { ...schedules[index], ...body }
-    return HttpResponse.json(schedules[index])
-  }),
+    const updated = {
+      ...schedules[index],
+      ...body,
+      modifiedAt: new Date().toISOString(),
+    }
 
+    schedules[index] = updated
+
+    return HttpResponse.json({
+      code: 200,
+      message: 'success',
+      data: {
+        owner: true,
+        scheduleResponseList: schedules,
+      },
+    })
+  }),
   // 일정 삭제
   http.delete('/api/schedules/:scheduleId', ({ params }) => {
     const { scheduleId } = params
